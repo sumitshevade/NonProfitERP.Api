@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace App.Models
 {
-    public partial class PersonEducation
+    public class PersonEducation
     {
         public int Id { get; set; }
         public int PersonId { get; set; }
@@ -15,19 +15,19 @@ namespace App.Models
         public int? UniversityBoardId { get; set; }
         public int? DegreeId { get; set; }
         public int? CourseId { get; set; }
-        public int CreatedById { get; set; }
+        public string CreatedById { get; set; }
         public DateTime CreatedAt { get; set; }
-        public int? UpdatedById { get; set; }
+        public string UpdatedById { get; set; }
         public DateTime? UpdatedAt { get; set; }
-        public int? DeletedById { get; set; }
+        public string DeletedById { get; set; }
         public DateTime? DeletedAt { get; set; }
 
-        public virtual Details Course { get; set; }
-        public virtual Details Degree { get; set; }
-        public virtual Details FromStd { get; set; }
-        public virtual Person Person { get; set; }
-        public virtual Details School { get; set; }
-        public virtual Details ToStd { get; set; }
-        public virtual Details UniversityBoard { get; set; }
+        public virtual Detail Course { get; set; }
+        public virtual Detail Degree { get; set; }
+        public virtual Detail FromStd { get; set; }
+        public virtual People Person { get; set; }
+        public virtual Detail School { get; set; }
+        public virtual Detail ToStd { get; set; }
+        public virtual Detail UniversityBoard { get; set; }
     }
 }

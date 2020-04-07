@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace App.Models
 {
-    public partial class Division
+    public class Division
     {
         public Division()
         {
-            DivisionHead = new HashSet<DivisionHead>();
+            DivisionHeads = new HashSet<DivisionHead>();
         }
 
         public int Id { get; set; }
@@ -16,14 +16,14 @@ namespace App.Models
         public string Address { get; set; }
         public DateTime StartDate { get; set; }
         public string LongText { get; set; }
-        public int CreatedById { get; set; }
+        public string CreatedById { get; set; }
         public DateTime CreatedAt { get; set; }
-        public int? UpdatedById { get; set; }
+        public string UpdatedById { get; set; }
         public DateTime? UpdatedAt { get; set; }
-        public int? DeletedById { get; set; }
+        public string DeletedById { get; set; }
         public DateTime? DeletedAt { get; set; }
 
         public virtual Department Department { get; set; }
-        public virtual ICollection<DivisionHead> DivisionHead { get; set; }
+        public virtual ICollection<DivisionHead> DivisionHeads { get; set; }
     }
 }

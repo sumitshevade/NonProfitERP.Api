@@ -1,71 +1,90 @@
 USE PublicData
 GO
 
-CREATE TABLE Country
+CREATE TABLE Countries
 (
 	Id INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
 	[Name] VARCHAR(50) NOT NULL,
-	CreatedById INT NOT NULL,
+	CreatedById NVARCHAR(450) NOT NULL,
 	CreatedAt DATETIME NOT NULL,
-	UpdatedById INT NULL,
+	UpdatedById NVARCHAR(450) NULL,
 	UpdatedAt DATETIME NULL,
-	DeletedById INT NULL,
+	DeletedById NVARCHAR(450) NULL,
 	DeletedAt DATETIME NULL
 )
 GO
 
-CREATE TABLE [State]
+CREATE TABLE States
 (
 	Id INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
 	[Name] VARCHAR(50) NOT NULL,
-	CountryId INT REFERENCES Country(Id),
-	CreatedById INT NOT NULL,
+	CountryId INT REFERENCES Countries(Id),
+	CreatedById NVARCHAR(450) NOT NULL,
 	CreatedAt DATETIME NOT NULL,
-	UpdatedById INT NULL,
+	UpdatedById NVARCHAR(450) NULL,
 	UpdatedAt DATETIME NULL,
-	DeletedById INT NULL,
+	DeletedById NVARCHAR(450) NULL,
 	DeletedAt DATETIME NULL
 )
 GO
 
-CREATE TABLE City
+CREATE TABLE Cities
 (
 	Id INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
-	StateId INT REFERENCES [State](Id),
+	StateId INT REFERENCES States(Id),
 	[Name] VARCHAR(50) NOT NULL,
-	CreatedById INT NOT NULL,
+	CreatedById NVARCHAR(450) NOT NULL,
 	CreatedAt DATETIME NOT NULL,
-	UpdatedById INT NULL,
+	UpdatedById NVARCHAR(450) NULL,
 	UpdatedAt DATETIME NULL,
-	DeletedById INT NULL,
+	DeletedById NVARCHAR(450) NULL,
 	DeletedAt DATETIME NULL
 )
 GO
 
-CREATE TABLE Header
+CREATE TABLE Organizations
 (
 	Id INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	[Name] VARCHAR(50) NOT NULL,
+	[Address] VARCHAR(250) NULL,
+	PanNo VARCHAR(15) NULL,
+	IsNasscomRegistered BIT NOT NULL DEFAULT 0,
+	LongText VARCHAR(500) NULL,
+	CreatedById NVARCHAR(450) NOT NULL,
+	CreatedAt DATETIME NOT NULL,
+	UpdatedById NVARCHAR(450) NULL,
+	UpdatedAt DATETIME NULL,
+	DeletedById NVARCHAR(450) NULL,
+	DeletedAt DATETIME NULL
+)
+GO
+
+CREATE TABLE Headers
+(
+	Id INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	OrganizationId INT REFERENCES Organizations(Id) NOT NULL,
 	Title VARCHAR(50) NOT NULL,
-	CreatedById INT NOT NULL,
+	CreatedById NVARCHAR(450) NOT NULL,
 	CreatedAt DATETIME NOT NULL,
-	UpdatedById INT NULL,
+	UpdatedById NVARCHAR(450) NULL,
 	UpdatedAt DATETIME NULL,
-	DeletedById INT NULL,
+	DeletedById NVARCHAR(450) NULL,
 	DeletedAt DATETIME NULL
 )
 GO
 
-CREATE TABLE Department
+CREATE TABLE Departments
 (
 	Id INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	OrganizationId INT REFERENCES Organizations(Id) NOT NULL,
 	[Name] VARCHAR(50) NOT NULL,
 	StartedAt DATE NULL,
 	LongText VARCHAR(500) NULL,
-	CreatedById INT NOT NULL,
+	CreatedById NVARCHAR(450) NOT NULL,
 	CreatedAt DATETIME NOT NULL,
-	UpdatedById INT NULL,
+	UpdatedById NVARCHAR(450) NULL,
 	UpdatedAt DATETIME NULL,
-	DeletedById INT NULL,
+	DeletedById NVARCHAR(450) NULL,
 	DeletedAt DATETIME NULL
 )
 GO
@@ -73,22 +92,23 @@ GO
 CREATE TABLE Details
 (
 	Id INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
-	HeaderId INT REFERENCES Header(Id),
+	HeaderId INT REFERENCES Headers(Id),
 	[Value] VARCHAR(100) NOT NULL,
 	ExtraField VARCHAR(250) NULL,
-	CreatedById INT NOT NULL,
+	CreatedById NVARCHAR(450) NOT NULL,
 	CreatedAt DATETIME NOT NULL,
-	UpdatedById INT NULL,
+	UpdatedById NVARCHAR(450) NULL,
 	UpdatedAt DATETIME NULL,
-	DeletedById INT NULL,
+	DeletedById NVARCHAR(450) NULL,
 	DeletedAt DATETIME NULL
 )
 GO
 
-CREATE TABLE Person
+CREATE TABLE People
 (
 	Id INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
 	PersonTypeId INT REFERENCES Details(Id) NOT NULL,	-- it was regular, etc, now it is Yuvak or wardhak etc
+	OrganizationId INT REFERENCES Organizations(Id) NOT NULL,
 	FirstName VARCHAR(50) NOT NULL,
 	MiddleName VARCHAR(50) NULL,
 	LastName VARCHAR(50) NOT NULL,
@@ -100,126 +120,109 @@ CREATE TABLE Person
 	WorkFrequency INT REFERENCES Details(Id) NOT NULL,	-- it will be daily, periodic, rare, etc
 	JoiningDate DATE NULL,
 	JoinedAsId INT REFERENCES Details(Id) NULL,
-	CountryId INT REFERENCES Country(Id) NULL,
-	CreatedById INT NOT NULL,
+	CountryId INT REFERENCES Countries(Id) NULL,
+	CreatedById NVARCHAR(450) NOT NULL,
 	CreatedAt DATETIME NOT NULL,
-	UpdatedById INT NULL,
+	UpdatedById NVARCHAR(450) NULL,
 	UpdatedAt DATETIME NULL,
-	DeletedById INT NULL,
+	DeletedById NVARCHAR(450) NULL,
 	DeletedAt DATETIME NULL
 )
 GO
 
-CREATE TABLE DepartmentHead
+CREATE TABLE DepartmentHeads
 (
 	Id INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
-	PersonId INT REFERENCES Person(Id) NOT NULL,
-	DepartmentId INT REFERENCES Department(Id) NOT NULL,
+	PersonId INT REFERENCES People(Id) NOT NULL,
+	DepartmentId INT REFERENCES Departments(Id) NOT NULL,
 	FromYear INT NOT NULL,
 	ToYear INT NULL,
-	CreatedById INT NOT NULL,
+	CreatedById NVARCHAR(450) NOT NULL,
 	CreatedAt DATETIME NOT NULL,
-	UpdatedById INT NULL,
+	UpdatedById NVARCHAR(450) NULL,
 	UpdatedAt DATETIME NULL,
-	DeletedById INT NULL,
+	DeletedById NVARCHAR(450) NULL,
 	DeletedAt DATETIME NULL
 )
 GO
 
-CREATE TABLE Organization
+CREATE TABLE Divisions
 (
 	Id INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
-	[Name] VARCHAR(50) NOT NULL,
-	[Address] VARCHAR(250) NULL,
-	PanNo VARCHAR(15) NULL,
-	IsNasscomRegistered BIT NOT NULL DEFAULT 0,
-	LongText VARCHAR(500) NULL,
-	CreatedById INT NOT NULL,
-	CreatedAt DATETIME NOT NULL,
-	UpdatedById INT NULL,
-	UpdatedAt DATETIME NULL,
-	DeletedById INT NULL,
-	DeletedAt DATETIME NULL
-)
-GO
-
-CREATE TABLE Division
-(
-	Id INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
-	DepartmentId INT REFERENCES Department(Id) NOT NULL,
+	DepartmentId INT REFERENCES Departments(Id) NOT NULL,
 	[Name] VARCHAR(50) NOT NULL,
 	[Address] VARCHAR(250) NOT NULL,
 	StartDate DATE NOT NULL,
 	LongText VARCHAR(500) NULL,
-	CreatedById INT NOT NULL,
+	CreatedById NVARCHAR(450) NOT NULL,
 	CreatedAt DATETIME NOT NULL,
-	UpdatedById INT NULL,
+	UpdatedById NVARCHAR(450) NULL,
 	UpdatedAt DATETIME NULL,
-	DeletedById INT NULL,
+	DeletedById NVARCHAR(450) NULL,
 	DeletedAt DATETIME NULL
 )
 GO
 
-CREATE TABLE DivisionHead
+CREATE TABLE DivisionHeads
 (
 	Id INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
-	PersonId INT REFERENCES Person(Id) NOT NULL,
-	DivisionId INT REFERENCES Division(Id) NOT NULL,
+	PersonId INT REFERENCES People(Id) NOT NULL,
+	DivisionId INT REFERENCES Divisions(Id) NOT NULL,
 	FromYear INT NOT NULL,
 	ToYear INT NULL,
-	CreatedById INT NOT NULL,
+	CreatedById NVARCHAR(450) NOT NULL,
 	CreatedAt DATETIME NOT NULL,
-	UpdatedById INT NULL,
+	UpdatedById NVARCHAR(450) NULL,
 	UpdatedAt DATETIME NULL,
-	DeletedById INT NULL,
+	DeletedById NVARCHAR(450) NULL,
 	DeletedAt DATETIME NULL
 )
 GO
 
-CREATE TABLE PersonPrivateInformation
+CREATE TABLE PersonPrivateInformations
 (
 	Id INT PRIMARY KEY IDENTITY(1,1),
-	PersonId INT REFERENCES Person(Id) NOT NULL,
+	PersonId INT REFERENCES People(Id) NOT NULL,
 	MaritalStatus BIT NOT NULL DEFAULT 0,
 	AadharCardNo VARCHAR(15) NULL,
 	IsOwnBicycle BIT NOT NULL DEFAULT 0,
 	ReligionId INT REFERENCES Details(Id) NULL,
 	CasteId INT REFERENCES Details(Id) NULL,
 	ParentalStatusId INT REFERENCES Details(Id) NULL,
-	CreatedById INT NOT NULL,
+	CreatedById NVARCHAR(450) NOT NULL,
 	CreatedAt DATETIME NOT NULL,
-	UpdatedById INT NULL,
+	UpdatedById NVARCHAR(450) NULL,
 	UpdatedAt DATETIME NULL,
-	DeletedById INT NULL,
+	DeletedById NVARCHAR(450) NULL,
 	DeletedAt DATETIME NULL
 )
 GO
 
-CREATE TABLE PersonAchievement
+CREATE TABLE PersonAchievements
 (
 	Id INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
-	PersonId INT REFERENCES Person(Id) NULL,
+	PersonId INT REFERENCES People(Id) NULL,
 	Title VARCHAR(50) NOT NULL,
 	GivenBy VARCHAR(100) NULL,
 	[Format] VARCHAR(50) NULL,
 	Reason VARCHAR(50) NULL,
 	ReceivedDate DATE NULL,
-	CreatedById INT NOT NULL,
+	CreatedById NVARCHAR(450) NOT NULL,
 	CreatedAt DATETIME NOT NULL,
-	UpdatedById INT NULL,
+	UpdatedById NVARCHAR(450) NULL,
 	UpdatedAt DATETIME NULL,
-	DeletedById INT NULL,
+	DeletedById NVARCHAR(450) NULL,
 	DeletedAt DATETIME NULL
 )
 GO
 
-CREATE TABLE PersonAddress
+CREATE TABLE PersonAddresses
 (
 	Id INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
-	PersonId INT REFERENCES Person(Id) NOT NULL,
-	CountryId INT REFERENCES Country(Id) NULL,
-	StateId INT REFERENCES [State](Id) NULL,
-	CityId INT REFERENCES City(Id) NULL,
+	PersonId INT REFERENCES People(Id) NOT NULL,
+	CountryId INT REFERENCES Countries(Id) NULL,
+	StateId INT REFERENCES States(Id) NULL,
+	CityId INT REFERENCES Cities(Id) NULL,
 	IsPermanent BIT NOT NULL,
 	RoadName VARCHAR(25) NULL,
 	Line1 VARCHAR(100) NULL,
@@ -232,52 +235,52 @@ CREATE TABLE PersonAddress
 	HomeStatusId INT REFERENCES Details(Id) NULL,
 	LocalityClass INT REFERENCES Details(Id) NULL,
 	ResidentialStatus INT REFERENCES Details(Id) NULL,
-	CreatedById INT NOT NULL,
+	CreatedById NVARCHAR(450) NOT NULL,
 	CreatedAt DATETIME NOT NULL,
-	UpdatedById INT NULL,
+	UpdatedById NVARCHAR(450) NULL,
 	UpdatedAt DATETIME NULL,
-	DeletedById INT NULL,
+	DeletedById NVARCHAR(450) NULL,
 	DeletedAt DATETIME NULL
 )
 GO
 
-CREATE TABLE PersonContact
+CREATE TABLE PersonContacts
 (
 	Id INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
-	PersonId INT REFERENCES Person(Id) NOT NULL,
+	PersonId INT REFERENCES People(Id) NOT NULL,
 	ContactType INT REFERENCES Details(Id) NULL,
 	Detail VARCHAR(100),
 	IsDefault BIT NOT NULL DEFAULT 0, 
-	CreatedById INT NOT NULL,
+	CreatedById NVARCHAR(450) NOT NULL,
 	CreatedAt DATETIME NOT NULL,
-	UpdatedById INT NULL,
+	UpdatedById NVARCHAR(450) NULL,
 	UpdatedAt DATETIME NULL,
-	DeletedById INT NULL,
+	DeletedById NVARCHAR(450) NULL,
 	DeletedAt DATETIME NULL
 )
 GO
 
-CREATE TABLE PersonDisability
+CREATE TABLE PersonDisabilities
 (
 	Id INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
-	PersonId INT REFERENCES Person(Id) NOT NULL,
+	PersonId INT REFERENCES People(Id) NOT NULL,
 	Problem VARCHAR(50) NOT NULL,
 	Detail VARCHAR(250) NULL,
 	FromYear INT NULL,
 	ToYear INT NULL,
-	CreatedById INT NOT NULL,
+	CreatedById NVARCHAR(450) NOT NULL,
 	CreatedAt DATETIME NOT NULL,
-	UpdatedById INT NULL,
+	UpdatedById NVARCHAR(450) NULL,
 	UpdatedAt DATETIME NULL,
-	DeletedById INT NULL,
+	DeletedById NVARCHAR(450) NULL,
 	DeletedAt DATETIME NULL
 )
 GO
 
-CREATE TABLE PersonEducation
+CREATE TABLE PersonEducations
 (
 	Id INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
-	PersonId INT REFERENCES Person(Id) NOT NULL,
+	PersonId INT REFERENCES People(Id) NOT NULL,
 	SchoolId INT REFERENCES Details(Id) NULL,
 	FromStdId INT REFERENCES Details(Id) NULL,
 	ToStdId INT REFERENCES Details(Id) NULL,
@@ -286,11 +289,11 @@ CREATE TABLE PersonEducation
 	UniversityBoardId INT REFERENCES Details(Id) NULL,
 	DegreeId INT REFERENCES Details(Id) NULL,
 	CourseId INT REFERENCES Details(Id) NULL,
-	CreatedById INT NOT NULL,
+	CreatedById NVARCHAR(450) NOT NULL,
 	CreatedAt DATETIME NOT NULL,
-	UpdatedById INT NULL,
+	UpdatedById NVARCHAR(450) NULL,
 	UpdatedAt DATETIME NULL,
-	DeletedById INT NULL,
+	DeletedById NVARCHAR(450) NULL,
 	DeletedAt DATETIME NULL
 )
 GO
@@ -307,15 +310,15 @@ CREATE TABLE PersonFamilyDetails
 	CompanyName VARCHAR(50) NULL,
 	SchoolName VARCHAR(50) NULL,
 	MonthlyIncome FLOAT NULL,
-	PersonId INT REFERENCES Person(Id) NULL,
+	PersonId INT REFERENCES People(Id) NULL,
 	RelationId INT REFERENCES Details(Id) NULL,
 	CourseId INT REFERENCES Details(Id) NULL,
 	AnyDisability VARCHAR(100) NULL,
-	CreatedById INT NOT NULL,
+	CreatedById NVARCHAR(450) NOT NULL,
 	CreatedAt DATETIME NOT NULL,
-	UpdatedById INT NULL,
+	UpdatedById NVARCHAR(450) NULL,
 	UpdatedAt DATETIME NULL,
-	DeletedById INT NULL,
+	DeletedById NVARCHAR(450) NULL,
 	DeletedAt DATETIME NULL
 )
 GO
@@ -323,71 +326,71 @@ GO
 CREATE TABLE PersonHealthDetails
 (
 	Id INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
-	PersonId INT REFERENCES Person(Id) NOT NULL,
+	PersonId INT REFERENCES People(Id) NOT NULL,
 	Height FLOAT NULL,
 	[Weight] FLOAT NULL,
 	IQ FLOAT NULL,
 	WakeUpTiming FLOAT NULL,
 	SleepTiming FLOAT NULL,
-	CreatedById INT NOT NULL,
+	CreatedById NVARCHAR(450) NOT NULL,
 	CreatedAt DATETIME NOT NULL,
-	UpdatedById INT NULL,
+	UpdatedById NVARCHAR(450) NULL,
 	UpdatedAt DATETIME NULL,
-	DeletedById INT NULL,
+	DeletedById NVARCHAR(450) NULL,
 	DeletedAt DATETIME NULL
 )
 GO
 
-CREATE TABLE PersonHobbyFavorite
+CREATE TABLE PersonHobbyFavorites
 (
 	Id INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
-	PersonId INT REFERENCES Person(Id) NOT NULL,
+	PersonId INT REFERENCES People(Id) NOT NULL,
 	HobbyFavoriteId INT REFERENCES Details(Id) NULL,
 	LongText VARCHAR(500) NULL,
-	CreatedById INT NOT NULL,
+	CreatedById NVARCHAR(450) NOT NULL,
 	CreatedAt DATETIME NOT NULL,
-	UpdatedById INT NULL,
+	UpdatedById NVARCHAR(450) NULL,
 	UpdatedAt DATETIME NULL,
-	DeletedById INT NULL,
+	DeletedById NVARCHAR(450) NULL,
 	DeletedAt DATETIME NULL
 )
 GO
 
-CREATE TABLE PersonLanguage
+CREATE TABLE PersonLanguages
 (
 	Id INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
-	PersonId INT REFERENCES Person(Id) NOT NULL,
+	PersonId INT REFERENCES People(Id) NOT NULL,
 	LanguageId INT REFERENCES Details(Id) NOT NULL,
 	IsMotherTongue BIT NOT NULL DEFAULT 0,
-	CreatedById INT NOT NULL,
+	CreatedById NVARCHAR(450) NOT NULL,
 	CreatedAt DATETIME NOT NULL,
-	UpdatedById INT NULL,
+	UpdatedById NVARCHAR(450) NULL,
 	UpdatedAt DATETIME NULL,
-	DeletedById INT NULL,
+	DeletedById NVARCHAR(450) NULL,
 	DeletedAt DATETIME NULL
 )
 GO
 
-CREATE TABLE PersonSocialMediaAccount
+CREATE TABLE PersonSocialMediaAccounts
 (
 	Id INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
-	PersonId INT REFERENCES Person(Id) NOT NULL,
+	PersonId INT REFERENCES People(Id) NOT NULL,
 	AccountTypeId INT REFERENCES Details(Id) NOT NULL,
 	Link VARCHAR(50) NULL,
 	TypeOfUserId INT REFERENCES Details(Id) NOT NULL,
-	CreatedById INT NOT NULL,
+	CreatedById NVARCHAR(450) NOT NULL,
 	CreatedAt DATETIME NOT NULL,
-	UpdatedById INT NULL,
+	UpdatedById NVARCHAR(450) NULL,
 	UpdatedAt DATETIME NULL,
-	DeletedById INT NULL,
+	DeletedById NVARCHAR(450) NULL,
 	DeletedAt DATETIME NULL
 )
 GO
 
-CREATE TABLE PersonWorkExperience
+CREATE TABLE PersonWorkExperiences
 (
 	Id INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
-	PersonId INT REFERENCES Person(Id) NOT NULL,
+	PersonId INT REFERENCES People(Id) NOT NULL,
 	IndustryId INT REFERENCES Details(Id) NOT NULL,
 	WorkTypeId INT REFERENCES Details(Id) NULL,
 	CompanyName VARCHAR(50) NULL,
@@ -395,65 +398,66 @@ CREATE TABLE PersonWorkExperience
 	FromYear INT NULL,
 	ToYear INT NULL,
 	LongText VARCHAR(500) NULL,
-	CreatedById INT NOT NULL,
+	CreatedById NVARCHAR(450) NOT NULL,
 	CreatedAt DATETIME NOT NULL,
-	UpdatedById INT NULL,
+	UpdatedById NVARCHAR(450) NULL,
 	UpdatedAt DATETIME NULL,
-	DeletedById INT NULL,
+	DeletedById NVARCHAR(450) NULL,
 	DeletedAt DATETIME NULL
 )
 GO
 
-CREATE TABLE University
+CREATE TABLE Universities
 (
 	Id INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
 	[Name] VARCHAR(50) NOT NULL,
-	CityId INT REFERENCES City(Id) NOT NULL,
-	CreatedById INT NOT NULL,
+	CityId INT REFERENCES Cities(Id) NOT NULL,
+	CreatedById NVARCHAR(450) NOT NULL,
 	CreatedAt DATETIME NOT NULL,
-	UpdatedById INT NULL,
+	UpdatedById NVARCHAR(450) NULL,
 	UpdatedAt DATETIME NULL,
-	DeletedById INT NULL,
+	DeletedById NVARCHAR(450) NULL,
 	DeletedAt DATETIME NULL
 )
 GO
 
-CREATE TABLE Program
+CREATE TABLE Programs
 (
 	Id INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	OrganizationId INT REFERENCES Organizations(Id) NOT NULL,
 	[Name] VARCHAR(50) NOT NULL,
-	CreatedById INT NOT NULL,
+	CreatedById NVARCHAR(450) NOT NULL,
 	CreatedAt DATETIME NOT NULL,
-	UpdatedById INT NULL,
+	UpdatedById NVARCHAR(450) NULL,
 	UpdatedAt DATETIME NULL,
-	DeletedById INT NULL,
+	DeletedById NVARCHAR(450) NULL,
 	DeletedAt DATETIME NULL
 )
 GO
 
-CREATE TABLE Ticket
+CREATE TABLE Tickets
 (
 	Id INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
-	PersonId INT REFERENCES Person(Id) NOT NULL,
-	CreatedById INT NOT NULL,
+	PersonId INT REFERENCES People(Id) NOT NULL,
+	CreatedById NVARCHAR(450) NOT NULL,
 	CreatedAt DATETIME NOT NULL,
-	UpdatedById INT NULL,
+	UpdatedById NVARCHAR(450) NULL,
 	UpdatedAt DATETIME NULL,
-	DeletedById INT NULL,
+	DeletedById NVARCHAR(450) NULL,
 	DeletedAt DATETIME NULL
 )
 GO
 
-CREATE TABLE ProgramAttendance
+CREATE TABLE ProgramAttendances
 (
 	Id INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
-	PersonId INT REFERENCES Person(Id) NOT NULL,
-	ProgramId INT REFERENCES Program(Id) NOT NULL,
-	CreatedById INT NOT NULL,
+	PersonId INT REFERENCES People(Id) NOT NULL,
+	ProgramId INT REFERENCES Programs(Id) NOT NULL,
+	CreatedById NVARCHAR(450) NOT NULL,
 	CreatedAt DATETIME NOT NULL,
-	UpdatedById INT NULL,
+	UpdatedById NVARCHAR(450) NULL,
 	UpdatedAt DATETIME NULL,
-	DeletedById INT NULL,
+	DeletedById NVARCHAR(450) NULL,
 	DeletedAt DATETIME NULL
 )
 GO
@@ -463,11 +467,11 @@ GO
 --	Id INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
 --	[Name] VARCHAR(50) NOT NULL,
 --	[Address] VARCHAR(100) NULL,
---	CreatedById INT NOT NULL,
+--	CreatedById NVARCHAR(450) NOT NULL,
 --	CreatedAt DATETIME NOT NULL,
---	UpdatedById INT NULL,
+--	UpdatedById NVARCHAR(450) NULL,
 --	UpdatedAt DATETIME NULL,
---	DeletedById INT NULL,
+--	DeletedById NVARCHAR(450) NULL,
 --	DeletedAt DATETIME NULL
 --)
 --GO
@@ -477,11 +481,11 @@ GO
 --	Id INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
 --	[Name] VARCHAR(50) NOT NULL,
 --	LongText VARCHAR(500) NULL,
---	CreatedById INT NOT NULL,
+--	CreatedById NVARCHAR(450) NOT NULL,
 --	CreatedAt DATETIME NOT NULL,
---	UpdatedById INT NULL,
+--	UpdatedById NVARCHAR(450) NULL,
 --	UpdatedAt DATETIME NULL,
---	DeletedById INT NULL,
+--	DeletedById NVARCHAR(450) NULL,
 --	DeletedAt DATETIME NULL
 --)
 --GO

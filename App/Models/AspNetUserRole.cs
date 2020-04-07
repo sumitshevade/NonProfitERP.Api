@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace App.Models
 {
-    public partial class AspNetUserRoles
+    public partial class AspNetUserRole
     {
         public string UserId { get; set; }
         public string RoleId { get; set; }
 
-        public virtual AspNetRoles Role { get; set; }
-        public virtual AspNetUsers User { get; set; }
+        public virtual AspNetRole Role { get; set; }
+        public virtual AspNetUser User { get; set; }
     }
 }

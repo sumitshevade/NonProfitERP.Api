@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using App.Models;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace App.Controllers
 {
@@ -21,7 +23,7 @@ namespace App.Controllers
         // GET: Organizations
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Organization.ToListAsync());
+            return View(await _context.Organizations.ToListAsync());
         }
 
         // GET: Organizations/Details/5
@@ -32,7 +34,7 @@ namespace App.Controllers
                 return NotFound();
             }
 
-            var organization = await _context.Organization
+            var organization = await _context.Organizations
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (organization == null)
             {
@@ -42,6 +44,7 @@ namespace App.Controllers
             return View(organization);
         }
 
+        [Authorize]
         // GET: Organizations/Create
         public IActionResult Create()
         {
@@ -52,15 +55,23 @@ namespace App.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Address,PanNo,IsNasscomRegistered,LongText,CreatedById,CreatedAt,UpdatedById,UpdatedAt,DeletedById,DeletedAt")] Organization organization)
+        public async Task<IActionResult> Create([FromForm]Organization organization)
         {
+            // [Bind("Id,Name,Address,PanNo,IsNasscomRegistered,LongText,CreatedById,CreatedAt,UpdatedById,UpdatedAt,DeletedById,DeletedAt")]
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
             if (ModelState.IsValid)
             {
+                organization.CreatedById = userId;
+                organization.CreatedAt = DateTime.Now;
+
                 _context.Add(organization);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
             return View(organization);
         }
 
@@ -72,7 +83,7 @@ namespace App.Controllers
                 return NotFound();
             }
 
-            var organization = await _context.Organization.FindAsync(id);
+            var organization = await _context.Organizations.FindAsync(id);
             if (organization == null)
             {
                 return NotFound();
@@ -123,7 +134,7 @@ namespace App.Controllers
                 return NotFound();
             }
 
-            var organization = await _context.Organization
+            var organization = await _context.Organizations
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (organization == null)
             {
@@ -138,15 +149,15 @@ namespace App.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var organization = await _context.Organization.FindAsync(id);
-            _context.Organization.Remove(organization);
+            var organization = await _context.Organizations.FindAsync(id);
+            _context.Organizations.Remove(organization);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool OrganizationExists(int id)
         {
-            return _context.Organization.Any(e => e.Id == id);
+            return _context.Organizations.Any(e => e.Id == id);
         }
     }
 }

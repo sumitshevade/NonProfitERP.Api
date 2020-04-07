@@ -1,0 +1,73 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace App.Models
+{
+    public class Detail
+    {
+        public Detail()
+        {
+            PeopleJoinedAs = new HashSet<People>();
+            PeoplePersonTypes = new HashSet<People>();
+            PeopleWorkFrequencyNavigations = new HashSet<People>();
+            PersonAddressHomeStatus = new HashSet<PersonAddress>();
+            PersonAddressLocalityClassNavigations = new HashSet<PersonAddress>();
+            PersonAddressResidentialStatusNavigations = new HashSet<PersonAddress>();
+            PersonContacts = new HashSet<PersonContact>();
+            PersonEducationCourses = new HashSet<PersonEducation>();
+            PersonEducationDegrees = new HashSet<PersonEducation>();
+            PersonEducationFromStds = new HashSet<PersonEducation>();
+            PersonEducationSchools = new HashSet<PersonEducation>();
+            PersonEducationToStds = new HashSet<PersonEducation>();
+            PersonEducationUniversityBoards = new HashSet<PersonEducation>();
+            PersonFamilyDetailCourses = new HashSet<PersonFamilyDetail>();
+            PersonFamilyDetailRelations = new HashSet<PersonFamilyDetail>();
+            PersonHobbyFavorites = new HashSet<PersonHobbyFavorite>();
+            PersonLanguages = new HashSet<PersonLanguage>();
+            PersonPrivateInformationCastes = new HashSet<PersonPrivateInformation>();
+            PersonPrivateInformationParentalStatus = new HashSet<PersonPrivateInformation>();
+            PersonPrivateInformationReligions = new HashSet<PersonPrivateInformation>();
+            PersonSocialMediaAccountAccountTypes = new HashSet<PersonSocialMediaAccount>();
+            PersonSocialMediaAccountTypeOfUsers = new HashSet<PersonSocialMediaAccount>();
+            PersonWorkExperienceIndustries = new HashSet<PersonWorkExperience>();
+            PersonWorkExperienceWorkTypes = new HashSet<PersonWorkExperience>();
+        }
+
+        public int Id { get; set; }
+        public int? HeaderId { get; set; }
+        public string Value { get; set; }
+        public string ExtraField { get; set; }
+        public string CreatedById { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public string UpdatedById { get; set; }
+        public DateTime? UpdatedAt { get; set; }
+        public string DeletedById { get; set; }
+        public DateTime? DeletedAt { get; set; }
+
+        public virtual Header Header { get; set; }
+        public virtual ICollection<People> PeopleJoinedAs { get; set; }
+        public virtual ICollection<People> PeoplePersonTypes { get; set; }
+        public virtual ICollection<People> PeopleWorkFrequencyNavigations { get; set; }
+        public virtual ICollection<PersonAddress> PersonAddressHomeStatus { get; set; }
+        public virtual ICollection<PersonAddress> PersonAddressLocalityClassNavigations { get; set; }
+        public virtual ICollection<PersonAddress> PersonAddressResidentialStatusNavigations { get; set; }
+        public virtual ICollection<PersonContact> PersonContacts { get; set; }
+        public virtual ICollection<PersonEducation> PersonEducationCourses { get; set; }
+        public virtual ICollection<PersonEducation> PersonEducationDegrees { get; set; }
+        public virtual ICollection<PersonEducation> PersonEducationFromStds { get; set; }
+        public virtual ICollection<PersonEducation> PersonEducationSchools { get; set; }
+        public virtual ICollection<PersonEducation> PersonEducationToStds { get; set; }
+        public virtual ICollection<PersonEducation> PersonEducationUniversityBoards { get; set; }
+        public virtual ICollection<PersonFamilyDetail> PersonFamilyDetailCourses { get; set; }
+        public virtual ICollection<PersonFamilyDetail> PersonFamilyDetailRelations { get; set; }
+        public virtual ICollection<PersonHobbyFavorite> PersonHobbyFavorites { get; set; }
+        public virtual ICollection<PersonLanguage> PersonLanguages { get; set; }
+        public virtual ICollection<PersonPrivateInformation> PersonPrivateInformationCastes { get; set; }
+        public virtual ICollection<PersonPrivateInformation> PersonPrivateInformationParentalStatus { get; set; }
+        public virtual ICollection<PersonPrivateInformation> PersonPrivateInformationReligions { get; set; }
+        public virtual ICollection<PersonSocialMediaAccount> PersonSocialMediaAccountAccountTypes { get; set; }
+        public virtual ICollection<PersonSocialMediaAccount> PersonSocialMediaAccountTypeOfUsers { get; set; }
+        public virtual ICollection<PersonWorkExperience> PersonWorkExperienceIndustries { get; set; }
+        public virtual ICollection<PersonWorkExperience> PersonWorkExperienceWorkTypes { get; set; }
+    }
+}

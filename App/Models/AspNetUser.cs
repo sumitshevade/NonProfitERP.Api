@@ -3,14 +3,14 @@ using System.Collections.Generic;
 
 namespace App.Models
 {
-    public partial class AspNetUsers
+    public partial class AspNetUser
     {
-        public AspNetUsers()
+        public AspNetUser()
         {
-            AspNetUserClaims = new HashSet<AspNetUserClaims>();
-            AspNetUserLogins = new HashSet<AspNetUserLogins>();
-            AspNetUserRoles = new HashSet<AspNetUserRoles>();
-            AspNetUserTokens = new HashSet<AspNetUserTokens>();
+            AspNetUserClaims = new HashSet<AspNetUserClaim>();
+            AspNetUserLogins = new HashSet<AspNetUserLogin>();
+            AspNetUserRoles = new HashSet<AspNetUserRole>();
+            AspNetUserTokens = new HashSet<AspNetUserToken>();
         }
 
         public string Id { get; set; }
@@ -29,9 +29,9 @@ namespace App.Models
         public bool LockoutEnabled { get; set; }
         public int AccessFailedCount { get; set; }
 
-        public virtual ICollection<AspNetUserClaims> AspNetUserClaims { get; set; }
-        public virtual ICollection<AspNetUserLogins> AspNetUserLogins { get; set; }
-        public virtual ICollection<AspNetUserRoles> AspNetUserRoles { get; set; }
-        public virtual ICollection<AspNetUserTokens> AspNetUserTokens { get; set; }
+        public virtual ICollection<AspNetUserClaim> AspNetUserClaims { get; set; }
+        public virtual ICollection<AspNetUserLogin> AspNetUserLogins { get; set; }
+        public virtual ICollection<AspNetUserRole> AspNetUserRoles { get; set; }
+        public virtual ICollection<AspNetUserToken> AspNetUserTokens { get; set; }
     }
 }

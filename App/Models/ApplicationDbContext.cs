@@ -7,8 +7,8 @@ using Microsoft.AspNetCore.Identity;
 
 namespace App.Models
 {
-    //public partial class ApplicationDbContext : IdentityDbContext<IdentityUser>
-    public partial class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext<IdentityUser>
+    //public class ApplicationDbContext : DbContext
     {
         public ApplicationDbContext()
         {
@@ -19,40 +19,33 @@ namespace App.Models
         {
         }
 
-        public virtual DbSet<AspNetRoleClaims> AspNetRoleClaims { get; set; }
-        public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
-        public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
-        public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
-        public virtual DbSet<AspNetUserRoles> AspNetUserRoles { get; set; }
-        public virtual DbSet<AspNetUserTokens> AspNetUserTokens { get; set; }
-        public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
-        public virtual DbSet<City> City { get; set; }
-        public virtual DbSet<Country> Country { get; set; }
-        public virtual DbSet<Department> Department { get; set; }
-        public virtual DbSet<DepartmentHead> DepartmentHead { get; set; }
-        public virtual DbSet<Details> Details { get; set; }
-        public virtual DbSet<Division> Division { get; set; }
-        public virtual DbSet<DivisionHead> DivisionHead { get; set; }
-        public virtual DbSet<Header> Header { get; set; }
-        public virtual DbSet<Organization> Organization { get; set; }
-        public virtual DbSet<Person> Person { get; set; }
-        public virtual DbSet<PersonAchievement> PersonAchievement { get; set; }
-        public virtual DbSet<PersonAddress> PersonAddress { get; set; }
-        public virtual DbSet<PersonContact> PersonContact { get; set; }
-        public virtual DbSet<PersonDisability> PersonDisability { get; set; }
-        public virtual DbSet<PersonEducation> PersonEducation { get; set; }
-        public virtual DbSet<PersonFamilyDetails> PersonFamilyDetails { get; set; }
-        public virtual DbSet<PersonHealthDetails> PersonHealthDetails { get; set; }
-        public virtual DbSet<PersonHobbyFavorite> PersonHobbyFavorite { get; set; }
-        public virtual DbSet<PersonLanguage> PersonLanguage { get; set; }
-        public virtual DbSet<PersonPrivateInformation> PersonPrivateInformation { get; set; }
-        public virtual DbSet<PersonSocialMediaAccount> PersonSocialMediaAccount { get; set; }
-        public virtual DbSet<PersonWorkExperience> PersonWorkExperience { get; set; }
-        public virtual DbSet<Program> Program { get; set; }
-        public virtual DbSet<ProgramAttendance> ProgramAttendance { get; set; }
-        public virtual DbSet<State> State { get; set; }
-        public virtual DbSet<Ticket> Ticket { get; set; }
-        public virtual DbSet<University> University { get; set; }
+        public virtual DbSet<City> Cities { get; set; }
+        public virtual DbSet<Country> Countries { get; set; }
+        public virtual DbSet<Department> Departments { get; set; }
+        public virtual DbSet<DepartmentHead> DepartmentHeads { get; set; }
+        public virtual DbSet<Detail> Details { get; set; }
+        public virtual DbSet<Division> Divisions { get; set; }
+        public virtual DbSet<DivisionHead> DivisionHeads { get; set; }
+        public virtual DbSet<Header> Headers { get; set; }
+        public virtual DbSet<Organization> Organizations { get; set; }
+        public virtual DbSet<People> People { get; set; }
+        public virtual DbSet<PersonAchievement> PersonAchievements { get; set; }
+        public virtual DbSet<PersonAddress> PersonAddresses { get; set; }
+        public virtual DbSet<PersonContact> PersonContacts { get; set; }
+        public virtual DbSet<PersonDisability> PersonDisabilities { get; set; }
+        public virtual DbSet<PersonEducation> PersonEducations { get; set; }
+        public virtual DbSet<PersonFamilyDetail> PersonFamilyDetails { get; set; }
+        public virtual DbSet<PersonHealthDetail> PersonHealthDetails { get; set; }
+        public virtual DbSet<PersonHobbyFavorite> PersonHobbyFavorites { get; set; }
+        public virtual DbSet<PersonLanguage> PersonLanguages { get; set; }
+        public virtual DbSet<PersonPrivateInformation> PersonPrivateInformations { get; set; }
+        public virtual DbSet<PersonSocialMediaAccount> PersonSocialMediaAccounts { get; set; }
+        public virtual DbSet<PersonWorkExperience> PersonWorkExperiences { get; set; }
+        public virtual DbSet<Program> Programs { get; set; }
+        public virtual DbSet<ProgramAttendance> ProgramAttendances { get; set; }
+        public virtual DbSet<State> States { get; set; }
+        public virtual DbSet<Ticket> Tickets { get; set; }
+        public virtual DbSet<University> Universities { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -65,109 +58,17 @@ namespace App.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<AspNetRoleClaims>(entity =>
-            {
-                entity.HasIndex(e => e.RoleId);
-
-                entity.Property(e => e.RoleId).IsRequired();
-
-                entity.HasOne(d => d.Role)
-                    .WithMany(p => p.AspNetRoleClaims)
-                    .HasForeignKey(d => d.RoleId);
-            });
-
-            modelBuilder.Entity<AspNetRoles>(entity =>
-            {
-                entity.HasIndex(e => e.NormalizedName)
-                    .HasName("RoleNameIndex")
-                    .IsUnique()
-                    .HasFilter("([NormalizedName] IS NOT NULL)");
-
-                entity.Property(e => e.Name).HasMaxLength(256);
-
-                entity.Property(e => e.NormalizedName).HasMaxLength(256);
-            });
-
-            modelBuilder.Entity<AspNetUserClaims>(entity =>
-            {
-                entity.HasIndex(e => e.UserId);
-
-                entity.Property(e => e.UserId).IsRequired();
-
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.AspNetUserClaims)
-                    .HasForeignKey(d => d.UserId);
-            });
-
-            modelBuilder.Entity<AspNetUserLogins>(entity =>
-            {
-                entity.HasKey(e => new { e.LoginProvider, e.ProviderKey });
-
-                entity.HasIndex(e => e.UserId);
-
-                entity.Property(e => e.LoginProvider).HasMaxLength(128);
-
-                entity.Property(e => e.ProviderKey).HasMaxLength(128);
-
-                entity.Property(e => e.UserId).IsRequired();
-
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.AspNetUserLogins)
-                    .HasForeignKey(d => d.UserId);
-            });
-
-            modelBuilder.Entity<AspNetUserRoles>(entity =>
-            {
-                entity.HasKey(e => new { e.UserId, e.RoleId });
-
-                entity.HasIndex(e => e.RoleId);
-
-                entity.HasOne(d => d.Role)
-                    .WithMany(p => p.AspNetUserRoles)
-                    .HasForeignKey(d => d.RoleId);
-
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.AspNetUserRoles)
-                    .HasForeignKey(d => d.UserId);
-            });
-
-            modelBuilder.Entity<AspNetUserTokens>(entity =>
-            {
-                entity.HasKey(e => new { e.UserId, e.LoginProvider, e.Name });
-
-                entity.Property(e => e.LoginProvider).HasMaxLength(128);
-
-                entity.Property(e => e.Name).HasMaxLength(128);
-
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.AspNetUserTokens)
-                    .HasForeignKey(d => d.UserId);
-            });
-
-            modelBuilder.Entity<AspNetUsers>(entity =>
-            {
-                entity.HasIndex(e => e.NormalizedEmail)
-                    .HasName("EmailIndex");
-
-                entity.HasIndex(e => e.NormalizedUserName)
-                    .HasName("UserNameIndex")
-                    .IsUnique()
-                    .HasFilter("([NormalizedUserName] IS NOT NULL)");
-
-                entity.Property(e => e.Email).HasMaxLength(256);
-
-                entity.Property(e => e.NormalizedEmail).HasMaxLength(256);
-
-                entity.Property(e => e.NormalizedUserName).HasMaxLength(256);
-
-                entity.Property(e => e.UserName).HasMaxLength(256);
-            });
-
             modelBuilder.Entity<City>(entity =>
             {
                 entity.Property(e => e.CreatedAt).HasColumnType("datetime");
 
+                entity.Property(e => e.CreatedById)
+                    .IsRequired()
+                    .HasMaxLength(450);
+
                 entity.Property(e => e.DeletedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.DeletedById).HasMaxLength(450);
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -176,17 +77,25 @@ namespace App.Models
 
                 entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
 
+                entity.Property(e => e.UpdatedById).HasMaxLength(450);
+
                 entity.HasOne(d => d.State)
-                    .WithMany(p => p.City)
+                    .WithMany(p => p.Cities)
                     .HasForeignKey(d => d.StateId)
-                    .HasConstraintName("FK__City__StateId__2B5F6B28");
+                    .HasConstraintName("FK__Cities__StateId__2704CA5F");
             });
 
             modelBuilder.Entity<Country>(entity =>
             {
                 entity.Property(e => e.CreatedAt).HasColumnType("datetime");
 
+                entity.Property(e => e.CreatedById)
+                    .IsRequired()
+                    .HasMaxLength(450);
+
                 entity.Property(e => e.DeletedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.DeletedById).HasMaxLength(450);
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -194,13 +103,21 @@ namespace App.Models
                     .IsUnicode(false);
 
                 entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.UpdatedById).HasMaxLength(450);
             });
 
             modelBuilder.Entity<Department>(entity =>
             {
                 entity.Property(e => e.CreatedAt).HasColumnType("datetime");
 
+                entity.Property(e => e.CreatedById)
+                    .IsRequired()
+                    .HasMaxLength(450);
+
                 entity.Property(e => e.DeletedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.DeletedById).HasMaxLength(450);
 
                 entity.Property(e => e.LongText)
                     .HasMaxLength(500)
@@ -214,40 +131,64 @@ namespace App.Models
                 entity.Property(e => e.StartedAt).HasColumnType("date");
 
                 entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.UpdatedById).HasMaxLength(450);
+
+                entity.HasOne(d => d.Organization)
+                    .WithMany(p => p.Departments)
+                    .HasForeignKey(d => d.OrganizationId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Departmen__Organ__2F9A1060");
             });
 
             modelBuilder.Entity<DepartmentHead>(entity =>
             {
                 entity.Property(e => e.CreatedAt).HasColumnType("datetime");
 
+                entity.Property(e => e.CreatedById)
+                    .IsRequired()
+                    .HasMaxLength(450);
+
                 entity.Property(e => e.DeletedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.DeletedById).HasMaxLength(450);
 
                 entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
 
+                entity.Property(e => e.UpdatedById).HasMaxLength(450);
+
                 entity.HasOne(d => d.Department)
-                    .WithMany(p => p.DepartmentHead)
+                    .WithMany(p => p.DepartmentHeads)
                     .HasForeignKey(d => d.DepartmentId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Departmen__Depar__3C89F72A");
+                    .HasConstraintName("FK__Departmen__Depar__3DE82FB7");
 
                 entity.HasOne(d => d.Person)
-                    .WithMany(p => p.DepartmentHead)
+                    .WithMany(p => p.DepartmentHeads)
                     .HasForeignKey(d => d.PersonId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Departmen__Perso__3B95D2F1");
+                    .HasConstraintName("FK__Departmen__Perso__3CF40B7E");
             });
 
-            modelBuilder.Entity<Details>(entity =>
+            modelBuilder.Entity<Detail>(entity =>
             {
                 entity.Property(e => e.CreatedAt).HasColumnType("datetime");
 
+                entity.Property(e => e.CreatedById)
+                    .IsRequired()
+                    .HasMaxLength(450);
+
                 entity.Property(e => e.DeletedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.DeletedById).HasMaxLength(450);
 
                 entity.Property(e => e.ExtraField)
                     .HasMaxLength(250)
                     .IsUnicode(false);
 
                 entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.UpdatedById).HasMaxLength(450);
 
                 entity.Property(e => e.Value)
                     .IsRequired()
@@ -257,7 +198,7 @@ namespace App.Models
                 entity.HasOne(d => d.Header)
                     .WithMany(p => p.Details)
                     .HasForeignKey(d => d.HeaderId)
-                    .HasConstraintName("FK__Details__HeaderI__320C68B7");
+                    .HasConstraintName("FK__Details__HeaderI__32767D0B");
             });
 
             modelBuilder.Entity<Division>(entity =>
@@ -269,7 +210,13 @@ namespace App.Models
 
                 entity.Property(e => e.CreatedAt).HasColumnType("datetime");
 
+                entity.Property(e => e.CreatedById)
+                    .IsRequired()
+                    .HasMaxLength(450);
+
                 entity.Property(e => e.DeletedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.DeletedById).HasMaxLength(450);
 
                 entity.Property(e => e.LongText)
                     .HasMaxLength(500)
@@ -284,39 +231,55 @@ namespace App.Models
 
                 entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
 
+                entity.Property(e => e.UpdatedById).HasMaxLength(450);
+
                 entity.HasOne(d => d.Department)
-                    .WithMany(p => p.Division)
+                    .WithMany(p => p.Divisions)
                     .HasForeignKey(d => d.DepartmentId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Division__Depart__4242D080");
+                    .HasConstraintName("FK__Divisions__Depar__40C49C62");
             });
 
             modelBuilder.Entity<DivisionHead>(entity =>
             {
                 entity.Property(e => e.CreatedAt).HasColumnType("datetime");
 
+                entity.Property(e => e.CreatedById)
+                    .IsRequired()
+                    .HasMaxLength(450);
+
                 entity.Property(e => e.DeletedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.DeletedById).HasMaxLength(450);
 
                 entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
 
+                entity.Property(e => e.UpdatedById).HasMaxLength(450);
+
                 entity.HasOne(d => d.Division)
-                    .WithMany(p => p.DivisionHead)
+                    .WithMany(p => p.DivisionHeads)
                     .HasForeignKey(d => d.DivisionId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__DivisionH__Divis__46136164");
+                    .HasConstraintName("FK__DivisionH__Divis__44952D46");
 
                 entity.HasOne(d => d.Person)
-                    .WithMany(p => p.DivisionHead)
+                    .WithMany(p => p.DivisionHeads)
                     .HasForeignKey(d => d.PersonId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__DivisionH__Perso__451F3D2B");
+                    .HasConstraintName("FK__DivisionH__Perso__43A1090D");
             });
 
             modelBuilder.Entity<Header>(entity =>
             {
                 entity.Property(e => e.CreatedAt).HasColumnType("datetime");
 
+                entity.Property(e => e.CreatedById)
+                    .IsRequired()
+                    .HasMaxLength(450);
+
                 entity.Property(e => e.DeletedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.DeletedById).HasMaxLength(450);
 
                 entity.Property(e => e.Title)
                     .IsRequired()
@@ -324,6 +287,14 @@ namespace App.Models
                     .IsUnicode(false);
 
                 entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.UpdatedById).HasMaxLength(450);
+
+                entity.HasOne(d => d.Organization)
+                    .WithMany(p => p.Headers)
+                    .HasForeignKey(d => d.OrganizationId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Headers__Organiz__2CBDA3B5");
             });
 
             modelBuilder.Entity<Organization>(entity =>
@@ -334,7 +305,13 @@ namespace App.Models
 
                 entity.Property(e => e.CreatedAt).HasColumnType("datetime");
 
+                entity.Property(e => e.CreatedById)
+                    .IsRequired()
+                    .HasMaxLength(450);
+
                 entity.Property(e => e.DeletedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.DeletedById).HasMaxLength(450);
 
                 entity.Property(e => e.LongText)
                     .HasMaxLength(500)
@@ -350,9 +327,11 @@ namespace App.Models
                     .IsUnicode(false);
 
                 entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.UpdatedById).HasMaxLength(450);
             });
 
-            modelBuilder.Entity<Person>(entity =>
+            modelBuilder.Entity<People>(entity =>
             {
                 entity.Property(e => e.BirthDate).HasColumnType("date");
 
@@ -362,7 +341,13 @@ namespace App.Models
 
                 entity.Property(e => e.CreatedAt).HasColumnType("datetime");
 
+                entity.Property(e => e.CreatedById)
+                    .IsRequired()
+                    .HasMaxLength(450);
+
                 entity.Property(e => e.DeletedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.DeletedById).HasMaxLength(450);
 
                 entity.Property(e => e.FirstName)
                     .IsRequired()
@@ -390,34 +375,48 @@ namespace App.Models
 
                 entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
 
+                entity.Property(e => e.UpdatedById).HasMaxLength(450);
+
                 entity.HasOne(d => d.Country)
-                    .WithMany(p => p.Person)
+                    .WithMany(p => p.People)
                     .HasForeignKey(d => d.CountryId)
-                    .HasConstraintName("FK__Person__CountryI__38B96646");
+                    .HasConstraintName("FK__People__CountryI__3A179ED3");
 
                 entity.HasOne(d => d.JoinedAs)
-                    .WithMany(p => p.PersonJoinedAs)
+                    .WithMany(p => p.PeopleJoinedAs)
                     .HasForeignKey(d => d.JoinedAsId)
-                    .HasConstraintName("FK__Person__JoinedAs__37C5420D");
+                    .HasConstraintName("FK__People__JoinedAs__39237A9A");
+
+                entity.HasOne(d => d.Organization)
+                    .WithMany(p => p.People)
+                    .HasForeignKey(d => d.OrganizationId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__People__Organiza__36470DEF");
 
                 entity.HasOne(d => d.PersonType)
-                    .WithMany(p => p.PersonPersonType)
+                    .WithMany(p => p.PeoplePersonTypes)
                     .HasForeignKey(d => d.PersonTypeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Person__PersonTy__34E8D562");
+                    .HasConstraintName("FK__People__PersonTy__3552E9B6");
 
                 entity.HasOne(d => d.WorkFrequencyNavigation)
-                    .WithMany(p => p.PersonWorkFrequencyNavigation)
+                    .WithMany(p => p.PeopleWorkFrequencyNavigations)
                     .HasForeignKey(d => d.WorkFrequency)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Person__WorkFreq__36D11DD4");
+                    .HasConstraintName("FK__People__WorkFreq__382F5661");
             });
 
             modelBuilder.Entity<PersonAchievement>(entity =>
             {
                 entity.Property(e => e.CreatedAt).HasColumnType("datetime");
 
+                entity.Property(e => e.CreatedById)
+                    .IsRequired()
+                    .HasMaxLength(450);
+
                 entity.Property(e => e.DeletedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.DeletedById).HasMaxLength(450);
 
                 entity.Property(e => e.Format)
                     .HasMaxLength(50)
@@ -440,17 +439,25 @@ namespace App.Models
 
                 entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
 
+                entity.Property(e => e.UpdatedById).HasMaxLength(450);
+
                 entity.HasOne(d => d.Person)
-                    .WithMany(p => p.PersonAchievement)
+                    .WithMany(p => p.PersonAchievements)
                     .HasForeignKey(d => d.PersonId)
-                    .HasConstraintName("FK__PersonAch__Perso__5090EFD7");
+                    .HasConstraintName("FK__PersonAch__Perso__4F12BBB9");
             });
 
             modelBuilder.Entity<PersonAddress>(entity =>
             {
                 entity.Property(e => e.CreatedAt).HasColumnType("datetime");
 
+                entity.Property(e => e.CreatedById)
+                    .IsRequired()
+                    .HasMaxLength(450);
+
                 entity.Property(e => e.DeletedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.DeletedById).HasMaxLength(450);
 
                 entity.Property(e => e.Line1)
                     .HasMaxLength(100)
@@ -466,52 +473,60 @@ namespace App.Models
 
                 entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
 
+                entity.Property(e => e.UpdatedById).HasMaxLength(450);
+
                 entity.Property(e => e.ZipCode)
                     .HasMaxLength(10)
                     .IsUnicode(false);
 
                 entity.HasOne(d => d.City)
-                    .WithMany(p => p.PersonAddress)
+                    .WithMany(p => p.PersonAddresses)
                     .HasForeignKey(d => d.CityId)
-                    .HasConstraintName("FK__PersonAdd__CityI__5649C92D");
+                    .HasConstraintName("FK__PersonAdd__CityI__54CB950F");
 
                 entity.HasOne(d => d.Country)
-                    .WithMany(p => p.PersonAddress)
+                    .WithMany(p => p.PersonAddresses)
                     .HasForeignKey(d => d.CountryId)
-                    .HasConstraintName("FK__PersonAdd__Count__546180BB");
+                    .HasConstraintName("FK__PersonAdd__Count__52E34C9D");
 
                 entity.HasOne(d => d.HomeStatus)
                     .WithMany(p => p.PersonAddressHomeStatus)
                     .HasForeignKey(d => d.HomeStatusId)
-                    .HasConstraintName("FK__PersonAdd__HomeS__5832119F");
+                    .HasConstraintName("FK__PersonAdd__HomeS__56B3DD81");
 
                 entity.HasOne(d => d.LocalityClassNavigation)
-                    .WithMany(p => p.PersonAddressLocalityClassNavigation)
+                    .WithMany(p => p.PersonAddressLocalityClassNavigations)
                     .HasForeignKey(d => d.LocalityClass)
-                    .HasConstraintName("FK__PersonAdd__Local__592635D8");
+                    .HasConstraintName("FK__PersonAdd__Local__57A801BA");
 
                 entity.HasOne(d => d.Person)
-                    .WithMany(p => p.PersonAddress)
+                    .WithMany(p => p.PersonAddresses)
                     .HasForeignKey(d => d.PersonId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__PersonAdd__Perso__536D5C82");
+                    .HasConstraintName("FK__PersonAdd__Perso__51EF2864");
 
                 entity.HasOne(d => d.ResidentialStatusNavigation)
-                    .WithMany(p => p.PersonAddressResidentialStatusNavigation)
+                    .WithMany(p => p.PersonAddressResidentialStatusNavigations)
                     .HasForeignKey(d => d.ResidentialStatus)
-                    .HasConstraintName("FK__PersonAdd__Resid__5A1A5A11");
+                    .HasConstraintName("FK__PersonAdd__Resid__589C25F3");
 
                 entity.HasOne(d => d.State)
-                    .WithMany(p => p.PersonAddress)
+                    .WithMany(p => p.PersonAddresses)
                     .HasForeignKey(d => d.StateId)
-                    .HasConstraintName("FK__PersonAdd__State__5555A4F4");
+                    .HasConstraintName("FK__PersonAdd__State__53D770D6");
             });
 
             modelBuilder.Entity<PersonContact>(entity =>
             {
                 entity.Property(e => e.CreatedAt).HasColumnType("datetime");
 
+                entity.Property(e => e.CreatedById)
+                    .IsRequired()
+                    .HasMaxLength(450);
+
                 entity.Property(e => e.DeletedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.DeletedById).HasMaxLength(450);
 
                 entity.Property(e => e.Detail)
                     .HasMaxLength(100)
@@ -519,23 +534,31 @@ namespace App.Models
 
                 entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
 
+                entity.Property(e => e.UpdatedById).HasMaxLength(450);
+
                 entity.HasOne(d => d.ContactTypeNavigation)
-                    .WithMany(p => p.PersonContact)
+                    .WithMany(p => p.PersonContacts)
                     .HasForeignKey(d => d.ContactType)
-                    .HasConstraintName("FK__PersonCon__Conta__5DEAEAF5");
+                    .HasConstraintName("FK__PersonCon__Conta__5C6CB6D7");
 
                 entity.HasOne(d => d.Person)
-                    .WithMany(p => p.PersonContact)
+                    .WithMany(p => p.PersonContacts)
                     .HasForeignKey(d => d.PersonId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__PersonCon__Perso__5CF6C6BC");
+                    .HasConstraintName("FK__PersonCon__Perso__5B78929E");
             });
 
             modelBuilder.Entity<PersonDisability>(entity =>
             {
                 entity.Property(e => e.CreatedAt).HasColumnType("datetime");
 
+                entity.Property(e => e.CreatedById)
+                    .IsRequired()
+                    .HasMaxLength(450);
+
                 entity.Property(e => e.DeletedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.DeletedById).HasMaxLength(450);
 
                 entity.Property(e => e.Detail)
                     .HasMaxLength(250)
@@ -548,59 +571,69 @@ namespace App.Models
 
                 entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
 
+                entity.Property(e => e.UpdatedById).HasMaxLength(450);
+
                 entity.HasOne(d => d.Person)
-                    .WithMany(p => p.PersonDisability)
+                    .WithMany(p => p.PersonDisabilities)
                     .HasForeignKey(d => d.PersonId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__PersonDis__Perso__61BB7BD9");
+                    .HasConstraintName("FK__PersonDis__Perso__603D47BB");
             });
 
             modelBuilder.Entity<PersonEducation>(entity =>
             {
                 entity.Property(e => e.CreatedAt).HasColumnType("datetime");
 
+                entity.Property(e => e.CreatedById)
+                    .IsRequired()
+                    .HasMaxLength(450);
+
                 entity.Property(e => e.DeletedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.DeletedById).HasMaxLength(450);
 
                 entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
 
+                entity.Property(e => e.UpdatedById).HasMaxLength(450);
+
                 entity.HasOne(d => d.Course)
-                    .WithMany(p => p.PersonEducationCourse)
+                    .WithMany(p => p.PersonEducationCourses)
                     .HasForeignKey(d => d.CourseId)
-                    .HasConstraintName("FK__PersonEdu__Cours__6A50C1DA");
+                    .HasConstraintName("FK__PersonEdu__Cours__68D28DBC");
 
                 entity.HasOne(d => d.Degree)
-                    .WithMany(p => p.PersonEducationDegree)
+                    .WithMany(p => p.PersonEducationDegrees)
                     .HasForeignKey(d => d.DegreeId)
-                    .HasConstraintName("FK__PersonEdu__Degre__695C9DA1");
+                    .HasConstraintName("FK__PersonEdu__Degre__67DE6983");
 
                 entity.HasOne(d => d.FromStd)
-                    .WithMany(p => p.PersonEducationFromStd)
+                    .WithMany(p => p.PersonEducationFromStds)
                     .HasForeignKey(d => d.FromStdId)
-                    .HasConstraintName("FK__PersonEdu__FromS__668030F6");
+                    .HasConstraintName("FK__PersonEdu__FromS__6501FCD8");
 
                 entity.HasOne(d => d.Person)
-                    .WithMany(p => p.PersonEducation)
+                    .WithMany(p => p.PersonEducations)
                     .HasForeignKey(d => d.PersonId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__PersonEdu__Perso__6497E884");
+                    .HasConstraintName("FK__PersonEdu__Perso__6319B466");
 
                 entity.HasOne(d => d.School)
-                    .WithMany(p => p.PersonEducationSchool)
+                    .WithMany(p => p.PersonEducationSchools)
                     .HasForeignKey(d => d.SchoolId)
-                    .HasConstraintName("FK__PersonEdu__Schoo__658C0CBD");
+                    .HasConstraintName("FK__PersonEdu__Schoo__640DD89F");
 
                 entity.HasOne(d => d.ToStd)
-                    .WithMany(p => p.PersonEducationToStd)
+                    .WithMany(p => p.PersonEducationToStds)
                     .HasForeignKey(d => d.ToStdId)
-                    .HasConstraintName("FK__PersonEdu__ToStd__6774552F");
+                    .HasConstraintName("FK__PersonEdu__ToStd__65F62111");
 
                 entity.HasOne(d => d.UniversityBoard)
-                    .WithMany(p => p.PersonEducationUniversityBoard)
+                    .WithMany(p => p.PersonEducationUniversityBoards)
                     .HasForeignKey(d => d.UniversityBoardId)
-                    .HasConstraintName("FK__PersonEdu__Unive__68687968");
+                    .HasConstraintName("FK__PersonEdu__Unive__66EA454A");
             });
 
-            modelBuilder.Entity<PersonFamilyDetails>(entity =>
+            modelBuilder.Entity<PersonFamilyDetail>(entity =>
             {
                 entity.Property(e => e.AnyDisability)
                     .HasMaxLength(100)
@@ -614,7 +647,13 @@ namespace App.Models
 
                 entity.Property(e => e.CreatedAt).HasColumnType("datetime");
 
+                entity.Property(e => e.CreatedById)
+                    .IsRequired()
+                    .HasMaxLength(450);
+
                 entity.Property(e => e.DeletedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.DeletedById).HasMaxLength(450);
 
                 entity.Property(e => e.Email)
                     .HasMaxLength(50)
@@ -644,44 +683,60 @@ namespace App.Models
 
                 entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
 
+                entity.Property(e => e.UpdatedById).HasMaxLength(450);
+
                 entity.HasOne(d => d.Course)
-                    .WithMany(p => p.PersonFamilyDetailsCourse)
+                    .WithMany(p => p.PersonFamilyDetailCourses)
                     .HasForeignKey(d => d.CourseId)
-                    .HasConstraintName("FK__PersonFam__Cours__6F1576F7");
+                    .HasConstraintName("FK__PersonFam__Cours__6D9742D9");
 
                 entity.HasOne(d => d.Person)
                     .WithMany(p => p.PersonFamilyDetails)
                     .HasForeignKey(d => d.PersonId)
-                    .HasConstraintName("FK__PersonFam__Perso__6D2D2E85");
+                    .HasConstraintName("FK__PersonFam__Perso__6BAEFA67");
 
                 entity.HasOne(d => d.Relation)
-                    .WithMany(p => p.PersonFamilyDetailsRelation)
+                    .WithMany(p => p.PersonFamilyDetailRelations)
                     .HasForeignKey(d => d.RelationId)
-                    .HasConstraintName("FK__PersonFam__Relat__6E2152BE");
+                    .HasConstraintName("FK__PersonFam__Relat__6CA31EA0");
             });
 
-            modelBuilder.Entity<PersonHealthDetails>(entity =>
+            modelBuilder.Entity<PersonHealthDetail>(entity =>
             {
                 entity.Property(e => e.CreatedAt).HasColumnType("datetime");
 
+                entity.Property(e => e.CreatedById)
+                    .IsRequired()
+                    .HasMaxLength(450);
+
                 entity.Property(e => e.DeletedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.DeletedById).HasMaxLength(450);
 
                 entity.Property(e => e.Iq).HasColumnName("IQ");
 
                 entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
 
+                entity.Property(e => e.UpdatedById).HasMaxLength(450);
+
                 entity.HasOne(d => d.Person)
                     .WithMany(p => p.PersonHealthDetails)
                     .HasForeignKey(d => d.PersonId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__PersonHea__Perso__71F1E3A2");
+                    .HasConstraintName("FK__PersonHea__Perso__7073AF84");
             });
 
             modelBuilder.Entity<PersonHobbyFavorite>(entity =>
             {
                 entity.Property(e => e.CreatedAt).HasColumnType("datetime");
 
+                entity.Property(e => e.CreatedById)
+                    .IsRequired()
+                    .HasMaxLength(450);
+
                 entity.Property(e => e.DeletedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.DeletedById).HasMaxLength(450);
 
                 entity.Property(e => e.LongText)
                     .HasMaxLength(500)
@@ -689,37 +744,47 @@ namespace App.Models
 
                 entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
 
+                entity.Property(e => e.UpdatedById).HasMaxLength(450);
+
                 entity.HasOne(d => d.HobbyFavorite)
-                    .WithMany(p => p.PersonHobbyFavorite)
+                    .WithMany(p => p.PersonHobbyFavorites)
                     .HasForeignKey(d => d.HobbyFavoriteId)
-                    .HasConstraintName("FK__PersonHob__Hobby__75C27486");
+                    .HasConstraintName("FK__PersonHob__Hobby__74444068");
 
                 entity.HasOne(d => d.Person)
-                    .WithMany(p => p.PersonHobbyFavorite)
+                    .WithMany(p => p.PersonHobbyFavorites)
                     .HasForeignKey(d => d.PersonId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__PersonHob__Perso__74CE504D");
+                    .HasConstraintName("FK__PersonHob__Perso__73501C2F");
             });
 
             modelBuilder.Entity<PersonLanguage>(entity =>
             {
                 entity.Property(e => e.CreatedAt).HasColumnType("datetime");
 
+                entity.Property(e => e.CreatedById)
+                    .IsRequired()
+                    .HasMaxLength(450);
+
                 entity.Property(e => e.DeletedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.DeletedById).HasMaxLength(450);
 
                 entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
 
+                entity.Property(e => e.UpdatedById).HasMaxLength(450);
+
                 entity.HasOne(d => d.Language)
-                    .WithMany(p => p.PersonLanguage)
+                    .WithMany(p => p.PersonLanguages)
                     .HasForeignKey(d => d.LanguageId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__PersonLan__Langu__7993056A");
+                    .HasConstraintName("FK__PersonLan__Langu__7814D14C");
 
                 entity.HasOne(d => d.Person)
-                    .WithMany(p => p.PersonLanguage)
+                    .WithMany(p => p.PersonLanguages)
                     .HasForeignKey(d => d.PersonId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__PersonLan__Perso__789EE131");
+                    .HasConstraintName("FK__PersonLan__Perso__7720AD13");
             });
 
             modelBuilder.Entity<PersonPrivateInformation>(entity =>
@@ -730,37 +795,51 @@ namespace App.Models
 
                 entity.Property(e => e.CreatedAt).HasColumnType("datetime");
 
+                entity.Property(e => e.CreatedById)
+                    .IsRequired()
+                    .HasMaxLength(450);
+
                 entity.Property(e => e.DeletedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.DeletedById).HasMaxLength(450);
 
                 entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
 
+                entity.Property(e => e.UpdatedById).HasMaxLength(450);
+
                 entity.HasOne(d => d.Caste)
-                    .WithMany(p => p.PersonPrivateInformationCaste)
+                    .WithMany(p => p.PersonPrivateInformationCastes)
                     .HasForeignKey(d => d.CasteId)
-                    .HasConstraintName("FK__PersonPri__Caste__4CC05EF3");
+                    .HasConstraintName("FK__PersonPri__Caste__4B422AD5");
 
                 entity.HasOne(d => d.ParentalStatus)
                     .WithMany(p => p.PersonPrivateInformationParentalStatus)
                     .HasForeignKey(d => d.ParentalStatusId)
-                    .HasConstraintName("FK__PersonPri__Paren__4DB4832C");
+                    .HasConstraintName("FK__PersonPri__Paren__4C364F0E");
 
                 entity.HasOne(d => d.Person)
-                    .WithMany(p => p.PersonPrivateInformation)
+                    .WithMany(p => p.PersonPrivateInformations)
                     .HasForeignKey(d => d.PersonId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__PersonPri__Perso__48EFCE0F");
+                    .HasConstraintName("FK__PersonPri__Perso__477199F1");
 
                 entity.HasOne(d => d.Religion)
-                    .WithMany(p => p.PersonPrivateInformationReligion)
+                    .WithMany(p => p.PersonPrivateInformationReligions)
                     .HasForeignKey(d => d.ReligionId)
-                    .HasConstraintName("FK__PersonPri__Relig__4BCC3ABA");
+                    .HasConstraintName("FK__PersonPri__Relig__4A4E069C");
             });
 
             modelBuilder.Entity<PersonSocialMediaAccount>(entity =>
             {
                 entity.Property(e => e.CreatedAt).HasColumnType("datetime");
 
+                entity.Property(e => e.CreatedById)
+                    .IsRequired()
+                    .HasMaxLength(450);
+
                 entity.Property(e => e.DeletedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.DeletedById).HasMaxLength(450);
 
                 entity.Property(e => e.Link)
                     .HasMaxLength(50)
@@ -768,23 +847,25 @@ namespace App.Models
 
                 entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
 
+                entity.Property(e => e.UpdatedById).HasMaxLength(450);
+
                 entity.HasOne(d => d.AccountType)
-                    .WithMany(p => p.PersonSocialMediaAccountAccountType)
+                    .WithMany(p => p.PersonSocialMediaAccountAccountTypes)
                     .HasForeignKey(d => d.AccountTypeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__PersonSoc__Accou__7E57BA87");
+                    .HasConstraintName("FK__PersonSoc__Accou__7CD98669");
 
                 entity.HasOne(d => d.Person)
-                    .WithMany(p => p.PersonSocialMediaAccount)
+                    .WithMany(p => p.PersonSocialMediaAccounts)
                     .HasForeignKey(d => d.PersonId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__PersonSoc__Perso__7D63964E");
+                    .HasConstraintName("FK__PersonSoc__Perso__7BE56230");
 
                 entity.HasOne(d => d.TypeOfUser)
-                    .WithMany(p => p.PersonSocialMediaAccountTypeOfUser)
+                    .WithMany(p => p.PersonSocialMediaAccountTypeOfUsers)
                     .HasForeignKey(d => d.TypeOfUserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__PersonSoc__TypeO__7F4BDEC0");
+                    .HasConstraintName("FK__PersonSoc__TypeO__7DCDAAA2");
             });
 
             modelBuilder.Entity<PersonWorkExperience>(entity =>
@@ -799,7 +880,13 @@ namespace App.Models
 
                 entity.Property(e => e.CreatedAt).HasColumnType("datetime");
 
+                entity.Property(e => e.CreatedById)
+                    .IsRequired()
+                    .HasMaxLength(450);
+
                 entity.Property(e => e.DeletedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.DeletedById).HasMaxLength(450);
 
                 entity.Property(e => e.LongText)
                     .HasMaxLength(500)
@@ -807,29 +894,37 @@ namespace App.Models
 
                 entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
 
+                entity.Property(e => e.UpdatedById).HasMaxLength(450);
+
                 entity.HasOne(d => d.Industry)
-                    .WithMany(p => p.PersonWorkExperienceIndustry)
+                    .WithMany(p => p.PersonWorkExperienceIndustries)
                     .HasForeignKey(d => d.IndustryId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__PersonWor__Indus__031C6FA4");
+                    .HasConstraintName("FK__PersonWor__Indus__019E3B86");
 
                 entity.HasOne(d => d.Person)
-                    .WithMany(p => p.PersonWorkExperience)
+                    .WithMany(p => p.PersonWorkExperiences)
                     .HasForeignKey(d => d.PersonId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__PersonWor__Perso__02284B6B");
+                    .HasConstraintName("FK__PersonWor__Perso__00AA174D");
 
                 entity.HasOne(d => d.WorkType)
-                    .WithMany(p => p.PersonWorkExperienceWorkType)
+                    .WithMany(p => p.PersonWorkExperienceWorkTypes)
                     .HasForeignKey(d => d.WorkTypeId)
-                    .HasConstraintName("FK__PersonWor__WorkT__041093DD");
+                    .HasConstraintName("FK__PersonWor__WorkT__02925FBF");
             });
 
             modelBuilder.Entity<Program>(entity =>
             {
                 entity.Property(e => e.CreatedAt).HasColumnType("datetime");
 
+                entity.Property(e => e.CreatedById)
+                    .IsRequired()
+                    .HasMaxLength(450);
+
                 entity.Property(e => e.DeletedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.DeletedById).HasMaxLength(450);
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -837,34 +932,56 @@ namespace App.Models
                     .IsUnicode(false);
 
                 entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.UpdatedById).HasMaxLength(450);
+
+                entity.HasOne(d => d.Organization)
+                    .WithMany(p => p.Programs)
+                    .HasForeignKey(d => d.OrganizationId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Programs__Organi__084B3915");
             });
 
             modelBuilder.Entity<ProgramAttendance>(entity =>
             {
                 entity.Property(e => e.CreatedAt).HasColumnType("datetime");
 
+                entity.Property(e => e.CreatedById)
+                    .IsRequired()
+                    .HasMaxLength(450);
+
                 entity.Property(e => e.DeletedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.DeletedById).HasMaxLength(450);
 
                 entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
 
+                entity.Property(e => e.UpdatedById).HasMaxLength(450);
+
                 entity.HasOne(d => d.Person)
-                    .WithMany(p => p.ProgramAttendance)
+                    .WithMany(p => p.ProgramAttendances)
                     .HasForeignKey(d => d.PersonId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__ProgramAt__Perso__0E8E2250");
+                    .HasConstraintName("FK__ProgramAt__Perso__0E04126B");
 
                 entity.HasOne(d => d.Program)
-                    .WithMany(p => p.ProgramAttendance)
+                    .WithMany(p => p.ProgramAttendances)
                     .HasForeignKey(d => d.ProgramId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__ProgramAt__Progr__0F824689");
+                    .HasConstraintName("FK__ProgramAt__Progr__0EF836A4");
             });
 
             modelBuilder.Entity<State>(entity =>
             {
                 entity.Property(e => e.CreatedAt).HasColumnType("datetime");
 
+                entity.Property(e => e.CreatedById)
+                    .IsRequired()
+                    .HasMaxLength(450);
+
                 entity.Property(e => e.DeletedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.DeletedById).HasMaxLength(450);
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -873,32 +990,48 @@ namespace App.Models
 
                 entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
 
+                entity.Property(e => e.UpdatedById).HasMaxLength(450);
+
                 entity.HasOne(d => d.Country)
-                    .WithMany(p => p.State)
+                    .WithMany(p => p.States)
                     .HasForeignKey(d => d.CountryId)
-                    .HasConstraintName("FK__State__CountryId__2882FE7D");
+                    .HasConstraintName("FK__States__CountryI__24285DB4");
             });
 
             modelBuilder.Entity<Ticket>(entity =>
             {
                 entity.Property(e => e.CreatedAt).HasColumnType("datetime");
 
+                entity.Property(e => e.CreatedById)
+                    .IsRequired()
+                    .HasMaxLength(450);
+
                 entity.Property(e => e.DeletedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.DeletedById).HasMaxLength(450);
 
                 entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
 
+                entity.Property(e => e.UpdatedById).HasMaxLength(450);
+
                 entity.HasOne(d => d.Person)
-                    .WithMany(p => p.Ticket)
+                    .WithMany(p => p.Tickets)
                     .HasForeignKey(d => d.PersonId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Ticket__PersonId__0BB1B5A5");
+                    .HasConstraintName("FK__Tickets__PersonI__0B27A5C0");
             });
 
             modelBuilder.Entity<University>(entity =>
             {
                 entity.Property(e => e.CreatedAt).HasColumnType("datetime");
 
+                entity.Property(e => e.CreatedById)
+                    .IsRequired()
+                    .HasMaxLength(450);
+
                 entity.Property(e => e.DeletedAt).HasColumnType("datetime");
+
+                entity.Property(e => e.DeletedById).HasMaxLength(450);
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -907,16 +1040,16 @@ namespace App.Models
 
                 entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
 
+                entity.Property(e => e.UpdatedById).HasMaxLength(450);
+
                 entity.HasOne(d => d.City)
-                    .WithMany(p => p.University)
+                    .WithMany(p => p.Universities)
                     .HasForeignKey(d => d.CityId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Universit__CityI__06ED0088");
+                    .HasConstraintName("FK__Universit__CityI__056ECC6A");
             });
 
-            OnModelCreatingPartial(modelBuilder);
+            base.OnModelCreating(modelBuilder);
         }
-
-        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }

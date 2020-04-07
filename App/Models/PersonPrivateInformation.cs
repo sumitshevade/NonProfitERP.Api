@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace App.Models
 {
-    public partial class PersonPrivateInformation
+    public class PersonPrivateInformation
     {
         public int Id { get; set; }
         public int PersonId { get; set; }
@@ -13,16 +13,16 @@ namespace App.Models
         public int? ReligionId { get; set; }
         public int? CasteId { get; set; }
         public int? ParentalStatusId { get; set; }
-        public int CreatedById { get; set; }
+        public string CreatedById { get; set; }
         public DateTime CreatedAt { get; set; }
-        public int? UpdatedById { get; set; }
+        public string UpdatedById { get; set; }
         public DateTime? UpdatedAt { get; set; }
-        public int? DeletedById { get; set; }
+        public string DeletedById { get; set; }
         public DateTime? DeletedAt { get; set; }
 
-        public virtual Details Caste { get; set; }
-        public virtual Details ParentalStatus { get; set; }
-        public virtual Person Person { get; set; }
-        public virtual Details Religion { get; set; }
+        public virtual Detail Caste { get; set; }
+        public virtual Detail ParentalStatus { get; set; }
+        public virtual People Person { get; set; }
+        public virtual Detail Religion { get; set; }
     }
 }

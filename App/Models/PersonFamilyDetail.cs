@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace App.Models
 {
-    public partial class PersonFamilyDetails
+    public class PersonFamilyDetail
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
@@ -19,15 +19,15 @@ namespace App.Models
         public int? RelationId { get; set; }
         public int? CourseId { get; set; }
         public string AnyDisability { get; set; }
-        public int CreatedById { get; set; }
+        public string CreatedById { get; set; }
         public DateTime CreatedAt { get; set; }
-        public int? UpdatedById { get; set; }
+        public string UpdatedById { get; set; }
         public DateTime? UpdatedAt { get; set; }
-        public int? DeletedById { get; set; }
+        public string DeletedById { get; set; }
         public DateTime? DeletedAt { get; set; }
 
-        public virtual Details Course { get; set; }
-        public virtual Person Person { get; set; }
-        public virtual Details Relation { get; set; }
+        public virtual Detail Course { get; set; }
+        public virtual People Person { get; set; }
+        public virtual Detail Relation { get; set; }
     }
 }

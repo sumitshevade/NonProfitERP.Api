@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace App.Models
 {
-    public partial class PersonDisability
+    public class PersonDisability
     {
         public int Id { get; set; }
         public int PersonId { get; set; }
@@ -11,13 +11,13 @@ namespace App.Models
         public string Detail { get; set; }
         public int? FromYear { get; set; }
         public int? ToYear { get; set; }
-        public int CreatedById { get; set; }
+        public string CreatedById { get; set; }
         public DateTime CreatedAt { get; set; }
-        public int? UpdatedById { get; set; }
+        public string UpdatedById { get; set; }
         public DateTime? UpdatedAt { get; set; }
-        public int? DeletedById { get; set; }
+        public string DeletedById { get; set; }
         public DateTime? DeletedAt { get; set; }
 
-        public virtual Person Person { get; set; }
+        public virtual People Person { get; set; }
     }
 }
