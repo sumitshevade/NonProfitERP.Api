@@ -52,14 +52,11 @@ namespace App.Controllers
         }
 
         // POST: Organizations/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([FromForm]Organization organization)
+        public async Task<IActionResult> Create([Bind("Id,Name,Address,PanNo,IsNasscomRegistered,LongText")] Organization organization)
         {
-            // [Bind("Id,Name,Address,PanNo,IsNasscomRegistered,LongText,CreatedById,CreatedAt,UpdatedById,UpdatedAt,DeletedById,DeletedAt")]
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             if (ModelState.IsValid)
@@ -92,11 +89,9 @@ namespace App.Controllers
         }
 
         // POST: Organizations/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Address,PanNo,IsNasscomRegistered,LongText,CreatedById,CreatedAt,UpdatedById,UpdatedAt,DeletedById,DeletedAt")] Organization organization)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Address,PanNo,IsNasscomRegistered,LongText")] Organization organization)
         {
             if (id != organization.Id)
             {
