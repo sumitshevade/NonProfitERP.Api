@@ -81,12 +81,12 @@ namespace App.Models
         /// <summary>
         /// Class of the area. e.g. High class, medium class, low class, slum, etc.
         /// </summary>
-        public int? LocalityClass { get; set; }
+        public int? LocalityClassId { get; set; }
 
         /// <summary>
         /// Residential status. e.g. Bunglow, Chowl, Wada, Society, etc.
         /// </summary>
-        public int? ResidentialStatus { get; set; }
+        public int? ResidentialStatusId { get; set; }
 
         #region --- Relationships ---
         public virtual City City { get; set; }

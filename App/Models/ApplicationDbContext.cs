@@ -401,7 +401,7 @@ namespace App.Models
 
                 entity.HasOne(d => d.WorkFrequencyNavigation)
                     .WithMany(p => p.PeopleWorkFrequencyNavigations)
-                    .HasForeignKey(d => d.WorkFrequency)
+                    .HasForeignKey(d => d.WorkFrequencyId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__People__WorkFreq__382F5661");
             });
@@ -496,7 +496,7 @@ namespace App.Models
 
                 entity.HasOne(d => d.LocalityClassNavigation)
                     .WithMany(p => p.PersonAddressLocalityClassNavigations)
-                    .HasForeignKey(d => d.LocalityClass)
+                    .HasForeignKey(d => d.LocalityClassId)
                     .HasConstraintName("FK__PersonAdd__Local__57A801BA");
 
                 entity.HasOne(d => d.Person)
@@ -507,7 +507,7 @@ namespace App.Models
 
                 entity.HasOne(d => d.ResidentialStatusNavigation)
                     .WithMany(p => p.PersonAddressResidentialStatusNavigations)
-                    .HasForeignKey(d => d.ResidentialStatus)
+                    .HasForeignKey(d => d.ResidentialStatusId)
                     .HasConstraintName("FK__PersonAdd__Resid__589C25F3");
 
                 entity.HasOne(d => d.State)

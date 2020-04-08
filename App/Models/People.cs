@@ -81,7 +81,7 @@ namespace App.Models
         /// <summary>
         /// Work frequency of the person. e.g. Daily, Weekly, Monthly, Yearly, for programs only, etc.
         /// </summary>
-        public int WorkFrequency { get; set; }
+        public int WorkFrequencyId { get; set; }
 
         /// <summary>
         /// Person joining date.
