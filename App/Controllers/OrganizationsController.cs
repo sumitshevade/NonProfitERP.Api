@@ -62,7 +62,6 @@ namespace App.Controllers
             if (ModelState.IsValid)
             {
                 organization.CreatedById = userId;
-                organization.CreatedAt = DateTime.Now;
 
                 _context.Add(organization);
                 await _context.SaveChangesAsync();
