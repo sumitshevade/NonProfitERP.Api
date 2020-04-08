@@ -3,7 +3,10 @@ using System.Collections.Generic;
 
 namespace App.Models
 {
-    public class People
+    /// <summary>
+    /// Base class of the person.
+    /// </summary>
+    public class People : BaseClass
     {
         public People()
         {
@@ -25,28 +28,77 @@ namespace App.Models
             Tickets = new HashSet<Ticket>();
         }
 
-        public int Id { get; set; }
+        /// <summary>
+        /// How this person engage with organization?
+        /// </summary>
         public int PersonTypeId { get; set; }
-        public int OrganizationId { get; set; }
-        public string FirstName { get; set; }
-        public string MiddleName { get; set; }
-        public string LastName { get; set; }
-        public DateTime? BirthDate { get; set; }
-        public string BirthLocation { get; set; }
-        public string LongText { get; set; }
-        public string Keywords { get; set; }
-        public bool IsWorker { get; set; }
-        public int WorkFrequency { get; set; }
-        public DateTime? JoiningDate { get; set; }
-        public int? JoinedAsId { get; set; }
-        public int? CountryId { get; set; }
-        public string CreatedById { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public string UpdatedById { get; set; }
-        public DateTime? UpdatedAt { get; set; }
-        public string DeletedById { get; set; }
-        public DateTime? DeletedAt { get; set; }
 
+        /// <summary>
+        /// Organization reference for person.
+        /// </summary>
+        public int OrganizationId { get; set; }
+
+        /// <summary>
+        /// Person firstname.
+        /// </summary>
+        public string FirstName { get; set; }
+
+        /// <summary>
+        /// Person middlename.
+        /// </summary>
+        public string MiddleName { get; set; }
+
+        /// <summary>
+        /// Person lastname.
+        /// </summary>
+        public string LastName { get; set; }
+
+        /// <summary>
+        /// Person birthdate.
+        /// </summary>
+        public DateTime? BirthDate { get; set; }
+
+        /// <summary>
+        /// Person birth location.
+        /// </summary>
+        public string BirthLocation { get; set; }
+
+        /// <summary>
+        /// Person description.
+        /// </summary>
+        public string LongText { get; set; }
+
+        /// <summary>
+        /// Person keywords on which we can search.
+        /// </summary>
+        public string Keywords { get; set; }
+
+        /// <summary>
+        /// Is this person working for our organization?
+        /// </summary>
+        public bool IsWorker { get; set; }
+
+        /// <summary>
+        /// Work frequency of the person. e.g. Daily, Weekly, Monthly, Yearly, for programs only, etc.
+        /// </summary>
+        public int WorkFrequency { get; set; }
+
+        /// <summary>
+        /// Person joining date.
+        /// </summary>
+        public DateTime? JoiningDate { get; set; }
+
+        /// <summary>
+        /// Person joined as. e.g. Teacher, etc.
+        /// </summary>
+        public int? JoinedAsId { get; set; }
+
+        /// <summary>
+        /// Person nationality.
+        /// </summary>
+        public int? CountryId { get; set; }
+
+        #region --- Relationships ---
         public virtual Country Country { get; set; }
         public virtual Detail JoinedAs { get; set; }
         public virtual Organization Organization { get; set; }
@@ -68,5 +120,7 @@ namespace App.Models
         public virtual ICollection<PersonWorkExperience> PersonWorkExperiences { get; set; }
         public virtual ICollection<ProgramAttendance> ProgramAttendances { get; set; }
         public virtual ICollection<Ticket> Tickets { get; set; }
+
+        #endregion
     }
 }

@@ -3,20 +3,30 @@ using System.Collections.Generic;
 
 namespace App.Models
 {
-    public class PersonHobbyFavorite
+    /// <summary>
+    /// Person hobby and favorites.
+    /// </summary>
+    public class PersonHobbyFavorite : BaseClass
     {
-        public int Id { get; set; }
+        /// <summary>
+        /// Reference for person.
+        /// </summary>
         public int PersonId { get; set; }
-        public int? HobbyFavoriteId { get; set; }
-        public string LongText { get; set; }
-        public string CreatedById { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public string UpdatedById { get; set; }
-        public DateTime? UpdatedAt { get; set; }
-        public string DeletedById { get; set; }
-        public DateTime? DeletedAt { get; set; }
 
+        /// <summary>
+        /// Person hobby or favorite option selection.
+        /// </summary>
+        public int? HobbyFavoriteId { get; set; }
+
+        /// <summary>
+        /// Person hobby or favorite details.
+        /// </summary>
+        public string LongText { get; set; }
+
+        #region --- Relationships ---
         public virtual Detail HobbyFavorite { get; set; }
         public virtual People Person { get; set; }
+
+        #endregion
     }
 }

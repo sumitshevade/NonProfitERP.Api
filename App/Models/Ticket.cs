@@ -3,17 +3,19 @@ using System.Collections.Generic;
 
 namespace App.Models
 {
-    public class Ticket
+    /// <summary>
+    /// Program ticket list.
+    /// </summary>
+    public class Ticket : BaseClass
     {
-        public int Id { get; set; }
+        /// <summary>
+        /// Reference for person.
+        /// </summary>
         public int PersonId { get; set; }
-        public string CreatedById { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public string UpdatedById { get; set; }
-        public DateTime? UpdatedAt { get; set; }
-        public string DeletedById { get; set; }
-        public DateTime? DeletedAt { get; set; }
 
+        #region --- Relationships ---
         public virtual People Person { get; set; }
+
+        #endregion
     }
 }

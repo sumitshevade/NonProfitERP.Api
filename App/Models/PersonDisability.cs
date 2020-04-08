@@ -3,21 +3,39 @@ using System.Collections.Generic;
 
 namespace App.Models
 {
-    public class PersonDisability
+    /// <summary>
+    /// Person disability list.
+    /// </summary>
+    public class PersonDisability : BaseClass
     {
-        public int Id { get; set; }
+        /// <summary>
+        /// Reference for person.
+        /// </summary>
         public int PersonId { get; set; }
-        public string Problem { get; set; }
-        public string Detail { get; set; }
-        public int? FromYear { get; set; }
-        public int? ToYear { get; set; }
-        public string CreatedById { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public string UpdatedById { get; set; }
-        public DateTime? UpdatedAt { get; set; }
-        public string DeletedById { get; set; }
-        public DateTime? DeletedAt { get; set; }
 
+        /// <summary>
+        /// Problem that person have.
+        /// </summary>
+        public string Problem { get; set; }
+
+        /// <summary>
+        /// Details about the problem.
+        /// </summary>
+        public string Detail { get; set; }
+
+        /// <summary>
+        /// From when this problem started.
+        /// </summary>
+        public int? FromYear { get; set; }
+
+        /// <summary>
+        /// When this problem ended.
+        /// </summary>
+        public int? ToYear { get; set; }
+
+        #region --- Relationships ---
         public virtual People Person { get; set; }
+
+        #endregion
     }
 }

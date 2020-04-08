@@ -3,19 +3,25 @@ using System.Collections.Generic;
 
 namespace App.Models
 {
-    public class ProgramAttendance
+    /// <summary>
+    /// Program attendance details.
+    /// </summary>
+    public class ProgramAttendance : BaseClass
     {
-        public int Id { get; set; }
+        /// <summary>
+        /// Reference for person.
+        /// </summary>
         public int PersonId { get; set; }
-        public int ProgramId { get; set; }
-        public string CreatedById { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public string UpdatedById { get; set; }
-        public DateTime? UpdatedAt { get; set; }
-        public string DeletedById { get; set; }
-        public DateTime? DeletedAt { get; set; }
 
+        /// <summary>
+        /// Reference for program.
+        /// </summary>
+        public int ProgramId { get; set; }
+
+        #region --- Relationships ---
         public virtual People Person { get; set; }
         public virtual Program Program { get; set; }
+
+        #endregion
     }
 }

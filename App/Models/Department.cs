@@ -3,7 +3,10 @@ using System.Collections.Generic;
 
 namespace App.Models
 {
-    public class Department
+    /// <summary>
+    /// Department list
+    /// </summary>
+    public class Department : BaseClass
     {
         public Department()
         {
@@ -11,20 +14,31 @@ namespace App.Models
             Divisions = new HashSet<Division>();
         }
 
-        public int Id { get; set; }
+        /// <summary>
+        /// Organization reference for department.
+        /// </summary>
         public int OrganizationId { get; set; }
-        public string Name { get; set; }
-        public DateTime? StartedAt { get; set; }
-        public string LongText { get; set; }
-        public string CreatedById { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public string UpdatedById { get; set; }
-        public DateTime? UpdatedAt { get; set; }
-        public string DeletedById { get; set; }
-        public DateTime? DeletedAt { get; set; }
 
+        /// <summary>
+        /// Department name
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// Department started date
+        /// </summary>
+        public DateTime? StartedAt { get; set; }
+
+        /// <summary>
+        /// Description about department
+        /// </summary>
+        public string LongText { get; set; }
+
+        #region --- Relationships ---
         public virtual Organization Organization { get; set; }
         public virtual ICollection<DepartmentHead> DepartmentHeads { get; set; }
         public virtual ICollection<Division> Divisions { get; set; }
+
+        #endregion
     }
 }

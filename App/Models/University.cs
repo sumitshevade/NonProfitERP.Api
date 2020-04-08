@@ -1,20 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace App.Models
+﻿namespace App.Models
 {
-    public class University
+    /// <summary>
+    /// University list.
+    /// </summary>
+    public class University : BaseClass
     {
-        public int Id { get; set; }
+        /// <summary>
+        /// University name.
+        /// </summary>
         public string Name { get; set; }
-        public int CityId { get; set; }
-        public string CreatedById { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public string UpdatedById { get; set; }
-        public DateTime? UpdatedAt { get; set; }
-        public string DeletedById { get; set; }
-        public DateTime? DeletedAt { get; set; }
 
+        /// <summary>
+        /// Reference for City, from where university belongs.
+        /// </summary>
+        public int CityId { get; set; }
+
+        #region --- Relationships ---
         public virtual City City { get; set; }
+
+        #endregion
     }
 }

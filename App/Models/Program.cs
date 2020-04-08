@@ -3,24 +3,30 @@ using System.Collections.Generic;
 
 namespace App.Models
 {
-    public class Program
+    /// <summary>
+    /// Organization arranged program list.
+    /// </summary>
+    public class Program : BaseClass
     {
         public Program()
         {
             ProgramAttendances = new HashSet<ProgramAttendance>();
         }
 
-        public int Id { get; set; }
+        /// <summary>
+        /// Reference for organization.
+        /// </summary>
         public int OrganizationId { get; set; }
-        public string Name { get; set; }
-        public string CreatedById { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public string UpdatedById { get; set; }
-        public DateTime? UpdatedAt { get; set; }
-        public string DeletedById { get; set; }
-        public DateTime? DeletedAt { get; set; }
 
+        /// <summary>
+        /// Program name.
+        /// </summary>
+        public string Name { get; set; }
+
+        #region --- Relationships ---
         public virtual Organization Organization { get; set; }
         public virtual ICollection<ProgramAttendance> ProgramAttendances { get; set; }
+
+        #endregion
     }
 }

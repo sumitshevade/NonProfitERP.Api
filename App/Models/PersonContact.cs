@@ -3,21 +3,35 @@ using System.Collections.Generic;
 
 namespace App.Models
 {
-    public class PersonContact
+    /// <summary>
+    /// Person contact list.
+    /// </summary>
+    public class PersonContact : BaseClass
     {
-        public int Id { get; set; }
+        /// <summary>
+        /// Reference for person.
+        /// </summary>
         public int PersonId { get; set; }
-        public int? ContactType { get; set; }
-        public string Detail { get; set; }
-        public bool IsDefault { get; set; }
-        public string CreatedById { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public string UpdatedById { get; set; }
-        public DateTime? UpdatedAt { get; set; }
-        public string DeletedById { get; set; }
-        public DateTime? DeletedAt { get; set; }
 
+        /// <summary>
+        /// Contact Type. e.g. Mobile No, Email, etc.
+        /// </summary>
+        public int? ContactType { get; set; }
+
+        /// <summary>
+        /// Any extra details.
+        /// </summary>
+        public string Detail { get; set; }
+
+        /// <summary>
+        /// Is this default contact info.
+        /// </summary>
+        public bool IsDefault { get; set; }
+
+        #region --- Relationships ---
         public virtual Detail ContactTypeNavigation { get; set; }
         public virtual People Person { get; set; }
+        
+        #endregion
     }
 }

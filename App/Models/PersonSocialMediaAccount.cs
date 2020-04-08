@@ -3,22 +3,36 @@ using System.Collections.Generic;
 
 namespace App.Models
 {
-    public class PersonSocialMediaAccount
+    /// <summary>
+    /// Person social media accounts.
+    /// </summary>
+    public class PersonSocialMediaAccount : BaseClass
     {
-        public int Id { get; set; }
+        /// <summary>
+        /// Reference for person.
+        /// </summary>
         public int PersonId { get; set; }
-        public int AccountTypeId { get; set; }
-        public string Link { get; set; }
-        public int TypeOfUserId { get; set; }
-        public string CreatedById { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public string UpdatedById { get; set; }
-        public DateTime? UpdatedAt { get; set; }
-        public string DeletedById { get; set; }
-        public DateTime? DeletedAt { get; set; }
 
+        /// <summary>
+        /// Reference for person's social account type.
+        /// </summary>
+        public int AccountTypeId { get; set; }
+
+        /// <summary>
+        /// Person's social media account link.
+        /// </summary>
+        public string Link { get; set; }
+
+        /// <summary>
+        /// Reference for frequency of the use. e.g. Regular use, Rare use, Moderate use.
+        /// </summary>
+        public int TypeOfUserId { get; set; }
+
+        #region --- Relationships ---
         public virtual Detail AccountType { get; set; }
         public virtual People Person { get; set; }
         public virtual Detail TypeOfUser { get; set; }
+
+        #endregion
     }
 }

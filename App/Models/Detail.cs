@@ -3,7 +3,10 @@ using System.Collections.Generic;
 
 namespace App.Models
 {
-    public class Detail
+    /// <summary>
+    /// Header-Detail class.
+    /// </summary>
+    public class Detail : BaseClass
     {
         public Detail()
         {
@@ -33,17 +36,22 @@ namespace App.Models
             PersonWorkExperienceWorkTypes = new HashSet<PersonWorkExperience>();
         }
 
-        public int Id { get; set; }
+        /// <summary>
+        /// Header reference for detail.
+        /// </summary>
         public int? HeaderId { get; set; }
-        public string Value { get; set; }
-        public string ExtraField { get; set; }
-        public string CreatedById { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public string UpdatedById { get; set; }
-        public DateTime? UpdatedAt { get; set; }
-        public string DeletedById { get; set; }
-        public DateTime? DeletedAt { get; set; }
 
+        /// <summary>
+        /// Detail value.
+        /// </summary>
+        public string Value { get; set; }
+
+        /// <summary>
+        /// Extra text to mention if anything related to value.
+        /// </summary>
+        public string ExtraField { get; set; }
+
+        #region --- Relationships ---
         public virtual Header Header { get; set; }
         public virtual ICollection<People> PeopleJoinedAs { get; set; }
         public virtual ICollection<People> PeoplePersonTypes { get; set; }
@@ -69,5 +77,7 @@ namespace App.Models
         public virtual ICollection<PersonSocialMediaAccount> PersonSocialMediaAccountTypeOfUsers { get; set; }
         public virtual ICollection<PersonWorkExperience> PersonWorkExperienceIndustries { get; set; }
         public virtual ICollection<PersonWorkExperience> PersonWorkExperienceWorkTypes { get; set; }
+
+        #endregion
     }
 }

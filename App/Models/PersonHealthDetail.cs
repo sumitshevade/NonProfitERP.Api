@@ -3,22 +3,44 @@ using System.Collections.Generic;
 
 namespace App.Models
 {
-    public class PersonHealthDetail
+    /// <summary>
+    /// Person health details.
+    /// </summary>
+    public class PersonHealthDetail : BaseClass
     {
-        public int Id { get; set; }
+        /// <summary>
+        /// Reference for person.
+        /// </summary>
         public int PersonId { get; set; }
-        public double? Height { get; set; }
-        public double? Weight { get; set; }
-        public double? Iq { get; set; }
-        public double? WakeUpTiming { get; set; }
-        public double? SleepTiming { get; set; }
-        public string CreatedById { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public string UpdatedById { get; set; }
-        public DateTime? UpdatedAt { get; set; }
-        public string DeletedById { get; set; }
-        public DateTime? DeletedAt { get; set; }
 
+        /// <summary>
+        /// Person height.
+        /// </summary>
+        public double? Height { get; set; }
+
+        /// <summary>
+        /// Person weight.
+        /// </summary>
+        public double? Weight { get; set; }
+
+        /// <summary>
+        /// Person IQ.
+        /// </summary>
+        public double? Iq { get; set; }
+
+        /// <summary>
+        /// Person wake up timing.
+        /// </summary>
+        public double? WakeUpTiming { get; set; }
+
+        /// <summary>
+        /// Person sleep timing.
+        /// </summary>
+        public double? SleepTiming { get; set; }
+
+        #region --- Relationships ---
         public virtual People Person { get; set; }
+
+        #endregion
     }
 }

@@ -3,24 +3,30 @@ using System.Collections.Generic;
 
 namespace App.Models
 {
-    public class Header
+    /// <summary>
+    /// Header-Detail class.
+    /// </summary>
+    public class Header : BaseClass
     {
         public Header()
         {
             Details = new HashSet<Detail>();
         }
 
-        public int Id { get; set; }
+        /// <summary>
+        /// Organization reference for header.
+        /// </summary>
         public int OrganizationId { get; set; }
-        public string Title { get; set; }
-        public string CreatedById { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public string UpdatedById { get; set; }
-        public DateTime? UpdatedAt { get; set; }
-        public string DeletedById { get; set; }
-        public DateTime? DeletedAt { get; set; }
 
+        /// <summary>
+        /// Header title.
+        /// </summary>
+        public string Title { get; set; }
+
+        #region --- Relationships ---
         public virtual Organization Organization { get; set; }
         public virtual ICollection<Detail> Details { get; set; }
+
+        #endregion
     }
 }

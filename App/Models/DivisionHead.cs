@@ -3,21 +3,35 @@ using System.Collections.Generic;
 
 namespace App.Models
 {
-    public class DivisionHead
+    /// <summary>
+    /// Division head list.
+    /// </summary>
+    public class DivisionHead : BaseClass
     {
-        public int Id { get; set; }
+        /// <summary>
+        /// Person reference for division head.
+        /// </summary>
         public int PersonId { get; set; }
-        public int DivisionId { get; set; }
-        public int FromYear { get; set; }
-        public int? ToYear { get; set; }
-        public string CreatedById { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public string UpdatedById { get; set; }
-        public DateTime? UpdatedAt { get; set; }
-        public string DeletedById { get; set; }
-        public DateTime? DeletedAt { get; set; }
 
+        /// <summary>
+        /// Division reference for head.
+        /// </summary>
+        public int DivisionId { get; set; }
+
+        /// <summary>
+        /// From when this person started working as a division head.
+        /// </summary>
+        public int FromYear { get; set; }
+
+        /// <summary>
+        /// Until when this person was a division head.
+        /// </summary>
+        public int? ToYear { get; set; }
+
+        #region --- Relationships ---
         public virtual Division Division { get; set; }
         public virtual People Person { get; set; }
+
+        #endregion
     }
 }

@@ -3,7 +3,10 @@ using System.Collections.Generic;
 
 namespace App.Models
 {
-    public class Country
+    /// <summary>
+    /// Country list
+    /// </summary>
+    public class Country : BaseClass
     {
         public Country()
         {
@@ -12,17 +15,16 @@ namespace App.Models
             States = new HashSet<State>();
         }
 
-        public int Id { get; set; }
+        /// <summary>
+        /// Country name
+        /// </summary>
         public string Name { get; set; }
-        public string CreatedById { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public string UpdatedById { get; set; }
-        public DateTime? UpdatedAt { get; set; }
-        public string DeletedById { get; set; }
-        public DateTime? DeletedAt { get; set; }
 
+        #region --- Relationships ---
         public virtual ICollection<People> People { get; set; }
         public virtual ICollection<PersonAddress> PersonAddresses { get; set; }
         public virtual ICollection<State> States { get; set; }
+
+        #endregion
     }
 }

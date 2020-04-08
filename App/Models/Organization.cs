@@ -4,7 +4,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace App.Models
 {
-    public class Organization
+    /// <summary>
+    /// Organization information. Will be useful for SaaS.
+    /// </summary>
+    public class Organization : BaseClass
     {
         public Organization()
         {
@@ -14,24 +17,37 @@ namespace App.Models
             Programs = new HashSet<Program>();
         }
 
-        public int Id { get; set; }
+        /// <summary>
+        /// Organization name.
+        /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        /// Organization address.
+        /// </summary>
         public string Address { get; set; }
+
+        /// <summary>
+        /// Organization Pan card no.
+        /// </summary>
         public string PanNo { get; set; }
+
+        /// <summary>
+        /// Is organization registered as Nasscom user?
+        /// </summary>
         public bool IsNasscomRegistered { get; set; }
+
+        /// <summary>
+        /// Organization description.
+        /// </summary>
         public string LongText { get; set; }
 
-        [Display()]
-        public string CreatedById { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public string UpdatedById { get; set; }
-        public DateTime? UpdatedAt { get; set; }
-        public string DeletedById { get; set; }
-        public DateTime? DeletedAt { get; set; }
-
+        #region --- Relationships ---
         public virtual ICollection<Department> Departments { get; set; }
         public virtual ICollection<Header> Headers { get; set; }
         public virtual ICollection<People> People { get; set; }
         public virtual ICollection<Program> Programs { get; set; }
+
+        #endregion
     }
 }

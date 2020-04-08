@@ -3,31 +3,81 @@ using System.Collections.Generic;
 
 namespace App.Models
 {
-    public class PersonFamilyDetail
+    /// <summary>
+    /// Person family details.
+    /// </summary>
+    public class PersonFamilyDetail : BaseClass
     {
-        public int Id { get; set; }
-        public string FirstName { get; set; }
-        public string MiddleName { get; set; }
-        public string LastName { get; set; }
-        public DateTime? BirthDate { get; set; }
-        public string MobileNo { get; set; }
-        public string Email { get; set; }
-        public string CompanyName { get; set; }
-        public string SchoolName { get; set; }
-        public double? MonthlyIncome { get; set; }
+        /// <summary>
+        /// Reference for person.
+        /// </summary>
         public int? PersonId { get; set; }
-        public int? RelationId { get; set; }
-        public int? CourseId { get; set; }
-        public string AnyDisability { get; set; }
-        public string CreatedById { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public string UpdatedById { get; set; }
-        public DateTime? UpdatedAt { get; set; }
-        public string DeletedById { get; set; }
-        public DateTime? DeletedAt { get; set; }
 
+        /// <summary>
+        /// Reference for relation.
+        /// </summary>
+        public int? RelationId { get; set; }
+
+        /// <summary>
+        /// Reference for course.
+        /// </summary>
+        public int? CourseId { get; set; }
+
+        /// <summary>
+        /// Person family member disability.
+        /// </summary>
+        public string AnyDisability { get; set; }
+
+        /// <summary>
+        /// Person family member firstname.
+        /// </summary>
+        public string FirstName { get; set; }
+
+        /// <summary>
+        /// Person family member middlename.
+        /// </summary>
+        public string MiddleName { get; set; }
+
+        /// <summary>
+        /// Person family member lastname.
+        /// </summary>
+        public string LastName { get; set; }
+
+        /// <summary>
+        /// Person family member birthdate.
+        /// </summary>
+        public DateTime? BirthDate { get; set; }
+
+        /// <summary>
+        /// Person family member mobile no.
+        /// </summary>
+        public string MobileNo { get; set; }
+
+        /// <summary>
+        /// Person family member email id.
+        /// </summary>
+        public string Email { get; set; }
+
+        /// <summary>
+        /// Person family member company name (if any).
+        /// </summary>
+        public string CompanyName { get; set; }
+
+        /// <summary>
+        /// Person family member school name (if any).
+        /// </summary>
+        public string SchoolName { get; set; }
+
+        /// <summary>
+        /// Person family member monthly income
+        /// </summary>
+        public double? MonthlyIncome { get; set; }
+
+        #region --- Relationships ---
         public virtual Detail Course { get; set; }
         public virtual People Person { get; set; }
         public virtual Detail Relation { get; set; }
+
+        #endregion
     }
 }

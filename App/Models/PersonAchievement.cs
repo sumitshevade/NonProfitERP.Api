@@ -3,22 +3,44 @@ using System.Collections.Generic;
 
 namespace App.Models
 {
-    public class PersonAchievement
+    /// <summary>
+    /// Person's achievement list.
+    /// </summary>
+    public class PersonAchievement : BaseClass
     {
-        public int Id { get; set; }
+        /// <summary>
+        /// Reference for person.
+        /// </summary>
         public int? PersonId { get; set; }
-        public string Title { get; set; }
-        public string GivenBy { get; set; }
-        public string Format { get; set; }
-        public string Reason { get; set; }
-        public DateTime? ReceivedDate { get; set; }
-        public string CreatedById { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public string UpdatedById { get; set; }
-        public DateTime? UpdatedAt { get; set; }
-        public string DeletedById { get; set; }
-        public DateTime? DeletedAt { get; set; }
 
+        /// <summary>
+        /// Person achievement title.
+        /// </summary>
+        public string Title { get; set; }
+
+        /// <summary>
+        /// Achievement award given by. e.g. Govt, School, University, etc.
+        /// </summary>
+        public string GivenBy { get; set; }
+
+        /// <summary>
+        /// Format of the achievement award. e.g. Book, Money, et.
+        /// </summary>
+        public string Format { get; set; }
+
+        /// <summary>
+        /// Why person got the achievement award?
+        /// </summary>
+        public string Reason { get; set; }
+
+        /// <summary>
+        /// Achievement award date.
+        /// </summary>
+        public DateTime? ReceivedDate { get; set; }
+
+        #region --- Relationships ---
         public virtual People Person { get; set; }
+
+        #endregion
     }
 }
