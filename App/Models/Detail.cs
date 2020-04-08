@@ -12,10 +12,10 @@ namespace App.Models
         {
             PeopleJoinedAs = new HashSet<People>();
             PeoplePersonTypes = new HashSet<People>();
-            PeopleWorkFrequencyNavigations = new HashSet<People>();
+            PeopleWorkFrequency = new HashSet<People>();
             PersonAddressHomeStatus = new HashSet<PersonAddress>();
-            PersonAddressLocalityClassNavigations = new HashSet<PersonAddress>();
-            PersonAddressResidentialStatusNavigations = new HashSet<PersonAddress>();
+            PersonAddressLocalityClass = new HashSet<PersonAddress>();
+            PersonAddressResidentialStatus = new HashSet<PersonAddress>();
             PersonContacts = new HashSet<PersonContact>();
             PersonEducationCourses = new HashSet<PersonEducation>();
             PersonEducationDegrees = new HashSet<PersonEducation>();
@@ -55,10 +55,10 @@ namespace App.Models
         public virtual Header Header { get; set; }
         public virtual ICollection<People> PeopleJoinedAs { get; set; }
         public virtual ICollection<People> PeoplePersonTypes { get; set; }
-        public virtual ICollection<People> PeopleWorkFrequencyNavigations { get; set; }
+        public virtual ICollection<People> PeopleWorkFrequency { get; set; }
         public virtual ICollection<PersonAddress> PersonAddressHomeStatus { get; set; }
-        public virtual ICollection<PersonAddress> PersonAddressLocalityClassNavigations { get; set; }
-        public virtual ICollection<PersonAddress> PersonAddressResidentialStatusNavigations { get; set; }
+        public virtual ICollection<PersonAddress> PersonAddressLocalityClass { get; set; }
+        public virtual ICollection<PersonAddress> PersonAddressResidentialStatus { get; set; }
         public virtual ICollection<PersonContact> PersonContacts { get; set; }
         public virtual ICollection<PersonEducation> PersonEducationCourses { get; set; }
         public virtual ICollection<PersonEducation> PersonEducationDegrees { get; set; }
