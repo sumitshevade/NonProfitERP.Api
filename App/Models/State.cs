@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace App.Models
 {
@@ -17,11 +18,13 @@ namespace App.Models
         /// <summary>
         /// State name.
         /// </summary>
+        [Required, Display(Name = "Name"), StringLength(50)]
         public string Name { get; set; }
 
         /// <summary>
         /// Reference for country.
         /// </summary>
+        [Required, Display(Name = "Country")]
         public int? CountryId { get; set; }
 
         #region --- Relationships ---

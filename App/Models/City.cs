@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 
 namespace App.Models
@@ -15,13 +15,15 @@ namespace App.Models
         }
 
         /// <summary>
-        /// City exists in the state.
+        /// Reference for the state.
         /// </summary>
+        [Required, Display(Name = "State")]
         public int? StateId { get; set; }
 
         /// <summary>
         /// City name
         /// </summary>
+        [Required, StringLength(50)]
         public string Name { get; set; }
 
         #region --- Relationships ---

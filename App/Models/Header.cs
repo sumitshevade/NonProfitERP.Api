@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace App.Models
 {
@@ -16,11 +17,13 @@ namespace App.Models
         /// <summary>
         /// Organization reference for header.
         /// </summary>
+        [ScaffoldColumn(false)]
         public int OrganizationId { get; set; }
 
         /// <summary>
         /// Header title.
         /// </summary>
+        [Required, StringLength(50)]
         public string Title { get; set; }
 
         #region --- Relationships ---

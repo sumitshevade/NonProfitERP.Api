@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace App.Models
 {
@@ -11,16 +12,19 @@ namespace App.Models
         /// <summary>
         /// Reference for person.
         /// </summary>
+        [Required, Display(Name = "Person")]
         public int PersonId { get; set; }
 
         /// <summary>
         /// Person hobby or favorite option selection.
         /// </summary>
+        [Display(Name = "Hobby / Favorite")]
         public int? HobbyFavoriteId { get; set; }
 
         /// <summary>
         /// Person hobby or favorite details.
         /// </summary>
+        [Display(Name = "Description"), StringLength(500)]
         public string LongText { get; set; }
 
         #region --- Relationships ---

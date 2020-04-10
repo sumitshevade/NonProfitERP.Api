@@ -1,4 +1,6 @@
-﻿namespace App.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace App.Models
 {
     /// <summary>
     /// University list.
@@ -13,6 +15,7 @@
         /// <summary>
         /// Reference for City, from where university belongs.
         /// </summary>
+        [Display(Name = "City")]
         public int CityId { get; set; }
 
         #region --- Relationships ---

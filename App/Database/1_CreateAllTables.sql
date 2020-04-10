@@ -92,7 +92,7 @@ GO
 CREATE TABLE Details
 (
 	Id INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
-	HeaderId INT REFERENCES Headers(Id),
+	HeaderId INT REFERENCES Headers(Id) NOT NULL,
 	[Value] VARCHAR(100) NOT NULL,
 	ExtraField VARCHAR(250) NULL,
 	CreatedById NVARCHAR(450) NOT NULL,
@@ -117,7 +117,7 @@ CREATE TABLE People
 	LongText VARCHAR(500) NULL,
 	Keywords VARCHAR(250) NULL,
 	IsWorker BIT NOT NULL DEFAULT 0,	-- is he / she working, so that we can assign him work
-	WorkFrequency INT REFERENCES Details(Id) NOT NULL,	-- it will be daily, periodic, rare, etc
+	WorkFrequencyId INT REFERENCES Details(Id) NOT NULL,	-- it will be daily, periodic, rare, etc
 	JoiningDate DATE NULL,
 	JoinedAsId INT REFERENCES Details(Id) NULL,
 	CountryId INT REFERENCES Countries(Id) NULL,
@@ -201,7 +201,7 @@ GO
 CREATE TABLE PersonAchievements
 (
 	Id INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
-	PersonId INT REFERENCES People(Id) NULL,
+	PersonId INT REFERENCES People(Id) NOT NULL,
 	Title VARCHAR(50) NOT NULL,
 	GivenBy VARCHAR(100) NULL,
 	[Format] VARCHAR(50) NULL,
@@ -233,8 +233,8 @@ CREATE TABLE PersonAddresses
 	RoomsInHome INT NULL,
 	IsGovtBuildUp BIT NOT NULL DEFAULT 0,
 	HomeStatusId INT REFERENCES Details(Id) NULL,
-	LocalityClass INT REFERENCES Details(Id) NULL,
-	ResidentialStatus INT REFERENCES Details(Id) NULL,
+	LocalityClassId INT REFERENCES Details(Id) NULL,
+	ResidentialStatusId INT REFERENCES Details(Id) NULL,
 	CreatedById NVARCHAR(450) NOT NULL,
 	CreatedAt DATETIME NOT NULL,
 	UpdatedById NVARCHAR(450) NULL,
@@ -248,7 +248,7 @@ CREATE TABLE PersonContacts
 (
 	Id INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
 	PersonId INT REFERENCES People(Id) NOT NULL,
-	ContactType INT REFERENCES Details(Id) NULL,
+	ContactTypeId INT REFERENCES Details(Id) NULL,
 	Detail VARCHAR(100),
 	IsDefault BIT NOT NULL DEFAULT 0, 
 	CreatedById NVARCHAR(450) NOT NULL,
@@ -310,7 +310,7 @@ CREATE TABLE PersonFamilyDetails
 	CompanyName VARCHAR(50) NULL,
 	SchoolName VARCHAR(50) NULL,
 	MonthlyIncome FLOAT NULL,
-	PersonId INT REFERENCES People(Id) NULL,
+	PersonId INT REFERENCES People(Id) NOT NULL,
 	RelationId INT REFERENCES Details(Id) NULL,
 	CourseId INT REFERENCES Details(Id) NULL,
 	AnyDisability VARCHAR(100) NULL,

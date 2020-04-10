@@ -11,6 +11,7 @@ namespace App.Models
         /// <summary>
         /// Reference for person.
         /// </summary>
+        [Required, Display(Name = "Person")]
         public int PersonId { get; set; }
 
         #region --- Relationships ---

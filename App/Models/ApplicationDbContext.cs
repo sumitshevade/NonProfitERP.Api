@@ -538,7 +538,7 @@ namespace App.Models
 
                 entity.HasOne(d => d.ContactTypeNavigation)
                     .WithMany(p => p.PersonContacts)
-                    .HasForeignKey(d => d.ContactType)
+                    .HasForeignKey(d => d.ContactTypeId)
                     .HasConstraintName("FK__PersonCon__Conta__5C6CB6D7");
 
                 entity.HasOne(d => d.Person)

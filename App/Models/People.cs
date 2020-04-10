@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace App.Models
 {
@@ -29,76 +30,97 @@ namespace App.Models
         }
 
         /// <summary>
+        /// Reference for aspnetusers
+        /// </summary>
+        [ScaffoldColumn(false)]
+        public string LoginId { get; set; }
+
+        /// <summary>
         /// How this person engage with organization?
         /// </summary>
+        [Required, Display(Name = "Person Type")]
         public int PersonTypeId { get; set; }
 
         /// <summary>
         /// Organization reference for person.
         /// </summary>
+        [ScaffoldColumn(false)]
         public int OrganizationId { get; set; }
 
         /// <summary>
         /// Person firstname.
         /// </summary>
+        [Required, StringLength(50), Display(Name = "First Name")]
         public string FirstName { get; set; }
 
         /// <summary>
         /// Person middlename.
         /// </summary>
+        [StringLength(50), Display(Name = "Middle Name")]
         public string MiddleName { get; set; }
 
         /// <summary>
         /// Person lastname.
         /// </summary>
+        [Required, StringLength(50), Display(Name = "Last Name")]
         public string LastName { get; set; }
 
         /// <summary>
         /// Person birthdate.
         /// </summary>
+        [DataType(DataType.Date), Display(Name = "Birth Date")]
         public DateTime? BirthDate { get; set; }
 
         /// <summary>
         /// Person birth location.
         /// </summary>
+        [StringLength(50), Display(Name = "Birth Location")]
         public string BirthLocation { get; set; }
 
         /// <summary>
         /// Person description.
         /// </summary>
+        [StringLength(500), Display(Name = "Description")]
         public string LongText { get; set; }
 
         /// <summary>
         /// Person keywords on which we can search.
         /// </summary>
+        [StringLength(250), Display(Name = "Characteristics")]
         public string Keywords { get; set; }
 
         /// <summary>
         /// Is this person working for our organization?
         /// </summary>
+        [Display(Name = "Is In Work?")]
         public bool IsWorker { get; set; }
 
         /// <summary>
         /// Work frequency of the person. e.g. Daily, Weekly, Monthly, Yearly, for programs only, etc.
         /// </summary>
+        [Display(Name = "Work Frequency")]
         public int WorkFrequencyId { get; set; }
 
         /// <summary>
         /// Person joining date.
         /// </summary>
+        [DataType(DataType.Date), Display(Name = "Joining Date")]
         public DateTime? JoiningDate { get; set; }
 
         /// <summary>
         /// Person joined as. e.g. Teacher, etc.
         /// </summary>
+        [Display(Name = "Joined As")]
         public int? JoinedAsId { get; set; }
 
         /// <summary>
         /// Person nationality.
         /// </summary>
+        [Display(Name = "Nationality")]
         public int? CountryId { get; set; }
 
         #region --- Relationships ---
+        //public virtual AspNetUser Login { get; set; }
         public virtual Country Country { get; set; }
         public virtual Detail JoinedAs { get; set; }
         public virtual Organization Organization { get; set; }

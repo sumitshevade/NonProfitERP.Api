@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace App.Models
 {
@@ -39,16 +39,19 @@ namespace App.Models
         /// <summary>
         /// Header reference for detail.
         /// </summary>
-        public int? HeaderId { get; set; }
+        [Required, Display(Name = "Header")]
+        public int HeaderId { get; set; }
 
         /// <summary>
         /// Detail value.
         /// </summary>
+        [Required, StringLength(50)]
         public string Value { get; set; }
 
         /// <summary>
         /// Extra text to mention if anything related to value.
         /// </summary>
+        [StringLength(250), Display(Name = "Description")]
         public string ExtraField { get; set; }
 
         #region --- Relationships ---
