@@ -60,14 +60,18 @@ namespace App.Controllers
         {
             if (ModelState.IsValid)
             {
-                var orgId = _context.People.Where(x => x.LoginId == User.FindFirstValue(ClaimTypes.NameIdentifier)).Select(c => c.OrganizationId).FirstOrDefault();
-                header.OrganizationId = orgId;
-                _context.Add(header);
-                await _context.SaveChangesAsync();
+                var orgId = User.Claims.Where(x => x.Type == "OrganizationId").Select(c => c.Value).FirstOrDefault();
+                if (!string.IsNullOrWhiteSpace(orgId))
+                {
+                    header.OrganizationId = Convert.ToInt32(orgId);
+                    header.CreatedById = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+                    _context.Add(header);
+                    await _context.SaveChangesAsync();
+                }
                 return RedirectToAction(nameof(Index));
             }
 
-            ViewData["OrganizationId"] = new SelectList(_context.Organizations, "Id", "CreatedById", header.OrganizationId);
             return View(header);
         }
 

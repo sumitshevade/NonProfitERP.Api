@@ -8,16 +8,19 @@ using Microsoft.EntityFrameworkCore;
 using App.Models;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace App.Controllers
 {
     public class OrganizationsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public OrganizationsController(ApplicationDbContext context)
+        public OrganizationsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: Organizations
@@ -58,6 +61,8 @@ namespace App.Controllers
         public async Task<IActionResult> Create([Bind("Id,Name,Address,PanNo,IsNasscomRegistered,LongText")] Organization organization)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            //ApplicationUser applicationUser = await _userManager.GetUserAsync(User);
+            //applicationUser.
 
             if (ModelState.IsValid)
             {

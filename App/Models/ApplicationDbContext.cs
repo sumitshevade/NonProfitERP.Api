@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace App.Models
 {
-    public class ApplicationDbContext : IdentityDbContext<IdentityUser>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     //public class ApplicationDbContext : DbContext
     {
         public ApplicationDbContext()

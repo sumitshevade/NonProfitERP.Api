@@ -30,12 +30,6 @@ namespace App.Models
         }
 
         /// <summary>
-        /// Reference for aspnetusers
-        /// </summary>
-        [ScaffoldColumn(false)]
-        public string LoginId { get; set; }
-
-        /// <summary>
         /// How this person engage with organization?
         /// </summary>
         [Required, Display(Name = "Person Type")]
