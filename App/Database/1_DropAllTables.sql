@@ -1,7 +1,7 @@
 USE PublicData
 GO
 
-/*
+
 DROP TABLE ProgramAttendances;
 DROP TABLE Tickets;
 DROP TABLE Programs;
@@ -20,7 +20,6 @@ DROP TABLE PersonAchievements;
 DROP TABLE PersonPrivateInformations;
 DROP TABLE DivisionHeads;
 DROP TABLE Divisions;
-DROP TABLE Organizations;
 DROP TABLE DepartmentHeads;
 DROP TABLE People;
 DROP TABLE Details;
@@ -29,11 +28,12 @@ DROP TABLE Headers;
 DROP TABLE Cities;
 DROP TABLE States;
 DROP TABLE Countries;
+
+/*
+DROP TABLE School;
+DROP TABLE Industry;
+DROP TABLE Organizations;
 */
-
---DROP TABLE School;
---DROP TABLE Industry;
-
 
 /*
 DROP TABLE [AspNetUserTokens]
