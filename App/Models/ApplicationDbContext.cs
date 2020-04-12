@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Identity;
 namespace App.Models
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
-    //public class ApplicationDbContext : DbContext
     {
         public ApplicationDbContext()
         {
@@ -27,7 +26,6 @@ namespace App.Models
         public virtual DbSet<Division> Divisions { get; set; }
         public virtual DbSet<DivisionHead> DivisionHeads { get; set; }
         public virtual DbSet<Header> Headers { get; set; }
-        public virtual DbSet<Organization> Organizations { get; set; }
         public virtual DbSet<People> People { get; set; }
         public virtual DbSet<PersonAchievement> PersonAchievements { get; set; }
         public virtual DbSet<PersonAddress> PersonAddresses { get; set; }
@@ -295,40 +293,6 @@ namespace App.Models
                     .HasForeignKey(d => d.OrganizationId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__Headers__Organiz__2CBDA3B5");
-            });
-
-            modelBuilder.Entity<Organization>(entity =>
-            {
-                entity.Property(e => e.Address)
-                    .HasMaxLength(250)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.CreatedAt).HasColumnType("datetime");
-
-                entity.Property(e => e.CreatedById)
-                    .IsRequired()
-                    .HasMaxLength(450);
-
-                entity.Property(e => e.DeletedAt).HasColumnType("datetime");
-
-                entity.Property(e => e.DeletedById).HasMaxLength(450);
-
-                entity.Property(e => e.LongText)
-                    .HasMaxLength(500)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Name)
-                    .IsRequired()
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.PanNo)
-                    .HasMaxLength(15)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
-
-                entity.Property(e => e.UpdatedById).HasMaxLength(450);
             });
 
             modelBuilder.Entity<People>(entity =>
