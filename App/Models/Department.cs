@@ -40,7 +40,6 @@ namespace App.Models
         public string LongText { get; set; }
 
         #region --- Relationships ---
-        public virtual Organization Organization { get; set; }
         public virtual ICollection<DepartmentHead> DepartmentHeads { get; set; }
         public virtual ICollection<Division> Divisions { get; set; }
 

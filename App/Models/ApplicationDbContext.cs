@@ -131,12 +131,6 @@ namespace App.Models
                 entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
 
                 entity.Property(e => e.UpdatedById).HasMaxLength(450);
-
-                entity.HasOne(d => d.Organization)
-                    .WithMany(p => p.Departments)
-                    .HasForeignKey(d => d.OrganizationId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Departmen__Organ__2F9A1060");
             });
 
             modelBuilder.Entity<DepartmentHead>(entity =>
@@ -287,12 +281,6 @@ namespace App.Models
                 entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
 
                 entity.Property(e => e.UpdatedById).HasMaxLength(450);
-
-                entity.HasOne(d => d.Organization)
-                    .WithMany(p => p.Headers)
-                    .HasForeignKey(d => d.OrganizationId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Headers__Organiz__2CBDA3B5");
             });
 
             modelBuilder.Entity<People>(entity =>
@@ -350,12 +338,6 @@ namespace App.Models
                     .WithMany(p => p.PeopleJoinedAs)
                     .HasForeignKey(d => d.JoinedAsId)
                     .HasConstraintName("FK__People__JoinedAs__39237A9A");
-
-                entity.HasOne(d => d.Organization)
-                    .WithMany(p => p.People)
-                    .HasForeignKey(d => d.OrganizationId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__People__Organiza__36470DEF");
 
                 entity.HasOne(d => d.PersonType)
                     .WithMany(p => p.PeoplePersonTypes)
@@ -898,12 +880,6 @@ namespace App.Models
                 entity.Property(e => e.UpdatedAt).HasColumnType("datetime");
 
                 entity.Property(e => e.UpdatedById).HasMaxLength(450);
-
-                entity.HasOne(d => d.Organization)
-                    .WithMany(p => p.Programs)
-                    .HasForeignKey(d => d.OrganizationId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Programs__Organi__084B3915");
             });
 
             modelBuilder.Entity<ProgramAttendance>(entity =>

@@ -117,7 +117,6 @@ namespace App.Models
         //public virtual AspNetUser Login { get; set; }
         public virtual Country Country { get; set; }
         public virtual Detail JoinedAs { get; set; }
-        public virtual Organization Organization { get; set; }
         public virtual Detail PersonType { get; set; }
         public virtual Detail WorkFrequencyNavigation { get; set; }
         public virtual ICollection<DepartmentHead> DepartmentHeads { get; set; }

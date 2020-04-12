@@ -27,7 +27,6 @@ namespace App.Models
         public string Name { get; set; }
 
         #region --- Relationships ---
-        public virtual Organization Organization { get; set; }
         public virtual ICollection<ProgramAttendance> ProgramAttendances { get; set; }
 
         #endregion
