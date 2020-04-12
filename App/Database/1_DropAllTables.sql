@@ -2,33 +2,33 @@ USE PublicData
 GO
 
 /*
-DROP TABLE ProgramAttendance;
-DROP TABLE Ticket;
-DROP TABLE Program;
-DROP TABLE University;
-DROP TABLE PersonWorkExperience;
-DROP TABLE PersonSocialMediaAccount;
-DROP TABLE PersonLanguage;
-DROP TABLE PersonHobbyFavorite;
+DROP TABLE ProgramAttendances;
+DROP TABLE Tickets;
+DROP TABLE Programs;
+DROP TABLE Universities;
+DROP TABLE PersonWorkExperiences;
+DROP TABLE PersonSocialMediaAccounts;
+DROP TABLE PersonLanguages;
+DROP TABLE PersonHobbyFavorites;
 DROP TABLE PersonHealthDetails;
 DROP TABLE PersonFamilyDetails;
-DROP TABLE PersonEducation;
-DROP TABLE PersonDisability;
-DROP TABLE PersonContact;
-DROP TABLE PersonAddress;
-DROP TABLE PersonAchievement;
-DROP TABLE PersonPrivateInformation;
-DROP TABLE DivisionHead;
-DROP TABLE Division;
-DROP TABLE Organization;
-DROP TABLE DepartmentHead;
-DROP TABLE Person;
+DROP TABLE PersonEducations;
+DROP TABLE PersonDisabilities;
+DROP TABLE PersonContacts;
+DROP TABLE PersonAddresses;
+DROP TABLE PersonAchievements;
+DROP TABLE PersonPrivateInformations;
+DROP TABLE DivisionHeads;
+DROP TABLE Divisions;
+DROP TABLE Organizations;
+DROP TABLE DepartmentHeads;
+DROP TABLE People;
 DROP TABLE Details;
-DROP TABLE Department;
-DROP TABLE Header;
-DROP TABLE City;
-DROP TABLE State;
-DROP TABLE Country;
+DROP TABLE Departments;
+DROP TABLE Headers;
+DROP TABLE Cities;
+DROP TABLE States;
+DROP TABLE Countries;
 */
 
 --DROP TABLE School;
