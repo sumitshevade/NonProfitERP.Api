@@ -35,11 +35,6 @@ namespace App.Models
         [Required, Display(Name = "Person Type")]
         public int PersonTypeId { get; set; }
 
-        /// <summary>
-        /// Organization reference for person.
-        /// </summary>
-        [ScaffoldColumn(false)]
-        public int OrganizationId { get; set; }
 
         /// <summary>
         /// Person firstname.

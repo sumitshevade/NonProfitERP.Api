@@ -15,12 +15,6 @@ namespace App.Models
         }
 
         /// <summary>
-        /// Organization reference for header.
-        /// </summary>
-        [ScaffoldColumn(false)]
-        public int OrganizationId { get; set; }
-
-        /// <summary>
         /// Header title.
         /// </summary>
         [Required, StringLength(50)]

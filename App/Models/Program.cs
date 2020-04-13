@@ -15,12 +15,6 @@ namespace App.Models
         }
 
         /// <summary>
-        /// Reference for organization.
-        /// </summary>
-        [ScaffoldColumn(false)]
-        public int OrganizationId { get; set; }
-
-        /// <summary>
         /// Program name.
         /// </summary>
         [Required, StringLength(50)]
