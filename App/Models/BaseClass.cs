@@ -27,7 +27,7 @@ namespace App.Models
         /// Record creation date & time, auto set.
         /// </summary>
         [ScaffoldColumn(false)]
-        public DateTime CreatedAt { get { return DateTime.Now; } set { } }
+        public DateTime CreatedAt { get; set; }
 
         /// <summary>
         /// Record updated by id.
@@ -39,7 +39,7 @@ namespace App.Models
         /// Record updation date & time, auto set.
         /// </summary>
         [ScaffoldColumn(false)]
-        public DateTime? UpdatedAt { get { return DateTime.Now; } set { } }
+        public DateTime? UpdatedAt { get; set; }
 
         /// <summary>
         /// Record deleted by id.
@@ -51,6 +51,6 @@ namespace App.Models
         /// Record deleted date & time, auto set.
         /// </summary>
         [ScaffoldColumn(false)]
-        public DateTime? DeletedAt { get { return DateTime.Now; } set { } }
+        public DateTime? DeletedAt { get; set; }
     }
 }
