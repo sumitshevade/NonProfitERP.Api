@@ -6,6 +6,9 @@ using App.Models;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using System;
+using App.Repository.Implementations;
+using App.Services.Contracts;
+using App.Services.Implementations;
 
 namespace App.Controllers
 {
@@ -13,16 +16,18 @@ namespace App.Controllers
     public class HeadersController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IHeaderService _headerService;
 
-        public HeadersController(ApplicationDbContext context)
+        public HeadersController(ApplicationDbContext context, IHeaderService headerService)
         {
             _context = context;
+            _headerService = headerService;
         }
 
         // GET: Headers
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Headers.Where(x => x.DeletedById == null).ToListAsync());
+            return View(await _headerService.FindAsync());
         }
 
         // GET: Headers/Details/5
@@ -32,14 +37,11 @@ namespace App.Controllers
             {
                 return NotFound();
             }
-
-            var header = await _context.Headers
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var header = await _headerService.GetAsync(id.Value);
             if (header == null)
             {
                 return NotFound();
             }
-
             return View(header);
         }
 
@@ -52,16 +54,11 @@ namespace App.Controllers
         // POST: Headers/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Title")] Header header)
+        public async Task<IActionResult> Create([FromForm] Header header)
         {
             if (ModelState.IsValid)
             {
-                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                header.CreatedAt = DateTime.Now;
-                header.CreatedById = userId;
-
-                _context.Add(header);
-                await _context.SaveChangesAsync();
+                await _headerService.PostAsync(header, User);
                 return RedirectToAction(nameof(Index));
             }
             return View(header);
@@ -75,7 +72,7 @@ namespace App.Controllers
                 return NotFound();
             }
 
-            var header = await _context.Headers.FindAsync(id);
+            var header = await _headerService.GetAsync(id.Value);
             if (header == null)
             {
                 return NotFound();
@@ -84,11 +81,8 @@ namespace App.Controllers
         }
 
         // POST: Headers/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Edit(int id, [Bind("Id,Title,UpdatedById,UpdatedAt")] Header header)
         public async Task<IActionResult> Edit(int id, [FromForm] Header header)
         {
             if (id != header.Id)
@@ -100,17 +94,7 @@ namespace App.Controllers
             {
                 try
                 {
-                    header.UpdatedAt = DateTime.Now;
-                    header.UpdatedById = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-                    var excluded = new[] { "Id", "CreatedAt", "CreatedById", "DeletedById", "DeletedAt" };
-                    var entry = _context.Entry(header);
-                    entry.State = EntityState.Modified;
-                    foreach (var property in excluded)
-                    {
-                        entry.Property(property).IsModified = false;
-                    }
-                    await _context.SaveChangesAsync();
+                    await _headerService.UpdateAsync(id, header, User);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -136,8 +120,7 @@ namespace App.Controllers
                 return NotFound();
             }
 
-            var header = await _context.Headers
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var header = await _headerService.GetAsync(id.Value);
             if (header == null)
             {
                 return NotFound();
@@ -151,20 +134,7 @@ namespace App.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var header = await _context.Headers.FindAsync(id);
-            header.DeletedById = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            header.DeletedAt = DateTime.Now;
-            var excluded = new[] { "Id", "Title", "CreatedAt", "CreatedById", "UpdatedById", "UpdatedAt" };
-            var entry = _context.Entry(header);
-            entry.State = EntityState.Modified;
-            foreach (var property in excluded)
-            {
-                entry.Property(property).IsModified = false;
-            }
-
-            //_context.Headers.Remove(header);
-
-            await _context.SaveChangesAsync();
+            await _headerService.DeleteAsync(id, User);
             return RedirectToAction(nameof(Index));
         }
 
