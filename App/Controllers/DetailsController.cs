@@ -7,6 +7,7 @@ using App.Models;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using System;
+using Model;
 
 namespace App.Controllers
 {

@@ -2,13 +2,9 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using App.Models;
-using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
-using System;
-using App.Repository.Implementations;
 using App.Services.Contracts;
-using App.Services.Implementations;
+using Model;
 
 namespace App.Controllers
 {

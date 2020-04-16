@@ -1,11 +1,9 @@
-﻿using App.Models;
-using App.Repository.Contracts;
+﻿using Repository.Contracts;
 using App.Services.Contracts;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Model;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
