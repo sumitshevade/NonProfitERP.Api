@@ -1,13 +1,13 @@
 ﻿using Repository.Contracts;
-using App.Services.Contracts;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Model;
 using System;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Service.Contracts;
 
-namespace App.Services.Implementations
+namespace Service.Implementations
 {
     /// <summary>
     /// Middleware of Repository and Controller.

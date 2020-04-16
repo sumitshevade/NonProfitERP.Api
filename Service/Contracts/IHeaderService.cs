@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace App.Services.Contracts
+namespace Service.Contracts
 {
     public interface IHeaderService
     {

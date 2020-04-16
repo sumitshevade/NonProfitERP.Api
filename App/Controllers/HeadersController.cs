@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
-using App.Services.Contracts;
+using Service.Contracts;
 using Model;
 
 namespace App.Controllers

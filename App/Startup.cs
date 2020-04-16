@@ -8,8 +8,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using App.Services;
 using Repository.Contracts;
-using App.Services.Contracts;
-using App.Services.Implementations;
+using Service.Contracts;
+using Service.Implementations;
 using Model;
 using Repository.Implementations;
 
