@@ -1,29 +1,27 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authorization;
-using Service.Contracts;
 using Model;
 
 namespace App.Controllers
 {
-    [Authorize]
     public class HeadersController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private readonly IHeaderService _headerService;
 
-        public HeadersController(ApplicationDbContext context, IHeaderService headerService)
+        public HeadersController(ApplicationDbContext context)
         {
             _context = context;
-            _headerService = headerService;
         }
 
         // GET: Headers
         public async Task<IActionResult> Index()
         {
-            return View(await _headerService.FindAsync());
+            return View(await _context.Headers.ToListAsync());
         }
 
         // GET: Headers/Details/5
@@ -33,11 +31,14 @@ namespace App.Controllers
             {
                 return NotFound();
             }
-            var header = await _headerService.GetAsync(id.Value);
+
+            var header = await _context.Headers
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (header == null)
             {
                 return NotFound();
             }
+
             return View(header);
         }
 
@@ -48,13 +49,16 @@ namespace App.Controllers
         }
 
         // POST: Headers/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([FromForm] Header header)
+        public async Task<IActionResult> Create([Bind("Title")] Header header)
         {
             if (ModelState.IsValid)
             {
-                await _headerService.PostAsync(header, User);
+                _context.Add(header);
+                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(header);
@@ -68,7 +72,7 @@ namespace App.Controllers
                 return NotFound();
             }
 
-            var header = await _headerService.GetAsync(id.Value);
+            var header = await _context.Headers.FindAsync(id);
             if (header == null)
             {
                 return NotFound();
@@ -77,9 +81,11 @@ namespace App.Controllers
         }
 
         // POST: Headers/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [FromForm] Header header)
+        public async Task<IActionResult> Edit(int id, [Bind("Title")] Header header)
         {
             if (id != header.Id)
             {
@@ -90,7 +96,8 @@ namespace App.Controllers
             {
                 try
                 {
-                    await _headerService.UpdateAsync(id, header, User);
+                    _context.Update(header);
+                    await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -116,7 +123,8 @@ namespace App.Controllers
                 return NotFound();
             }
 
-            var header = await _headerService.GetAsync(id.Value);
+            var header = await _context.Headers
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (header == null)
             {
                 return NotFound();
@@ -130,7 +138,9 @@ namespace App.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            await _headerService.DeleteAsync(id, User);
+            var header = await _context.Headers.FindAsync(id);
+            _context.Headers.Remove(header);
+            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
