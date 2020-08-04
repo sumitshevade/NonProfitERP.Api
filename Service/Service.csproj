@@ -8,9 +8,4 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Model\Model.csproj" />
-    <ProjectReference Include="..\Repository\Repository.csproj" />
-  </ItemGroup>
-
 </Project>
