@@ -1,0 +1,51 @@
+﻿@page "/people"
+@inherits PublicData.Client.Components.PeopleComponent
+
+<div>
+    <a href="/people/create" class="btn btn-success">
+        <span class="oi oi-plus" aria-hidden="true"></span> &nbsp; People
+    </a>
+</div>
+<h5 class="text-center">People List</h5>
+@if (IsLoading == false)
+{
+    <div class="spinner"></div>
+}
+else
+{
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Mobile</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var person in People)
+            {
+                <tr>
+                    <td>@person.FirstName</td>
+                    <td>@person.LastName</td>
+                    @*<td>@person.Email</td>
+                    <td>@person.Address</td>
+                    <td>@person.Mobile</td>*@
+                    <td>
+                        <div class="m-2">
+                            <a href="/people/edit/@person.Id" class="btn btn-success" style="width:70px">Edit</a>
+                        </div>
+                        <div class="m-2">
+                            <button class="btn btn-danger" style="width:70px"
+                                    @onclick="@(() => Delete(person.Id))">
+                                Delete
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

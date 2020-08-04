@@ -1,0 +1,96 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Features\PersonFamilyDetail\CreatePersonEducation\**" />
+    <Compile Remove="Features\PersonFamilyDetail\DeletePersonEducationByEducationId\**" />
+    <Compile Remove="Features\PersonFamilyDetail\DeletePersonEducationByPersonId\**" />
+    <Compile Remove="Features\PersonFamilyDetail\GetPersonAllEducations\**" />
+    <Compile Remove="Features\PersonFamilyDetail\GetPersonEducationByEducationId\**" />
+    <Compile Remove="Features\PersonFamilyDetail\UpdatePersonEducationByEducationId\**" />
+    <EmbeddedResource Remove="Features\PersonFamilyDetail\CreatePersonEducation\**" />
+    <EmbeddedResource Remove="Features\PersonFamilyDetail\DeletePersonEducationByEducationId\**" />
+    <EmbeddedResource Remove="Features\PersonFamilyDetail\DeletePersonEducationByPersonId\**" />
+    <EmbeddedResource Remove="Features\PersonFamilyDetail\GetPersonAllEducations\**" />
+    <EmbeddedResource Remove="Features\PersonFamilyDetail\GetPersonEducationByEducationId\**" />
+    <EmbeddedResource Remove="Features\PersonFamilyDetail\UpdatePersonEducationByEducationId\**" />
+    <None Remove="Features\PersonFamilyDetail\CreatePersonEducation\**" />
+    <None Remove="Features\PersonFamilyDetail\DeletePersonEducationByEducationId\**" />
+    <None Remove="Features\PersonFamilyDetail\DeletePersonEducationByPersonId\**" />
+    <None Remove="Features\PersonFamilyDetail\GetPersonAllEducations\**" />
+    <None Remove="Features\PersonFamilyDetail\GetPersonEducationByEducationId\**" />
+    <None Remove="Features\PersonFamilyDetail\UpdatePersonEducationByEducationId\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="FluentValidation" Version="8.6.2" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="8.6.2" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PublicData.Common\PublicData.Common.csproj" />
+    <ProjectReference Include="..\PublicData.Data\PublicData.Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Features\Master\City\DeleteCity\" />
+    <Folder Include="Features\Master\City\GetCityById\" />
+    <Folder Include="Features\Master\City\GetCities\" />
+    <Folder Include="Features\Master\Country\DeleteCountry\" />
+    <Folder Include="Features\Master\Country\GetCountryById\" />
+    <Folder Include="Features\Master\Country\GetCountries\" />
+    <Folder Include="Features\Master\Country\UpdateCountryById\" />
+    <Folder Include="Features\Master\Department\CreateDepartment\" />
+    <Folder Include="Features\Master\Department\GetDepartmentById\" />
+    <Folder Include="Features\Master\Department\GetDepartments\" />
+    <Folder Include="Features\Master\Department\DeleteDepartment\" />
+    <Folder Include="Features\Master\Department\UpdateDepartment\" />
+    <Folder Include="Features\Master\District\CreateDistrict\" />
+    <Folder Include="Features\Master\District\GetDistrictById\" />
+    <Folder Include="Features\Master\District\GetDistricts\" />
+    <Folder Include="Features\Master\District\DeleteDistrict\" />
+    <Folder Include="Features\Master\District\UpdateDistrict\" />
+    <Folder Include="Features\Master\Division\CreateDivision\" />
+    <Folder Include="Features\Master\Division\GetDivisions\" />
+    <Folder Include="Features\Master\Division\GetDivisionById\" />
+    <Folder Include="Features\Master\Division\DeleteDivision\" />
+    <Folder Include="Features\Master\Division\UpdateDivision\" />
+    <Folder Include="Features\Master\Header\DeleteHeader\" />
+    <Folder Include="Features\Master\Header\GetHeaders\" />
+    <Folder Include="Features\Master\Detail\GetDetails\" />
+    <Folder Include="Features\Master\City\CreateCity\" />
+    <Folder Include="Features\Master\Country\CreateCountry\" />
+    <Folder Include="Features\Master\Detail\GetHeaderById\" />
+    <Folder Include="Features\Master\Header\GetDetailById\" />
+    <Folder Include="Features\Master\School\CreateSchool\" />
+    <Folder Include="Features\Master\School\GetSchoolById\" />
+    <Folder Include="Features\Master\School\GetSchools\" />
+    <Folder Include="Features\Master\School\DeleteSchool\" />
+    <Folder Include="Features\Master\School\UpdateSchool\" />
+    <Folder Include="Features\Master\State\CreateState\" />
+    <Folder Include="Features\Master\State\GetStates\" />
+    <Folder Include="Features\Master\State\GetStateById\" />
+    <Folder Include="Features\Master\State\DeleteState\" />
+    <Folder Include="Features\Master\State\UpdateState\" />
+    <Folder Include="Features\Master\City\UpdateCityById\" />
+    <Folder Include="Features\Master\Detail\UpdateDetail\" />
+    <Folder Include="Features\Master\Header\UpdateHeader\" />
+    <Folder Include="Features\Master\Taluka\CreateTaluka\" />
+    <Folder Include="Features\Master\Taluka\GetTalukaById\" />
+    <Folder Include="Features\Master\Taluka\GetTalukas\" />
+    <Folder Include="Features\Master\Taluka\DeleteTaluka\" />
+    <Folder Include="Features\Master\Taluka\UpdateTaluka\" />
+    <Folder Include="Features\Master\University\CreateUniversity\" />
+    <Folder Include="Features\Master\University\GetUniversityById\" />
+    <Folder Include="Features\Master\University\GetUniversities\" />
+    <Folder Include="Features\Master\University\DeleteUniversity\" />
+    <Folder Include="Features\Master\University\UpdateUniversity\" />
+  </ItemGroup>
+
+</Project>
