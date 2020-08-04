@@ -1,17 +1,14 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using App.Models;
-using System.Security.Claims;
-using Microsoft.AspNetCore.Authorization;
-using System;
 using Model;
 
 namespace App.Controllers
 {
-    [Authorize]
     public class DetailsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -25,7 +22,7 @@ namespace App.Controllers
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Details.Include(d => d.Header);
-            return View(await applicationDbContext.Where(x => x.DeletedById == null).ToListAsync());
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: Details/Details/5
@@ -50,20 +47,19 @@ namespace App.Controllers
         // GET: Details/Create
         public IActionResult Create()
         {
-            ViewData["HeaderId"] = new SelectList(_context.Headers, "Id", "Title");
+            ViewData["HeaderId"] = new SelectList(_context.Headers, "Id", "CreatedById");
             return View();
         }
 
         // POST: Details/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("HeaderId,Value,ExtraField")] Detail detail)
         {
             if (ModelState.IsValid)
             {
-                detail.CreatedById = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                detail.CreatedAt = DateTime.Now;
-
                 _context.Add(detail);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -85,14 +81,16 @@ namespace App.Controllers
             {
                 return NotFound();
             }
-            ViewData["HeaderId"] = new SelectList(_context.Headers, "Id", "Title", detail.HeaderId);
+            ViewData["HeaderId"] = new SelectList(_context.Headers, "Id", "CreatedById", detail.HeaderId);
             return View(detail);
         }
 
         // POST: Details/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [FromForm] Detail detail)
+        public async Task<IActionResult> Edit(int id, [Bind("HeaderId,Value,ExtraField")] Detail detail)
         {
             if (id != detail.Id)
             {
@@ -103,19 +101,7 @@ namespace App.Controllers
             {
                 try
                 {
-                    //_context.Update(detail);
-
-                    detail.UpdatedAt = DateTime.Now;
-                    detail.UpdatedById = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-                    var excluded = new[] { "Id", "CreatedAt", "CreatedById", "DeletedById", "DeletedAt" };
-                    var entry = _context.Entry(detail);
-                    entry.State = EntityState.Modified;
-                    foreach (var property in excluded)
-                    {
-                        entry.Property(property).IsModified = false;
-                    }
-
+                    _context.Update(detail);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -160,18 +146,7 @@ namespace App.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var detail = await _context.Details.FindAsync(id);
-            
-            detail.DeletedAt = DateTime.Now;
-            detail.DeletedById = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            var excluded = new[] { "Id", "HeaderId", "Value", "ExtraField", "CreatedAt", "CreatedById", "UpdatedById", "UpdatedAt" };
-            var entry = _context.Entry(detail);
-            entry.State = EntityState.Modified;
-            foreach (var property in excluded)
-            {
-                entry.Property(property).IsModified = false;
-            }
-
+            _context.Details.Remove(detail);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

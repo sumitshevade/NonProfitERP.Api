@@ -7,11 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using App.Services;
-using Repository.Contracts;
-using Service.Contracts;
-using Service.Implementations;
 using Model;
-using Repository.Implementations;
 
 namespace App
 {
@@ -56,9 +52,6 @@ namespace App
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
-            //services.AddTransient<IGenericRepository<Header>, GenericRepositoy<Header>>();
-            services.AddTransient<IHeaderRepository, HeaderRepository>();
-            services.AddTransient<IHeaderService, HeaderService>();
 
             services.Configure<IdentityOptions>(options =>
             {
