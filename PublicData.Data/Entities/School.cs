@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace PublicData.Data.Entities
+namespace PublicData.DAL.Entities
 {
     public partial class School : Entity
 {

@@ -3,7 +3,7 @@ using AutoMapper;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
-using PublicData.Data.Interfaces;
+using PublicData.DAL.Interfaces;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using PublicData.Application.Shared;

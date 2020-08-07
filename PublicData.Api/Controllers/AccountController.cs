@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using PublicData.Common.Identity.Models;
 using PublicData.Common.Models;
 using PublicData.Common.Security.Identity;
-using PublicData.Data.Entities;
+using PublicData.DAL.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

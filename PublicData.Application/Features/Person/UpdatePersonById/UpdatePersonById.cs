@@ -3,14 +3,14 @@ using MediatR;
 using AutoMapper;
 using System.Threading;
 using System.Threading.Tasks;
-using PublicData.Data.Interfaces;
+using PublicData.DAL.Interfaces;
 using PublicData.Common.Interfaces;
 using PublicData.Common.Exceptions;
+using PublicData.Application.Mappings;
 
 namespace PublicData.Application.Features.Person.UpdatePersonById
 {
     using Data.Entities;
-    using PublicData.Application.Mappings;
 
     public class UpdatePersonByIdCommandHandler : IRequestHandler<UpdatePersonByIdCommand, bool>
     {

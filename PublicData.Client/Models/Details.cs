@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PublicData.Client.Models
+namespace PublicData.WebClient.Models
 {
     public class Details
     {

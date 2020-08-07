@@ -3,7 +3,7 @@ using FluentValidation.Results;
 using PublicData.Common.Interfaces;
 using System;
 
-namespace PublicData.Data
+namespace PublicData.DAL
 {
     public class UnitOfWork : IUnitOfWork
     {

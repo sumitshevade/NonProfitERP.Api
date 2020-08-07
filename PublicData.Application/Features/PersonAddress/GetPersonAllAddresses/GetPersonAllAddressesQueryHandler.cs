@@ -3,7 +3,7 @@ using AutoMapper;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using PublicData.Data.Interfaces;
+using PublicData.DAL.Interfaces;
 using PublicData.Application.Shared;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper.QueryableExtensions;

@@ -2,7 +2,7 @@
 using AutoMapper;
 using System.Threading;
 using System.Threading.Tasks;
-using PublicData.Data.Interfaces;
+using PublicData.DAL.Interfaces;
 using PublicData.Common.Interfaces;
 using PublicData.Application.Mappings;
 
@@ -36,7 +36,6 @@ namespace PublicData.Application.Features.Master.Header.CreateHeader
 
     public class CreateHeaderCommand : IRequest<int>, IMapFrom<Header>
     {
-        public int Id { get; set; }
         public string Title { get; set; }
 
         public void Mapping(Profile profile)

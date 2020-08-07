@@ -2,7 +2,7 @@
 using AutoMapper;
 using System.Threading;
 using System.Threading.Tasks;
-using PublicData.Data.Interfaces;
+using PublicData.DAL.Interfaces;
 using PublicData.Common.Interfaces;
 
 namespace PublicData.Application.Features.PersonHealthDetail.CreatePersonHealthDetail

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using PublicData.Application.Mappings;
-using PublicData.Data.Entities;
+using PublicData.DAL.Entities;
 
 namespace PublicData.Application.Shared
 {

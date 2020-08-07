@@ -1,11 +1,11 @@
-﻿using PublicData.Client.Interfaces;
-using PublicData.Client.Models;
+﻿using PublicData.WebClient.Interfaces;
+using PublicData.WebClient.Models;
 using Microsoft.AspNetCore.Components;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PublicData.Client.Components
+namespace PublicData.WebClient.Components
 {
     public class PeopleComponent : ComponentBase
     {

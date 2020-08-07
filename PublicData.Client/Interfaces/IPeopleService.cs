@@ -1,9 +1,9 @@
-﻿using PublicData.Client.Models;
+﻿using PublicData.WebClient.Models;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace PublicData.Client.Interfaces
+namespace PublicData.WebClient.Interfaces
 {
     public interface IPeopleService
     {

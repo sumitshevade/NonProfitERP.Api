@@ -1,5 +1,5 @@
 ﻿using Blazored.LocalStorage;
-using PublicData.Client.Models;
+using PublicData.WebClient.Models;
 using Microsoft.AspNetCore.Components.Authorization;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using System.Security.Claims;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace PublicData.Client.Core
+namespace PublicData.WebClient.Core
 {
     public class ApiAuthenticationStateProvider : AuthenticationStateProvider
     {

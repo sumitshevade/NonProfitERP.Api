@@ -1,5 +1,5 @@
 ﻿using PublicData.Application.Mappings;
-using PublicData.Data.Entities;
+using PublicData.DAL.Entities;
 using System;
 
 namespace PublicData.Application.Shared

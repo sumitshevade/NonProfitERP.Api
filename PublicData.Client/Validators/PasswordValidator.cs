@@ -1,8 +1,8 @@
-﻿using PublicData.Client.Models;
+﻿using PublicData.WebClient.Models;
 using FluentValidation;
 using System.Text.RegularExpressions;
 
-namespace PublicData.Client.Validators
+namespace PublicData.WebClient.Validators
 {
     public class PasswordValidator : AbstractValidator<ChangePasswordModel>
     {

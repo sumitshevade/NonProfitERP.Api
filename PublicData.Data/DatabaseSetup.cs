@@ -1,13 +1,13 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using PublicData.Data.Interfaces;
-using PublicData.Data.Repository;
+using PublicData.DAL.Interfaces;
+using PublicData.DAL.Repository;
 using PublicData.Common.Interfaces;
 using System.Reflection;
 using System.Linq;
 
-namespace PublicData.Data.Configurations
+namespace PublicData.DAL.Configurations
 {
     public static class DatabaseSetup
     {

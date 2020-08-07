@@ -2,7 +2,7 @@
 using MediatR;
 using PublicData.Common.Exceptions;
 using PublicData.Common.Interfaces;
-using PublicData.Data.Interfaces;
+using PublicData.DAL.Interfaces;
 using System.Threading;
 using System.Threading.Tasks;
 

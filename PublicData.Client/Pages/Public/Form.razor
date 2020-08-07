@@ -6,13 +6,13 @@
             <FluentValidationValidator />
             <div class="form-group" style="margin-top:50px">
                 <label style="font-size:18.5px">Person Type</label>
-                <PublicData.Client.Components.CustomInputSelect @bind-Value="Person.PersonTypeId" class="form-control">
+                <PublicData.WebClient.Components.CustomInputSelect @bind-Value="Person.PersonTypeId" class="form-control">
                     <option value="0" selected>Select...</option>
                     @foreach (var item in PersonTypes)
                     {
                         <option value="@item.Id">@item.Value</option>
                     }
-                </PublicData.Client.Components.CustomInputSelect>
+                </PublicData.WebClient.Components.CustomInputSelect>
                 @*<ValidationMessage For="@(() => Person.PersonTypeId)" />*@
             </div>
 
@@ -74,13 +74,13 @@
 
             <div class="form-group" style="margin-top:50px">
                 <label style="font-size:18.5px">Joined Type</label>
-                <PublicData.Client.Components.CustomInputSelect @bind-Value="Person.JoinedAsId" class="form-control">
+                <PublicData.WebClient.Components.CustomInputSelect @bind-Value="Person.JoinedAsId" class="form-control">
                     <option value="0" selected>Select...</option>
                     @foreach (var item in PersonTypes)
                     {
                         <option value="@item.Id">@item.Value</option>
                     }
-                </PublicData.Client.Components.CustomInputSelect>
+                </PublicData.WebClient.Components.CustomInputSelect>
                 @*<ValidationMessage For="@(() => Person.JoinedAsId)" />*@
             </div>
 

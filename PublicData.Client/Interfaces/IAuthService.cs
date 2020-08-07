@@ -1,7 +1,7 @@
-﻿using PublicData.Client.Models;
+﻿using PublicData.WebClient.Models;
 using System.Threading.Tasks;
 
-namespace PublicData.Client.Interfaces
+namespace PublicData.WebClient.Interfaces
 {
     public interface IAuthService
     {

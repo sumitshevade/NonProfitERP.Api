@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PublicData.WebClient", "Pub
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PublicData.Common", "PublicData.Common\PublicData.Common.csproj", "{B67EC883-0FE4-404C-B190-8151DB57A985}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PublicData.Data", "PublicData.Data\PublicData.Data.csproj", "{7DC383D8-E2F2-4705-9919-747619BB97D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PublicData.DAL", "PublicData.Data\PublicData.DAL.csproj", "{7DC383D8-E2F2-4705-9919-747619BB97D3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

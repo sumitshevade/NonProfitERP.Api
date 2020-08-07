@@ -1,7 +1,7 @@
 ﻿using PublicData.Common.Interfaces;
-using PublicData.Data.Entities;
+using PublicData.DAL.Entities;
 
-namespace PublicData.Data.Interfaces
+namespace PublicData.DAL.Interfaces
 {
     public interface IHeaderRepository : IRepository<Header>
     {

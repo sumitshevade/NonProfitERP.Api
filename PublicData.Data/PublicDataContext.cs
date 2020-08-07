@@ -2,11 +2,11 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using PublicData.Data.Entities;
+using PublicData.DAL.Entities;
 using PublicData.Common.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace PublicData.Data
+namespace PublicData.DAL
 {
     public partial class PublicDataContext : DbContext
     {

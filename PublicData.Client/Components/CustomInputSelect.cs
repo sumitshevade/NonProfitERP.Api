@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PublicData.Client.Components
+namespace PublicData.WebClient.Components
 {
     public class CustomInputSelect<TValue> : InputSelect<TValue>
     {

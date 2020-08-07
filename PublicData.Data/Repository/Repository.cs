@@ -6,7 +6,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
 
-namespace PublicData.Data.Repository
+namespace PublicData.DAL.Repository
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : Entity
     {

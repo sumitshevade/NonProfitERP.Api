@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace PublicData.Client.Models
+namespace PublicData.WebClient.Models
 {
     public class RegisterModel
     {

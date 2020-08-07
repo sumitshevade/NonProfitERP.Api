@@ -1,14 +1,14 @@
 ﻿using Blazored.LocalStorage;
-using PublicData.Client.Core;
-using PublicData.Client.Interfaces;
-using PublicData.Client.Models;
+using PublicData.WebClient.Core;
+using PublicData.WebClient.Interfaces;
+using PublicData.WebClient.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
-namespace PublicData.Client.Services
+namespace PublicData.WebClient.Services
 {
     public class AuthService : IAuthService
     {

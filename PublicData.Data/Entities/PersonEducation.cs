@@ -1,4 +1,4 @@
-﻿namespace PublicData.Data.Entities
+﻿namespace PublicData.DAL.Entities
 {
     public partial class PersonEducation : Entity
     {

@@ -1,7 +1,7 @@
-﻿using PublicData.Data.Entities;
-using PublicData.Data.Interfaces;
+﻿using PublicData.DAL.Entities;
+using PublicData.DAL.Interfaces;
 
-namespace PublicData.Data.Repository
+namespace PublicData.DAL.Repository
 {
     public class PersonWorkExperienceRepository : Repository<PersonWorkExperience>, IPersonWorkExperienceRepository
     {

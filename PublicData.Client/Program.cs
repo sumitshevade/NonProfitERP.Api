@@ -2,15 +2,15 @@ using System;
 using Blazored.Toast;
 using System.Net.Http;
 using Blazored.LocalStorage;
-using PublicData.Client.Core;
+using PublicData.WebClient.Core;
 using System.Threading.Tasks;
-using PublicData.Client.Services;
-using PublicData.Client.Interfaces;
+using PublicData.WebClient.Services;
+using PublicData.WebClient.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
-namespace PublicData.Client
+namespace PublicData.WebClient
 {
     public class Program
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PublicData.Data
+namespace PublicData.DAL
 {
     public abstract class Entity
     {

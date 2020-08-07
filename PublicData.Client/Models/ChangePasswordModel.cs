@@ -1,4 +1,4 @@
-﻿namespace PublicData.Client.Models
+﻿namespace PublicData.WebClient.Models
 {
     public class ChangePasswordModel
     {

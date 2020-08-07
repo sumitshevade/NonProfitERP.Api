@@ -1,5 +1,5 @@
-﻿using PublicData.Client.Interfaces;
-using PublicData.Client.Models;
+﻿using PublicData.WebClient.Interfaces;
+using PublicData.WebClient.Models;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Components;
 using System.Net.Http.Headers;
 using Blazored.LocalStorage;
 
-namespace PublicData.Client.Services
+namespace PublicData.WebClient.Services
 {
     public class PeopleService : IPeopleService
     {
