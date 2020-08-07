@@ -8,7 +8,7 @@ using PublicData.Common.Interfaces;
 
 namespace PublicData.Application.Features.PersonFamilyDetail.CreatePersonFamilyDetail
 {
-    using Data.Entities;
+    using DAL.Entities;
     using PublicData.Application.Mappings;
 
     public class CreatePersonFamilyDetailQueryHandler : IRequestHandler<CreatePersonFamilyDetailCommand, int>

@@ -4,7 +4,7 @@ using PublicData.Application.Mappings;
 
 namespace PublicData.Application.Shared
 {
-    using Data.Entities;
+    using DAL.Entities;
 
     public partial class HeaderModel : IMapFrom<Header>
     {

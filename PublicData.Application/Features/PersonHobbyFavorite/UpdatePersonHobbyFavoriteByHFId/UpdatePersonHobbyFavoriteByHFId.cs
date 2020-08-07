@@ -8,7 +8,7 @@ using PublicData.Common.Interfaces;
 
 namespace PublicData.Application.Features.PersonHobbyFavorite.UpdatePersonHobbyFavoriteByHFId
 {
-    using Data.Entities;
+    using DAL.Entities;
     using PublicData.Application.Mappings;
 
     public class UpdatePersonHobbyFavoriteByHFIdCommandHandler : IRequestHandler<UpdatePersonHobbyFavoriteByHFIdCommand, bool>

@@ -9,7 +9,7 @@ using System;
 
 namespace PublicData.Application.Features.PersonAchievement.UpdatePersonAchievementByAchievementId
 {
-    using Data.Entities;
+    using DAL.Entities;
     using PublicData.Application.Mappings;
 
     public class UpdatePersonAchievementByAchievementIdCommandHandler : IRequestHandler<UpdatePersonAchievementByAchievementIdCommand, bool>

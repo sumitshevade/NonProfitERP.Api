@@ -8,7 +8,7 @@ using PublicData.Common.Exceptions;
 
 namespace PublicData.Application.Features.PersonAchievement.DeletePersonAchievementByAchievementId
 {
-    using Data.Entities;
+    using DAL.Entities;
 
     public class DeletePersonAchievementByAchievementIdCommandHandler : IRequestHandler<DeletePersonAchievementByAchievementIdCommand, bool>
     {

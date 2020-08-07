@@ -8,7 +8,7 @@ using AutoMapper;
 
 namespace PublicData.Application.Features.PersonDisability.UpdatePersonDisabilityByDisabilityId
 {
-    using Data.Entities;
+    using DAL.Entities;
     using PublicData.Application.Mappings;
 
     public class UpdatePersonDisabilityByDisabilityIdCommandHandler : IRequestHandler<UpdatePersonDisabilityByDisabilityIdCommand, bool>

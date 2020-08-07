@@ -9,7 +9,7 @@ using PublicData.Common.Exceptions;
 
 namespace PublicData.Application.Features.PersonAddress.DeletePersonAddressByPersonId
 {
-    using Data.Entities;
+    using DAL.Entities;
 
     public class DeletePersonAddressByPersonIdCommandHandler : IRequestHandler<DeletePersonAddressByPersonIdCommand, bool>
     {

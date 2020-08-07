@@ -7,7 +7,7 @@ using PublicData.Common.Interfaces;
 
 namespace PublicData.Application.Features.PersonLanguage.CreatePersonLanguage
 {
-    using Data.Entities;
+    using DAL.Entities;
     using PublicData.Application.Mappings;
 
     public class CreatePersonLanguageCommandHandler : IRequestHandler<CreatePersonLanguageCommand, int>

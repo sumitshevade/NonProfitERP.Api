@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PublicData.Application.Features.Master.Header.DeleteHeader
 {
-    using Data.Entities;
+    using DAL.Entities;
 
     public class DeleteHeaderCommandHandler : IRequestHandler<DeleteHeaderCommand, bool>
     {

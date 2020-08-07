@@ -8,7 +8,7 @@ using PublicData.Application.Mappings;
 
 namespace PublicData.Application.Features.Master.Header.CreateHeader
 {
-    using Data.Entities;
+    using DAL.Entities;
 
     public class CreateHeaderCommandHandler : IRequestHandler<CreateHeaderCommand, int>
     {

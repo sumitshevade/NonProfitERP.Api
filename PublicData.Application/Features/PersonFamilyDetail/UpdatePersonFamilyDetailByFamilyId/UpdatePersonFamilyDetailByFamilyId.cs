@@ -9,7 +9,7 @@ using System;
 
 namespace PublicData.Application.Features.PersonFamilyDetail.UpdatePersonFamilyDetailByFamilyId
 {
-    using Data.Entities;
+    using DAL.Entities;
     using PublicData.Application.Mappings;
 
     public class UpdatePersonFamilyDetailByFamilyIdCommandHandler : IRequestHandler<UpdatePersonFamilyDetailByFamilyIdCommand, bool>

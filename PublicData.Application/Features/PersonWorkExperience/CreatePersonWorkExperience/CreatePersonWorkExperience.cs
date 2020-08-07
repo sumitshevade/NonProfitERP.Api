@@ -7,7 +7,7 @@ using PublicData.Common.Interfaces;
 
 namespace PublicData.Application.Features.PersonWorkExperience.CreatePersonWorkExperience
 {
-    using Data.Entities;
+    using DAL.Entities;
     using PublicData.Application.Mappings;
 
     public class CreatePersonWorkExperienceQueryHandler : IRequestHandler<CreatePersonWorkExperienceQuery, int>

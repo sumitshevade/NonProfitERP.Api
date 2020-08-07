@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PublicData.Application.Features.PersonContact.CreatePersonContact
 {
-    using Data.Entities;
+    using DAL.Entities;
     using PublicData.Application.Mappings;
 
     public class CreatePersonContactCommandHandler : IRequestHandler<CreatePersonContactCommand, int>

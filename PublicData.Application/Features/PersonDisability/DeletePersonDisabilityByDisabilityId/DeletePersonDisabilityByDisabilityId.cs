@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PublicData.Application.Features.PersonDisability.DeletePersonDisabilityByDisabilityId
 {
-    using Data.Entities;
+    using DAL.Entities;
 
     public class DeletePersonDisabilityByDisabilityIdCommandHandler : IRequestHandler<DeletePersonDisabilityByDisabilityIdCommand, bool>
     {

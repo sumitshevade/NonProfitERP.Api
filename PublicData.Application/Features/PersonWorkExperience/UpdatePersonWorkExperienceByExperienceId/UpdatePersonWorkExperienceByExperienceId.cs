@@ -8,7 +8,7 @@ using PublicData.Common.Interfaces;
 
 namespace PublicData.Application.Features.PersonWorkExperience.UpdatePersonWorkExperienceByExperienceId
 {
-    using Data.Entities;
+    using DAL.Entities;
     using PublicData.Application.Mappings;
 
     public class UpdatePersonWorkExperienceByExperienceIdCommandHandler : IRequestHandler<UpdatePersonWorkExperienceByExperienceIdCommand, bool>

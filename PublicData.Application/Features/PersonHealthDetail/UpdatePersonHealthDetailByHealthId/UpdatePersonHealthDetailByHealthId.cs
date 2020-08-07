@@ -8,7 +8,7 @@ using PublicData.Common.Interfaces;
 
 namespace PublicData.Application.Features.PersonHealthDetail.UpdatePersonHealthDetailByHealthId
 {
-    using Data.Entities;
+    using DAL.Entities;
     using PublicData.Application.Mappings;
 
     public class UpdatePersonHealthDetailByHealthIdCommandHandler : IRequestHandler<UpdatePersonHealthDetailByHealthIdCommand, bool>

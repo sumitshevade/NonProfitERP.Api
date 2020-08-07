@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PublicData.Application.Features.PersonAddress.DeletePersonAddressByAddressId
 {
-    using Data.Entities;
+    using DAL.Entities;
 
     public class DeletePersonAddressByAddressIdCommandHandler : IRequestHandler<DeletePersonAddressByAddressIdCommand, bool>
     {

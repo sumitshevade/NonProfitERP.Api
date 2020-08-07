@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PublicData.Application.Features.Master.Country.UpdateCountryById
 {
-    using Data.Entities;
+    using DAL.Entities;
 
     public class UpdateCountryByIdCommandHandler : IRequestHandler<UpdateCountryByIdCommand, bool>
     {

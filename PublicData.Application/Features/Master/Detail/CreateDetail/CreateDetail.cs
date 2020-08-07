@@ -8,7 +8,7 @@ using PublicData.Application.Mappings;
 
 namespace PublicData.Application.Features.Master.Detail.CreateDetail
 {
-    using Data.Entities;
+    using DAL.Entities;
 
     class CreateDetailCommandHandler : IRequestHandler<CreateDetailCommand, int>
     {

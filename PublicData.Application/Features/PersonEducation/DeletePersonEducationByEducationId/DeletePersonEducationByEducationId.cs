@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PublicData.Application.Features.PersonEducation.DeletePersonEducationByEducationId
 {
-    using Data.Entities;
+    using DAL.Entities;
 
     public class DeletePersonEducationByEducationIdCommandHandler : IRequestHandler<DeletePersonEducationByEducationIdCommand, bool>
     {

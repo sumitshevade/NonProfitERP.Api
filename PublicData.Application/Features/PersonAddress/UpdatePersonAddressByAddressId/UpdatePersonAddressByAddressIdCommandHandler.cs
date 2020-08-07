@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PublicData.Application.Features.PersonAddress.UpdatePersonAddressByAddressId
 {
-    using Data.Entities;
+    using DAL.Entities;
     using PublicData.Application.Mappings;
 
     public class UpdatePersonAddressByAddressIdCommandHandler : IRequestHandler<UpdatePersonAddressByAddressIdCommand, bool>

@@ -8,7 +8,7 @@ using PublicData.Common.Interfaces;
 
 namespace PublicData.Application.Features.PersonLanguage.UpdatePersonLanguageByLanguageId
 {
-    using Data.Entities;
+    using DAL.Entities;
     using PublicData.Application.Mappings;
 
     public class UpdatePersonLanguageByLanguageIdCommandHandler : IRequestHandler<UpdatePersonLanguageByLanguageIdCommand, bool>

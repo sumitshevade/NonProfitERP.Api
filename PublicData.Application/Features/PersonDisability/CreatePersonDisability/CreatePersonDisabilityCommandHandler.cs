@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PublicData.Application.Features.PersonDisability.CreatePersonDisability
 {
-    using Data.Entities;
+    using DAL.Entities;
     using PublicData.Application.Mappings;
 
     public class CreatePersonDisabilityCommandHandler : IRequestHandler<CreatePersonDisabilityCommand, int>

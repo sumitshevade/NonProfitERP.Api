@@ -8,7 +8,7 @@ using AutoMapper;
 
 namespace PublicData.Application.Features.PersonContact.UpdatePersonContactByContactId
 {
-    using Data.Entities;
+    using DAL.Entities;
     using PublicData.Application.Mappings;
 
     public class UpdatePersonContactByContactIdCommandHandler : IRequestHandler<UpdatePersonContactByContactIdCommand, bool>

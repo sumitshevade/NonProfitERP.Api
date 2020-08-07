@@ -7,7 +7,7 @@ using PublicData.Common.Interfaces;
 
 namespace PublicData.Application.Features.Master.Header.UpdateHeader
 {
-    using Data.Entities;
+    using DAL.Entities;
     using PublicData.Application.Mappings;
     using PublicData.Common.Exceptions;
 

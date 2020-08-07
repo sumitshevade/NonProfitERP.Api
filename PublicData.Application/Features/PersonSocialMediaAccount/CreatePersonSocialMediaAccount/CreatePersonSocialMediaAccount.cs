@@ -7,7 +7,7 @@ using PublicData.Common.Interfaces;
 
 namespace PublicData.Application.Features.PersonSocialMediaAccount.CreatePersonSocialMediaAccount
 {
-    using Data.Entities;
+    using DAL.Entities;
     using PublicData.Application.Mappings;
 
     public class CreatePersonSocialMediaAccountCommandHandler : IRequestHandler<CreatePersonSocialMediaAccountCommand, int>

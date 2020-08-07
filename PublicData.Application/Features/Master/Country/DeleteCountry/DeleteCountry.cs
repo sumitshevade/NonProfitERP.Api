@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PublicData.Application.Features.Master.Country.DeleteCountry
 {
-    using Data.Entities;
+    using DAL.Entities;
 
     public class DeleteCountryCommandHandler : IRequestHandler<DeleteCountryCommand, bool>
     {

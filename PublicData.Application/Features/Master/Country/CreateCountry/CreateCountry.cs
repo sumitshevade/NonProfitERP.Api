@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PublicData.Application.Features.Master.Country.CreateCountry
 {
-    using Data.Entities;
+    using DAL.Entities;
 
     public class CreateCountryCommandHandler : IRequestHandler<CreateCountryCommand, int>
     {

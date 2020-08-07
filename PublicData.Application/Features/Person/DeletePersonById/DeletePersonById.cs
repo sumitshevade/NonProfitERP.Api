@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PublicData.Application.Features.Person.DeletePersonById
 {
-    using Data.Entities;
+    using DAL.Entities;
 
     public class DeletePersonByIdHandler : IRequestHandler<DeletePersonByIdCommand, bool>
     {

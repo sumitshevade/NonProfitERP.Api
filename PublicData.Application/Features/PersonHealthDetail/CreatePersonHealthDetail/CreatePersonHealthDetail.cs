@@ -7,7 +7,7 @@ using PublicData.Common.Interfaces;
 
 namespace PublicData.Application.Features.PersonHealthDetail.CreatePersonHealthDetail
 {
-    using Data.Entities;
+    using DAL.Entities;
     using PublicData.Application.Mappings;
 
     public class CreatePersonHealthDetailCommandHandler : IRequestHandler<CreatePersonHealthDetailCommand, int>

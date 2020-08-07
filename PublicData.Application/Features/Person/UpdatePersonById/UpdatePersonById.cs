@@ -10,7 +10,7 @@ using PublicData.Application.Mappings;
 
 namespace PublicData.Application.Features.Person.UpdatePersonById
 {
-    using Data.Entities;
+    using DAL.Entities;
 
     public class UpdatePersonByIdCommandHandler : IRequestHandler<UpdatePersonByIdCommand, bool>
     {

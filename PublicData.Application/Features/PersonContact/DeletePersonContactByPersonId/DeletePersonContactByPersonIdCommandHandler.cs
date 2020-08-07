@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PublicData.Application.Features.PersonContact.DeletePersonContactByPersonId
 {
-    using Data.Entities;
+    using DAL.Entities;
     using System.Linq;
 
     public class DeletePersonContactByPersonIdCommandHandler : IRequestHandler<DeletePersonContactByPersonIdCommand, bool>

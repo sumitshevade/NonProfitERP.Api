@@ -8,7 +8,7 @@ using AutoMapper;
 
 namespace PublicData.Application.Features.PersonEducation.UpdatePersonEducationByEducationId
 {
-    using Data.Entities;
+    using DAL.Entities;
     using PublicData.Application.Mappings;
 
     public class UpdatePersonEducationByEducationIdCommandHandler : IRequestHandler<UpdatePersonEducationByEducationIdCommand, bool>

@@ -8,7 +8,7 @@ using PublicData.Common.Interfaces;
 
 namespace PublicData.Application.Features.PersonPrivateInformation.UpdatePersonPrivateInformation
 {
-    using Data.Entities;
+    using DAL.Entities;
     using PublicData.Application.Mappings;
 
     public class UpdatePersonPrivateInformationQueryHandler : IRequestHandler<UpdatePersonPrivateInformationQuery, bool>

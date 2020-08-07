@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace PublicData.Application.Shared
 {
-    using Data.Entities;
+    using DAL.Entities;
 
     public partial class CountryModel : IMapFrom<Country>
     {
