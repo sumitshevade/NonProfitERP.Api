@@ -6,34 +6,34 @@ using PublicData.DAL.Interfaces;
 using PublicData.Common.Exceptions;
 using PublicData.Common.Interfaces;
 
-namespace PublicData.Application.Features.Master.Country.DeleteCountry
+namespace PublicData.Application.Features.Master.District.DeleteDistrict
 {
     using DAL.Entities;
 
-    public class DeleteCountryCommandHandler : IRequestHandler<DeleteCountryCommand, bool>
+    public class DeleteDistrictCommandHandler : IRequestHandler<DeleteDistrictCommand, bool>
     {
-        private readonly ICountryRepository _countryRepository;
+        private readonly IDistrictRepository _districtRepository;
         private readonly IUnitOfWork _unitOfWork;
 
-        public DeleteCountryCommandHandler(ICountryRepository countryRepository, IUnitOfWork unitOfWork)
+        public DeleteDistrictCommandHandler(IDistrictRepository districtRepository, IUnitOfWork unitOfWork)
         {
-            _countryRepository = countryRepository;
+            _districtRepository = districtRepository;
             _unitOfWork = unitOfWork;
         }
 
-        public Task<bool> Handle(DeleteCountryCommand request, CancellationToken cancellationToken)
+        public Task<bool> Handle(DeleteDistrictCommand request, CancellationToken cancellationToken)
         {
             try
             {
-                var entity = _countryRepository.GetById(request.Id);
+                var entity = _districtRepository.GetById(request.Id);
 
                 if (entity == null)
                 {
-                    throw new NotFoundException(nameof(Country), request.Id);
+                    throw new NotFoundException(nameof(District), request.Id);
                 }
 
                 entity.IsActive = false;
-                _countryRepository.Update(entity);
+                _districtRepository.Update(entity);
                 _unitOfWork.Commit();
 
                 return Task.FromResult(true);
@@ -45,7 +45,7 @@ namespace PublicData.Application.Features.Master.Country.DeleteCountry
         }
     }
 
-    public class DeleteCountryCommand : IRequest<bool>
+    public class DeleteDistrictCommand : IRequest<bool>
     {
         public int Id { get; set; }
     }

@@ -31,6 +31,5 @@ namespace PublicData.Application.Features.Master.Country.GetAllCountries
 
     public class GetCountriesQuery : IRequest<IList<CountryModel>>
     {
-        public string Name { get; set; }
     }
 }

@@ -6,26 +6,26 @@ using PublicData.DAL.Interfaces;
 using PublicData.Common.Exceptions;
 using PublicData.Common.Interfaces;
 
-namespace PublicData.Application.Features.Master.Country.DeleteCountry
+namespace PublicData.Application.Features.Master.City.DeleteCity
 {
     using DAL.Entities;
 
-    public class DeleteCountryCommandHandler : IRequestHandler<DeleteCountryCommand, bool>
+    public class DeleteCityCommandHandler : IRequestHandler<DeleteCityCommand, bool>
     {
-        private readonly ICountryRepository _countryRepository;
+        private readonly ICityRepository _cityRepository;
         private readonly IUnitOfWork _unitOfWork;
 
-        public DeleteCountryCommandHandler(ICountryRepository countryRepository, IUnitOfWork unitOfWork)
+        public DeleteCityCommandHandler(ICityRepository cityRepository, IUnitOfWork unitOfWork)
         {
-            _countryRepository = countryRepository;
+            _cityRepository = cityRepository;
             _unitOfWork = unitOfWork;
         }
 
-        public Task<bool> Handle(DeleteCountryCommand request, CancellationToken cancellationToken)
+        public Task<bool> Handle(DeleteCityCommand request, CancellationToken cancellationToken)
         {
             try
             {
-                var entity = _countryRepository.GetById(request.Id);
+                var entity = _cityRepository.GetById(request.Id);
 
                 if (entity == null)
                 {
@@ -33,7 +33,7 @@ namespace PublicData.Application.Features.Master.Country.DeleteCountry
                 }
 
                 entity.IsActive = false;
-                _countryRepository.Update(entity);
+                _cityRepository.Update(entity);
                 _unitOfWork.Commit();
 
                 return Task.FromResult(true);
@@ -45,7 +45,7 @@ namespace PublicData.Application.Features.Master.Country.DeleteCountry
         }
     }
 
-    public class DeleteCountryCommand : IRequest<bool>
+    public class DeleteCityCommand : IRequest<bool>
     {
         public int Id { get; set; }
     }

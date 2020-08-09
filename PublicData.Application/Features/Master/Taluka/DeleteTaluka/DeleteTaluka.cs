@@ -6,34 +6,34 @@ using PublicData.DAL.Interfaces;
 using PublicData.Common.Exceptions;
 using PublicData.Common.Interfaces;
 
-namespace PublicData.Application.Features.Master.Country.DeleteCountry
+namespace PublicData.Application.Features.Master.Taluka.DeleteTaluka
 {
     using DAL.Entities;
 
-    public class DeleteCountryCommandHandler : IRequestHandler<DeleteCountryCommand, bool>
+    public class DeleteTalukaCommandHandler : IRequestHandler<DeleteTalukaCommand, bool>
     {
-        private readonly ICountryRepository _countryRepository;
+        private readonly ITalukaRepository _talukaRepository;
         private readonly IUnitOfWork _unitOfWork;
 
-        public DeleteCountryCommandHandler(ICountryRepository countryRepository, IUnitOfWork unitOfWork)
+        public DeleteTalukaCommandHandler(ITalukaRepository talukaRepository, IUnitOfWork unitOfWork)
         {
-            _countryRepository = countryRepository;
+            _talukaRepository = talukaRepository;
             _unitOfWork = unitOfWork;
         }
 
-        public Task<bool> Handle(DeleteCountryCommand request, CancellationToken cancellationToken)
+        public Task<bool> Handle(DeleteTalukaCommand request, CancellationToken cancellationToken)
         {
             try
             {
-                var entity = _countryRepository.GetById(request.Id);
+                var entity = _talukaRepository.GetById(request.Id);
 
                 if (entity == null)
                 {
-                    throw new NotFoundException(nameof(Country), request.Id);
+                    throw new NotFoundException(nameof(School), request.Id);
                 }
 
                 entity.IsActive = false;
-                _countryRepository.Update(entity);
+                _talukaRepository.Update(entity);
                 _unitOfWork.Commit();
 
                 return Task.FromResult(true);
@@ -45,7 +45,7 @@ namespace PublicData.Application.Features.Master.Country.DeleteCountry
         }
     }
 
-    public class DeleteCountryCommand : IRequest<bool>
+    public class DeleteTalukaCommand : IRequest<bool>
     {
         public int Id { get; set; }
     }

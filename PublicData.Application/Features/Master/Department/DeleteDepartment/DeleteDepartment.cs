@@ -6,26 +6,24 @@ using PublicData.DAL.Interfaces;
 using PublicData.Common.Exceptions;
 using PublicData.Common.Interfaces;
 
-namespace PublicData.Application.Features.Master.Country.DeleteCountry
+namespace PublicData.Application.Features.Master.Department.DeleteDepartment
 {
-    using DAL.Entities;
-
-    public class DeleteCountryCommandHandler : IRequestHandler<DeleteCountryCommand, bool>
+    public class DeleteDepartmentCommandHandler : IRequestHandler<DeleteDepartmentCommand, bool>
     {
-        private readonly ICountryRepository _countryRepository;
+        private readonly IDepartmentRepository _departmentRepository;
         private readonly IUnitOfWork _unitOfWork;
 
-        public DeleteCountryCommandHandler(ICountryRepository countryRepository, IUnitOfWork unitOfWork)
+        public DeleteDepartmentCommandHandler(IDepartmentRepository departmentRepository, IUnitOfWork unitOfWork)
         {
-            _countryRepository = countryRepository;
+            _departmentRepository = departmentRepository;
             _unitOfWork = unitOfWork;
         }
 
-        public Task<bool> Handle(DeleteCountryCommand request, CancellationToken cancellationToken)
+        public Task<bool> Handle(DeleteDepartmentCommand request, CancellationToken cancellationToken)
         {
             try
             {
-                var entity = _countryRepository.GetById(request.Id);
+                var entity = _departmentRepository.GetById(request.Id);
 
                 if (entity == null)
                 {
@@ -33,7 +31,7 @@ namespace PublicData.Application.Features.Master.Country.DeleteCountry
                 }
 
                 entity.IsActive = false;
-                _countryRepository.Update(entity);
+                _departmentRepository.Update(entity);
                 _unitOfWork.Commit();
 
                 return Task.FromResult(true);
@@ -45,7 +43,7 @@ namespace PublicData.Application.Features.Master.Country.DeleteCountry
         }
     }
 
-    public class DeleteCountryCommand : IRequest<bool>
+    public class DeleteDepartmentCommand : IRequest<bool>
     {
         public int Id { get; set; }
     }

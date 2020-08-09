@@ -6,34 +6,34 @@ using PublicData.DAL.Interfaces;
 using PublicData.Common.Exceptions;
 using PublicData.Common.Interfaces;
 
-namespace PublicData.Application.Features.Master.Country.DeleteCountry
+namespace PublicData.Application.Features.Master.School.DeleteSchool
 {
     using DAL.Entities;
 
-    public class DeleteCountryCommandHandler : IRequestHandler<DeleteCountryCommand, bool>
+    public class DeleteSchoolCommandHandler : IRequestHandler<DeleteSchoolCommand, bool>
     {
-        private readonly ICountryRepository _countryRepository;
+        private readonly ISchoolRepository _schoolRepository;
         private readonly IUnitOfWork _unitOfWork;
 
-        public DeleteCountryCommandHandler(ICountryRepository countryRepository, IUnitOfWork unitOfWork)
+        public DeleteSchoolCommandHandler(ISchoolRepository schoolRepository, IUnitOfWork unitOfWork)
         {
-            _countryRepository = countryRepository;
+            _schoolRepository = schoolRepository;
             _unitOfWork = unitOfWork;
         }
 
-        public Task<bool> Handle(DeleteCountryCommand request, CancellationToken cancellationToken)
+        public Task<bool> Handle(DeleteSchoolCommand request, CancellationToken cancellationToken)
         {
             try
             {
-                var entity = _countryRepository.GetById(request.Id);
+                var entity = _schoolRepository.GetById(request.Id);
 
                 if (entity == null)
                 {
-                    throw new NotFoundException(nameof(Country), request.Id);
+                    throw new NotFoundException(nameof(School), request.Id);
                 }
 
                 entity.IsActive = false;
-                _countryRepository.Update(entity);
+                _schoolRepository.Update(entity);
                 _unitOfWork.Commit();
 
                 return Task.FromResult(true);
@@ -45,7 +45,7 @@ namespace PublicData.Application.Features.Master.Country.DeleteCountry
         }
     }
 
-    public class DeleteCountryCommand : IRequest<bool>
+    public class DeleteSchoolCommand : IRequest<bool>
     {
         public int Id { get; set; }
     }

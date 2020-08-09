@@ -1,9 +1,10 @@
-﻿using AutoMapper;
-using MediatR;
-using PublicData.Common.Interfaces;
-using PublicData.DAL.Interfaces;
+﻿using MediatR;
+using AutoMapper;
 using System.Threading;
 using System.Threading.Tasks;
+using PublicData.DAL.Interfaces;
+using PublicData.Common.Interfaces;
+using PublicData.Application.Mappings;
 
 namespace PublicData.Application.Features.Master.Country.CreateCountry
 {
@@ -33,8 +34,13 @@ namespace PublicData.Application.Features.Master.Country.CreateCountry
         }
     }
 
-    public class CreateCountryCommand : IRequest<int>
+    public class CreateCountryCommand : IRequest<int>, IMapFrom<Country>
     {
         public string Name { get; set; }
+
+        public void Mapping(Profile profile)
+        {
+            profile.CreateMap<Country, CreateCountryCommand>();
+        }
     }
 }
