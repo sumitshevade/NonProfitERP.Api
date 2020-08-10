@@ -38,9 +38,4 @@
     <ProjectReference Include="..\PublicData.DAL\PublicData.DAL.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\Master\DepartmentHead\" />
-    <Folder Include="Features\Master\DivisionHead\" />
-  </ItemGroup>
-
 </Project>
