@@ -1,34 +1,33 @@
 ﻿using System;
 using MediatR;
-using AutoMapper;
 using System.Threading;
 using System.Threading.Tasks;
 using PublicData.DAL.Interfaces;
 using PublicData.Common.Interfaces;
 using PublicData.Common.Exceptions;
 
-namespace PublicData.Application.Features.Master.Detail.DeleteDetailByDetailId
+namespace PublicData.Application.Features.Master.Detail.DeleteDetail
 {
-    public class DeleteDetailByDetailIdCommandHandler : IRequestHandler<DeleteDetailByDetailIdCommand, bool>
+    public class DeleteDetailCommandHandler : IRequestHandler<DeleteDetailCommand, bool>
     {
         private readonly IDetailRepository _detailRepository;
         private readonly IUnitOfWork _unitOfWork;
 
-        public DeleteDetailByDetailIdCommandHandler(IDetailRepository detailRepository, IUnitOfWork unitOfWork)
+        public DeleteDetailCommandHandler(IDetailRepository detailRepository, IUnitOfWork unitOfWork)
         {
             _detailRepository = detailRepository;
             _unitOfWork = unitOfWork;
         }
 
-        public Task<bool> Handle(DeleteDetailByDetailIdCommand request, CancellationToken cancellationToken)
+        public Task<bool> Handle(DeleteDetailCommand request, CancellationToken cancellationToken)
         {
             try
             {
-                var entity = _detailRepository.GetById(request.DetailId);
+                var entity = _detailRepository.GetById(request.Id);
 
                 if (entity == null)
                 {
-                    throw new NotFoundException(nameof(Country), request.DetailId);
+                    throw new NotFoundException(nameof(Country), request.Id);
                 }
 
                 entity.IsActive = false;
@@ -47,8 +46,8 @@ namespace PublicData.Application.Features.Master.Detail.DeleteDetailByDetailId
     /// <summary>
     /// Soft delete for detail
     /// </summary>
-    public class DeleteDetailByDetailIdCommand : IRequest<bool>
+    public class DeleteDetailCommand : IRequest<bool>
     {
-        public int DetailId { get; set; }
+        public int Id { get; set; }
     }
 }

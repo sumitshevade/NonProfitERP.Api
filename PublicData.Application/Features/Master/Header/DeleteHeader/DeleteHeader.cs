@@ -23,6 +23,7 @@ namespace PublicData.Application.Features.Master.Header.DeleteHeader
 
         public Task<bool> Handle(DeleteHeaderCommand request, CancellationToken cancellationToken)
         {
+            // TODO: handle detail delete
             try
             {
                 var entity = _headerRepository.GetById(request.Id);
