@@ -1,55 +1,551 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using PublicData.Application.Features.Master.City.CreateCity;
+using PublicData.Application.Features.Master.City.DeleteCity;
+using PublicData.Application.Features.Master.City.GetCitiesByStateId;
+using PublicData.Application.Features.Master.City.GetCityById;
+using PublicData.Application.Features.Master.City.UpdateCityById;
+using PublicData.Application.Features.Master.Country.CreateCountry;
+using PublicData.Application.Features.Master.Country.DeleteCountry;
+using PublicData.Application.Features.Master.Country.GetAllCountries;
+using PublicData.Application.Features.Master.Country.GetCountryById;
+using PublicData.Application.Features.Master.Country.UpdateCountryById;
+using PublicData.Application.Features.Master.Department.CreateDepartment;
+using PublicData.Application.Features.Master.Department.DeleteDepartment;
+using PublicData.Application.Features.Master.Department.GetAllDepartments;
+using PublicData.Application.Features.Master.Department.GetDepartmentById;
+using PublicData.Application.Features.Master.Department.UpdateDepartment;
+using PublicData.Application.Features.Master.DepartmentHead.CreateDepartmentHead;
+using PublicData.Application.Features.Master.DepartmentHead.DeleteDepartmentHead;
+using PublicData.Application.Features.Master.DepartmentHead.GetAllDepartmentHeads;
+using PublicData.Application.Features.Master.DepartmentHead.GetDepartmentHeadById;
+using PublicData.Application.Features.Master.DepartmentHead.UpdateDepartmentHeadById;
+using PublicData.Application.Features.Master.Detail.CreateDetail;
+using PublicData.Application.Features.Master.Detail.DeleteDetail;
+using PublicData.Application.Features.Master.Detail.GetDetailByHeaderId;
+using PublicData.Application.Features.Master.Detail.GetDetailById;
+using PublicData.Application.Features.Master.Detail.UpdateDetail;
+using PublicData.Application.Features.Master.District.CreateDistrict;
+using PublicData.Application.Features.Master.District.GetAllDistrictByStateId;
+using PublicData.Application.Features.Master.District.GetDistrictById;
+using PublicData.Application.Features.Master.District.UpdateDistrict;
+using PublicData.Application.Features.Master.Division.CreateDivision;
+using PublicData.Application.Features.Master.Division.DeleteDivision;
+using PublicData.Application.Features.Master.Division.GetAllDivisions;
+using PublicData.Application.Features.Master.Division.GetDivisionById;
+using PublicData.Application.Features.Master.Division.UpdateDivision;
+using PublicData.Application.Features.Master.DivisionHead.CreateDivisionHead;
+using PublicData.Application.Features.Master.DivisionHead.DeleteDivisionHead;
+using PublicData.Application.Features.Master.DivisionHead.GetAllDivisionHeads;
+using PublicData.Application.Features.Master.DivisionHead.GetDivisionHeadById;
+using PublicData.Application.Features.Master.DivisionHead.UpdateDivisionHeadById;
+using PublicData.Application.Features.Master.Header.CreateHeader;
+using PublicData.Application.Features.Master.Header.DeleteHeader;
+using PublicData.Application.Features.Master.Header.GetAllHeaders;
+using PublicData.Application.Features.Master.Header.GetHeaderById;
+using PublicData.Application.Features.Master.Header.UpdateHeader;
+using PublicData.Application.Features.Master.School.CreateSchool;
+using PublicData.Application.Features.Master.School.DeleteSchool;
+using PublicData.Application.Features.Master.School.GetAllSchools;
+using PublicData.Application.Features.Master.School.GetSchoolById;
+using PublicData.Application.Features.Master.School.UpdateSchool;
+using PublicData.Application.Features.Master.State.CreateState;
+using PublicData.Application.Features.Master.State.DeleteState;
+using PublicData.Application.Features.Master.State.GetStateById;
+using PublicData.Application.Features.Master.State.GetStatesByCountryId;
+using PublicData.Application.Features.Master.State.UpdateStateById;
+using PublicData.Application.Features.Master.Taluka.CreateTaluka;
+using PublicData.Application.Features.Master.Taluka.DeleteTaluka;
+using PublicData.Application.Features.Master.Taluka.GetAllTalukasByDistrictId;
+using PublicData.Application.Features.Master.Taluka.GetTalukaById;
+using PublicData.Application.Features.Master.Taluka.UpdateTaluka;
+using PublicData.Application.Features.Master.University.CreateUniversity;
+using PublicData.Application.Features.Master.University.DeleteUniversity;
+using PublicData.Application.Features.Master.University.GetAllUniversitiesById;
+using PublicData.Application.Features.Master.University.GetUniversityById;
+using PublicData.Application.Features.Master.University.UpdateUniversity;
 
 namespace PublicData.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MasterController : ControllerBase
+    public class MasterController : ApiController
     {
         #region --- City APIs ---
 
-        // APIs
+        [HttpGet, Route("state/{stateId}/city")]
+        public async Task<IActionResult> GetCitiesByStateId(int stateId)
+        {
+            var result = await Mediator.Send(new GetCitiesByStateId { StateId = stateId });
+            return new JsonResult(result);
+        }
+
+        [HttpGet("city/{id}")]
+        public async Task<IActionResult> GetCityById(int id)
+        {
+            var result = await Mediator.Send(new GetCityByIdQuery { Id = id });
+            return new JsonResult(result);
+        }
+
+        [HttpPost("city")]
+        public async Task<IActionResult> PostCity(CreateCityCommand command)
+        {
+            return new JsonResult(await Mediator.Send(command));
+        }
+
+        [HttpPut("city")]
+        public async Task<IActionResult> PutCity(UpdateCityByIdCommand command)
+        {
+            return new JsonResult(await Mediator.Send(command));
+        }
+
+        [HttpDelete("city/{id}")]
+        public async Task<IActionResult> DeleteCity(int id)
+        {
+            return new JsonResult(await Mediator.Send(new DeleteCityCommand { Id = id }));
+        }
 
         #endregion
 
         #region --- Country APIs ---
 
-        // APIs
+        [HttpGet("country")]
+        public async Task<IActionResult> GetCountries()
+        {
+            var result = await Mediator.Send(new GetCountriesQuery());
+            return new JsonResult(result);
+        }
+
+        [HttpGet("country/{id}")]
+        public async Task<IActionResult> GetCountryById(int id)
+        {
+            var result = await Mediator.Send(new GetCountryByIdQuery { Id = id });
+            return new JsonResult(result);
+        }
+
+        [HttpPost("country")]
+        public async Task<IActionResult> PostCountry(CreateCountryCommand command)
+        {
+            return new JsonResult(await Mediator.Send(command));
+        }
+
+        [HttpPut("country")]
+        public async Task<IActionResult> PutCountry(UpdateCountryByIdCommand command)
+        {
+            return new JsonResult(await Mediator.Send(command));
+        }
+
+        [HttpDelete("country/{id}")]
+        public async Task<IActionResult> DeleteCountry(int id)
+        {
+            return new JsonResult(await Mediator.Send(new DeleteCountryCommand { Id = id }));
+        }
 
         #endregion
 
         #region --- State APIs ---
 
-        // APIs
+        [HttpGet("country/{countryId}/state")]
+        public async Task<IActionResult> GetStatesByCountryId(int countryId)
+        {
+            var result = await Mediator.Send(new GetStatesByCountryIdQuery { CountryId = countryId });
+            return new JsonResult(result);
+        }
+
+        [HttpGet("state/{id}")]
+        public async Task<IActionResult> GetStateById(int id)
+        {
+            var result = await Mediator.Send(new GetStateByIdQuery { Id = id });
+            return new JsonResult(result);
+        }
+
+        [HttpPost("state")]
+        public async Task<IActionResult> PostState(CreateStateCommand command)
+        {
+            return new JsonResult(await Mediator.Send(command));
+        }
+
+        [HttpPut("state")]
+        public async Task<IActionResult> PutState(UpdateStateCommnd command)
+        {
+            return new JsonResult(await Mediator.Send(command));
+        }
+
+        [HttpDelete("state/{id}")]
+        public async Task<IActionResult> DeleteState(int id)
+        {
+            return new JsonResult(await Mediator.Send(new DeleteStateCommand { Id = id }));
+        }
 
         #endregion
 
         #region --- Department APIs ---
 
-        // APIs
+        [HttpGet("department")]
+        public async Task<IActionResult> GetDepartments()
+        {
+            var result = await Mediator.Send(new GetAllDepartmentsQuery());
+            return new JsonResult(result);
+        }
+
+        [HttpGet("department/{id}")]
+        public async Task<IActionResult> GetDepartmentById(int id)
+        {
+            var result = await Mediator.Send(new GetDepartmentByIdQuery { Id = id });
+            return new JsonResult(result);
+        }
+
+        [HttpPost("department")]
+        public async Task<IActionResult> PostDepartment(CreateDepartmentCommand command)
+        {
+            return new JsonResult(await Mediator.Send(command));
+        }
+
+        [HttpPut("department")]
+        public async Task<IActionResult> PutDepartment(UpdateDepartmentCommand command)
+        {
+            return new JsonResult(await Mediator.Send(command));
+        }
+
+        [HttpDelete("department/{id}")]
+        public async Task<IActionResult> DeleteDepartment(int id)
+        {
+            return new JsonResult(await Mediator.Send(new DeleteDepartmentCommand { Id = id }));
+        }
 
         #endregion
 
         #region --- Department Head APIs ---
 
-        // APIs
+        /// <summary>
+        /// Get the list of all heads
+        /// </summary>
+        [HttpGet("departmenthead")]
+        public async Task<IActionResult> GetDepartmentHeads()
+        {
+            var result = await Mediator.Send(new GetAllDepartmentHeadsQuery());
+            return new JsonResult(result);
+        }
+
+        [HttpGet("departmenthead/{id}")]
+        public async Task<IActionResult> GetDepartmentHeadById(int id)
+        {
+            var result = await Mediator.Send(new GetDepartmentHeadByIdQuery { Id = id });
+            return new JsonResult(result);
+        }
+
+        [HttpPost("departmenthead")]
+        public async Task<IActionResult> PostDepartmentHead(CreateDepartmentHeadCommand command)
+        {
+            return new JsonResult(await Mediator.Send(command));
+        }
+
+        [HttpPut("departmenthead")]
+        public async Task<IActionResult> PutDepartmentHead(UpdateDepartmentHeadByIdCommand command)
+        {
+            return new JsonResult(await Mediator.Send(command));
+        }
+
+        [HttpDelete("departmenthead/{id}")]
+        public async Task<IActionResult> DeleteDepartmentHead(int id)
+        {
+            return new JsonResult(await Mediator.Send(new DeleteDepartmentHeadCommand { Id = id }));
+        }
 
         #endregion
 
         #region --- Division APIs ---
 
-        // APIs
+        /// <summary>
+        /// Get the list of all divisions
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("division")]
+        public async Task<IActionResult> GetDivisions()
+        {
+            var result = await Mediator.Send(new GetAllDivisionsQuery());
+            return new JsonResult(result);
+        }
+
+        [HttpGet("division/{id}")]
+        public async Task<IActionResult> GetDivisionById(int id)
+        {
+            var result = await Mediator.Send(new GetDivisionByIdQuery { Id = id });
+            return new JsonResult(result);
+        }
+
+        [HttpPost("division")]
+        public async Task<IActionResult> PostDivision(CreateDivisionCommand command)
+        {
+            return new JsonResult(await Mediator.Send(command));
+        }
+
+        [HttpPut("division")]
+        public async Task<IActionResult> PutDivision(UpdateDivisionCommand command)
+        {
+            return new JsonResult(await Mediator.Send(command));
+        }
+
+        [HttpDelete("division/{id}")]
+        public async Task<IActionResult> DeleteDivision(int id)
+        {
+            return new JsonResult(await Mediator.Send(new DeleteDivisionCommand { Id = id }));
+        }
 
         #endregion
 
         #region --- Division Head APIs ---
 
-        // APIs
+        /// <summary>
+        /// Get the list of all heads
+        /// </summary>
+        [HttpGet("divisionhead")]
+        public async Task<IActionResult> GetDivisionHeads()
+        {
+            var result = await Mediator.Send(new GetAllDivisionHeadsQuery());
+            return new JsonResult(result);
+        }
+
+        [HttpGet("divisionhead/{id}")]
+        public async Task<IActionResult> GetDivisionHeadById(int id)
+        {
+            var result = await Mediator.Send(new GetDivisionHeadByIdQuery { Id = id });
+            return new JsonResult(result);
+        }
+
+        [HttpPost("divisionhead")]
+        public async Task<IActionResult> PostDivisionHead(CreateDivisionHeadCommand command)
+        {
+            return new JsonResult(await Mediator.Send(command));
+        }
+
+        [HttpPut("divisionhead")]
+        public async Task<IActionResult> PutDivisionHead(UpdateDivisionHeadByIdCommand command)
+        {
+            return new JsonResult(await Mediator.Send(command));
+        }
+
+        [HttpDelete("divisionhead/{id}")]
+        public async Task<IActionResult> DeleteDivisionHead(int id)
+        {
+            return new JsonResult(await Mediator.Send(new DeleteDivisionHeadCommand { Id = id }));
+        }
+
+        #endregion
+
+        #region --- University APIs ---
+
+        [HttpGet("university")]
+        public async Task<IActionResult> GetUniversities()
+        {
+            var result = await Mediator.Send(new GetAllUniversitiesQuery());
+            return new JsonResult(result);
+        }
+
+        [HttpGet("university/{id}")]
+        public async Task<IActionResult> GetUniversityById(int id)
+        {
+            var result = await Mediator.Send(new GetUniversityByIdQuery { Id = id });
+            return new JsonResult(result);
+        }
+
+        [HttpPost("university")]
+        public async Task<IActionResult> PostUniversity(CreateUniversityCommand command)
+        {
+            return new JsonResult(await Mediator.Send(command));
+        }
+
+        [HttpPut("university")]
+        public async Task<IActionResult> PutUniversity(UpdateUniversityCommand command)
+        {
+            return new JsonResult(await Mediator.Send(command));
+        }
+
+        [HttpDelete("university/{id}")]
+        public async Task<IActionResult> DeleteUniversity(int id)
+        {
+            return new JsonResult(await Mediator.Send(new DeleteUniversityCommand { Id = id }));
+        }
+
+        #endregion
+
+        #region --- Header APIs
+
+        [HttpGet("header")]
+        public async Task<IActionResult> GetHeaders()
+        {
+            var result = await Mediator.Send(new GetHeadersQuery());
+            return new JsonResult(result);
+        }
+
+        [HttpGet("header/{id}")]
+        public async Task<IActionResult> GetHeaderById(int id)
+        {
+            var result = await Mediator.Send(new GetHeaderByIdQuery { Id = id });
+            return new JsonResult(result);
+        }
+
+        [HttpPost("header")]
+        public async Task<IActionResult> PostHeader(CreateHeaderCommand command)
+        {
+            return new JsonResult(await Mediator.Send(command));
+        }
+
+        [HttpPut("header")]
+        public async Task<IActionResult> PutHeader(UpdateHeaderCommand command)
+        {
+            return new JsonResult(await Mediator.Send(command));
+        }
+
+        [HttpDelete("header/{id}")]
+        public async Task<IActionResult> DeleteHeader(int id)
+        {
+            return new JsonResult(await Mediator.Send(new DeleteHeaderCommand { Id = id }));
+        }
+
+        #endregion
+
+        #region --- Detail APIs ---
+
+        [HttpGet("header/{headerId}/detail")]
+        public async Task<IActionResult> GetDetails(int headerId)
+        {
+            var result = await Mediator.Send(new GetDetailsByHeaderIdQuery { HeaderId = headerId });
+            return new JsonResult(result);
+        }
+
+        [HttpGet("detail/{id}")]
+        public async Task<IActionResult> GetDetailById(int id)
+        {
+            var result = await Mediator.Send(new GetDetailByIdQuery { Id = id });
+            return new JsonResult(result);
+        }
+
+        [HttpPost("detail")]
+        public async Task<IActionResult> PostDetail(CreateDetailCommand command)
+        {
+            return new JsonResult(await Mediator.Send(command));
+        }
+
+        [HttpPut("detail")]
+        public async Task<IActionResult> PutDetail(UpdateDetailCommand command)
+        {
+            return new JsonResult(await Mediator.Send(command));
+        }
+
+        [HttpDelete("detail/{id}")]
+        public async Task<IActionResult> DeleteDetail(int id)
+        {
+            return new JsonResult(await Mediator.Send(new DeleteDetailCommand { Id = id }));
+        }
+
+        #endregion
+
+        #region --- District APIs ---
+
+        [HttpGet("state/{stateId}/district")]
+        public async Task<IActionResult> GetDistrictsByStateId(int stateId)
+        {
+            var result = await Mediator.Send(new GetAllDistrictByStateIdQuery { StateId = stateId });
+            return new JsonResult(result);
+        }
+
+        [HttpGet("district/{id}")]
+        public async Task<IActionResult> GetDistrictById(int id)
+        {
+            var result = await Mediator.Send(new GetDistrictByIdQuery { Id = id });
+            return new JsonResult(result);
+        }
+
+        [HttpPost("district")]
+        public async Task<IActionResult> PostDistrict(CreateDistrictCommand command)
+        {
+            return new JsonResult(await Mediator.Send(command));
+        }
+
+        [HttpPut("district")]
+        public async Task<IActionResult> PutDistrict(UpdateDistrictCommand command)
+        {
+            return new JsonResult(await Mediator.Send(command));
+        }
+
+        [HttpDelete("district/{id}")]
+        public async Task<IActionResult> DeleteDistrict(int id)
+        {
+            return new JsonResult(await Mediator.Send(new DeleteSchoolCommand { Id = id }));
+        }
+
+        #endregion
+
+        #region --- Taluka APIs ---
+
+        [HttpGet("district/{districtId}/taluka")]
+        public async Task<IActionResult> GetTalukasByDistrictId(int districtId)
+        {
+            var result = await Mediator.Send(new GetAllTalukasByDistrictIdQuery { DistrictId = districtId });
+            return new JsonResult(result);
+        }
+
+        [HttpGet("taluka/{id}")]
+        public async Task<IActionResult> GetTalukaById(int id)
+        {
+            var result = await Mediator.Send(new GetTalukaByIdQuery { Id = id });
+            return new JsonResult(result);
+        }
+
+        [HttpPost("taluka")]
+        public async Task<IActionResult> PostTaluka(CreateTalukaCommand command)
+        {
+            return new JsonResult(await Mediator.Send(command));
+        }
+
+        [HttpPut("taluka")]
+        public async Task<IActionResult> PutTaluka(UpdateTalukaCommand command)
+        {
+            return new JsonResult(await Mediator.Send(command));
+        }
+
+        [HttpDelete("taluka/{id}")]
+        public async Task<IActionResult> DeleteTaluka(int id)
+        {
+            return new JsonResult(await Mediator.Send(new DeleteTalukaCommand { Id = id }));
+        }
+
+        #endregion
+
+        #region --- School APIs ---
+
+        [HttpGet("school")]
+        public async Task<IActionResult> GetSchools()
+        {
+            var result = await Mediator.Send(new GetAllSchoolsQuery());
+            return new JsonResult(result);
+        }
+
+        [HttpGet("school/{id}")]
+        public async Task<IActionResult> GetSchoolById(int id)
+        {
+            var result = await Mediator.Send(new GetSchoolByIdQuery { Id = id });
+            return new JsonResult(result);
+        }
+
+        [HttpPost("school")]
+        public async Task<IActionResult> PostSchool(CreateSchoolCommand command)
+        {
+            return new JsonResult(await Mediator.Send(command));
+        }
+
+        [HttpPut("school")]
+        public async Task<IActionResult> PutSchool(UpdateSchoolCommand command)
+        {
+            return new JsonResult(await Mediator.Send(command));
+        }
+
+        [HttpDelete("school/{id}")]
+        public async Task<IActionResult> DeleteSchool(int id)
+        {
+            return new JsonResult(await Mediator.Send(new DeleteSchoolCommand { Id = id }));
+        }
 
         #endregion
 
@@ -59,19 +555,7 @@ namespace PublicData.Api.Controllers
 
         #endregion
 
-        #region --- University APIs ---
-
-        // APIs
-
-        #endregion
-
         #region --- Program APIs ---
-
-        // APIs
-
-        #endregion
-
-        #region --- Header Detail
 
         // APIs
 
