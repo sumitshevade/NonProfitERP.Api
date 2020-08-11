@@ -1,18 +1,12 @@
 ﻿using AutoMapper;
 using PublicData.Application.Mappings;
-using System.Collections.Generic;
+using PublicData.DAL.Entities;
 
 namespace PublicData.Application.Shared
 {
-    using DAL.Entities;
-    
     public partial class SchoolModel : IMapFrom<School>
     {
-        public SchoolModel()
-        {
-            PersonEducation = new HashSet<PersonEducation>();
-        }
-
+        public int Id { get; set; }
         public string Name { get; set; }
         public string ContactPersonName { get; set; }
         public string ContactPersonContactNo { get; set; }
@@ -23,7 +17,6 @@ namespace PublicData.Application.Shared
         public int? SchoolTypeId { get; set; }
 
         public virtual Detail SchoolType { get; set; }
-        public virtual ICollection<PersonEducation> PersonEducation { get; set; }
 
         public void Mapping(Profile profile)
         {

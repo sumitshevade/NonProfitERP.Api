@@ -6,6 +6,7 @@ namespace PublicData.Application.Shared
 {
     public partial class DivisionHeadModel : IMapFrom<DivisionHead>
     {
+        public int Id { get; set; }
         public int PersonId { get; set; }
         public int DivisionId { get; set; }
         public int FromYear { get; set; }

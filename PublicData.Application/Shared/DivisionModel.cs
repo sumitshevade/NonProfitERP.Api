@@ -2,18 +2,18 @@
 using AutoMapper;
 using PublicData.Application.Mappings;
 using System.Collections.Generic;
+using PublicData.DAL.Entities;
 
 namespace PublicData.Application.Shared
 {
-    using DAL.Entities;
-
-    public class DivisionModel : IMapFrom<Division>
+    public partial class DivisionModel : IMapFrom<Division>
     {
         public DivisionModel()
         {
             DivisionHead = new HashSet<DivisionHead>();
         }
 
+        public int Id { get; set; }
         public int DepartmentId { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }

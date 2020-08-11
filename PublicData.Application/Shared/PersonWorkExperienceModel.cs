@@ -4,8 +4,9 @@ using PublicData.DAL.Entities;
 
 namespace PublicData.Application.Shared
 {
-    public class PersonWorkExperienceModel : IMapFrom<PersonWorkExperience>
+    public partial class PersonWorkExperienceModel : IMapFrom<PersonWorkExperience>
     {
+        public int Id { get; set; }
         public int PersonId { get; set; }
         public int IndustryId { get; set; }
         public string OtherIndustry { get; set; }
@@ -20,7 +21,6 @@ namespace PublicData.Application.Shared
         public string LongText { get; set; }
 
         public virtual Detail Industry { get; set; }
-        public virtual Person Person { get; set; }
         public virtual Detail Status { get; set; }
         public virtual Detail WorkType { get; set; }
 

@@ -4,8 +4,9 @@ using PublicData.DAL.Entities;
 
 namespace PublicData.Application.Shared
 {
-    public class PersonPrivateInformationModel : IMapFrom<PersonPrivateInformation>
+    public partial class PersonPrivateInformationModel : IMapFrom<PersonPrivateInformation>
     {
+        public int Id { get; set; }
         public int PersonId { get; set; }
         public bool MaritalStatus { get; set; }
         public string AadharCardNo { get; set; }
@@ -22,7 +23,6 @@ namespace PublicData.Application.Shared
         public virtual Detail Caste { get; set; }
         public virtual Detail Category { get; set; }
         public virtual Detail ParentalStatus { get; set; }
-        public virtual Person Person { get; set; }
         public virtual Detail Religion { get; set; }
 
         public void Mapping(Profile profile)

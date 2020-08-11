@@ -2,11 +2,10 @@
 using AutoMapper;
 using PublicData.Application.Mappings;
 using System.Collections.Generic;
+using PublicData.DAL.Entities;
 
 namespace PublicData.Application.Shared
 {
-    using DAL.Entities;
-
     public partial class DepartmentModel : IMapFrom<Department>
     {
         public DepartmentModel()
@@ -15,6 +14,7 @@ namespace PublicData.Application.Shared
             Division = new HashSet<Division>();
         }
 
+        public int Id { get; set; }
         public string Name { get; set; }
         public DateTime? StartedAt { get; set; }
         public string LongText { get; set; }

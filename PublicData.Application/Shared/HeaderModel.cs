@@ -1,11 +1,10 @@
 ﻿using AutoMapper;
 using System.Collections.Generic;
 using PublicData.Application.Mappings;
+using PublicData.DAL.Entities;
 
 namespace PublicData.Application.Shared
 {
-    using DAL.Entities;
-
     public partial class HeaderModel : IMapFrom<Header>
     {
         public HeaderModel()
