@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace PublicData.DAL.Entities
@@ -7,16 +7,29 @@ namespace PublicData.DAL.Entities
     {
         public AspNetRoles()
         {
-            AspNetRoleClaims = new HashSet<AspNetRoleClaims>();
-            AspNetUserRoles = new HashSet<AspNetUserRoles>();
+            #region Generated Constructor
+            RoleAspNetRoleClaims = new HashSet<AspNetRoleClaims>();
+            RoleAspNetUserRoles = new HashSet<AspNetUserRoles>();
+            #endregion
         }
 
+        #region Generated Properties
         public string Id { get; set; }
+
         public string Name { get; set; }
+
         public string NormalizedName { get; set; }
+
         public string ConcurrencyStamp { get; set; }
 
-        public virtual ICollection<AspNetRoleClaims> AspNetRoleClaims { get; set; }
-        public virtual ICollection<AspNetUserRoles> AspNetUserRoles { get; set; }
+        #endregion
+
+        #region Generated Relationships
+        public virtual ICollection<AspNetRoleClaims> RoleAspNetRoleClaims { get; set; }
+
+        public virtual ICollection<AspNetUserRoles> RoleAspNetUserRoles { get; set; }
+
+        #endregion
+
     }
 }

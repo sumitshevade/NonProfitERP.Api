@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace PublicData.DAL.Entities
@@ -7,13 +7,35 @@ namespace PublicData.DAL.Entities
     {
         public Program()
         {
-            ProgramAttendance = new HashSet<ProgramAttendance>();
-            Ticket = new HashSet<Ticket>();
+            #region Generated Constructor
+            ProgramAttendances = new HashSet<ProgramAttendance>();
+            Tickets = new HashSet<Ticket>();
+            #endregion
         }
+
+        #region Generated Properties
+        public int Id { get; set; }
 
         public string Name { get; set; }
 
-        public virtual ICollection<ProgramAttendance> ProgramAttendance { get; set; }
-        public virtual ICollection<Ticket> Ticket { get; set; }
+        public string CreatedById { get; set; }
+
+        public DateTime CreatedAt { get; set; }
+
+        public string UpdatedById { get; set; }
+
+        public DateTime? UpdatedAt { get; set; }
+
+        public bool IsActive { get; set; }
+
+        #endregion
+
+        #region Generated Relationships
+        public virtual ICollection<ProgramAttendance> ProgramAttendances { get; set; }
+
+        public virtual ICollection<Ticket> Tickets { get; set; }
+
+        #endregion
+
     }
 }

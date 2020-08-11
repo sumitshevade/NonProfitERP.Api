@@ -15,7 +15,7 @@ namespace PublicData.DAL.Configurations
         {
             if (services == null) throw new ArgumentNullException(nameof(services));
 
-            services.AddDbContext<PublicDataContext>(options =>options.UseSqlServer(connectionString));
+            services.AddDbContext<PublicDataContext>(options => options.UseSqlServer(connectionString)); // .UseLazyLoadingProxies()
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<PublicDataContext>();
             //Dynamically DI repositories 

@@ -59,7 +59,11 @@ namespace PublicData.API
             services.AddControllers(options =>
                     options.Filters.Add(new ApiExceptionFilter()));
                 //.AddNewtonsoftJson(options =>
-                //    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+                //{
+                //    options.SerializerSettings.ContractResolver = new Newtonsoft.Json.Serialization.DefaultContractResolver();
+                //    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+                //    //options.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.Objects;
+                //});
 
             // Authorization
             var policies = new Dictionary<string, ClaimRequirement>

@@ -29,7 +29,6 @@ namespace PublicData.DAL.Repository
             return _dbSet.Find(id);
         }
 
-        // Implemented from Threenine.Data
         public virtual TEntity GetFirstOrDefault(Expression<Func<TEntity, bool>> predicate = null,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
             Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null,
@@ -47,7 +46,6 @@ namespace PublicData.DAL.Repository
             return query.FirstOrDefault();
         }
 
-        // Implemented from Threenine.Data
         public virtual IQueryable<TEntity> GetList(Expression<Func<TEntity, bool>> predicate = null,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
             Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null,

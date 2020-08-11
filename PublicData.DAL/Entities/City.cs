@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+using System;
+using System.Collections.Generic;
 
 namespace PublicData.DAL.Entities
 {
@@ -6,15 +7,39 @@ namespace PublicData.DAL.Entities
     {
         public City()
         {
-            PersonAddress = new HashSet<PersonAddress>();
-            University = new HashSet<University>();
+            #region Generated Constructor
+            PersonAddresses = new HashSet<PersonAddress>();
+            Universities = new HashSet<University>();
+            #endregion
         }
 
+        #region Generated Properties
+        public int Id { get; set; }
+
         public int? StateId { get; set; }
+
         public string Name { get; set; }
 
+        public string CreatedById { get; set; }
+
+        public DateTime CreatedAt { get; set; }
+
+        public string UpdatedById { get; set; }
+
+        public DateTime? UpdatedAt { get; set; }
+
+        public bool IsActive { get; set; }
+
+        #endregion
+
+        #region Generated Relationships
+        public virtual ICollection<PersonAddress> PersonAddresses { get; set; }
+
         public virtual State State { get; set; }
-        public virtual ICollection<PersonAddress> PersonAddress { get; set; }
-        public virtual ICollection<University> University { get; set; }
+
+        public virtual ICollection<University> Universities { get; set; }
+
+        #endregion
+
     }
 }

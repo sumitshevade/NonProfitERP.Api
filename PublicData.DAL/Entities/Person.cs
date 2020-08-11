@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace PublicData.DAL.Entities
@@ -7,59 +7,113 @@ namespace PublicData.DAL.Entities
     {
         public Person()
         {
-            DepartmentHead = new HashSet<DepartmentHead>();
-            DivisionHead = new HashSet<DivisionHead>();
-            PersonAchievement = new HashSet<PersonAchievement>();
-            PersonAddress = new HashSet<PersonAddress>();
-            PersonContact = new HashSet<PersonContact>();
-            PersonDisability = new HashSet<PersonDisability>();
-            PersonEducation = new HashSet<PersonEducation>();
-            PersonFamilyDetail = new HashSet<PersonFamilyDetail>();
-            PersonHealthDetail = new HashSet<PersonHealthDetail>();
-            PersonHobbyFavorite = new HashSet<PersonHobbyFavorite>();
-            PersonLanguage = new HashSet<PersonLanguage>();
-            PersonPrivateInformation = new HashSet<PersonPrivateInformation>();
-            PersonSocialMediaAccount = new HashSet<PersonSocialMediaAccount>();
-            PersonWorkExperience = new HashSet<PersonWorkExperience>();
-            ProgramAttendance = new HashSet<ProgramAttendance>();
-            Ticket = new HashSet<Ticket>();
+            #region Generated Constructor
+            DepartmentHeads = new HashSet<DepartmentHead>();
+            DivisionHeads = new HashSet<DivisionHead>();
+            PersonAchievements = new HashSet<PersonAchievement>();
+            PersonAddresses = new HashSet<PersonAddress>();
+            PersonContacts = new HashSet<PersonContact>();
+            PersonDisabilities = new HashSet<PersonDisability>();
+            PersonEducations = new HashSet<PersonEducation>();
+            PersonFamilyDetails = new HashSet<PersonFamilyDetail>();
+            PersonHealthDetails = new HashSet<PersonHealthDetail>();
+            PersonHobbyFavorites = new HashSet<PersonHobbyFavorite>();
+            PersonLanguages = new HashSet<PersonLanguage>();
+            PersonPrivateInformations = new HashSet<PersonPrivateInformation>();
+            PersonSocialMediaAccounts = new HashSet<PersonSocialMediaAccount>();
+            PersonWorkExperiences = new HashSet<PersonWorkExperience>();
+            ProgramAttendances = new HashSet<ProgramAttendance>();
+            Tickets = new HashSet<Ticket>();
+            #endregion
         }
 
+        #region Generated Properties
+        public int Id { get; set; }
+
         public string LoginId { get; set; }
+
         public int PersonTypeId { get; set; }
+
         public string FirstName { get; set; }
+
         public string MiddleName { get; set; }
+
         public string LastName { get; set; }
+
         public DateTime? BirthDate { get; set; }
+
         public string BirthLocation { get; set; }
+
         public string LongText { get; set; }
+
         public string Keywords { get; set; }
+
         public bool IsWorker { get; set; }
+
         public int WorkFrequencyId { get; set; }
+
         public DateTime? JoiningDate { get; set; }
+
         public int? JoinedAsId { get; set; }
+
         public int? CountryId { get; set; }
+
+        public string CreatedById { get; set; }
+
+        public DateTime CreatedAt { get; set; }
+
+        public string UpdatedById { get; set; }
+
+        public DateTime? UpdatedAt { get; set; }
+
         public bool IsAlive { get; set; }
+
         public DateTime? DateOfExpiry { get; set; }
 
+        public bool IsActive { get; set; }
+
+        #endregion
+
+        #region Generated Relationships
         public virtual Country Country { get; set; }
-        public virtual Detail PersonType { get; set; }
-        public virtual Detail WorkFrequency { get; set; }
-        public virtual ICollection<DepartmentHead> DepartmentHead { get; set; }
-        public virtual ICollection<DivisionHead> DivisionHead { get; set; }
-        public virtual ICollection<PersonAchievement> PersonAchievement { get; set; }
-        public virtual ICollection<PersonAddress> PersonAddress { get; set; }
-        public virtual ICollection<PersonContact> PersonContact { get; set; }
-        public virtual ICollection<PersonDisability> PersonDisability { get; set; }
-        public virtual ICollection<PersonEducation> PersonEducation { get; set; }
-        public virtual ICollection<PersonFamilyDetail> PersonFamilyDetail { get; set; }
-        public virtual ICollection<PersonHealthDetail> PersonHealthDetail { get; set; }
-        public virtual ICollection<PersonHobbyFavorite> PersonHobbyFavorite { get; set; }
-        public virtual ICollection<PersonLanguage> PersonLanguage { get; set; }
-        public virtual ICollection<PersonPrivateInformation> PersonPrivateInformation { get; set; }
-        public virtual ICollection<PersonSocialMediaAccount> PersonSocialMediaAccount { get; set; }
-        public virtual ICollection<PersonWorkExperience> PersonWorkExperience { get; set; }
-        public virtual ICollection<ProgramAttendance> ProgramAttendance { get; set; }
-        public virtual ICollection<Ticket> Ticket { get; set; }
+
+        public virtual ICollection<DepartmentHead> DepartmentHeads { get; set; }
+
+        public virtual ICollection<DivisionHead> DivisionHeads { get; set; }
+
+        public virtual ICollection<PersonAchievement> PersonAchievements { get; set; }
+
+        public virtual ICollection<PersonAddress> PersonAddresses { get; set; }
+
+        public virtual ICollection<PersonContact> PersonContacts { get; set; }
+
+        public virtual ICollection<PersonDisability> PersonDisabilities { get; set; }
+
+        public virtual ICollection<PersonEducation> PersonEducations { get; set; }
+
+        public virtual ICollection<PersonFamilyDetail> PersonFamilyDetails { get; set; }
+
+        public virtual ICollection<PersonHealthDetail> PersonHealthDetails { get; set; }
+
+        public virtual ICollection<PersonHobbyFavorite> PersonHobbyFavorites { get; set; }
+
+        public virtual ICollection<PersonLanguage> PersonLanguages { get; set; }
+
+        public virtual ICollection<PersonPrivateInformation> PersonPrivateInformations { get; set; }
+
+        public virtual ICollection<PersonSocialMediaAccount> PersonSocialMediaAccounts { get; set; }
+
+        public virtual ICollection<PersonWorkExperience> PersonWorkExperiences { get; set; }
+
+        public virtual ICollection<ProgramAttendance> ProgramAttendances { get; set; }
+
+        public virtual ICollection<Ticket> Tickets { get; set; }
+
+        public virtual Detail TypeDetail { get; set; }
+
+        public virtual Detail WorkFrequencyDetail { get; set; }
+
+        #endregion
+
     }
 }
