@@ -3,7 +3,6 @@
 @inject NavigationManager NavigationManager
 @inherits LoginComponent
 
-<hr />
 <h4 class="text-center">Login</h4>
 
 @if (ShowErrors)
@@ -18,35 +17,34 @@ else if (IsLoading == false)
 }
 else
 {
-    <div class="row mt-5">
-        <div class="col-md-3">
-        </div>
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Please enter your details</h5>
-                    <EditForm Model="loginModel" OnValidSubmit="HandleLogin">
-                        <DataAnnotationsValidator />
-                        <ValidationSummary />
+    <div class="row mt-5 text-center">
+        <div class="col-sm-12">
+            <EditForm class="form-signin" Model="loginModel" OnValidSubmit="HandleLogin">
+                <DataAnnotationsValidator />
+                <ValidationSummary />
 
-                        <div class="form-group">
-                            <label for="email">Email address</label>
-                            <InputText Id="email" Class="form-control" @bind-Value="loginModel.Email" />
-                            <ValidationMessage For="@(() => loginModel.Email)" />
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <InputText Id="password" type="password" Class="form-control" @bind-Value="loginModel.Password" />
-                            <ValidationMessage For="@(() => loginModel.Password)" />
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </EditForm>
+                <img class="mb-4" src="brand/bootstrap-solid.svg" alt="" width="72" height="72">
+                <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+                
+                <label for="inputEmail" class="sr-only">Email address</label>
+                <InputText type="email" id="email" class="form-control" @bind-Value="loginModel.Email" placeholder="Email address" required autofocus />
+                <ValidationMessage For="@(() => loginModel.Email)" />
+
+                <label for="inputPassword" class="sr-only">Password</label>
+                <InputText type="password" id="password" class="form-control" @bind-Value="loginModel.Password" placeholder="Password" required />
+                <ValidationMessage For="@(() => loginModel.Password)" />
+                <div class="checkbox mb-3">
+                    <label>
+                        <input type="checkbox" value="remember-me"> Remember me
+                    </label>
                 </div>
-            </div>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                <p class="mt-5 mb-3 text-muted">&copy; 2020</p>
+            </EditForm>
         </div>
-    </div>
-    
+    </div>   
 }
+
 @code {
 
     private LoginModel loginModel = new LoginModel();

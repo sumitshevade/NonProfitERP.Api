@@ -34,7 +34,7 @@ namespace PublicData.WebClient
             //builder.Services.AddAutoMapper(typeof(AssetRequestAllocationProfile));
             builder.Services.AddScoped<AuthenticationStateProvider, ApiAuthenticationStateProvider>();
             builder.Services.AddScoped<IAuthService, AuthService>();
-            builder.Services.AddScoped<IPeopleService, PeopleService>();
+            builder.Services.AddScoped<IPersonService, PersonService>();
 
             await builder.Build().RunAsync();
         }

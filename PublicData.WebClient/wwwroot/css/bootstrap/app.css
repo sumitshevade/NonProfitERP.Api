@@ -8,11 +8,11 @@ a, .btn-link {
     color: #0366d6;
 }
 
-.btn-primary {
+/*.btn-primary {
     color: #fff;
     background-color: #1b6ec2;
     border-color: #1861ac;
-}
+}*/
 
 app {
     position: relative;
@@ -46,7 +46,7 @@ app {
             text-overflow: ellipsis;
         }
 
-.sidebar {
+/*.sidebar {
     background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
 }
 
@@ -95,15 +95,15 @@ app {
             .sidebar .nav-item a:hover {
                 background-color: rgba(255,255,255,0.1);
                 color: white;
-            }
+            }*/
 
 .content {
     padding-top: 1.1rem;
 }
 
-.navbar-toggler {
+/*.navbar-toggler {
     background-color: rgba(255, 255, 255, 0.1);
-}
+}*/
 
 .valid.modified:not([type=checkbox]) {
     outline: 1px solid #26b050;
@@ -155,12 +155,12 @@ app {
         flex-direction: row;
     }
 
-    .sidebar {
+    /*.sidebar {
         width: 250px;
         height: 100vh;
         position: sticky;
         top: 0;
-    }
+    }*/
 
     .main .top-row {
         position: sticky;
@@ -172,9 +172,9 @@ app {
         padding-right: 1.5rem !important;
     }
 
-    .navbar-toggler {
+    /*.navbar-toggler {
         display: none;
-    }
+    }*/
 
     .sidebar .collapse {
         /* Never collapse the sidebar for wide screens */
@@ -204,7 +204,7 @@ app {
     }
 }
 
-.nav-item a:active::after {
+/*.nav-item a:active::after {
     content: "*";
     margin-left: 1em;
-}
+}*/

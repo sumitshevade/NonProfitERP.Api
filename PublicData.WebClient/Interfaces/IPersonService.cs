@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 
 namespace PublicData.WebClient.Interfaces
 {
-    public interface IPeopleService
+    public interface IPersonService
     {
-        Task<IEnumerable<People>> Get();
-        Task<int> Add(People people);
-        Task<People> GetById(int id);
-        Task Update(People people);
+        Task<IEnumerable<PersonModel>> Get();
+        Task<int> Add(PersonModel people);
+        Task<PersonModel> GetById(int id);
+        Task Update(PersonModel people);
         Task<HttpResponseMessage> Delete(int id);
     }
 }

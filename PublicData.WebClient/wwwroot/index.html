@@ -7,7 +7,8 @@
     <title>PublicData.WebClient</title>
     <base href="/" />
     <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
-    <link href="css/app.css" rel="stylesheet" />
+    <link href="css/bootstrap/app.css" rel="stylesheet" />
+    <link href="css/bootstrap/styles.css" rel="stylesheet" />
     <link href="_content/Blazored.Toast/blazored-toast.css" rel="stylesheet" />
 </head>
 
@@ -19,8 +20,16 @@
         <a href="" class="reload">Reload</a>
         <a class="dismiss">🗙</a>
     </div>
+
     <script src="_content/Microsoft.AspNetCore.Components.WebAssembly.Authentication/AuthenticationService.js"></script>
     <script src="_framework/blazor.webassembly.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="./js/vendor/jquery.slim.min.js"><\/script>')</script>
+    <script src="js/bootstrap.bundle.js"></script>
+    <script src="js/custom-js.js"></script>
 </body>
 
 </html>

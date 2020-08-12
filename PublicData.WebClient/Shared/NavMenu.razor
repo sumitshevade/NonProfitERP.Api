@@ -1,98 +1,50 @@
-﻿<div class="top-row pl-4 navbar navbar-dark">
-    <a class="navbar-brand text-white">PDMS</a>
-</div>
+﻿<nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
+    <a class="navbar-brand" href="/">PublicData</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-    <ul class="nav flex-column">
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown1" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">Person</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown1">
+                    <a class="dropdown-item" href="person/create">Add New</a>
+                    <a class="dropdown-item" href="person/search">Search</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown2" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">Master</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown2">
+                    <a class="dropdown-item" href="master/country">Country</a>
+                    <a class="dropdown-item" href="master/state">State</a>
+                    <a class="dropdown-item" href="master/city">City</a>
+                    <a class="dropdown-item" href="master/district">District</a>
+                    <a class="dropdown-item" href="master/taluka">Taluka</a>
+                    <a class="dropdown-item" href="master/department">Department</a>
+                    <a class="dropdown-item" href="master/division">Division</a>
+                    <a class="dropdown-item" href="master/university">University</a>
+                    <a class="dropdown-item" href="master/school">School</a>
+                    <a class="dropdown-item" href="master/other">Other</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Program</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Library</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">CEC</a>
+            </li>
+        </ul>
 
-        <NavLink class="nav-link" href=""></NavLink>
-
-        <AuthorizeView>
-            <Authorized>
-                <li class="nav-item px-3">
-                    <NavLink class="nav-link" href="home" Match="NavLinkMatch.All">
-                        <span class="oi oi-home" aria-hidden="true"></span> Home
-                    </NavLink>
-                </li>
-            </Authorized>
-        </AuthorizeView>
-
-        <AuthorizeView>
-            <Authorized>
-                <li class="nav-item px-3">
-                    <NavLink class="nav-link" @onclick="()=> expandSubMenu = !expandSubMenu">
-                        <span class="oi oi-people" aria-hidden="true"></span> Account
-                    </NavLink>
-                    @if (expandSubMenu)
-                    {
-                        <ul class="nav flex-column">
-                            <li class="nav-item px-3">
-                                <NavLink class="expand-menu" href="account/changepassword">
-                                    <span class="oi oi-headphones" aria-hidden="true"></span> Change Password
-                                </NavLink>
-                            </li>
-                        </ul>
-                    }
-                </li>
-            </Authorized>
-        </AuthorizeView>
-
-        <AuthorizeView Roles="Admin">
-            <Authorized>
-                <li class="nav-item px-3">
-                    <NavLink class="nav-link" href="people">
-                        <span class="oi oi-plus" aria-hidden="true"></span> People
-                    </NavLink>
-                </li>
-                <li class="nav-item px-3">
-                    <NavLink class="nav-link" href="schools">
-                        <span class="oi oi-list-rich" aria-hidden="true"></span> School
-                    </NavLink>
-                </li>
-                <li class="nav-item px-3">
-                    <NavLink class="nav-link" href="persontypes">
-                        <span class="oi oi-magnifying-glass" aria-hidden="true"></span> Person Type
-                    </NavLink>
-                </li>
-                <li class="nav-item px-3">
-                    <NavLink class="nav-link" href="masters">
-                        <span class="oi oi-list-rich" aria-hidden="true"></span> Other Masters
-                    </NavLink>
-                </li>
-            </Authorized>
-        </AuthorizeView>
-
-        <AuthorizeView Roles="User">
-            <Authorized>
-                <li class="nav-item px-3">
-                    <NavLink class="nav-link" href="people">
-                        <span class="oi oi-list-rich" aria-hidden="true"></span> Read People
-                    </NavLink>
-                </li>
-            </Authorized>
-        </AuthorizeView>
-
-        <AuthorizeView>
-            <Authorized>
-                <li class="nav-item px-3">
-                    <NavLink class="nav-link" href="reports">
-                        <span class="oi oi-briefcase" aria-hidden="true"></span> Reports
-                    </NavLink>
-                </li>
-            </Authorized>
-        </AuthorizeView>
-    </ul>
-</div>
-
-@code {
-    private bool collapseNavMenu = true;
-
-    private bool expandSubMenu;
-
-    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-
-    private void ToggleNavMenu()
-    {
-        collapseNavMenu = !collapseNavMenu;
-    }
-}
+        <a class="btn btn-primary" href="logout">Logout</a>
+    </div>
+</nav>

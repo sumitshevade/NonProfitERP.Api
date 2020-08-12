@@ -1,0 +1,87 @@
+﻿@page "/master/other"
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card-deck mb-3 text-left">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">Other Masters</h4>
+                </div>
+
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-3 offset-sm-2">
+                            Header
+                            <select name="headerid" id="headerid" class="form-control" autofocus>
+                                <option value="0">Select...</option>
+                                <option value="1">Award Level</option>
+                                <option value="2">Caste</option>
+                                <option value="3">Category</option>
+                                <option value="4">Course</option>
+                                <option value="5">Degree</option>
+                                <option value="6">Hobby Favorite</option>
+                            </select>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <button class="btn btn-success" id="addDetail">+ Add Details</button>
+
+                            <form action="othermaster.html" method="POST" id="detailForm">
+                                <div class="row mt-3">
+                                    <div class="col">
+                                        Value
+                                        <input type="text" class="form-control" placeholder="Value">
+                                        <br>
+                                        <button type="submit" class="btn btn-success" id="saveDetail">Save</button>
+                                        <button type="reset" class="btn btn-warning" id="cancelDetail">Cancel</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <table class="table table-hover mt-5">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Value</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>Mark</td>
+                                        <td>
+                                            <button class="btn btn-success btn-sm" type="button">Edit</button>
+                                            <button class="btn btn-danger btn-sm" type="button">Delete</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td>Jacob</td>
+                                        <td>
+                                            <button class="btn btn-success btn-sm" type="button">Edit</button>
+                                            <button class="btn btn-danger btn-sm" type="button">Delete</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Larry the Bird</td>
+                                        <td>
+                                            <button class="btn btn-success btn-sm" type="button">Edit</button>
+                                            <button class="btn btn-danger btn-sm" type="button">Delete</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+
+}

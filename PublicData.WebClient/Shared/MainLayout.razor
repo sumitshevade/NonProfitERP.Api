@@ -1,9 +1,6 @@
 ﻿@inherits LayoutComponentBase
 
-
-<div class="sidebar">
-    <NavMenu />
-</div>
+<NavMenu></NavMenu>
 
 <div class="main">
     <div class="top-row px-4 auth">
@@ -14,7 +11,8 @@
         @Body
     </div>
 </div>
+
 <Blazored.Toast.BlazoredToasts Position="Blazored.Toast.Configuration.ToastPosition.TopCenter"
-                Timeout="5"
-                SuccessClass="success-toast-override"
-                />
+    Timeout="5"
+    SuccessClass="success-toast-override"
+/>

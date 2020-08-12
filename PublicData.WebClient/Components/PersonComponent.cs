@@ -4,26 +4,29 @@ using Microsoft.AspNetCore.Components;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Reflection;
 
 namespace PublicData.WebClient.Components
 {
-    public class PeopleComponent : ComponentBase
+    public class PersonComponent : ComponentBase
     {
         [Inject]
-        public IPeopleService PeopleService { get; set; }
+        public IPersonService PeopleService { get; set; }
 
         [Inject]
-        NavigationManager NavigationManager { get; set; }
+        public CommonComponent CommonComponent { get; set; }
 
         public bool IsLoading = false;
-        [Parameter] public IEnumerable<People> People { get; set; } = new List<People>();
-        [Parameter] public People Person { get; set; } = new People();
+        [Parameter] public IEnumerable<PersonModel> People { get; set; } = new List<PersonModel>();
+        [Parameter] public PersonModel Person { get; set; } = new PersonModel();
         [Parameter] public int PeopleId { get; set; }
-        [Parameter] public People PeopleUpdate { get; set; } = new People();
+        [Parameter] public PersonModel PeopleUpdate { get; set; } = new PersonModel();
         [Parameter] public IEnumerable<Details> PersonTypes { get; set; } = new List<Details>();
+        [Parameter] public string ContactFormDisplay { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
+            ContactFormDisplay = "d-none";
             PersonTypes = new List<Details> { new Details { Id = 1, Value = "Wardhak" }, new Details { Id = 2, Value = "Teacher" } };
             await Task.Run(Get);
         }
@@ -48,13 +51,13 @@ namespace PublicData.WebClient.Components
         public async void Save()
         {
             await PeopleService.Add(Person);
-            NavigationManager.NavigateTo("/people");
+            CommonComponent.NavigateToRoute("/person/create");
         }
 
         public void Edit()
         {
             PeopleService.Update(PeopleUpdate);
-            NavigationManager.NavigateTo("/people");
+            CommonComponent.NavigateToRoute("/person/create");
         }
 
         protected async Task Delete(int id)

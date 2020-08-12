@@ -4,9 +4,9 @@ using System.Text.RegularExpressions;
 
 namespace PublicData.WebClient.Validators
 {
-    public class PeopleValidator : AbstractValidator<People>
+    public class PersonValidator : AbstractValidator<PersonModel>
     {
-        public PeopleValidator()
+        public PersonValidator()
         {
             RuleFor(c => c.FirstName)
               .NotEmpty().WithMessage("First name is required.")
