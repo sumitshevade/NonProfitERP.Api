@@ -23,6 +23,16 @@
             <ValidationSummary />
 
             <div class="form-group">
+                <label for="firstname">First Name</label>
+                <InputText Id="firstname" class="form-control" @bind-Value="RegisterModel.FirstName" />
+                <ValidationMessage For="@(() => RegisterModel.FirstName)" />
+            </div>
+            <div class="form-group">
+                <label for="lastname">Last Name</label>
+                <InputText Id="lastname" class="form-control" @bind-Value="RegisterModel.LastName" />
+                <ValidationMessage For="@(() => RegisterModel.LastName)" />
+            </div>
+            <div class="form-group">
                 <label for="email">Email address</label>
                 <InputText Id="email" class="form-control" @bind-Value="RegisterModel.Email" />
                 <ValidationMessage For="@(() => RegisterModel.Email)" />
@@ -52,9 +62,9 @@
     {
         ShowErrors = false;
 
-        var result = await AuthService.Register(RegisterModel);
+        var result = await AuthService.RegisterUserAsync(RegisterModel);
 
-        if (result.Successful)
+        if (result.IsSuccess)
         {
             NavigationManager.NavigateTo("/login");
         }

@@ -9,6 +9,7 @@ using PublicData.WebClient.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using PublicData.WebClient.Components;
 
 namespace PublicData.WebClient
 {
@@ -17,7 +18,6 @@ namespace PublicData.WebClient
         public static async Task Main(string[] args)
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
-            builder.RootComponents.Add<App>("app");
 
             //builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
@@ -26,15 +26,19 @@ namespace PublicData.WebClient
             //    builder.Configuration.Bind("Local", options.ProviderOptions);
             //});
 
-            builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri("https://localhost:44304/") });
+            builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri("https://localhost:44333/") });
 
             builder.Services.AddBlazoredLocalStorage();
-            builder.Services.AddBlazoredToast();
+            builder.Services.AddOptions();
             builder.Services.AddAuthorizationCore();
+            builder.Services.AddBlazoredToast();
             //builder.Services.AddAutoMapper(typeof(AssetRequestAllocationProfile));
-            builder.Services.AddScoped<AuthenticationStateProvider, ApiAuthenticationStateProvider>();
+            builder.Services.AddScoped<AuthenticationStateProvider, LocalAuthenticationStateProvider>();
             builder.Services.AddScoped<IAuthService, AuthService>();
             builder.Services.AddScoped<IPersonService, PersonService>();
+            builder.Services.AddScoped<ICommonService, CommonService>();
+
+            builder.RootComponents.Add<App>("app");
 
             await builder.Build().RunAsync();
         }

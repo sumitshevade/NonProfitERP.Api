@@ -1,19 +1,59 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using Blazored.LocalStorage;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
+using PublicData.WebClient.Interfaces;
+using PublicData.WebClient.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace PublicData.WebClient.Components
 {
     public class LoginComponent : ComponentBase
     {
-        public bool IsLoading = false;
+        [Inject] IAuthService AuthService { get; set; }
+        [Inject] NavigationManager NavigationManager { get; set; }
+        [Inject] ILocalStorageService StorageService { get; set; }
+        [Inject] public ICommonService CommonService { get; set; }
+        [Inject] AuthenticationStateProvider AuthenticationStateProvider { get; set; }
 
-        protected override async Task OnInitializedAsync()
+        public LoginModel loginModel = new LoginModel();
+        public bool IsBusy { get; set; } = false;
+        public AlertMessageType MessageType { get; set; } = AlertMessageType.Success;
+        public string Message { get; set; } = string.Empty;
+
+        public async Task LoginUser()
         {
-            IsLoading = true;
-            StateHasChanged();
+            try
+            {
+                IsBusy = true;
+                var result = await AuthService.LoginUserAsync(loginModel);
+                if (result.IsSuccess)
+                {
+                    var userInfo = new LocalUserInfo()
+                    {
+                        AccessToken = result.Message,
+                        Email = result.UserInfo["Email"],
+                        FirstName = result.UserInfo["FirstName"],
+                        LastName = result.UserInfo["LastName"],
+                        Id = result.UserInfo[System.Security.Claims.ClaimTypes.NameIdentifier],
+                    };
+
+                    await StorageService.SetItemAsync("User", userInfo);
+                    await AuthenticationStateProvider.GetAuthenticationStateAsync();
+
+                    NavigationManager.NavigateTo("/home");
+                }
+                else
+                {
+                    Message = result.Message;
+                    MessageType = AlertMessageType.Error;
+                    IsBusy = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                IsBusy = false;
+            }
         }
     }
 }

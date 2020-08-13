@@ -4,12 +4,13 @@ namespace PublicData.WebClient.Models
 {
     public class LoginModel
     {
-        [Required(ErrorMessage = "Email is required.")]
-        [EmailAddress(ErrorMessage = "Email is in an invalid format.")]
+        [Required]
+        [StringLength(50)]
+        [EmailAddress]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "Password is required.")]
-        [StringLength(100, ErrorMessage = "Password must be at least 6 characters long.")]
+        [Required]
+        [StringLength(50)]
         public string Password { get; set; }
     }
 }

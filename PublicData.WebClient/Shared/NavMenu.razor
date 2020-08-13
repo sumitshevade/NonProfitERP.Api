@@ -1,18 +1,21 @@
-﻿<nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
+﻿@inject AuthenticationStateProvider authenticationStateProvider
+@inject NavigationManager  navigationManager
+
+<nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
     <a class="navbar-brand" href="/">PublicData</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
             aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <div class="collapse navbar-collapse justify-content-between" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
                 <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="dropdown1" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">Person</a>
+                    aria-haspopup="true" aria-expanded="false">Person</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown1">
                     <a class="dropdown-item" href="person/create">Add New</a>
                     <a class="dropdown-item" href="person/search">Search</a>
@@ -20,7 +23,7 @@
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="dropdown2" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">Master</a>
+                    aria-haspopup="true" aria-expanded="false">Master</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown2">
                     <a class="dropdown-item" href="master/country">Country</a>
                     <a class="dropdown-item" href="master/state">State</a>
@@ -45,6 +48,32 @@
             </li>
         </ul>
 
-        <a class="btn btn-primary" href="logout">Logout</a>
+        @*<ul class="navbar-nav ml-auto">
+            <li class="nav-item d-inline-block">
+                Hello, @context.User.Identity.Name!
+                <a class="nav-link" href="logout">Logout</a>
+            </li>
+        </ul>
+        <div class="ml-auto d-inline-block">
+            <span>
+                Hello, @context.User.Identity.Name!
+                <a class="nav-link" @onclick="Logout">Logout</a>
+            </span>
+        </div>
+
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="authentication/login">Login</a>
+            </li>
+        </ul>*@
     </div>
 </nav>
+
+@code {
+    async Task Logout()
+    {
+        var localStateProvider = (LocalAuthenticationStateProvider)authenticationStateProvider;
+        await localStateProvider.LogoutAsync();
+        navigationManager.NavigateTo("/authentication/login");
+    }
+}

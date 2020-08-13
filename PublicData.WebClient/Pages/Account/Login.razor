@@ -1,31 +1,34 @@
 ﻿@page "/authentication/login"
-@inject Interfaces.IAuthService AuthService
-@inject NavigationManager NavigationManager
 @inherits LoginComponent
+@layout AuthLayout
 
-<h4 class="text-center">Login</h4>
 
-@if (ShowErrors)
+@if (MessageType == AlertMessageType.Error)
 {
     <div class="alert alert-danger" role="alert">
-        <p>@Error</p>
+        <p>@Message</p>
     </div>
 }
-else if (IsLoading == false)
+else if (IsBusy == true)
 {
-    <div class="spinner"></div>
+    <div class="text-center m-auto" style="padding: 150px 0px">
+        <span class="spinner-grow"></span>
+        Loading...
+    </div>
 }
 else
 {
     <div class="row mt-5 text-center">
         <div class="col-sm-12">
-            <EditForm class="form-signin" Model="loginModel" OnValidSubmit="HandleLogin">
+            <h3>'Swa'-roop wardhinee</h3>
+            <h5>Data Management System</h5>
+            <EditForm class="form-signin" Model="loginModel" OnValidSubmit="LoginUser">
                 <DataAnnotationsValidator />
                 <ValidationSummary />
 
                 <img class="mb-4" src="brand/bootstrap-solid.svg" alt="" width="72" height="72">
                 <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-                
+
                 <label for="inputEmail" class="sr-only">Email address</label>
                 <InputText type="email" id="email" class="form-control" @bind-Value="loginModel.Email" placeholder="Email address" required autofocus />
                 <ValidationMessage For="@(() => loginModel.Email)" />
@@ -42,30 +45,5 @@ else
                 <p class="mt-5 mb-3 text-muted">&copy; 2020</p>
             </EditForm>
         </div>
-    </div>   
-}
-
-@code {
-
-    private LoginModel loginModel = new LoginModel();
-    private bool ShowErrors;
-    private string Error = "";
-
-    private async Task HandleLogin()
-    {
-        ShowErrors = false;
-
-        var result = await AuthService.Login(loginModel);
-
-        if (result.Successful)
-        {
-            NavigationManager.NavigateTo("/");
-        }
-        else
-        {
-            Error = result.Error;
-            ShowErrors = true;
-        }
-    }
-
+    </div>
 }

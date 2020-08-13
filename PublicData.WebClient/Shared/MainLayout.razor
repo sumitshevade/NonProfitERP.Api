@@ -1,13 +1,12 @@
 ﻿@inherits LayoutComponentBase
 
-<NavMenu></NavMenu>
+<NavMenu />
+<div class="top-row px-4 auth">
+    <LoginDisplay />
+</div>
 
-<div class="main">
-    <div class="top-row px-4 auth">
-        <LoginDisplay />
-    </div>
-
-    <div class="content px-4">
+<div class="main mt-5">
+    <div class="content mt-5 px-4">
         @Body
     </div>
 </div>
