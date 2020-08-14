@@ -23,7 +23,7 @@ namespace PublicData.Application.Features.Master.Header.GetAllHeaders
 
         public async Task<IList<HeaderModel>> Handle(GetHeadersQuery request, CancellationToken cancellationToken)
         {
-            return await _headerRepository.GetList()
+            return await _headerRepository.GetList(x => x.IsActive == true)
                 .ProjectTo<HeaderModel>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
         }

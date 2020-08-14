@@ -48,7 +48,7 @@ namespace PublicData.Application.Features.Master.Taluka.UpdateTaluka
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<Taluka, UpdateTalukaCommand>();
+            profile.CreateMap<UpdateTalukaCommand, Taluka>();
         }
     }
 }

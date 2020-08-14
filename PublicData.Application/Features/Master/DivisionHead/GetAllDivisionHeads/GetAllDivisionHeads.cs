@@ -23,7 +23,7 @@ namespace PublicData.Application.Features.Master.DivisionHead.GetAllDivisionHead
 
         public async Task<IList<DivisionHeadModel>> Handle(GetAllDivisionHeadsQuery request, CancellationToken cancellationToken)
         {
-            return await _divisionHeadRepository.GetList()
+            return await _divisionHeadRepository.GetList(x => x.IsActive == true)
                 .ProjectTo<DivisionHeadModel>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
         }

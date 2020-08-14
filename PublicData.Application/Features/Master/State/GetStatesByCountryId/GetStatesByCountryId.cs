@@ -23,7 +23,7 @@ namespace PublicData.Application.Features.Master.State.GetStatesByCountryId
 
         public async Task<IList<StateModel>> Handle(GetStatesByCountryIdQuery request, CancellationToken cancellationToken)
         {
-            return await _stateRepository.GetList(x => x.CountryId == request.CountryId)
+            return await _stateRepository.GetList(x => x.CountryId == request.CountryId && x.IsActive == true)
                 .ProjectTo<StateModel>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
         }

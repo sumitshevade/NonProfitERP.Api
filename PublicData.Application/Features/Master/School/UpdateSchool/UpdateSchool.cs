@@ -53,7 +53,7 @@ namespace PublicData.Application.Features.Master.School.UpdateSchool
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<School, UpdateSchoolCommand>();
+            profile.CreateMap<UpdateSchoolCommand, School>();
         }
     }
 }

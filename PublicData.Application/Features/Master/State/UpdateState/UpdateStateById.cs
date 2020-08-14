@@ -44,5 +44,10 @@ namespace PublicData.Application.Features.Master.State.UpdateStateById
         public int Id { get; set; }
         public string Name { get; set; }
         public int? CountryId { get; set; }
+
+        public void Mapping(Profile profile)
+        {
+            profile.CreateMap<UpdateStateCommnd, State>();
+        }
     }
 }

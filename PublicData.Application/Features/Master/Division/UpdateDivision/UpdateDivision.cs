@@ -51,7 +51,7 @@ namespace PublicData.Application.Features.Master.Division.UpdateDivision
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<Division, UpdateDivisionCommand>();
+            profile.CreateMap<UpdateDivisionCommand, Division>();
         }
     }
 }

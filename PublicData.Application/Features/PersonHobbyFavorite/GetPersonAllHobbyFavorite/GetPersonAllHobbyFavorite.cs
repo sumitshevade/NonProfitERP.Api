@@ -23,7 +23,7 @@ namespace PublicData.Application.Features.PersonHobbyFavorite.GetPersonAllHobbyF
 
         public async Task<IList<PersonHobbyFavoriteModel>> Handle(GetPersonAllHobbyFavoriteQuery request, CancellationToken cancellationToken)
         {
-            return await _personHobbyFavoriteRepository.GetList(x => x.PersonId == request.PersonId)
+            return await _personHobbyFavoriteRepository.GetList(x => x.PersonId == request.PersonId && x.IsActive == true)
                 .ProjectTo<PersonHobbyFavoriteModel>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
         }

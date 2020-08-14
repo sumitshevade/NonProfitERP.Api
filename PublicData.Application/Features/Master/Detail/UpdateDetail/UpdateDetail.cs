@@ -48,7 +48,7 @@ namespace PublicData.Application.Features.Master.Detail.UpdateDetail
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<Detail, UpdateDetailCommand>();
+            profile.CreateMap<UpdateDetailCommand, Detail>();
         }
     }
 }

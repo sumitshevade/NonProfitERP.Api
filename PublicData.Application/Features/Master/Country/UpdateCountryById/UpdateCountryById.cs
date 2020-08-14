@@ -46,7 +46,7 @@ namespace PublicData.Application.Features.Master.Country.UpdateCountryById
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<Country, UpdateCountryByIdCommand>();
+            profile.CreateMap<UpdateCountryByIdCommand, Country>();
         }
     }
 }

@@ -23,7 +23,7 @@ namespace PublicData.Application.Features.Master.University.GetAllUniversitiesBy
 
         public async Task<IList<UniversityModel>> Handle(GetAllUniversitiesQuery request, CancellationToken cancellationToken)
         {
-            return await _universityRepository.GetList()
+            return await _universityRepository.GetList(x => x.IsActive == true)
                 .ProjectTo<UniversityModel>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
         }

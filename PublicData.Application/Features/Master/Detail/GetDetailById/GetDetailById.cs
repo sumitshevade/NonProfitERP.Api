@@ -20,7 +20,8 @@ namespace PublicData.Application.Features.Master.Detail.GetDetailById
 
         public async Task<DetailModel> Handle(GetDetailByIdQuery request, CancellationToken cancellationToken)
         {
-            return await Task.FromResult(_mapper.Map<DetailModel>(_detailRepository.GetById(request.Id)));
+            var result = _mapper.Map<DetailModel>(_detailRepository.GetById(request.Id));
+            return await Task.FromResult(result);
         }
     }
 

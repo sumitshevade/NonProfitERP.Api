@@ -23,7 +23,7 @@ namespace PublicData.Application.Features.Master.City.GetCitiesByStateId
 
         public async Task<IList<CityModel>> Handle(GetCitiesByStateId request, CancellationToken cancellationToken)
         {
-            return await _cityRepository.GetList(x => x.StateId == request.StateId)
+            return await _cityRepository.GetList(x => x.StateId == request.StateId && x.IsActive == true)
                 .ProjectTo<CityModel>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
         }

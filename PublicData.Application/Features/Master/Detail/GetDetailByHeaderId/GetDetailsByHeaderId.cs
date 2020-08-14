@@ -10,7 +10,7 @@ using AutoMapper.QueryableExtensions;
 
 namespace PublicData.Application.Features.Master.Detail.GetDetailByHeaderId
 {
-    public class GetDetailsByHeaderIdQueryHandler : IRequestHandler<GetDetailsByHeaderIdQuery, IList<HeaderModel>>
+    public class GetDetailsByHeaderIdQueryHandler : IRequestHandler<GetDetailsByHeaderIdQuery, IList<DetailModel>>
     {
         private readonly IMapper _mapper;
         private readonly IDetailRepository _detailRepository;
@@ -21,15 +21,15 @@ namespace PublicData.Application.Features.Master.Detail.GetDetailByHeaderId
             _mapper = mapper;
         }
 
-        public async Task<IList<HeaderModel>> Handle(GetDetailsByHeaderIdQuery request, CancellationToken cancellationToken)
+        public async Task<IList<DetailModel>> Handle(GetDetailsByHeaderIdQuery request, CancellationToken cancellationToken)
         {
-            return await _detailRepository.GetList(x => x.HeaderId == request.HeaderId)
-                .ProjectTo<HeaderModel>(_mapper.ConfigurationProvider)
+            return await _detailRepository.GetList(x => x.HeaderId == request.HeaderId && x.IsActive == true)
+                .ProjectTo<DetailModel>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
         }
     }
 
-    public class GetDetailsByHeaderIdQuery : IRequest<IList<HeaderModel>>
+    public class GetDetailsByHeaderIdQuery : IRequest<IList<DetailModel>>
     {
         public int HeaderId { get; set; }
     }

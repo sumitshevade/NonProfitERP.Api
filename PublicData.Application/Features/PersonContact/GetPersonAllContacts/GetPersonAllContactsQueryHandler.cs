@@ -23,7 +23,7 @@ namespace PublicData.Application.Features.PersonContact.GetPersonAllContacts
 
         public async Task<IList<PersonContactModel>> Handle(GetPersonAllContactsQuery request, CancellationToken cancellationToken)
         {
-            return await _personContactRepository.GetList(x => x.PersonId == request.PersonId)
+            return await _personContactRepository.GetList(x => x.PersonId == request.PersonId && x.IsActive == true)
                 .ProjectTo<PersonContactModel>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
         }

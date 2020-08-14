@@ -23,7 +23,7 @@ namespace PublicData.Application.Features.Master.Taluka.GetAllTalukasByDistrictI
 
         public async Task<IList<TalukaModel>> Handle(GetAllTalukasByDistrictIdQuery request, CancellationToken cancellationToken)
         {
-            return await _talukaRepository.GetList(x => x.DistrictId == request.DistrictId)
+            return await _talukaRepository.GetList(x => x.DistrictId == request.DistrictId && x.IsActive == true)
                 .ProjectTo<TalukaModel>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
         }

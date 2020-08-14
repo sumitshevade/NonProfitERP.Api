@@ -48,7 +48,7 @@ namespace PublicData.Application.Features.Master.District.UpdateDistrict
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<District, UpdateDistrictCommand>();
+            profile.CreateMap<UpdateDistrictCommand, District>();
         }
     }
 }

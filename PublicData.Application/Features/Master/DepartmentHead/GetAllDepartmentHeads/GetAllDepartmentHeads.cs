@@ -23,7 +23,7 @@ namespace PublicData.Application.Features.Master.DepartmentHead.GetAllDepartment
 
         public async Task<IList<DepartmentHeadModel>> Handle(GetAllDepartmentHeadsQuery request, CancellationToken cancellationToken)
         {
-            return await _departmentHeadRepository.GetList()
+            return await _departmentHeadRepository.GetList(x => x.IsActive == true)
                 .ProjectTo<DepartmentHeadModel>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
         }

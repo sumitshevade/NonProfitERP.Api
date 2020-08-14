@@ -23,9 +23,14 @@ namespace PublicData.Application.Features.PersonAddress.GetPersonAllAddresses
 
         public async Task<IList<PersonAddressModel>> Handle(GetPersonAllAddressesQuery request, CancellationToken cancellationToken)
         {
-            return await _personAddressRepository.GetList(x => x.PersonId == request.PersonId)
+            return await _personAddressRepository.GetList(x => x.PersonId == request.PersonId && x.IsActive == true)
                 .ProjectTo<PersonAddressModel>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
         }
+    }
+
+    public class GetPersonAllAddressesQuery : IRequest<IList<PersonAddressModel>>
+    {
+        public int PersonId { get; set; }
     }
 }

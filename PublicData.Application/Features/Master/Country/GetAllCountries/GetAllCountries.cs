@@ -23,7 +23,7 @@ namespace PublicData.Application.Features.Master.Country.GetAllCountries
 
         public async Task<IList<CountryModel>> Handle(GetCountriesQuery request, CancellationToken cancellationToken)
         {
-            return await _countryRepository.GetList()
+            return await _countryRepository.GetList(x => x.IsActive == true)
                 .ProjectTo<CountryModel>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
         }

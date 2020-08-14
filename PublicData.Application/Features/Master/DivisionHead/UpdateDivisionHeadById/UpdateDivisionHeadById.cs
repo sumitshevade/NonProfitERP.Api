@@ -49,7 +49,7 @@ namespace PublicData.Application.Features.Master.DivisionHead.UpdateDivisionHead
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<DivisionHead, UpdateDivisionHeadByIdCommand>();
+            profile.CreateMap<UpdateDivisionHeadByIdCommand, DivisionHead>();
         }
     }
 }

@@ -23,7 +23,7 @@ namespace PublicData.Application.Features.Master.School.GetAllSchools
 
         public async Task<IList<SchoolModel>> Handle(GetAllSchoolsQuery request, CancellationToken cancellationToken)
         {
-            return await _schoolRepository.GetList()
+            return await _schoolRepository.GetList(x => x.IsActive == true)
                 .ProjectTo<SchoolModel>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
         }

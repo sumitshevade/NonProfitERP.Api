@@ -23,7 +23,7 @@ namespace PublicData.Application.Features.PersonWorkExperience.GetPersonAllWorkE
 
         public async Task<IList<PersonWorkExperienceModel>> Handle(GetPersonAllWorkExperiencesQuery request, CancellationToken cancellationToken)
         {
-            return await _personWorkExperienceRepository.GetList(x => x.PersonId == request.PersonId)
+            return await _personWorkExperienceRepository.GetList(x => x.PersonId == request.PersonId && x.IsActive == true)
                 .ProjectTo<PersonWorkExperienceModel>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
         }

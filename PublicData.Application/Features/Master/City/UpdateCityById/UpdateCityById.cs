@@ -47,7 +47,7 @@ namespace PublicData.Application.Features.Master.City.UpdateCityById
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<City, UpdateCityByIdCommand>();
+            profile.CreateMap<UpdateCityByIdCommand, City>();
         }
     }
 }

@@ -23,7 +23,7 @@ namespace PublicData.Application.Features.PersonFamilyDetail.GetPersonAllFamilyD
 
         public async Task<IList<PersonFamilyDetailModel>> Handle(GetPersonAllFamilyDetailsQuery request, CancellationToken cancellationToken)
         {
-            return await _personFamilyDetailsRepository.GetList(x => x.PersonId == request.PersonId)
+            return await _personFamilyDetailsRepository.GetList(x => x.PersonId == request.PersonId && x.IsActive == true)
                 .ProjectTo<PersonFamilyDetailModel>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
         }

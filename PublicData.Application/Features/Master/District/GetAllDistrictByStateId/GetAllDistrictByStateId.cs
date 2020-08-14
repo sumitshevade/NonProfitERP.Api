@@ -23,7 +23,7 @@ namespace PublicData.Application.Features.Master.District.GetAllDistrictByStateI
 
         public async Task<IList<DistrictModel>> Handle(GetAllDistrictByStateIdQuery request, CancellationToken cancellationToken)
         {
-            return await _districtRepository.GetList(x => x.StateId == request.StateId)
+            return await _districtRepository.GetList(x => x.StateId == request.StateId && x.IsActive == true)
                 .ProjectTo<DistrictModel>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
         }

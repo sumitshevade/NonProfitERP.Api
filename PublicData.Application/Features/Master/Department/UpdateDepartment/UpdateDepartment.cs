@@ -49,7 +49,7 @@ namespace PublicData.Application.Features.Master.Department.UpdateDepartment
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<Department, UpdateDepartmentCommand>();
+            profile.CreateMap<UpdateDepartmentCommand, Department>();
         }
     }
 }

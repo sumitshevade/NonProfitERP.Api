@@ -40,7 +40,7 @@ namespace PublicData.Application.Features.PersonAchievement.UpdatePersonAchievem
         }
     }
 
-    public class UpdatePersonAchievementByAchievementIdCommand : IRequest<bool>, IMapFrom<UpdatePersonAchievementByAchievementIdCommand>
+    public class UpdatePersonAchievementByAchievementIdCommand : IRequest<bool>, IMapFrom<PersonAchievement>
     {
         public int Id { get; set; }
         public int PersonId { get; set; }
