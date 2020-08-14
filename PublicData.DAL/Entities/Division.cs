@@ -13,27 +13,12 @@ namespace PublicData.DAL.Entities
         }
 
         #region Generated Properties
-        public int Id { get; set; }
-
+        
         public int DepartmentId { get; set; }
-
         public string Name { get; set; }
-
         public string Address { get; set; }
-
         public DateTime StartDate { get; set; }
-
         public string LongText { get; set; }
-
-        public string CreatedById { get; set; }
-
-        public DateTime CreatedAt { get; set; }
-
-        public string UpdatedById { get; set; }
-
-        public DateTime? UpdatedAt { get; set; }
-
-        public bool IsActive { get; set; }
 
         #endregion
 

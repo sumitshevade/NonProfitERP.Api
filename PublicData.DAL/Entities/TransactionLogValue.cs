@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace PublicData.DAL.Entities
 {
-    public partial class TransactionLogValue : Entity
+    public partial class TransactionLogValue
     {
         public TransactionLogValue()
         {

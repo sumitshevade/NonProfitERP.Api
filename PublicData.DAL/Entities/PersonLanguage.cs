@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-
 namespace PublicData.DAL.Entities
 {
     public partial class PersonLanguage : Entity
@@ -12,25 +9,11 @@ namespace PublicData.DAL.Entities
         }
 
         #region Generated Properties
-        public int Id { get; set; }
-
+        
         public int PersonId { get; set; }
-
         public int LanguageId { get; set; }
-
         public string OtherLanguage { get; set; }
-
         public bool IsMotherTongue { get; set; }
-
-        public string CreatedById { get; set; }
-
-        public DateTime CreatedAt { get; set; }
-
-        public string UpdatedById { get; set; }
-
-        public DateTime? UpdatedAt { get; set; }
-
-        public bool IsActive { get; set; }
 
         #endregion
 
