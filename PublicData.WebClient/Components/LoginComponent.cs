@@ -41,7 +41,7 @@ namespace PublicData.WebClient.Components
                     await StorageService.SetItemAsync("User", userInfo);
                     await AuthenticationStateProvider.GetAuthenticationStateAsync();
 
-                    NavigationManager.NavigateTo("/home");
+                    NavigationManager.NavigateTo("/");
                 }
                 else
                 {

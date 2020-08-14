@@ -1,11 +1,26 @@
 ﻿@page "/person/create"
 @inherits PersonComponent
+@using PublicData.WebClient.DataModels
 
-<div class="row">
-    <div class="col-sm-12">
-        <EditForm Model="PersonModel" OnValidSubmit="HandleCreate">
-            <DataAnnotationsValidator />
-            <ValidationSummary />
+@if (MessageType == AlertMessageType.Error)
+{
+    <div class="alert alert-danger" role="alert">
+        <p>@Message</p>
+    </div>
+}
+else if (CommonService.IsBusy == true)
+{
+    <div class="text-center m-auto" style="padding: 150px 0px">
+        <span class="spinner-grow"></span>
+        <br />
+        Loading...
+        @* TODO: Add random text here like fun facts *@
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="col-sm-12">
             <div class="card-deck mb-3 text-left">
                 <div class="card mb-4 shadow-sm">
                     <div class="card-header">
@@ -24,47 +39,47 @@
                             </li>
                             @*<li class="nav-item">
                                     <a class="nav-link" id="pills-address-tab" data-toggle="pill" href="#pills-address"
-                                       role="tab" aria-controls="pills-address" aria-selected="false">Address</a>
+                                        role="tab" aria-controls="pills-address" aria-selected="false">Address</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="pills-education-tab" data-toggle="pill" href="#pills-education"
-                                       role="tab" aria-controls="pills-education" aria-selected="false">Education</a>
+                                        role="tab" aria-controls="pills-education" aria-selected="false">Education</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="pills-work-tab" data-toggle="pill" href="#pills-work"
-                                       role="tab" aria-controls="pills-work" aria-selected="false">Work Exp</a>
+                                        role="tab" aria-controls="pills-work" aria-selected="false">Work Exp</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="pills-family-tab" data-toggle="pill" href="#pills-family"
-                                       role="tab" aria-controls="pills-family" aria-selected="false">Family Details</a>
+                                        role="tab" aria-controls="pills-family" aria-selected="false">Family Details</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="pills-disability-tab" data-toggle="pill" href="#pills-disability"
-                                       role="tab" aria-controls="pills-disability" aria-selected="false">Disabilities</a>
+                                        role="tab" aria-controls="pills-disability" aria-selected="false">Disabilities</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="pills-health-tab" data-toggle="pill" href="#pills-health"
-                                       role="tab" aria-controls="pills-health" aria-selected="false">Health Details</a>
+                                        role="tab" aria-controls="pills-health" aria-selected="false">Health Details</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="pills-achievement-tab" data-toggle="pill" href="#pills-achievement"
-                                       role="tab" aria-controls="pills-achievement" aria-selected="false">Achivement</a>
+                                        role="tab" aria-controls="pills-achievement" aria-selected="false">Achivement</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="pills-sm-tab" data-toggle="pill" href="#pills-sm"
-                                       role="tab" aria-controls="pills-sm" aria-selected="false">Social Media</a>
+                                        role="tab" aria-controls="pills-sm" aria-selected="false">Social Media</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="pills-private-tab" data-toggle="pill" href="#pills-private"
-                                       role="tab" aria-controls="pills-private" aria-selected="false">Private</a>
+                                        role="tab" aria-controls="pills-private" aria-selected="false">Private</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="pills-language-tab" data-toggle="pill" href="#pills-language"
-                                       role="tab" aria-controls="pills-language" aria-selected="false">Language</a>
+                                        role="tab" aria-controls="pills-language" aria-selected="false">Language</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="pills-hobby-tab" data-toggle="pill" href="#pills-hobby"
-                                       role="tab" aria-controls="pills-hobby" aria-selected="false">Hobby</a>
+                                        role="tab" aria-controls="pills-hobby" aria-selected="false">Hobby</a>
                                 </li>*@
                         </ul>
 
@@ -73,7 +88,9 @@
                         ** If others logged in, show the shakha name
                         <div class="tab-content" id="pills-tabContent">
                             <div class="tab-pane fade show active border m-3 p-4" id="pills-basic" role="tabpanel" aria-labelledby="pills-basic-tab">
-                                <form action="dashboard.html" method="POST">
+                                <EditForm Model="PersonModel" OnValidSubmit="HandleCreate">
+                                    <DataAnnotationsValidator />
+                                    <ValidationSummary />
                                     <div class="row">
                                         <div class="col-sm-3">
                                             Shakha / Branch
@@ -83,9 +100,13 @@
                                         </div>
                                         <div class="col-sm-3">
                                             Current Role
-                                            <select name="persontype" id="persontype" class="form-control" autofocus>
+                                            <InputSelect @bind-Value="Person.PersonTypeId" class="form-control" required>
                                                 <option value="0">Select...</option>
-                                            </select>
+                                                @foreach (var item in PersonTypes)
+                                                {
+                                                    <option value="@item.Id">@item.Value</option>
+                                                }
+                                            </InputSelect>
                                         </div>
                                         <div class="col-sm-3">
                                             Is Worker
@@ -97,27 +118,29 @@
                                         </div>
                                         <div class="col-sm-3">
                                             Work Frequency
-                                            <select name="workfrequency" id="workfrequency" class="form-control" required>
+                                            <InputSelect @bind-Value="Person.PersonTypeId" class="form-control" required>
                                                 <option value="0">Select...</option>
-                                                <option value="1">Daily</option>
-                                                <option value="2">Weekly</option>
-                                                <option value="3">Monthly</option>
-                                            </select>
+                                                @foreach (var item in WorkFrequencies)
+                                                {
+                                                    <option value="@item.Id">@item.Value</option>
+                                                }
+                                            </InputSelect>
                                         </div>
                                     </div>
 
                                     <div class="row mt-3">
                                         <div class="col-sm-3">
                                             First Name
-                                            <input type="text" name="firstname" id="firstname" class="form-control" placeholder="First Name" required>
+                                            <InputText @bind-Value="Person.FirstName" class="form-control" placeholder="First Name" required></InputText>
+                                            <ValidationMessage For="@(() => Person.FirstName)" />
                                         </div>
                                         <div class="col-sm-3">
                                             Middle Name
-                                            <input type="text" name="middlename" id="middlename" class="form-control" placeholder="Middle Name">
+                                            <InputText @bind-Value="Person.MiddleName" class="form-control" placeholder="Middle Name"></InputText>
                                         </div>
                                         <div class="col-sm-3">
                                             Last Name
-                                            <input type="text" name="lastname" id="lastname" class="form-control" placeholder="Last Name" required>
+                                            <InputText @bind-Value="Person.LastName" class="form-control" placeholder="Last Name" required></InputText>
                                         </div>
                                         <div class="col-sm-3">
                                             Citizen Of
@@ -131,35 +154,36 @@
                                     <div class="row mt-3">
                                         <div class="col-sm-3">
                                             Birth Date
-                                            <input type="date" name="birthdate" id="birthdate" class="form-control">
+                                            <InputDate @bind-Value="Person.BirthDate" class="form-control"></InputDate>
                                         </div>
                                         <div class="col-sm-3">
                                             Birth Location
-                                            <input type="text" id="birthlocation" name="birthlocation" class="form-control" placeholder="Birth Location">
+                                            <InputText @bind-Value="Person.BirthLocation" class="form-control" placeholder="Birth Location"></InputText>
                                         </div>
                                         <div class="col-sm-3">
                                             Joining Date
-                                            <input type="date" name="joiningdate" id="joiningdate" class="form-control">
+                                            <InputDate @bind-Value="Person.JoiningDate" class="form-control"></InputDate>
                                         </div>
                                         <div class="col-sm-3">
                                             Joined As
-                                            <select name="joinedas" id="joinedas" class="form-control" required>
+                                            <InputSelect @bind-Value="Person.JoinedAsId" class="form-control" required>
                                                 <option value="0">Select...</option>
-                                                <option value="1">Wardhak</option>
-                                                <option value="2">Teacher</option>
-                                                <option value="3">Dhol Tasha</option>
-                                            </select>
+                                                @foreach (var item in JoinedAs)
+                                                {
+                                                    <option value="@item.Id">@item.Value</option>
+                                                }
+                                            </InputSelect>
                                         </div>
                                     </div>
 
                                     <div class="row mt-3">
                                         <div class="col-sm-3">
                                             Additional Information
-                                            <textarea name="longtext" id="longtext" rows="3" class="form-control"></textarea>
+                                            <InputTextArea @bind-Value="Person.LongText" rows="3" class="form-control"></InputTextArea>
                                         </div>
                                         <div class="col-sm-3">
                                             Keywords
-                                            <textarea name="keywords" id="keywords" rows="3" class="form-control"></textarea>
+                                            <InputTextArea @bind-Value="Person.Keywords" rows="3" class="form-control"></InputTextArea>
                                         </div>
                                     </div>
 
@@ -169,7 +193,7 @@
                                             <button class="btn btn-warning m-1" type="reset">Cancel</button>
                                         </div>
                                     </div>
-                                </form>
+                                </EditForm>
                             </div>
 
                             <div class="tab-pane fade border m-3 p-4" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
@@ -664,13 +688,13 @@
                     </div>
                 </div>
             </div>
-        </EditForm>
+        </div>
     </div>
-</div>
+}
 
 @code {
 
-    private PersonModel PersonModel = new PersonModel();
+    private Person PersonModel = new Person();
     private bool ShowErrors;
     private string Error = "";
 

@@ -4,7 +4,7 @@
     {
         #region Properties
 
-        bool IsLoading { get; set; }
+        bool IsBusy { get; set; }
         bool ShowErrors { get; set; }
         string Error { get; set; }
 

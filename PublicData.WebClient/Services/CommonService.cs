@@ -5,7 +5,7 @@ namespace PublicData.WebClient.Services
 {
     public class CommonService : ICommonService
     {
-        public bool IsLoading { get; set; } = false;
+        public bool IsBusy { get; set; } = false;
         public bool ShowErrors { get; set; }
         public string Error { get; set; }
 

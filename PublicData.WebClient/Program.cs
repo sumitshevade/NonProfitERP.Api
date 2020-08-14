@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using PublicData.WebClient.Components;
+using PublicData.WebClient.Repository;
 
 namespace PublicData.WebClient
 {
@@ -35,7 +36,10 @@ namespace PublicData.WebClient
             //builder.Services.AddAutoMapper(typeof(AssetRequestAllocationProfile));
             builder.Services.AddScoped<AuthenticationStateProvider, LocalAuthenticationStateProvider>();
             builder.Services.AddScoped<IAuthService, AuthService>();
-            builder.Services.AddScoped<IPersonService, PersonService>();
+            builder.Services.AddScoped<IPersonRepository, PersonRepository>();
+            builder.Services.AddScoped<IDetailRepository, DetailRepository>();
+            builder.Services.AddScoped<IHeaderRepository, HeaderRepository>();
+            builder.Services.AddScoped<IDivisionRepository, DivisionRepository>();
             builder.Services.AddScoped<ICommonService, CommonService>();
 
             builder.RootComponents.Add<App>("app");

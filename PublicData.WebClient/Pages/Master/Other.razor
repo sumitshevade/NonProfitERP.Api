@@ -1,87 +1,100 @@
 ﻿@page "/master/other"
+@inherits DetailComponent
 
-<div class="row">
-    <div class="col-sm-12">
-        <div class="card-deck mb-3 text-left">
-            <div class="card mb-4 shadow-sm">
-                <div class="card-header">
-                    <h4 class="my-0 font-weight-normal">Other Masters</h4>
-                </div>
+@if (MessageType == AlertMessageType.Error)
+{
+    <div class="alert alert-danger" role="alert">
+        <p>@Message</p>
+    </div>
+}
+else if (CommonService.IsBusy == true)
+{
+    <div class="text-center m-auto" style="padding: 150px 0px">
+        <span class="spinner-grow"></span>
+        <br />
+        Loading...
+        @* TODO: Add random text here like fun facts *@
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card-deck mb-3 text-left">
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-header">
+                        <h4 class="my-0 font-weight-normal">Other Masters</h4>
+                    </div>
 
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-sm-3 offset-sm-2">
-                            Header
-                            <select name="headerid" id="headerid" class="form-control" autofocus>
-                                <option value="0">Select...</option>
-                                <option value="1">Award Level</option>
-                                <option value="2">Caste</option>
-                                <option value="3">Category</option>
-                                <option value="4">Course</option>
-                                <option value="5">Degree</option>
-                                <option value="6">Hobby Favorite</option>
-                            </select>
-                        </div>
+                    <div class="card-body">
+                        <EditForm Model="detail" OnValidSubmit="SaveDetail">
+                            <DataAnnotationsValidator />
+                            <ValidationSummary />
 
-                        <div class="col-sm-3">
-                            <button class="btn btn-success" id="addDetail">+ Add Details</button>
-
-                            <form action="othermaster.html" method="POST" id="detailForm">
-                                <div class="row mt-3">
-                                    <div class="col">
-                                        Value
-                                        <input type="text" class="form-control" placeholder="Value">
-                                        <br>
-                                        <button type="submit" class="btn btn-success" id="saveDetail">Save</button>
-                                        <button type="reset" class="btn btn-warning" id="cancelDetail">Cancel</button>
-                                    </div>
+                            <div class="row">
+                                <div class="col-sm-3 offset-sm-2">
+                                    Header
+                                    @*@bind-Value="SelectedHeaderId"*@
+                                    <InputSelect id="headerId" ValueChanged="@((string value) => ChangeHeader(value))"
+                                                 ValueExpression="@(() => SelectedHeaderId)"
+                                                 Value="@SelectedHeaderId"
+                                                 class="form-control">
+                                        <option value="0" disabled>Select...</option>
+                                        @foreach (var item in Headers)
+                                        {
+                                            <option value="@item.Id">@item.Title</option>
+                                        }
+                                    </InputSelect>
                                 </div>
-                            </form>
 
-                            <table class="table table-hover mt-5">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Value</th>
-                                        <th scope="col">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>
-                                            <button class="btn btn-success btn-sm" type="button">Edit</button>
-                                            <button class="btn btn-danger btn-sm" type="button">Delete</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>
-                                            <button class="btn btn-success btn-sm" type="button">Edit</button>
-                                            <button class="btn btn-danger btn-sm" type="button">Delete</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>Larry the Bird</td>
-                                        <td>
-                                            <button class="btn btn-success btn-sm" type="button">Edit</button>
-                                            <button class="btn btn-danger btn-sm" type="button">Delete</button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                                <div class="col-sm-3">
+                                    <a class="btn btn-success" @onclick="AddDetail">+ Add Details</a>
+
+                                    <div class="row mt-3 @DetailFormDisplay">
+                                        <div class="col">
+                                            Value
+                                            <InputText @bind-Value="detail.Value" class="form-control" placeholder="Value"></InputText>
+                                            <br>
+                                            <button type="submit" class="btn btn-success">@DetailButton</button>
+                                            <a class="btn btn-warning" id="cancelDetail">Cancel</a>
+                                        </div>
+                                    </div>
+
+                                    <table class="table table-hover mt-5">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Value</th>
+                                                <th scope="col">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Details)
+                                            {
+                                                <tr>
+                                                    <th scope="row">@item.Id</th>
+                                                    <td>@item.Value</td>
+                                                    <td>
+                                                        <a class="btn btn-success btn-sm" @onclick="(() => EditDetail(item.Id))">Edit</a>
+                                                        <a class="btn btn-danger btn-sm" @onclick="(() => DeleteDetail(item.Id))">Delete</a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </EditForm>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
-</div>
+}
 
 @code {
-
+    private void AddDetail()
+    {
+        DetailFormDisplay = CommonService.ToggleClass(DetailFormDisplay, "d-none");
+    }
 }

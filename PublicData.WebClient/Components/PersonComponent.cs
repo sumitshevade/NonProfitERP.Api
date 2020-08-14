@@ -2,71 +2,73 @@
 using PublicData.WebClient.Models;
 using Microsoft.AspNetCore.Components;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Reflection;
+using PublicData.WebClient.DataModels;
+using Microsoft.AspNetCore.Components.Authorization;
 
 namespace PublicData.WebClient.Components
 {
     public class PersonComponent : ComponentBase
     {
-        [Inject]
-        public IPersonService PeopleService { get; set; }
+        [Inject] public ICommonService CommonService { get; set; }
+        [Inject] NavigationManager NavigationManager { get; set; }
+        [Inject] IPersonRepository PersonRepository { get; set; }
+        [Inject] IDetailRepository DetailRepository { get; set; }
+        [Inject] IDivisionRepository DivisionRepository { get; set; }
 
-        [Inject]
-        public ICommonService CommonService { get; set; }
-
-        [Inject]
-        NavigationManager NavigationManager { get; set; }
-
-        public bool IsLoading = false;
-        [Parameter] public IEnumerable<PersonModel> People { get; set; } = new List<PersonModel>();
-        [Parameter] public PersonModel Person { get; set; } = new PersonModel();
-        [Parameter] public int PeopleId { get; set; }
-        [Parameter] public PersonModel PeopleUpdate { get; set; } = new PersonModel();
-        [Parameter] public IEnumerable<Details> PersonTypes { get; set; } = new List<Details>();
+        [Parameter] public Person Person { get; set; } = new Person();
+        [Parameter] public Person PeopleUpdate { get; set; } = new Person();
         [Parameter] public string ContactFormDisplay { get; set; }
+        [Parameter] public IEnumerable<Detail> JoinedAs { get; set; } = new List<Detail>();
+        [Parameter] public IEnumerable<Detail> Shakhas { get; set; } = new List<Detail>();
+        [Parameter] public IEnumerable<Detail> PersonTypes { get; set; } = new List<Detail>();
+        [Parameter] public IEnumerable<Detail> WorkFrequencies { get; set; } = new List<Detail>();
+        [CascadingParameter] private Task<AuthenticationState> AuthenticationState { get; set; }
 
-        //protected override async Task OnInitializedAsync()
-        //{
-        //    ContactFormDisplay = "d-none";
-        //    PersonTypes = new List<Details> { new Details { Id = 1, Value = "Wardhak" }, new Details { Id = 2, Value = "Teacher" } };
-        //    await Task.Run(Get);
-        //}
+        public string Message = string.Empty;
+        public AlertMessageType MessageType = AlertMessageType.Success;
 
-        //protected override async Task OnParametersSetAsync()
-        //{
-        //    //await Get(PeopleId);
-        //}
+        protected async override Task OnInitializedAsync()
+        {
+            CommonService.IsBusy = true;
 
-        //private async Task Get()
-        //{
-        //    People = (await PeopleService.Get()).ToList();
-        //    IsLoading = true;
-        //    StateHasChanged();
-        //}
+            // Set AccessToken
+            var userState = AuthenticationState.Result;
+            PersonRepository.SetToken(userState.User.FindFirst("AccessToken").Value);
+            DetailRepository.SetToken(userState.User.FindFirst("AccessToken").Value);
+            DivisionRepository.SetToken(userState.User.FindFirst("AccessToken").Value);
 
-        //protected async Task Get(int id)
-        //{
-        //    PeopleUpdate = await PeopleService.GetById(id);
-        //}
+            await GetAsync();
+            Shakhas = await DetailRepository.GetListAsync("/api/master/division");
+            PersonTypes = await DetailRepository.GetListAsync("/api/master/header/16/detail");
+            JoinedAs = await DetailRepository.GetListAsync("/api/master/header/10/detail");
+            WorkFrequencies = await DetailRepository.GetListAsync("/api/master/header/26/detail");
 
-        //public async void Save()
-        //{
-        //    await PeopleService.Add(Person);
-        //    NavigationManager.NavigateTo("/person/create");
-        //}
+            CommonService.IsBusy = false;
+        }
 
-        //public void Edit()
-        //{
-        //    PeopleService.Update(PeopleUpdate);
-        //    NavigationManager.NavigateTo("/person/create");
-        //}
+        async Task GetAsync()
+        {
+            CommonService.IsBusy = true;
 
-        //protected async Task Delete(int id)
-        //{
-        //    await PeopleService.Delete(id);
-        //    await Get();
-        //}
+            CommonService.IsBusy = false;
+        }
+
+        async Task PostAsync()
+        {
+            CommonService.IsBusy = true;
+
+            var result = await PersonRepository.AddAsync(Person, "/api/person");
+
+            if (result > 0)
+                NavigationManager.NavigateTo("/person");
+            else
+            {
+                Message = "Something went wrong";
+                MessageType = AlertMessageType.Error;
+            }
+
+            CommonService.IsBusy = false;
+        }
     }
 }

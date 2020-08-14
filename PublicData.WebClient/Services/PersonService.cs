@@ -1,15 +1,14 @@
-﻿using PublicData.WebClient.Interfaces;
-using PublicData.WebClient.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using System.Net.Http.Headers;
 using Blazored.LocalStorage;
+using PublicData.WebClient.DataModels;
 
 namespace PublicData.WebClient.Services
 {
-    public class PersonService : IPersonService
+    public class PersonService
     {
         private readonly HttpClient _httpClient;
         private readonly ILocalStorageService _localStorage;
@@ -20,33 +19,33 @@ namespace PublicData.WebClient.Services
             _localStorage = localStorage;
         }
 
-        public async Task<IEnumerable<PersonModel>> Get()
+        public async Task<IEnumerable<Person>> Get()
         {
             var token = await _localStorage.GetItemAsync<string>("authToken");
 
             if (token != null)
             {
                 _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", token);
-                return await _httpClient.GetJsonAsync<PersonModel[]>("/api/people");
+                return await _httpClient.GetJsonAsync<Person[]>("/api/people");
             }
 
             return null;
         }
 
-        public async Task<PersonModel> GetById(int id)
+        public async Task<Person> GetById(int id)
         {
             var token = await _localStorage.GetItemAsync<string>("authToken");
 
             if (token != null)
             {
                 _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", token);
-                return await _httpClient.GetJsonAsync<PersonModel>($"/api/people/{id}");
+                return await _httpClient.GetJsonAsync<Person>($"/api/people/{id}");
             }
 
             return null;
         }
 
-        public async Task<int> Add(PersonModel people)
+        public async Task<int> Add(Person people)
         {
             var token = await _localStorage.GetItemAsync<string>("authToken");
 
@@ -59,7 +58,7 @@ namespace PublicData.WebClient.Services
             return 0;
         }
 
-        public async Task Update(PersonModel people)
+        public async Task Update(Person people)
         {
             var token = await _localStorage.GetItemAsync<string>("authToken");
 

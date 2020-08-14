@@ -1,10 +1,10 @@
-﻿using PublicData.WebClient.Models;
-using FluentValidation;
+﻿using FluentValidation;
 using System.Text.RegularExpressions;
+using PublicData.WebClient.DataModels;
 
 namespace PublicData.WebClient.Validators
 {
-    public class PersonValidator : AbstractValidator<PersonModel>
+    public class PersonValidator : AbstractValidator<Person>
     {
         public PersonValidator()
         {
