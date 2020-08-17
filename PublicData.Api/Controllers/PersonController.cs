@@ -6,38 +6,47 @@ using PublicData.Application.Features.People.GetPersonById;
 using PublicData.Application.Features.Person.DeletePersonById;
 using PublicData.Application.Features.Person.UpdatePersonById;
 using PublicData.Application.Features.PersonAchievement.CreatePersonAchievement;
+using PublicData.Application.Features.PersonAchievement.DeletePersonAchievementByAchievementId;
 using PublicData.Application.Features.PersonAchievement.GetPersonAchievementByAchievementId;
 using PublicData.Application.Features.PersonAchievement.GetPersonAllAchievements;
 using PublicData.Application.Features.PersonAchievement.UpdatePersonAchievementByAchievementId;
 using PublicData.Application.Features.PersonAddress.CreatePersonAddress;
+using PublicData.Application.Features.PersonAddress.DeletePersonAddressByAddressId;
 using PublicData.Application.Features.PersonAddress.GetPersonAddressById;
 using PublicData.Application.Features.PersonAddress.GetPersonAllAddresses;
 using PublicData.Application.Features.PersonAddress.UpdatePersonAddressByAddressId;
 using PublicData.Application.Features.PersonContact.CreatePersonContact;
+using PublicData.Application.Features.PersonContact.DeletePersonContactByContactId;
 using PublicData.Application.Features.PersonContact.GetPersonAllContacts;
 using PublicData.Application.Features.PersonContact.GetPersonContactByContactId;
 using PublicData.Application.Features.PersonContact.UpdatePersonContactByContactId;
 using PublicData.Application.Features.PersonDisability.CreatePersonDisability;
+using PublicData.Application.Features.PersonDisability.DeletePersonDisabilityByDisabilityId;
 using PublicData.Application.Features.PersonDisability.GetPersonAllDisabilities;
 using PublicData.Application.Features.PersonDisability.GetPersonDisabilityByDisabilityId;
 using PublicData.Application.Features.PersonDisability.UpdatePersonDisabilityByDisabilityId;
 using PublicData.Application.Features.PersonEducation.CreatePersonEducation;
+using PublicData.Application.Features.PersonEducation.DeletePersonEducationByEducationId;
 using PublicData.Application.Features.PersonEducation.GetPersonAllEducations;
 using PublicData.Application.Features.PersonEducation.GetPersonEducationByEducationId;
 using PublicData.Application.Features.PersonEducation.UpdatePersonEducationByEducationId;
 using PublicData.Application.Features.PersonFamilyDetail.CreatePersonFamilyDetail;
+using PublicData.Application.Features.PersonFamilyDetail.DeletePersonFamilyDetail;
 using PublicData.Application.Features.PersonFamilyDetail.GetPersonAllFamilyDetails;
 using PublicData.Application.Features.PersonFamilyDetail.GetPersonFamilyDetailByFamilyId;
 using PublicData.Application.Features.PersonFamilyDetail.UpdatePersonFamilyDetailByFamilyId;
 using PublicData.Application.Features.PersonHealthDetail.CreatePersonHealthDetail;
+using PublicData.Application.Features.PersonHealthDetail.DeletePersonHealthDetail;
 using PublicData.Application.Features.PersonHealthDetail.GetPersonAllHealthDetails;
 using PublicData.Application.Features.PersonHealthDetail.GetPersonHealthDetailsByHealthId;
 using PublicData.Application.Features.PersonHealthDetail.UpdatePersonHealthDetailByHealthId;
 using PublicData.Application.Features.PersonHobbyFavorite.CreatePersonHobbyFavorite;
+using PublicData.Application.Features.PersonHobbyFavorite.DeletePersonHobbyFavorite;
 using PublicData.Application.Features.PersonHobbyFavorite.GetPersonAllHobbyFavorite;
 using PublicData.Application.Features.PersonHobbyFavorite.GetPersonHobbyFavoriteByHFId;
 using PublicData.Application.Features.PersonHobbyFavorite.UpdatePersonHobbyFavoriteByHFId;
 using PublicData.Application.Features.PersonLanguage.CreatePersonLanguage;
+using PublicData.Application.Features.PersonLanguage.DeletePersonLanguage;
 using PublicData.Application.Features.PersonLanguage.GetPersonAllLanguages;
 using PublicData.Application.Features.PersonLanguage.GetPersonLanguageByLanguageId;
 using PublicData.Application.Features.PersonLanguage.UpdatePersonLanguageByLanguageId;
@@ -45,10 +54,12 @@ using PublicData.Application.Features.PersonPrivateInformation.CreatePersonPriva
 using PublicData.Application.Features.PersonPrivateInformation.GetPersonPrivateInformation;
 using PublicData.Application.Features.PersonPrivateInformation.UpdatePersonPrivateInformation;
 using PublicData.Application.Features.PersonSocialMediaAccount.CreatePersonSocialMediaAccount;
+using PublicData.Application.Features.PersonSocialMediaAccount.DeletePersonSocialMediaAccount;
 using PublicData.Application.Features.PersonSocialMediaAccount.GetPersonAllSocialMediaAccount;
 using PublicData.Application.Features.PersonSocialMediaAccount.GetPersonSocialMediaAccountByAccountId;
 using PublicData.Application.Features.PersonSocialMediaAccount.UpdatePersonSocialMediaAccountByAccountId;
 using PublicData.Application.Features.PersonWorkExperience.CreatePersonWorkExperience;
+using PublicData.Application.Features.PersonWorkExperience.DeletePersonWorkExperience;
 using PublicData.Application.Features.PersonWorkExperience.GetPersonAllWorkExperiences;
 using PublicData.Application.Features.PersonWorkExperience.GetPersonWorkExperienceByExperienceId;
 using PublicData.Application.Features.PersonWorkExperience.UpdatePersonWorkExperienceByExperienceId;
@@ -129,6 +140,13 @@ namespace PublicData.Api.Controllers
             return new JsonResult(await Mediator.Send(command));
         }
 
+        [HttpDelete]
+        [Route("{personId}/address/{addressId}")]
+        public async Task<IActionResult> DeleteAddress(int addressId)
+        {
+            return new JsonResult(await Mediator.Send(new DeletePersonAddressByAddressIdCommand { AddressId = addressId }));
+        }
+
         #endregion
 
         #region --- Person Contact APIs ---
@@ -162,6 +180,13 @@ namespace PublicData.Api.Controllers
         public async Task<IActionResult> PutContact(UpdatePersonContactByContactIdCommand command)
         {
             return new JsonResult(await Mediator.Send(command));
+        }
+
+        [HttpDelete]
+        [Route("{personId}/contact/{contactId}")]
+        public async Task<IActionResult> DeleteContact(int contactId)
+        {
+            return new JsonResult(await Mediator.Send(new DeletePersonContactByContactIdCommand { ContactId = contactId }));
         }
 
         #endregion
@@ -199,6 +224,13 @@ namespace PublicData.Api.Controllers
             return new JsonResult(await Mediator.Send(command));
         }
 
+        [HttpDelete]
+        [Route("{personId}/achievement/{achievementId}")]
+        public async Task<IActionResult> DeleteAchievement(int achievementId)
+        {
+            return new JsonResult(await Mediator.Send(new DeletePersonAchievementByAchievementIdCommand { AchievementId = achievementId }));
+        }
+
         #endregion
 
         #region --- Person Education APIs ---
@@ -232,6 +264,13 @@ namespace PublicData.Api.Controllers
         public async Task<IActionResult> PutEducation(UpdatePersonEducationByEducationIdCommand command)
         {
             return new JsonResult(await Mediator.Send(command));
+        }
+
+        [HttpDelete]
+        [Route("{personId}/education/{educationId}")]
+        public async Task<IActionResult> DeleteEducation(int educationId)
+        {
+            return new JsonResult(await Mediator.Send(new DeletePersonEducationByEducationIdCommand { EducationId = educationId }));
         }
 
         #endregion
@@ -269,6 +308,13 @@ namespace PublicData.Api.Controllers
             return new JsonResult(await Mediator.Send(command));
         }
 
+        [HttpDelete]
+        [Route("{personId}/familidetails/{familyMemberId}")]
+        public async Task<IActionResult> DeleteFamilyMember(int familyMemberId)
+        {
+            return new JsonResult(await Mediator.Send(new DeletePersonFamilyDetailByIdCommand { FamilyMemberId = familyMemberId }));
+        }
+
         #endregion
 
         #region --- Person Disabilities APIs ---
@@ -302,6 +348,13 @@ namespace PublicData.Api.Controllers
         public async Task<IActionResult> PutDisability(UpdatePersonDisabilityByDisabilityIdCommand command)
         {
             return new JsonResult(await Mediator.Send(command));
+        }
+
+        [HttpDelete]
+        [Route("{personId}/disabilities/{disabilityId}")]
+        public async Task<IActionResult> DeleteDisability(int disabilityId)
+        {
+            return new JsonResult(await Mediator.Send(new DeletePersonDisabilityByDisabilityIdCommand { DisabilityId = disabilityId }));
         }
 
         #endregion
@@ -339,6 +392,13 @@ namespace PublicData.Api.Controllers
             return new JsonResult(await Mediator.Send(command));
         }
 
+        [HttpDelete]
+        [Route("{personId}/healthdetails/{healthDetailId}")]
+        public async Task<IActionResult> DeleteHealthDetail(int healthDetailId)
+        {
+            return new JsonResult(await Mediator.Send(new DeletePersonHealthDetailByIdCommand { HealthDetailId = healthDetailId }));
+        }
+
         #endregion
 
         #region --- Person Hobby Favorite APIs ---
@@ -374,6 +434,13 @@ namespace PublicData.Api.Controllers
             return new JsonResult(await Mediator.Send(command));
         }
 
+        [HttpDelete]
+        [Route("{personId}/hobbyfavorite/{hobbyId}")]
+        public async Task<IActionResult> DeleteHobbyFavorite(int hobbyId)
+        {
+            return new JsonResult(await Mediator.Send(new DeletePersonHobbyFavoriteByIdCommand { HobbyId = hobbyId }));
+        }
+
         #endregion
 
         #region --- Person Languages APIs ---
@@ -407,6 +474,13 @@ namespace PublicData.Api.Controllers
         public async Task<IActionResult> PutLanguage(UpdatePersonLanguageByLanguageIdCommand command)
         {
             return new JsonResult(await Mediator.Send(command));
+        }
+
+        [HttpDelete]
+        [Route("{personId}/languages/{languageId}")]
+        public async Task<IActionResult> DeleteLanguage(int personLaguangeId)
+        {
+            return new JsonResult(await Mediator.Send(new DeletePersonLanguageByIdCommand { PersonLanguageId = personLaguangeId }));
         }
 
         #endregion
@@ -471,6 +545,13 @@ namespace PublicData.Api.Controllers
             return new JsonResult(await Mediator.Send(command));
         }
 
+        [HttpDelete]
+        [Route("{personId}/smaccounts/{accountId}")]
+        public async Task<IActionResult> DeleteAccount(int accountId)
+        {
+            return new JsonResult(await Mediator.Send(new DeletePersonSocialMediaAccountByIdCommand { SocialMediaAccountId = accountId }));
+        }
+
         #endregion
 
         #region --- Person Work Experience APIs ---
@@ -504,6 +585,13 @@ namespace PublicData.Api.Controllers
         public async Task<IActionResult> PutWorkExp(UpdatePersonWorkExperienceByExperienceIdCommand command)
         {
             return new JsonResult(await Mediator.Send(command));
+        }
+
+        [HttpDelete]
+        [Route("{personId}/workexperience/{workId}")]
+        public async Task<IActionResult> DeleteWorkExp(int workId)
+        {
+            return new JsonResult(await Mediator.Send(new DeletePersonWorkExperienceByIdCommand { WorkExpId = workId }));
         }
 
         #endregion
