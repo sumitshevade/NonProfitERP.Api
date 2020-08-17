@@ -1,9 +1,15 @@
 ﻿@inherits LayoutComponentBase
+@using Blazored.Toast.Configuration
 
 <NavMenu />
 @*<div class="top-row px-4 auth">
-    <LoginDisplay />
-</div>*@
+        <LoginDisplay />
+    </div>*@
+
+<BlazoredToasts Position="ToastPosition.BottomRight" Timeout="10" />
+                @*IconType="IconType.Material"
+                ErrorIcon="error_outline" InfoIcon="school"
+                SuccessIcon="done_outline" WarningIcon="warning" />*@
 
 <div class="main mt-5">
     <div class="content mt-5 px-4">
@@ -11,7 +17,6 @@
     </div>
 </div>
 
-<Blazored.Toast.BlazoredToasts Position="Blazored.Toast.Configuration.ToastPosition.TopCenter"
-    Timeout="5"
-    SuccessClass="success-toast-override"
-/>
+@*<Blazored.Toast.BlazoredToasts Position="Blazored.Toast.Configuration.ToastPosition.TopCenter"
+                               Timeout="5"
+                               SuccessClass="success-toast-override" />*@
