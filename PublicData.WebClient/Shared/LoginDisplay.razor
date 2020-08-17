@@ -1,7 +1,7 @@
 ﻿@inject NavigationManager NavigationManager
 @inject AuthenticationStateProvider AuthenticationStateProvider
 
-<AuthorizeView>
+@*<AuthorizeView>
     <Authorized>
         <span style="top: 5px; right: 5px; z-index: 1040" class="position-absolute text-white">
             Hello, @context.User.FindFirst("FirstName").Value!
@@ -12,14 +12,5 @@
     <NotAuthorized>
         <a href="authentication/login">Log in</a>
     </NotAuthorized>
-</AuthorizeView>
+</AuthorizeView>*@
 @*nav-link *@
-@code
-    {
-    async Task Logout()
-    {
-        var localStateProvider = (LocalAuthenticationStateProvider)AuthenticationStateProvider;
-        await localStateProvider.LogoutAsync();
-        NavigationManager.NavigateTo("/authentication/login");
-    }
-}
