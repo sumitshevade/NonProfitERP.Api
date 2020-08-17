@@ -1,6 +1,5 @@
 ﻿@page "/person/create"
 @inherits PersonComponent
-@using PublicData.WebClient.DataModels
 
 @if (MessageType == AlertMessageType.Error)
 {
@@ -8,7 +7,8 @@
         <p>@Message</p>
     </div>
 }
-else if (CommonService.IsBusy == true)
+
+@if (CommonService.IsBusy == true)
 {
     <div class="text-center m-auto" style="padding: 150px 0px">
         <span class="spinner-grow"></span>
@@ -24,7 +24,10 @@ else
             <div class="card-deck mb-3 text-left">
                 <div class="card mb-4 shadow-sm">
                     <div class="card-header">
-                        <h4 class="my-0 font-weight-normal">Create Person</h4>
+                        @*TODO: Remove this save all button *@
+                        <h4 class="my-0 font-weight-normal">Create Person <span class="float-right">
+                            <button type="reset" class="btn btn-success text-white" @onclick="RemovePersonId">Save All</button></span>
+                        </h4>
                     </div>
 
                     <div class="card-body">
@@ -34,7 +37,7 @@ else
                                    role="tab" aria-controls="pills-home" aria-selected="true">Basic</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact"
+                                <a class="nav-link @ContactDisabled" id="pills-contact-tab" data-toggle="pill" href="#pills-contact"
                                    role="tab" aria-controls="pills-contact" aria-selected="false">Contact</a>
                             </li>
                             @*<li class="nav-item">
@@ -88,7 +91,7 @@ else
                         ** If others logged in, show the shakha name
                         <div class="tab-content" id="pills-tabContent">
                             <div class="tab-pane fade show active border m-3 p-4" id="pills-basic" role="tabpanel" aria-labelledby="pills-basic-tab">
-                                <EditForm Model="PersonModel" OnValidSubmit="HandleCreate">
+                                <EditForm Model="Person" OnValidSubmit="CreatePerson">
                                     <DataAnnotationsValidator />
                                     <ValidationSummary />
                                     <div class="row">
@@ -100,7 +103,10 @@ else
                                         </div>
                                         <div class="col-sm-3">
                                             Current Role
-                                            <InputSelect @bind-Value="Person.PersonTypeId" class="form-control" required>
+                                            <InputSelect ValueChanged="@((string value) => ChangePersonType(value))"
+                                                        ValueExpression="@(() => SelectedPersonTypeId)"
+                                                        Value="@SelectedPersonTypeId"
+                                                        class="form-control" required>
                                                 <option value="0">Select...</option>
                                                 @foreach (var item in PersonTypes)
                                                 {
@@ -110,15 +116,21 @@ else
                                         </div>
                                         <div class="col-sm-3">
                                             Is Worker
-                                            <select name="isworker" id="isworker" class="form-control" required title="This will help while assigning roles in work.">
-                                                <option value="0">Select...</option>
-                                                <option value="2" selected>No</option>
-                                                <option value="1">Yes</option>
-                                            </select>
+                                            <InputSelect ValueChanged="@((string value) => ChangeIsWorker(value))"
+                                                        ValueExpression="@(() => SelectedIsWorker)"
+                                                        Value="@SelectedIsWorker"
+                                                         class="form-control" required title="This will help while assigning roles in work.">
+                                                <option disabled>Select...</option>
+                                                <option value="true">Yes</option>
+                                                <option value="false">No</option>
+                                            </InputSelect>
                                         </div>
                                         <div class="col-sm-3">
                                             Work Frequency
-                                            <InputSelect @bind-Value="Person.PersonTypeId" class="form-control" required>
+                                            <InputSelect ValueChanged="@((string value) => ChangeWorkFrequency(value))"
+                                                        ValueExpression="@(() => SelectedWorkFrequencyId)"
+                                                        Value="@SelectedWorkFrequencyId"
+                                                        class="form-control" required>
                                                 <option value="0">Select...</option>
                                                 @foreach (var item in WorkFrequencies)
                                                 {
@@ -144,10 +156,16 @@ else
                                         </div>
                                         <div class="col-sm-3">
                                             Citizen Of
-                                            <select name="nationality" id="nationality" class="form-control">
+                                            <InputSelect ValueChanged="@((string value) => ChangeCountry(value))"
+                                                        ValueExpression="@(() => SelectedCoutryId)"
+                                                        Value="@SelectedCoutryId"
+                                                         class="form-control" required>
                                                 <option value="0">Select...</option>
-                                                <option value="1">India</option>
-                                            </select>
+                                                @foreach (var item in Countries)
+                                                {
+                                                    <option value="@item.Id">@item.Name</option>
+                                                }
+                                            </InputSelect>
                                         </div>
                                     </div>
 
@@ -166,7 +184,10 @@ else
                                         </div>
                                         <div class="col-sm-3">
                                             Joined As
-                                            <InputSelect @bind-Value="Person.JoinedAsId" class="form-control" required>
+                                            <InputSelect ValueChanged="@((string value) => ChangeJoinedAs(value))"
+                                                        ValueExpression="@(() => SelectedJoinedAsId)"
+                                                        Value="@SelectedJoinedAsId"
+                                                        class="form-control" required>
                                                 <option value="0">Select...</option>
                                                 @foreach (var item in JoinedAs)
                                                 {
@@ -198,70 +219,74 @@ else
 
                             <div class="tab-pane fade border m-3 p-4" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
                                 <button type="button" class="btn btn-success" @onclick="AddContact">+ Add Contact</button>
-                                <form action="person" method="POST" id="contactForm" class="@ContactFormDisplay">
+                                <EditForm Model="PersonContact" OnValidSubmit="CreatePersonContact">
+                                    <DataAnnotationsValidator />
+                                    <ValidationSummary />
                                     <div class="mt-1 border p-3">
                                         <div class="row">
                                             <div class="col-sm-3">
                                                 Contact Type
-                                                <select name="contacttype" id="contacttype" class="form-control" autofocus>
+                                                <InputSelect ValueChanged="@((string value) => ChangeContactType(value))"
+                                                                ValueExpression="@(() => SelectedContactTypeId)"
+                                                                Value="@SelectedContactTypeId"
+                                                                class="form-control" required>
                                                     <option value="0">Select...</option>
-                                                    <option value="1">Mobile No</option>
-                                                    <option value="2">Email ID</option>
-                                                </select>
+                                                    @foreach (var item in ContactTypes)
+                                                    {
+                                                        <option value="@item.Id">@item.Value</option>
+                                                    }
+                                                </InputSelect>
                                             </div>
                                             <div class="col-sm-3">
                                                 Value
-                                                <input type="text" id="detail" name="detail" class="form-control">
+                                                <InputText @bind-Value="PersonContact.Detail" class="form-control"></InputText>
                                             </div>
                                             <div class="col-sm-3">
-                                                Is Default <br>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="isdefault" id="isdefault" value="Yes" checked>
-                                                    <label class="form-check-label" for="inlineRadio1">Yes</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="isdefault" id="isdefault" value="No">
-                                                    <label class="form-check-label" for="inlineRadio2">No</label>
-                                                </div>
+                                                Is Default
+                                                <InputSelect ValueChanged="@((string value) => ChangeIsDefaultContact(value))"
+                                                             ValueExpression="@(() => SelectedIsDefaultContact)"
+                                                             Value="@SelectedIsDefaultContact"
+                                                             class="form-control" required>
+                                                    <option disabled>Select...</option>
+                                                    <option value="true">Yes</option>
+                                                    <option value="false">No</option>
+                                                </InputSelect>
                                             </div>
                                         </div>
 
                                         <div class="row mt-4">
                                             <div class="col-sm-3">
-                                                <button id="saveContact" class="btn btn-primary" type="submit">Save</button>
-                                                <button id="cancelContact" class="btn btn-warning m-1" type="reset">Cancel</button>
+                                                <button class="btn btn-primary" type="submit">@ContactSaveButton</button>
+                                                <button class="btn btn-warning m-1" type="reset">Cancel</button>
                                             </div>
                                         </div>
                                     </div>
-                                </form>
+                                </EditForm>
 
                                 <table class="table table-hover mt-5">
                                     <thead>
                                         <tr>
                                             <th scope="col">#</th>
-                                            <th scope="col">First</th>
-                                            <th scope="col">Last</th>
-                                            <th scope="col">Handle</th>
+                                            <th scope="col">Type</th>
+                                            <th scope="col">Value</th>
+                                            <th scope="col">Default</th>
+                                            <th scope="col">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@@mdo</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@@fat</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td colspan="2">Larry the Bird</td>
-                                            <td>@@twitter</td>
-                                        </tr>
+                                        @foreach (var item in PersonContacts)
+                                        {
+                                            <tr>
+                                                <th scope="row">@item.Id</th>
+                                                <td>@item.ContactTypeId</td>
+                                                <td>@item.Detail</td>
+                                                <td>@item.IsDefault</td>
+                                                <td>
+                                                    <a class="btn btn-success btn-sm" @onclick="(() => EditContact(item.Id))">Edit</a>
+                                                    <a class="btn btn-danger btn-sm" @onclick="(() => DeleteContact(item.Id))">Delete</a>
+                                                </td>
+                                            </tr>
+                                        }
                                     </tbody>
                                 </table>
                             </div>
@@ -693,15 +718,6 @@ else
 }
 
 @code {
-
-    private Person PersonModel = new Person();
-    private bool ShowErrors;
-    private string Error = "";
-
-    private Task HandleCreate()
-    {
-        return Task.FromResult(true);
-    }
 
     private void AddContact()
     {

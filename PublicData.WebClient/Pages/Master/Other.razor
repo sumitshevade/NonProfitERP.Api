@@ -6,8 +6,10 @@
     <div class="alert alert-danger" role="alert">
         <p>@Message</p>
     </div>
+    // TODO: keep this alert with rest of the HTML which will auto close. Use toast
 }
-else if (CommonService.IsBusy == true)
+
+if (CommonService.IsBusy == true)
 {
     <div class="text-center m-auto" style="padding: 150px 0px">
         <span class="spinner-grow"></span>
@@ -53,7 +55,7 @@ else
                                     <div class="row mt-3 @DetailFormDisplay">
                                         <div class="col">
                                             Value
-                                            <InputText @bind-Value="detail.Value" class="form-control" placeholder="Value"></InputText>
+                                            <InputText @bind-Value="detail.Value" class="form-control" placeholder="Value" required></InputText>
                                             <br>
                                             <button type="submit" class="btn btn-success">@DetailButton</button>
                                             <a class="btn btn-warning" id="cancelDetail">Cancel</a>

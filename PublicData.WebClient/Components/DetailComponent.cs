@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using PublicData.WebClient.Repository;
 using System;
 using System.Linq;
+using PublicData.WebClient.Models;
 
 namespace PublicData.WebClient.Components
 {
@@ -26,7 +27,7 @@ namespace PublicData.WebClient.Components
         public string DetailButton { get; set; }
 
         public string Message = string.Empty;
-        public Models.AlertMessageType MessageType = Models.AlertMessageType.Success;
+        public AlertMessageType MessageType = AlertMessageType.Success;
         
         protected async override Task OnInitializedAsync()
         {
@@ -59,20 +60,30 @@ namespace PublicData.WebClient.Components
 
         public async Task SaveDetail()
         {
-            if (DetailButton == "Save")
+            if (!string.IsNullOrWhiteSpace(detail.Value))
             {
-                detail.HeaderId = Convert.ToInt32(SelectedHeaderId);
-                await DetailRepository.AddAsync(detail, "/api/master/detail");
+                if (DetailButton == "Save")
+                {
+                    detail.HeaderId = Convert.ToInt32(SelectedHeaderId);
+                    await DetailRepository.AddAsync(detail, "/api/master/detail");
+                }
+                else
+                {
+                    detail.HeaderId = Convert.ToInt32(SelectedHeaderId);
+                    await DetailRepository.UpdateAsync(detail, "/api/master/detail");
+                }
+
+                detail.Value = "";
+                ChangeHeader(SelectedHeaderId);
+
+                DetailButton = "Save";
+                StateHasChanged();
             }
             else
             {
-                detail.HeaderId = Convert.ToInt32(SelectedHeaderId);
-                await DetailRepository.UpdateAsync(detail, "/api/master/detail");
+                Message = "Value should not be empty";
+                MessageType = Models.AlertMessageType.Error;
             }
-            ChangeHeader(SelectedHeaderId);
-
-            DetailButton = "Save";
-            StateHasChanged();
         }
 
         public void EditDetail(int detailId)
