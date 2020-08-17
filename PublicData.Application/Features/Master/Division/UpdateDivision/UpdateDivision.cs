@@ -34,6 +34,7 @@ namespace PublicData.Application.Features.Master.Division.UpdateDivision
             }
 
             var entity = _mapper.Map<Division>(request);
+            entity.IsActive = true;
             _divisionRepository.Update(entity);
 
             return Task.FromResult(_unitOfWork.Commit());

@@ -34,6 +34,7 @@ namespace PublicData.Application.Features.PersonAchievement.UpdatePersonAchievem
             }
 
             var entity = _mapper.Map<PersonAchievement>(request);
+            entity.IsActive = true;
             _personAchievementRepository.Update(entity);
 
             return Task.FromResult(_unitOfWork.Commit());

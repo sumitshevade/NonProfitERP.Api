@@ -33,6 +33,7 @@ namespace PublicData.Application.Features.PersonEducation.UpdatePersonEducationB
             }
 
             var entity = _mapper.Map<PersonEducation>(request);
+            entity.IsActive = true;
             _personEducationRepository.Update(entity);
 
             return Task.FromResult(_unitOfWork.Commit());

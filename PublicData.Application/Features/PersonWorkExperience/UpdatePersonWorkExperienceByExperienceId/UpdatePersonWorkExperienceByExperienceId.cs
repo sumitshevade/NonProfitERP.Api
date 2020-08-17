@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 using PublicData.DAL.Interfaces;
 using PublicData.Common.Exceptions;
 using PublicData.Common.Interfaces;
+using PublicData.Application.Mappings;
 
 namespace PublicData.Application.Features.PersonWorkExperience.UpdatePersonWorkExperienceByExperienceId
 {
     using DAL.Entities;
-    using PublicData.Application.Mappings;
 
     public class UpdatePersonWorkExperienceByExperienceIdCommandHandler : IRequestHandler<UpdatePersonWorkExperienceByExperienceIdCommand, bool>
     {
@@ -33,6 +33,7 @@ namespace PublicData.Application.Features.PersonWorkExperience.UpdatePersonWorkE
             }
 
             var entity = _mapper.Map<PersonWorkExperience>(request);
+            entity.IsActive = true;
             _personWorkExperienceRepository.Update(entity);
 
             return Task.FromResult(_unitOfWork.Commit());

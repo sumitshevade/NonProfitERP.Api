@@ -33,6 +33,7 @@ namespace PublicData.Application.Features.PersonPrivateInformation.UpdatePersonP
             }
 
             var entity = _mapper.Map<PersonPrivateInformation>(request);
+            entity.IsActive = true;
             _personPrivateInformationRepository.Update(entity);
 
             return Task.FromResult(_unitOfWork.Commit());

@@ -33,6 +33,7 @@ namespace PublicData.Application.Features.Master.University.UpdateUniversity
             }
 
             var entity = _mapper.Map<University>(request);
+            entity.IsActive = true;
             _universityRepository.Update(entity);
 
             return Task.FromResult(_unitOfWork.Commit());

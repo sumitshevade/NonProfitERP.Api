@@ -34,6 +34,7 @@ namespace PublicData.Application.Features.Master.Department.UpdateDepartment
             }
 
             var entity = _mapper.Map<Department>(request);
+            entity.IsActive = true;
             _departmentRepository.Update(entity);
 
             return Task.FromResult(_unitOfWork.Commit());

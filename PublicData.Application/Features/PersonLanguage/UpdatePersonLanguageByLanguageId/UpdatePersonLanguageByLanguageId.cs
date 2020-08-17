@@ -33,6 +33,7 @@ namespace PublicData.Application.Features.PersonLanguage.UpdatePersonLanguageByL
             }
 
             var entity = _mapper.Map<PersonLanguage>(request);
+            entity.IsActive = true;
             _personLanguageRepository.Update(entity);
 
             return Task.FromResult(_unitOfWork.Commit());

@@ -33,6 +33,7 @@ namespace PublicData.Application.Features.PersonHobbyFavorite.UpdatePersonHobbyF
             }
 
             var entity = _mapper.Map<PersonHobbyFavorite>(request);
+            entity.IsActive = true;
             _personHobbyFavoriteRepository.Update(entity);
 
             return Task.FromResult(_unitOfWork.Commit());

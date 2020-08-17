@@ -33,6 +33,7 @@ namespace PublicData.Application.Features.Master.Taluka.UpdateTaluka
             }
 
             var entity = _mapper.Map<Taluka>(request);
+            entity.IsActive = true;
             _talukaRepository.Update(entity);
 
             return Task.FromResult(_unitOfWork.Commit());

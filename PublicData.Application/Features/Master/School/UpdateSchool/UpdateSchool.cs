@@ -33,6 +33,7 @@ namespace PublicData.Application.Features.Master.School.UpdateSchool
             }
 
             var entity = _mapper.Map<School>(request);
+            entity.IsActive = true;
             _schoolRepository.Update(entity);
 
             return Task.FromResult(_unitOfWork.Commit());

@@ -33,6 +33,7 @@ namespace PublicData.Application.Features.PersonAddress.UpdatePersonAddressByAdd
             }
 
             var entity = _mapper.Map<PersonAddress>(request);
+            entity.IsActive = true;
             _peopleAddressRepository.Update(entity);
 
             return Task.FromResult(_unitOfWork.Commit());

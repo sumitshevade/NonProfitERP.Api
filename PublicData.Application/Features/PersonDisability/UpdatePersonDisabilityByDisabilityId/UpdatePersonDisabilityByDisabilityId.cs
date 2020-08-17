@@ -33,6 +33,7 @@ namespace PublicData.Application.Features.PersonDisability.UpdatePersonDisabilit
             }
 
             var entity = _mapper.Map<PersonDisability>(request);
+            entity.IsActive = true;
             _personDisabilityRepository.Update(entity);
 
             return Task.FromResult(_unitOfWork.Commit());

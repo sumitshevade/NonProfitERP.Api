@@ -33,6 +33,7 @@ namespace PublicData.Application.Features.Master.Country.UpdateCountryById
             }
 
             var entity = _mapper.Map<Country>(request);
+            entity.IsActive = true;
             _countryRepository.Update(entity);
 
             return Task.FromResult(_unitOfWork.Commit());

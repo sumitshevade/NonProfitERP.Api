@@ -33,6 +33,7 @@ namespace PublicData.Application.Features.PersonHealthDetail.UpdatePersonHealthD
             }
 
             var entity = _mapper.Map<PersonHealthDetail>(request);
+            entity.IsActive = true;
             _personHealthDetailsRepository.Update(entity);
 
             return Task.FromResult(_unitOfWork.Commit());

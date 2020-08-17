@@ -33,6 +33,7 @@ namespace PublicData.Application.Features.Master.Header.UpdateHeader
             }
 
             var entity = _mapper.Map<Header>(request);
+            entity.IsActive = true;
             _headerRepository.Update(entity);
 
             return Task.FromResult(_unitOfWork.Commit());

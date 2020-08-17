@@ -1,15 +1,15 @@
 ﻿using MediatR;
+using AutoMapper;
 using System.Threading;
 using System.Threading.Tasks;
 using PublicData.DAL.Interfaces;
 using PublicData.Common.Exceptions;
 using PublicData.Common.Interfaces;
-using AutoMapper;
+using PublicData.Application.Mappings;
 
 namespace PublicData.Application.Features.PersonContact.UpdatePersonContactByContactId
 {
     using DAL.Entities;
-    using PublicData.Application.Mappings;
 
     public class UpdatePersonContactByContactIdCommandHandler : IRequestHandler<UpdatePersonContactByContactIdCommand, bool>
     {
@@ -33,6 +33,7 @@ namespace PublicData.Application.Features.PersonContact.UpdatePersonContactByCon
             }
 
             var entity = _mapper.Map<PersonContact>(request);
+            entity.IsActive = true;
             _personContactRepository.Update(entity);
 
             return Task.FromResult(_unitOfWork.Commit());
@@ -45,7 +46,6 @@ namespace PublicData.Application.Features.PersonContact.UpdatePersonContactByCon
         public int PersonId { get; set; }
         public int? ContactTypeId { get; set; }
         public string Detail { get; set; }
-        public bool IsDefault { get; set; }
 
         public void Mapping(Profile profile)
         {

@@ -33,6 +33,7 @@ namespace PublicData.Application.Features.Master.Detail.UpdateDetail
             }
 
             var entity = _mapper.Map<Detail>(request);
+            entity.IsActive = true;
             _detailRepository.Update(entity);
 
             return Task.FromResult(_unitOfWork.Commit());

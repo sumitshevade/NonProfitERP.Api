@@ -33,6 +33,7 @@ namespace PublicData.Application.Features.Master.District.UpdateDistrict
             }
 
             var entity = _mapper.Map<District>(request);
+            entity.IsActive = true;
             _districtRepository.Update(entity);
 
             return Task.FromResult(_unitOfWork.Commit());

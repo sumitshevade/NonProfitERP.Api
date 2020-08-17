@@ -33,6 +33,7 @@ namespace PublicData.Application.Features.Master.State.UpdateStateById
             }
 
             var entity = _mapper.Map<State>(request);
+            entity.IsActive = true;
             _stateRepository.Update(entity);
 
             return Task.FromResult(_unitOfWork.Commit());

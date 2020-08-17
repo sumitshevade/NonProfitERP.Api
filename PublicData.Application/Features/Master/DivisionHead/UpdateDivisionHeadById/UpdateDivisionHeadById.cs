@@ -33,6 +33,7 @@ namespace PublicData.Application.Features.Master.DivisionHead.UpdateDivisionHead
             }
 
             var entity = _mapper.Map<DivisionHead>(request);
+            entity.IsActive = true;
             _divisionHeadRepository.Update(entity);
 
             return Task.FromResult(_unitOfWork.Commit());

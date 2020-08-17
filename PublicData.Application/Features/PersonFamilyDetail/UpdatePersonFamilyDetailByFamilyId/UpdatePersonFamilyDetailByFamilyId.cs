@@ -34,6 +34,7 @@ namespace PublicData.Application.Features.PersonFamilyDetail.UpdatePersonFamilyD
             }
 
             var entity = _mapper.Map<PersonFamilyDetail>(request);
+            entity.IsActive = true;
             _personFamilyDetailsRepository.Update(entity);
 
             return Task.FromResult(_unitOfWork.Commit());

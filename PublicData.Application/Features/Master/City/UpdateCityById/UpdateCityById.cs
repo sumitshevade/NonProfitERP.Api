@@ -33,6 +33,7 @@ namespace PublicData.Application.Features.Master.City.UpdateCityById
             }
 
             var entity = _mapper.Map<City>(request);
+            entity.IsActive = true;
             _cityRepository.Update(entity);
 
             return Task.FromResult(_unitOfWork.Commit());
