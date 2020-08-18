@@ -182,7 +182,7 @@ app {
     }
 }
 
-.spinner {
+/*.spinner {
     border: 16px solid silver;
     border-top: 16px solid #337AB7;
     border-radius: 50%;
@@ -192,7 +192,7 @@ app {
     top: 45%;
     left: 55%;
     position: absolute;
-}
+}*/
 
 @keyframes spin {
     0% {

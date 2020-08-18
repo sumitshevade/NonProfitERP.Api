@@ -12,7 +12,7 @@ namespace PublicData.Application.Shared
         public string Detail { get; set; }
         public bool IsDefault { get; set; }
 
-        public virtual Detail ContactType { get; set; }
+        public virtual Detail ContactTypeDetail { get; set; }
         //public virtual Person Person { get; set; }
 
         public void Mapping(Profile profile)

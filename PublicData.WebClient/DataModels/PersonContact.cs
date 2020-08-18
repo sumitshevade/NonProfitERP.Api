@@ -37,7 +37,7 @@ namespace PublicData.WebClient.DataModels
         #region Generated Relationships
         public virtual Detail ContactTypeDetail { get; set; }
 
-        public virtual Person Person { get; set; }
+        //public virtual Person Person { get; set; }
 
         #endregion
 

@@ -11,7 +11,7 @@
 @if (CommonService.IsBusy == true)
 {
     <div class="text-center m-auto" style="padding: 150px 0px">
-        <span class="spinner-grow"></span>
+        <span class="spinner-border"></span>
         <br />
         Loading...
         @* TODO: Add random text here like fun facts *@
@@ -95,12 +95,23 @@ else
                                     <DataAnnotationsValidator />
                                     <ValidationSummary />
                                     <div class="row">
-                                        <div class="col-sm-3">
+                                        @*<div class="col-sm-3">
                                             Shakha / Branch
                                             <select name="persontype" id="persontype" class="form-control" autofocus>
                                                 <option value="0">Select...</option>
                                             </select>
-                                        </div>
+
+                                            <InputSelect ValueChanged="@((string value) => ChangeDivision(value))"
+                                                         ValueExpression="@(() => SelectedDivisionId)"
+                                                         Value="@SelectedDivisionId"
+                                                         class="form-control" required>
+                                                <option value="0">Select...</option>
+                                                @foreach (var item in Shakhas)
+                                                {
+                                                    <option value="@item.Id">@item.Name</option>
+                                                }
+                                            </InputSelect>
+                                        </div>*@
                                         <div class="col-sm-3">
                                             Current Role
                                             <InputSelect ValueChanged="@((string value) => ChangePersonType(value))"
@@ -211,7 +222,7 @@ else
                                     <div class="row mt-4">
                                         <div class="col-sm-3">
                                             <button class="btn btn-primary" type="submit">Save</button>
-                                            <button class="btn btn-warning m-1" type="reset">Cancel</button>
+                                            <button class="btn btn-warning m-1" @onclick="CancelPerson" type="reset">Cancel</button>
                                         </div>
                                     </div>
                                 </EditForm>
@@ -266,7 +277,6 @@ else
                                 <table class="table table-hover mt-5">
                                     <thead>
                                         <tr>
-                                            <th scope="col">#</th>
                                             <th scope="col">Type</th>
                                             <th scope="col">Value</th>
                                             <th scope="col">Default</th>
@@ -277,13 +287,12 @@ else
                                         @foreach (var item in PersonContacts)
                                         {
                                             <tr>
-                                                <th scope="row">@item.Id</th>
-                                                <td>@item.ContactTypeId</td>
+                                                <td>@item.ContactTypeDetail.Value</td>
                                                 <td>@item.Detail</td>
                                                 <td>@item.IsDefault</td>
                                                 <td>
-                                                    <a class="btn btn-success btn-sm" @onclick="(() => EditContact(item.Id))">Edit</a>
-                                                    <a class="btn btn-danger btn-sm" @onclick="(() => DeleteContact(item.Id))">Delete</a>
+                                                    <a class="btn btn-success text-white btn-sm" @onclick="(() => EditContact(item.Id))">Edit</a>
+                                                    <a class="btn btn-danger text-white btn-sm" @onclick="(() => DeleteContact(item.Id))">Delete</a>
                                                 </td>
                                             </tr>
                                         }

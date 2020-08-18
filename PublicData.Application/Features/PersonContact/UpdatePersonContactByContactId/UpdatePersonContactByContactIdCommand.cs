@@ -46,6 +46,7 @@ namespace PublicData.Application.Features.PersonContact.UpdatePersonContactByCon
         public int PersonId { get; set; }
         public int? ContactTypeId { get; set; }
         public string Detail { get; set; }
+        public bool IsDefault { get; set; }
 
         public void Mapping(Profile profile)
         {
