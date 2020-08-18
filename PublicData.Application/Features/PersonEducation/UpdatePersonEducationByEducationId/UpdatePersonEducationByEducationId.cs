@@ -1,14 +1,14 @@
 ﻿using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
-using PublicData.Data.Interfaces;
+using PublicData.DAL.Interfaces;
 using PublicData.Common.Exceptions;
 using PublicData.Common.Interfaces;
 using AutoMapper;
 
 namespace PublicData.Application.Features.PersonEducation.UpdatePersonEducationByEducationId
 {
-    using Data.Entities;
+    using DAL.Entities;
     using PublicData.Application.Mappings;
 
     public class UpdatePersonEducationByEducationIdCommandHandler : IRequestHandler<UpdatePersonEducationByEducationIdCommand, bool>
@@ -33,6 +33,7 @@ namespace PublicData.Application.Features.PersonEducation.UpdatePersonEducationB
             }
 
             var entity = _mapper.Map<PersonEducation>(request);
+            entity.IsActive = true;
             _personEducationRepository.Update(entity);
 
             return Task.FromResult(_unitOfWork.Commit());

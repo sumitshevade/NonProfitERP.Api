@@ -2,15 +2,15 @@
 using AutoMapper;
 using System.Threading;
 using System.Threading.Tasks;
-using PublicData.Data.Interfaces;
+using PublicData.DAL.Interfaces;
 using PublicData.Common.Interfaces;
 using PublicData.Application.Mappings;
 
 namespace PublicData.Application.Features.Master.Detail.CreateDetail
 {
-    using Data.Entities;
+    using DAL.Entities;
 
-    class CreateDetailCommandHandler : IRequestHandler<CreateDetailCommand, int>
+    public class CreateDetailCommandHandler : IRequestHandler<CreateDetailCommand, int>
     {
         private readonly IMapper _mapper;
         private readonly IDetailRepository _detailRepository;
@@ -34,7 +34,7 @@ namespace PublicData.Application.Features.Master.Detail.CreateDetail
         }
     }
 
-    class CreateDetailCommand : IRequest<int>, IMapFrom<Detail>
+    public class CreateDetailCommand : IRequest<int>, IMapFrom<Detail>
     {
         public int HeaderId { get; set; }
         public string Value { get; set; }

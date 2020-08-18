@@ -1,0 +1,36 @@
+using System;
+using System.Collections.Generic;
+
+namespace PublicData.DAL.Entities
+{
+    public partial class School : Entity
+    {
+        public School()
+        {
+            #region Generated Constructor
+            PersonEducations = new HashSet<PersonEducation>();
+            #endregion
+        }
+
+        #region Generated Properties
+
+        public string Name { get; set; }
+        public string ContactPersonName { get; set; }
+        public string ContactPersonContactNo { get; set; }
+        public string Address { get; set; }
+        public string PhoneNo { get; set; }
+        public string Email { get; set; }
+        public string Website { get; set; }
+        public int? SchoolTypeId { get; set; }
+
+        #endregion
+
+        #region Generated Relationships
+        public virtual ICollection<PersonEducation> PersonEducations { get; set; }
+
+        public virtual Detail TypeDetail { get; set; }
+
+        #endregion
+
+    }
+}

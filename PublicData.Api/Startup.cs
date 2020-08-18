@@ -3,8 +3,8 @@ using PublicData.Common.Behaviours;
 using PublicData.Common.Exceptions;
 using PublicData.Common.Security.Authorization;
 using PublicData.Common.Security.Identity;
-using PublicData.Data;
-using PublicData.Data.Configurations;
+using PublicData.DAL;
+using PublicData.DAL.Configurations;
 using PublicData.Api.Configurations;
 using PublicData.Api.Services;
 using MediatR;
@@ -59,7 +59,11 @@ namespace PublicData.API
             services.AddControllers(options =>
                     options.Filters.Add(new ApiExceptionFilter()));
                 //.AddNewtonsoftJson(options =>
-                //    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+                //{
+                //    options.SerializerSettings.ContractResolver = new Newtonsoft.Json.Serialization.DefaultContractResolver();
+                //    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+                //    //options.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.Objects;
+                //});
 
             // Authorization
             var policies = new Dictionary<string, ClaimRequirement>

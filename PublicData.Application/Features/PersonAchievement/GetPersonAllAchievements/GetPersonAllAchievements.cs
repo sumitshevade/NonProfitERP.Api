@@ -3,7 +3,7 @@ using AutoMapper;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using PublicData.Data.Interfaces;
+using PublicData.DAL.Interfaces;
 using PublicData.Application.Shared;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper.QueryableExtensions;
@@ -23,7 +23,7 @@ namespace PublicData.Application.Features.PersonAchievement.GetPersonAllAchievem
 
         public async Task<IList<PersonAchievementModel>> Handle(GetPersonAllAchievementsQuery request, CancellationToken cancellationToken)
         {
-            return await _personAchievementRepository.GetList(x => x.PersonId == request.PersonId)
+            return await _personAchievementRepository.GetList(x => x.PersonId == request.PersonId && x.IsActive == true)
                 .ProjectTo<PersonAchievementModel>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
         }

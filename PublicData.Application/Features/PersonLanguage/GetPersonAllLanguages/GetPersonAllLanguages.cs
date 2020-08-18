@@ -3,7 +3,7 @@ using AutoMapper;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using PublicData.Data.Interfaces;
+using PublicData.DAL.Interfaces;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using PublicData.Application.Shared;
@@ -23,7 +23,7 @@ namespace PublicData.Application.Features.PersonLanguage.GetPersonAllLanguages
 
         public async Task<IList<PersonLanguageModel>> Handle(GetPersonAllLanguagesQuery request, CancellationToken cancellationToken)
         {
-            return await _personLanguageRepository.GetList(x => x.PersonId == request.PersonId)
+            return await _personLanguageRepository.GetList(x => x.PersonId == request.PersonId && x.IsActive == true)
                 .ProjectTo<PersonLanguageModel>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
         }

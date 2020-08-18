@@ -23,7 +23,10 @@ namespace PublicData.Common.Security.Identity
             // IdentityService Setup
             services.AddTransient<IIdentityService, IdentityService>();
 
-            services.AddDefaultIdentity<IdentityUser>()
+            // UserService - login,register Setup
+            services.AddScoped<IUserService, UserService>();
+
+            services.AddDefaultIdentity<ApplicationUser>()
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<IdentityDbContext>()
                 .AddDefaultTokenProviders();
@@ -31,28 +34,29 @@ namespace PublicData.Common.Security.Identity
 
             // JWT Setup
 
-            var appSettingsSection = configuration.GetSection("JwtSettings");
+            var appSettingsSection = configuration.GetSection("AuthSettings");
             services.Configure<JwtSettings>(appSettingsSection);
 
             var appSettings = appSettingsSection.Get<JwtSettings>();
-            var key = Encoding.ASCII.GetBytes(appSettings.Secret);
+            var key = Encoding.ASCII.GetBytes(appSettings.Key);
 
-            services.AddAuthentication(x =>
+            services.AddAuthentication(auth =>
             {
-                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(x =>
+                auth.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                auth.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
             {
-                x.RequireHttpsMetadata = true;
-                x.SaveToken = true;
-                x.TokenValidationParameters = new TokenValidationParameters
+                options.RequireHttpsMetadata = true;
+                options.SaveToken = true;
+                options.TokenValidationParameters = new TokenValidationParameters
                 {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(key),
                     ValidateIssuer = true,
                     ValidateAudience = true,
-                    ValidAudience = appSettings.ValidAt,
-                    ValidIssuer = appSettings.Issuer
+                    ValidAudience = appSettings.Audience,
+                    ValidIssuer = appSettings.Issuer,
+                    RequireExpirationTime = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(appSettings.Key)),
+                    ValidateIssuerSigningKey = true
                 };
             });
 

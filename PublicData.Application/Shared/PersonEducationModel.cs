@@ -1,11 +1,12 @@
 ﻿using AutoMapper;
 using PublicData.Application.Mappings;
-using PublicData.Data.Entities;
+using PublicData.DAL.Entities;
 
 namespace PublicData.Application.Shared
 {
-    public class PersonEducationModel : IMapFrom<PersonEducation>
+    public partial class PersonEducationModel : IMapFrom<PersonEducation>
     {
+        public int Id { get; set; }
         public int PersonId { get; set; }
         public int? SchoolId { get; set; }
         public string OtherSchool { get; set; }
@@ -26,7 +27,6 @@ namespace PublicData.Application.Shared
         public virtual Detail Degree { get; set; }
         public virtual Detail FromStd { get; set; }
         public virtual Detail Medium { get; set; }
-        public virtual Person Person { get; set; }
         public virtual School School { get; set; }
         public virtual Detail ToStd { get; set; }
         public virtual Detail UniversityBoard { get; set; }

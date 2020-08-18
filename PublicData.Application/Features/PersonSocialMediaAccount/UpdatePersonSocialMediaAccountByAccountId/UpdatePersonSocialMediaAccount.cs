@@ -2,14 +2,14 @@
 using AutoMapper;
 using System.Threading;
 using System.Threading.Tasks;
-using PublicData.Data.Interfaces;
+using PublicData.DAL.Interfaces;
 using PublicData.Common.Exceptions;
 using PublicData.Common.Interfaces;
+using PublicData.Application.Mappings;
 
 namespace PublicData.Application.Features.PersonSocialMediaAccount.UpdatePersonSocialMediaAccountByAccountId
 {
-    using Data.Entities;
-    using PublicData.Application.Mappings;
+    using DAL.Entities;
 
     public class UpdatePersonSocialMediaAccountQueryHandler : IRequestHandler<UpdatePersonSocialMediaAccountQuery, bool>
     {
@@ -33,6 +33,7 @@ namespace PublicData.Application.Features.PersonSocialMediaAccount.UpdatePersonS
             }
 
             var entity = _mapper.Map<PersonSocialMediaAccount>(request);
+            entity.IsActive = true;
             _personSocialMediaAccountRepository.Update(entity);
 
             return Task.FromResult(_unitOfWork.Commit());

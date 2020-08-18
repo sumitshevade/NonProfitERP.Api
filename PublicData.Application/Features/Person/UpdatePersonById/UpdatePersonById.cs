@@ -3,14 +3,14 @@ using MediatR;
 using AutoMapper;
 using System.Threading;
 using System.Threading.Tasks;
-using PublicData.Data.Interfaces;
+using PublicData.DAL.Interfaces;
 using PublicData.Common.Interfaces;
 using PublicData.Common.Exceptions;
+using PublicData.Application.Mappings;
 
 namespace PublicData.Application.Features.Person.UpdatePersonById
 {
-    using Data.Entities;
-    using PublicData.Application.Mappings;
+    using DAL.Entities;
 
     public class UpdatePersonByIdCommandHandler : IRequestHandler<UpdatePersonByIdCommand, bool>
     {
@@ -33,6 +33,7 @@ namespace PublicData.Application.Features.Person.UpdatePersonById
             }
 
             var entity = _mapper.Map<Person>(request);
+            entity.IsActive = true;
             _peopleRepository.Update(entity);
 
             return Task.FromResult(_unitOfWork.Commit());

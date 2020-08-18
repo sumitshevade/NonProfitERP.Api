@@ -1,14 +1,14 @@
 ﻿using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
-using PublicData.Data.Interfaces;
+using PublicData.DAL.Interfaces;
 using PublicData.Common.Exceptions;
 using PublicData.Common.Interfaces;
 using AutoMapper;
 
 namespace PublicData.Application.Features.PersonDisability.UpdatePersonDisabilityByDisabilityId
 {
-    using Data.Entities;
+    using DAL.Entities;
     using PublicData.Application.Mappings;
 
     public class UpdatePersonDisabilityByDisabilityIdCommandHandler : IRequestHandler<UpdatePersonDisabilityByDisabilityIdCommand, bool>
@@ -33,6 +33,7 @@ namespace PublicData.Application.Features.PersonDisability.UpdatePersonDisabilit
             }
 
             var entity = _mapper.Map<PersonDisability>(request);
+            entity.IsActive = true;
             _personDisabilityRepository.Update(entity);
 
             return Task.FromResult(_unitOfWork.Commit());

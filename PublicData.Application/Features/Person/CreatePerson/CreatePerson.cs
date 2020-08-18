@@ -3,13 +3,13 @@ using MediatR;
 using AutoMapper;
 using System.Threading;
 using System.Threading.Tasks;
-using PublicData.Data.Interfaces;
+using PublicData.DAL.Interfaces;
 using PublicData.Common.Interfaces;
 using PublicData.Application.Mappings;
 
 namespace PublicData.Application.Features.People.CreatePerson
 {
-    using Data.Entities;
+    using DAL.Entities;
 
     public class CreatePersonCommandHandler : IRequestHandler<CreatePersonCommand, int>
     {

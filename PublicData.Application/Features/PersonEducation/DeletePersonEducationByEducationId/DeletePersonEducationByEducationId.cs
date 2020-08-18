@@ -1,14 +1,14 @@
 ﻿using MediatR;
 using PublicData.Common.Exceptions;
 using PublicData.Common.Interfaces;
-using PublicData.Data.Interfaces;
+using PublicData.DAL.Interfaces;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace PublicData.Application.Features.PersonEducation.DeletePersonEducationByEducationId
 {
-    using Data.Entities;
+    using DAL.Entities;
 
     public class DeletePersonEducationByEducationIdCommandHandler : IRequestHandler<DeletePersonEducationByEducationIdCommand, bool>
     {

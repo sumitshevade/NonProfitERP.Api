@@ -1,0 +1,35 @@
+using System;
+using System.Collections.Generic;
+
+namespace PublicData.WebClient.DataModels
+{
+    public partial class PersistedGrants
+    {
+        public PersistedGrants()
+        {
+            #region Generated Constructor
+            #endregion
+        }
+
+        #region Generated Properties
+        public string Key { get; set; }
+
+        public string Type { get; set; }
+
+        public string SubjectId { get; set; }
+
+        public string ClientId { get; set; }
+
+        public DateTime CreationTime { get; set; }
+
+        public DateTime? Expiration { get; set; }
+
+        public string Data { get; set; }
+
+        #endregion
+
+        #region Generated Relationships
+        #endregion
+
+    }
+}

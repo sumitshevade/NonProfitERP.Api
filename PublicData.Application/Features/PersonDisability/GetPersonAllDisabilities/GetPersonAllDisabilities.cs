@@ -3,7 +3,7 @@ using AutoMapper;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
-using PublicData.Data.Interfaces;
+using PublicData.DAL.Interfaces;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using PublicData.Application.Shared;
@@ -24,7 +24,7 @@ namespace PublicData.Application.Features.PersonDisability.GetPersonAllDisabilit
 
         public async Task<IList<PersonDisabilityModel>> Handle(GetPersonAllDisabilitiesQuery request, CancellationToken cancellationToken)
         {
-            return await _personDisabilityRepository.GetList(x => x.PersonId == request.PersonId)
+            return await _personDisabilityRepository.GetList(x => x.PersonId == request.PersonId && x.IsActive == true)
                 .ProjectTo<PersonDisabilityModel>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
         }

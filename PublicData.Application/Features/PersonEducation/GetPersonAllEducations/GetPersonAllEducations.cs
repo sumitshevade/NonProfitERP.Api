@@ -3,7 +3,7 @@ using AutoMapper;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using PublicData.Data.Interfaces;
+using PublicData.DAL.Interfaces;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using PublicData.Application.Shared;
@@ -23,7 +23,7 @@ namespace PublicData.Application.Features.PersonEducation.GetPersonAllEducations
 
         public async Task<IList<PersonEducationModel>> Handle(GetPersonAllEducationsQuery request, CancellationToken cancellationToken)
         {
-            return await _personEducationRepository.GetList(x => x.PersonId == request.PersonId)
+            return await _personEducationRepository.GetList(x => x.PersonId == request.PersonId && x.IsActive == true)
                 .ProjectTo<PersonEducationModel>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
         }

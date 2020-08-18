@@ -2,12 +2,12 @@
 using AutoMapper;
 using System.Threading;
 using System.Threading.Tasks;
-using PublicData.Data.Interfaces;
+using PublicData.DAL.Interfaces;
 using PublicData.Common.Interfaces;
 
 namespace PublicData.Application.Features.PersonPrivateInformation.CreatePersonPrivateInformation
 {
-    using Data.Entities;
+    using DAL.Entities;
     using PublicData.Application.Mappings;
 
     public class CreatePersonPrivateInformationCommandHandler : IRequestHandler<CreatePersonPrivateInformationCommand, int>
