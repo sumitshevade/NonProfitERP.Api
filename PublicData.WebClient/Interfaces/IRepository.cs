@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Collections.Generic;
 
 namespace PublicData.WebClient.Interfaces
@@ -12,5 +11,6 @@ namespace PublicData.WebClient.Interfaces
         Task<IList<TEntity>> GetListAsync(string url);
         Task<bool> UpdateAsync(TEntity obj, string url);
         Task<bool> RemoveAsync(string url);
+        Task<IList<TEntity>> SearchAsync(TEntity obj, string url);
     }
 }

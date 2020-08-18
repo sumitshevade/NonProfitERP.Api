@@ -168,6 +168,7 @@ namespace PublicData.WebClient.Components
             if (result > 0)
             {
                 PersonContact.Id = result;
+                PersonContact.ContactTypeDetail = await DetailRepository.GetByIdAsync("/api/master/detail/" + SelectedContactTypeId);
                 PersonContacts.Remove(PersonContact);
                 PersonContacts.Add(PersonContact);
                 PersonContact = new PersonContact();

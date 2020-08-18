@@ -1,115 +1,173 @@
 ﻿@page "/person/search"
+@inherits SearchPersonComponent
 
-<div class="row">
-    <div class="col-sm-12">
-        <div class="card-deck mb-3 text-left">
-            <div class="card mb-4 shadow-sm">
-                <div class="card-header">
-                    <h4 class="my-0 font-weight-normal">Search Person</h4>
-                </div>
+@if (MessageType == AlertMessageType.Error)
+{
+    <div class="alert alert-danger" role="alert">
+        <p>@Message</p>
+    </div>
+}
 
-                <div class="card-body">
-                    <form action="dashboard.html" method="POST">
-                        <div class="row">
-                            <div class="col-sm-3">
-                                Current Role
-                                <select name="persontype" id="persontype" class="form-control" autofocus>
-                                    <option value="0">Select...</option>
-                                </select>
-                            </div>
-                            <div class="col-sm-3">
-                                First Name
-                                <input type="text" name="firstname" id="firstname" class="form-control" placeholder="First Name" required>
-                            </div>
-                            <div class="col-sm-3">
-                                Middle Name
-                                <input type="text" name="middlename" id="middlename" class="form-control" placeholder="Middle Name">
-                            </div>
-                            <div class="col-sm-3">
-                                Last Name
-                                <input type="text" name="lastname" id="lastname" class="form-control" required>
-                            </div>
-                        </div>
+@if (CommonService.IsBusy == true)
+{
+    <div class="text-center m-auto" style="padding: 150px 0px">
+        <span class="spinner-border"></span>
+        <br />
+        Loading...
+        @* TODO: Add random text here like fun facts *@
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card-deck mb-3 text-left">
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-header">
+                        <h4 class="my-0 font-weight-normal">Search Person</h4>
+                    </div>
 
-                        <div class="row mt-3">
-                            <div class="col-sm-3">
-                                Birth Location
-                                <input type="text" id="birthlocation" name="birthlocation" class="form-control">
+                    <div class="card-body">
+                        <EditForm Model="Person" OnValidSubmit="SearchPerson">
+                            <DataAnnotationsValidator />
+                            <ValidationSummary />
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    Current Role
+                                    <InputSelect ValueChanged="@((string value) => ChangePersonType(value))"
+                                                 ValueExpression="@(() => SelectedPersonTypeId)"
+                                                 Value="@SelectedPersonTypeId"
+                                                 class="form-control">
+                                        <option value="0">Select...</option>
+                                        @foreach (var item in PersonTypes)
+                                        {
+                                            <option value="@item.Id">@item.Value</option>
+                                        }
+                                    </InputSelect>
+                                </div>
+                                <div class="col-sm-3">
+                                    Is Worker
+                                    <InputSelect ValueChanged="@((string value) => ChangeIsWorker(value))"
+                                                 ValueExpression="@(() => SelectedIsWorker)"
+                                                 Value="@SelectedIsWorker"
+                                                 class="form-control">
+                                        <option disabled>Select...</option>
+                                        <option value="true">Yes</option>
+                                        <option value="false">No</option>
+                                    </InputSelect>
+                                </div>
+                                <div class="col-sm-3">
+                                    Work Frequency
+                                    <InputSelect ValueChanged="@((string value) => ChangeWorkFrequency(value))"
+                                                 ValueExpression="@(() => SelectedWorkFrequencyId)"
+                                                 Value="@SelectedWorkFrequencyId"
+                                                 class="form-control">
+                                        <option value="0">Select...</option>
+                                        @foreach (var item in WorkFrequencies)
+                                        {
+                                            <option value="@item.Id">@item.Value</option>
+                                        }
+                                    </InputSelect>
+                                </div>
+                                <div class="col-sm-3">
+                                    Joined As
+                                    <InputSelect ValueChanged="@((string value) => ChangeJoinedAs(value))"
+                                                 ValueExpression="@(() => SelectedJoinedAsId)"
+                                                 Value="@SelectedJoinedAsId"
+                                                 class="form-control">
+                                        <option value="0">Select...</option>
+                                        @foreach (var item in JoinedAs)
+                                        {
+                                            <option value="@item.Id">@item.Value</option>
+                                        }
+                                    </InputSelect>
+                                </div>
                             </div>
-                            <div class="col-sm-3">
-                                Citizen Of
-                                <select name="nationality" id="nationality" class="form-control">
-                                    <option value="0">Select...</option>
-                                    <option value="1">India</option>
-                                </select>
-                            </div>
-                            <div class="col-sm-3">
-                                Additional Info
-                                <textarea name="longtext" id="longtext" rows="3" class="form-control"></textarea>
-                            </div>
-                            <div class="col-sm-3">
-                                Keywords
-                                <textarea name="keywords" id="keywords" rows="3" class="form-control"></textarea>
-                            </div>
-                        </div>
 
-                        <div class="row mt-3">
-                            <div class="col-sm-3">
-                                Is Worker
-                                <select name="isworker" id="isworker" class="form-control" required title="This will help while assigning roles in work.">
-                                    <option value="0">Select...</option>
-                                    <option value="2" selected>No</option>
-                                    <option value="1">Yes</option>
-                                </select>
+                            <div class="row mt-3">
+                                <div class="col-sm-3">
+                                    First Name
+                                    <InputText @bind-Value="Person.FirstName" class="form-control" placeholder="First Name"></InputText>
+                                    <ValidationMessage For="@(() => Person.FirstName)" />
+                                </div>
+                                <div class="col-sm-3">
+                                    Middle Name
+                                    <InputText @bind-Value="Person.MiddleName" class="form-control" placeholder="Middle Name"></InputText>
+                                    <ValidationMessage For="@(() => Person.FirstName)" />
+                                </div>
+                                <div class="col-sm-3">
+                                    Last Name
+                                    <InputText @bind-Value="Person.LastName" class="form-control" placeholder="Last Name"></InputText>
+                                    <ValidationMessage For="@(() => Person.FirstName)" />
+                                </div>
                             </div>
-                            <div class="col-sm-3">
-                                Work Frequency
-                                <select name="workfrequency" id="workfrequency" class="form-control" required>
-                                    <option value="0">Select...</option>
-                                    <option value="1">Daily</option>
-                                    <option value="2">Weekly</option>
-                                    <option value="3">Monthly</option>
-                                </select>
-                            </div>
-                            <div class="col-sm-3">
-                                Joining Date
-                                <input type="date" name="joiningdate" id="joiningdate" class="form-control">
-                            </div>
-                            <div class="col-sm-3">
-                                Joined As
-                                <select name="joinedas" id="joinedas" class="form-control" required>
-                                    <option value="0">Select...</option>
-                                    <option value="1">Wardhak</option>
-                                    <option value="2">Teacher</option>
-                                    <option value="3">Dhol Tasha</option>
-                                </select>
-                            </div>
-                        </div>
 
-                        <div class="row mt-3">
-                            <div class="col-sm-3">
-                                Is Alive
-                                <select name="isalive" id="isalive" class="form-control" required>
-                                    <option value="0">Select...</option>
-                                    <option value="1" selected>Yes</option>
-                                    <option value="2">No</option>
-                                </select>
+                            <div class="row mt-3">
+                                <div class="col-sm-3">
+                                    Birth Location
+                                    <InputText @bind-Value="Person.BirthLocation" class="form-control" placeholder="Birth Location"></InputText>
+                                </div>
+                                <div class="col-sm-3">
+                                    Citizen Of
+                                    <InputSelect ValueChanged="@((string value) => ChangeCountry(value))"
+                                                 ValueExpression="@(() => SelectedCountryId)"
+                                                 Value="@SelectedCountryId"
+                                                 class="form-control">
+                                        <option value="0">Select...</option>
+                                        @foreach (var item in Countries)
+                                        {
+                                            <option value="@item.Id">@item.Name</option>
+                                        }
+                                    </InputSelect>
+                                </div>
+                                @*<div class="col-sm-3">
+                                    Is Alive
+                                    <InputSelect ValueChanged="@((string value) => ChangeIsAlive(value))"
+                                                 ValueExpression="@(() => SelectedIsAlive)"
+                                                 Value="@SelectedIsAlive"
+                                                 class="form-control">
+                                        <option disabled>Select...</option>
+                                        <option value="true">Yes</option>
+                                        <option value="false">No</option>
+                                    </InputSelect>
+                                </div>*@
                             </div>
-                        </div>
 
-                        <div class="row mt-4">
-                            <div class="col-sm-3">
-                                <button class="btn btn-primary" type="submit">Search</button>
-                                <button class="btn btn-warning m-1" type="reset">Cancel</button>
+                            <div class="row mt-4">
+                                <div class="col-sm-3">
+                                    <button class="btn btn-primary" type="submit">Search</button>
+                                    <button class="btn btn-warning m-1" type="reset">Cancel</button>
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </EditForm>
+
+                        <table class="table table-hover mt-5">
+                            <thead>
+                                <tr>
+                                    <th scope="col">First name</th>
+                                    <th scope="col">Middle name</th>
+                                    <th scope="col">Last name</th>
+                                    <th scope="col">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in People)
+                                {
+                                    <tr>
+                                        <td>@item.FirstName</td>
+                                        <td>@item.MiddleName</td>
+                                        <td>@item.LastName</td>
+                                        <td>
+                                            <a class="btn btn-success text-white btn-sm" @onclick="(() => EditPerson(item.Id))">Edit</a>
+                                            <a class="btn btn-danger text-white btn-sm" @onclick="(() => DeletePerson(item.Id))">Delete</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-
-@code {
-
 }

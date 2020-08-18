@@ -4,6 +4,7 @@ using PublicData.Application.Features.People.CreatePerson;
 using PublicData.Application.Features.People.GetAllPerson;
 using PublicData.Application.Features.People.GetPersonById;
 using PublicData.Application.Features.Person.DeletePersonById;
+using PublicData.Application.Features.Person.SearchPerson;
 using PublicData.Application.Features.Person.UpdatePersonById;
 using PublicData.Application.Features.PersonAchievement.CreatePersonAchievement;
 using PublicData.Application.Features.PersonAchievement.DeletePersonAchievementByAchievementId;
@@ -103,6 +104,12 @@ namespace PublicData.Api.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             return new JsonResult(await Mediator.Send(new DeletePersonByIdCommand { Id = id }));
+        }
+
+        [HttpPost("search")]
+        public async Task<IActionResult> SearchPerson(SearchPersonQuery query)
+        {
+            return new JsonResult(await Mediator.Send(query));
         }
 
         #endregion

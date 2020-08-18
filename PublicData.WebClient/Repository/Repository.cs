@@ -4,7 +4,6 @@ using System.Net.Http.Headers;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Components;
 using PublicData.WebClient.Interfaces;
-using Microsoft.AspNetCore.Components.Authorization;
 
 namespace PublicData.WebClient.Repository
 {
@@ -45,6 +44,11 @@ namespace PublicData.WebClient.Repository
         public async virtual Task<bool> RemoveAsync(string url)
         {
             return await _httpClient.SendJsonAsync<bool>(HttpMethod.Delete, url, null);
+        }
+
+        public async virtual Task<IList<TEntity>> SearchAsync(TEntity obj, string url)
+        {
+            return await _httpClient.SendJsonAsync<IList<TEntity>>(HttpMethod.Post, url, obj);
         }
     }
 }
