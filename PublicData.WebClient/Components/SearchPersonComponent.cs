@@ -69,7 +69,7 @@ namespace PublicData.WebClient.Components
             SelectedPersonTypeId = Person.PersonTypeId.ToString();
             SelectedWorkFrequencyId = Person.WorkFrequencyId.ToString();
             SelectedIsWorker = Person.IsWorker == false ? "false" : "true";
-            SelectedIsAlive = Person.IsWorker == false ? "false" : "true";
+            SelectedIsAlive = Person.IsAlive == false ? "false" : "true";
 
             CommonService.IsBusy = false;
         }
@@ -81,7 +81,7 @@ namespace PublicData.WebClient.Components
             Person.PersonTypeId = Convert.ToInt32(SelectedPersonTypeId ?? "0");
             Person.WorkFrequencyId = Convert.ToInt32(SelectedWorkFrequencyId ?? "0");
             Person.JoinedAsId = Convert.ToInt32(SelectedJoinedAsId ?? "0");
-            Person.IsWorker = Convert.ToBoolean(SelectedIsWorker ?? "0");
+            Person.IsWorker = Convert.ToBoolean(SelectedIsWorker ?? "false");
             Person.CountryId = Convert.ToInt32(SelectedCountryId ?? "0");
 
             var result = await PersonRepository.SearchAsync(Person, "/api/person/search");        // create new
