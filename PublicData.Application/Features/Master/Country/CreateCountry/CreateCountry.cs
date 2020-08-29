@@ -27,6 +27,7 @@ namespace PublicData.Application.Features.Master.Country.CreateCountry
         {
             var entity = _mapper.Map<Country>(request);
 
+            entity.IsActive = true;
             _countryRepository.Add(entity);
             _unitOfWork.Commit();
 
@@ -37,6 +38,7 @@ namespace PublicData.Application.Features.Master.Country.CreateCountry
     public class CreateCountryCommand : IRequest<int>, IMapFrom<Country>
     {
         public string Name { get; set; }
+        public bool IsActive { get; set; }
 
         public void Mapping(Profile profile)
         {

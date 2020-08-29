@@ -1,15 +1,14 @@
 ﻿using System;
-using System.Linq;
 using Blazored.LocalStorage;
 using System.Threading.Tasks;
 using Blazored.Toast.Services;
 using Blazored.SessionStorage;
 using System.Collections.Generic;
-using PublicData.WebClient.Models;
 using Microsoft.AspNetCore.Components;
-using PublicData.WebClient.DataModels;
+using PublicData.WebClient.Models;
 using PublicData.WebClient.Interfaces;
 using Microsoft.AspNetCore.Components.Authorization;
+using PublicData.WebClient.Shared.Entities;
 
 namespace PublicData.WebClient.Components
 {

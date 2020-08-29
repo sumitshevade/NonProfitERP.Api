@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using System.Net.Http.Headers;
 using Blazored.LocalStorage;
-using PublicData.WebClient.DataModels;
+using PublicData.WebClient.Shared.Entities;
 
 namespace PublicData.WebClient.Services
 {

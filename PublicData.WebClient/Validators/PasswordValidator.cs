@@ -1,5 +1,5 @@
-﻿using PublicData.WebClient.Models;
-using FluentValidation;
+﻿using FluentValidation;
+using PublicData.WebClient.Models;
 using System.Text.RegularExpressions;
 
 namespace PublicData.WebClient.Validators
