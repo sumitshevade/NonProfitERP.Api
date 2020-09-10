@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Components;
 using PublicData.WebClient.Interfaces;
 using PublicData.WebClient.Shared.Entities;
 using Microsoft.AspNetCore.Components.Authorization;
+using Blazored.Toast.Services;
 
 namespace PublicData.WebClient.Components
 {
@@ -13,6 +14,7 @@ namespace PublicData.WebClient.Components
     {
         [CascadingParameter] private Task<AuthenticationState> AuthenticationState { get; set; }
         [Inject] public ICommonService CommonService { get; set; }
+        [Inject] IToastService ToastService { get; set; }
         [Inject] ICountryRepository CountryRepository { get; set; }
         [Parameter] public IList<Country> Countries { get; set; } = new List<Country>();
         
@@ -21,6 +23,7 @@ namespace PublicData.WebClient.Components
 
         public string Message = string.Empty;
         public AlertMessageType MessageType = AlertMessageType.Success;
+        public int CountryId { get; set; }
         
         protected async override Task OnInitializedAsync()
         {
@@ -41,24 +44,29 @@ namespace PublicData.WebClient.Components
         {
             if (!string.IsNullOrWhiteSpace(Country.Name))
             {
+
                 if (SaveButton == "Save")
                 {
-                    await CountryRepository.AddAsync(Country, "/api/master/country");
+                    CountryId = await CountryRepository.AddAsync(Country, "/api/master/country");
+                    Country.Id = CountryId;
+                    Countries.Add(Country);
                 }
                 else
                 {
                     await CountryRepository.UpdateAsync(Country, "/api/master/country");
+                    Countries.Remove(Country);
+                    Countries.Add(Country);
                 }
 
-                Countries.Add(Country);
 
+                Country = new Country();
                 SaveButton = "Save";
+                ToastService.ShowSuccess("The country has been created!!!", "Success");
                 StateHasChanged();
             }
             else
             {
-                Message = "Name should not be empty";
-                MessageType = Models.AlertMessageType.Error;
+                ToastService.ShowError("Something went wrong!!!", "Error");
             }
         }
 
@@ -71,8 +79,13 @@ namespace PublicData.WebClient.Components
 
         public async Task DeleteCountry(int id)
         {
-            await CountryRepository.RemoveAsync("/api/master/country/" + id);
-            StateHasChanged();
+            var result = await CountryRepository.RemoveAsync("/api/master/country/" + id);
+
+            if (result)
+            {
+                Countries.Remove(Countries.Where(x => x.Id == id).FirstOrDefault());
+                StateHasChanged();
+            }
         }
     }
 }
