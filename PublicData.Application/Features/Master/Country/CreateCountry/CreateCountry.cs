@@ -42,7 +42,7 @@ namespace PublicData.Application.Features.Master.Country.CreateCountry
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<Country, CreateCountryCommand>();
+            profile.CreateMap<CreateCountryCommand, Country>();
         }
     }
 }
