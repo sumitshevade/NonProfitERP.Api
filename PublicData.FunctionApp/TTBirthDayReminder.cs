@@ -55,4 +55,3 @@ namespace PublicData.FunctionApp
 // 7 -	<second> <minute> <hour> <day-of-month> <month> <day-of-week> <year>
 // 6 - Seconds, Minutes, Hours, Day of Month, Month, Day of Week
 // 0 0 8 1/1 * ? *
-// test-birthday-key - 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
