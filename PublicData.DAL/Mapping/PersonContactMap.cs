@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace PublicData.DAL.Mapping
+namespace PublicData30102020.Data.Mapping
 {
     public partial class PersonContactMap
         : IEntityTypeConfiguration<PublicData.DAL.Entities.PersonContact>
@@ -51,7 +51,8 @@ namespace PublicData.DAL.Mapping
             builder.Property(t => t.CreatedAt)
                 .IsRequired()
                 .HasColumnName("CreatedAt")
-                .HasColumnType("datetime");
+                .HasColumnType("datetime")
+                .HasDefaultValueSql("(getdate())");
 
             builder.Property(t => t.UpdatedById)
                 .HasColumnName("UpdatedById")
@@ -72,12 +73,12 @@ namespace PublicData.DAL.Mapping
             builder.HasOne(t => t.ContactTypeDetail)
                 .WithMany(t => t.ContactTypePersonContacts)
                 .HasForeignKey(d => d.ContactTypeId)
-                .HasConstraintName("FK__PersonCon__Conta__2DE6D218");
+                .HasConstraintName("FK__PersonCon__Conta__37703C52");
 
             builder.HasOne(t => t.Person)
                 .WithMany(t => t.PersonContacts)
                 .HasForeignKey(d => d.PersonId)
-                .HasConstraintName("FK__PersonCon__Perso__2CF2ADDF");
+                .HasConstraintName("FK__PersonCon__Perso__367C1819");
 
             #endregion
         }

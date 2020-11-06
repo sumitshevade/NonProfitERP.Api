@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace PublicData.DAL.Mapping
+namespace PublicData30102020.Data.Mapping
 {
     public partial class StateMap
         : IEntityTypeConfiguration<PublicData.DAL.Entities.State>
@@ -23,15 +23,16 @@ namespace PublicData.DAL.Mapping
                 .HasColumnType("int")
                 .ValueGeneratedOnAdd();
 
+            builder.Property(t => t.CountryId)
+                .IsRequired()
+                .HasColumnName("CountryId")
+                .HasColumnType("int");
+
             builder.Property(t => t.Name)
                 .IsRequired()
                 .HasColumnName("Name")
                 .HasColumnType("varchar(50)")
                 .HasMaxLength(50);
-
-            builder.Property(t => t.CountryId)
-                .HasColumnName("CountryId")
-                .HasColumnType("int");
 
             builder.Property(t => t.CreatedById)
                 .IsRequired()
@@ -42,7 +43,8 @@ namespace PublicData.DAL.Mapping
             builder.Property(t => t.CreatedAt)
                 .IsRequired()
                 .HasColumnName("CreatedAt")
-                .HasColumnType("datetime");
+                .HasColumnType("datetime")
+                .HasDefaultValueSql("(getdate())");
 
             builder.Property(t => t.UpdatedById)
                 .HasColumnName("UpdatedById")
@@ -63,7 +65,7 @@ namespace PublicData.DAL.Mapping
             builder.HasOne(t => t.Country)
                 .WithMany(t => t.States)
                 .HasForeignKey(d => d.CountryId)
-                .HasConstraintName("FK__State__CountryId__6EF57B66");
+                .HasConstraintName("FK__State__CountryId__412EB0B6");
 
             #endregion
         }
@@ -78,8 +80,8 @@ namespace PublicData.DAL.Mapping
         public struct Columns
         {
             public const string Id = "Id";
-            public const string Name = "Name";
             public const string CountryId = "CountryId";
+            public const string Name = "Name";
             public const string CreatedById = "CreatedById";
             public const string CreatedAt = "CreatedAt";
             public const string UpdatedById = "UpdatedById";

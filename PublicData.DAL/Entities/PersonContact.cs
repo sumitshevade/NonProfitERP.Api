@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+
 namespace PublicData.DAL.Entities
 {
     public partial class PersonContact : Entity
@@ -11,8 +14,11 @@ namespace PublicData.DAL.Entities
         #region Generated Properties
 
         public int PersonId { get; set; }
+
         public int? ContactTypeId { get; set; }
+
         public string Detail { get; set; }
+
         public bool IsDefault { get; set; }
 
         #endregion

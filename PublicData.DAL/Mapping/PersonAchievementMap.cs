@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace PublicData.DAL.Mapping
+namespace PublicData30102020.Data.Mapping
 {
     public partial class PersonAchievementMap
         : IEntityTypeConfiguration<PublicData.DAL.Entities.PersonAchievement>
@@ -28,6 +28,10 @@ namespace PublicData.DAL.Mapping
                 .HasColumnName("PersonId")
                 .HasColumnType("int");
 
+            builder.Property(t => t.AwardLevelId)
+                .HasColumnName("AwardLevelId")
+                .HasColumnType("int");
+
             builder.Property(t => t.Title)
                 .IsRequired()
                 .HasColumnName("Title")
@@ -49,10 +53,6 @@ namespace PublicData.DAL.Mapping
                 .HasColumnType("varchar(50)")
                 .HasMaxLength(50);
 
-            builder.Property(t => t.AwardLevelId)
-                .HasColumnName("AwardLevelId")
-                .HasColumnType("int");
-
             builder.Property(t => t.ReceivedDate)
                 .HasColumnName("ReceivedDate")
                 .HasColumnType("date");
@@ -66,7 +66,8 @@ namespace PublicData.DAL.Mapping
             builder.Property(t => t.CreatedAt)
                 .IsRequired()
                 .HasColumnName("CreatedAt")
-                .HasColumnType("datetime");
+                .HasColumnType("datetime")
+                .HasDefaultValueSql("(getdate())");
 
             builder.Property(t => t.UpdatedById)
                 .HasColumnName("UpdatedById")
@@ -87,12 +88,12 @@ namespace PublicData.DAL.Mapping
             builder.HasOne(t => t.AwardLevelDetail)
                 .WithMany(t => t.AwardLevelPersonAchievements)
                 .HasForeignKey(d => d.AwardLevelId)
-                .HasConstraintName("FK__PersonAch__Award__151B244E");
+                .HasConstraintName("FK__PersonAch__Award__245D67DE");
 
             builder.HasOne(t => t.Person)
                 .WithMany(t => t.PersonAchievements)
                 .HasForeignKey(d => d.PersonId)
-                .HasConstraintName("FK__PersonAch__Perso__14270015");
+                .HasConstraintName("FK__PersonAch__Perso__236943A5");
 
             #endregion
         }
@@ -108,11 +109,11 @@ namespace PublicData.DAL.Mapping
         {
             public const string Id = "Id";
             public const string PersonId = "PersonId";
+            public const string AwardLevelId = "AwardLevelId";
             public const string Title = "Title";
             public const string GivenBy = "GivenBy";
             public const string Format = "Format";
             public const string Reason = "Reason";
-            public const string AwardLevelId = "AwardLevelId";
             public const string ReceivedDate = "ReceivedDate";
             public const string CreatedById = "CreatedById";
             public const string CreatedAt = "CreatedAt";

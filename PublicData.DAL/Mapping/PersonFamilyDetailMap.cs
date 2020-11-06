@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace PublicData.DAL.Mapping
+namespace PublicData30102020.Data.Mapping
 {
     public partial class PersonFamilyDetailMap
         : IEntityTypeConfiguration<PublicData.DAL.Entities.PersonFamilyDetail>
@@ -22,6 +22,11 @@ namespace PublicData.DAL.Mapping
                 .HasColumnName("Id")
                 .HasColumnType("int")
                 .ValueGeneratedOnAdd();
+
+            builder.Property(t => t.PersonId)
+                .IsRequired()
+                .HasColumnName("PersonId")
+                .HasColumnType("int");
 
             builder.Property(t => t.FirstName)
                 .IsRequired()
@@ -54,8 +59,12 @@ namespace PublicData.DAL.Mapping
                 .HasColumnType("varchar(50)")
                 .HasMaxLength(50);
 
-            builder.Property(t => t.CompanyName)
-                .HasColumnName("CompanyName")
+            builder.Property(t => t.OrganizationId)
+                .HasColumnName("OrganizationId")
+                .HasColumnType("int");
+
+            builder.Property(t => t.OtherOrganization)
+                .HasColumnName("OtherOrganization")
                 .HasColumnType("varchar(50)")
                 .HasMaxLength(50);
 
@@ -67,11 +76,6 @@ namespace PublicData.DAL.Mapping
             builder.Property(t => t.MonthlyIncome)
                 .HasColumnName("MonthlyIncome")
                 .HasColumnType("float");
-
-            builder.Property(t => t.PersonId)
-                .IsRequired()
-                .HasColumnName("PersonId")
-                .HasColumnType("int");
 
             builder.Property(t => t.RelationId)
                 .HasColumnName("RelationId")
@@ -105,7 +109,8 @@ namespace PublicData.DAL.Mapping
             builder.Property(t => t.CreatedAt)
                 .IsRequired()
                 .HasColumnName("CreatedAt")
-                .HasColumnType("datetime");
+                .HasColumnType("datetime")
+                .HasDefaultValueSql("(getdate())");
 
             builder.Property(t => t.UpdatedById)
                 .HasColumnName("UpdatedById")
@@ -126,17 +131,22 @@ namespace PublicData.DAL.Mapping
             builder.HasOne(t => t.CourseDetail)
                 .WithMany(t => t.CoursePersonFamilyDetails)
                 .HasForeignKey(d => d.CourseId)
-                .HasConstraintName("FK__PersonFam__Cours__45BE5BA9");
+                .HasConstraintName("FK__PersonFam__Cours__5AB9788F");
+
+            builder.HasOne(t => t.Organization)
+                .WithMany(t => t.PersonFamilyDetails)
+                .HasForeignKey(d => d.OrganizationId)
+                .HasConstraintName("FK__PersonFam__Organ__58D1301D");
 
             builder.HasOne(t => t.Person)
                 .WithMany(t => t.PersonFamilyDetails)
                 .HasForeignKey(d => d.PersonId)
-                .HasConstraintName("FK__PersonFam__Perso__43D61337");
+                .HasConstraintName("FK__PersonFam__Perso__57DD0BE4");
 
             builder.HasOne(t => t.RelationDetail)
                 .WithMany(t => t.RelationPersonFamilyDetails)
                 .HasForeignKey(d => d.RelationId)
-                .HasConstraintName("FK__PersonFam__Relat__44CA3770");
+                .HasConstraintName("FK__PersonFam__Relat__59C55456");
 
             #endregion
         }
@@ -151,16 +161,17 @@ namespace PublicData.DAL.Mapping
         public struct Columns
         {
             public const string Id = "Id";
+            public const string PersonId = "PersonId";
             public const string FirstName = "FirstName";
             public const string MiddleName = "MiddleName";
             public const string LastName = "LastName";
             public const string BirthDate = "BirthDate";
             public const string MobileNo = "MobileNo";
             public const string Email = "Email";
-            public const string CompanyName = "CompanyName";
+            public const string OrganizationId = "OrganizationId";
+            public const string OtherOrganization = "OtherOrganization";
             public const string SchoolName = "SchoolName";
             public const string MonthlyIncome = "MonthlyIncome";
-            public const string PersonId = "PersonId";
             public const string RelationId = "RelationId";
             public const string OtherRelation = "OtherRelation";
             public const string CourseId = "CourseId";

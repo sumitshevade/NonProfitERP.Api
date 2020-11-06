@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace PublicData.DAL.Mapping
+namespace PublicData30102020.Data.Mapping
 {
     public partial class PersonPrivateInformationMap
         : IEntityTypeConfiguration<PublicData.DAL.Entities.PersonPrivateInformation>
@@ -37,6 +37,11 @@ namespace PublicData.DAL.Mapping
                 .HasColumnName("AadharCardNo")
                 .HasColumnType("varchar(15)")
                 .HasMaxLength(15);
+
+            builder.Property(t => t.PANNo)
+                .HasColumnName("PANNo")
+                .HasColumnType("varchar(10)")
+                .HasMaxLength(10);
 
             builder.Property(t => t.IsOwnBicycle)
                 .IsRequired()
@@ -88,7 +93,8 @@ namespace PublicData.DAL.Mapping
             builder.Property(t => t.CreatedAt)
                 .IsRequired()
                 .HasColumnName("CreatedAt")
-                .HasColumnType("datetime");
+                .HasColumnType("datetime")
+                .HasDefaultValueSql("(getdate())");
 
             builder.Property(t => t.UpdatedById)
                 .HasColumnName("UpdatedById")
@@ -109,27 +115,27 @@ namespace PublicData.DAL.Mapping
             builder.HasOne(t => t.CasteDetail)
                 .WithMany(t => t.CastePersonPrivateInformations)
                 .HasForeignKey(d => d.CasteId)
-                .HasConstraintName("FK__PersonPri__Caste__58D1301D");
+                .HasConstraintName("FK__PersonPri__Caste__72910220");
 
             builder.HasOne(t => t.CategoryDetail)
                 .WithMany(t => t.CategoryPersonPrivateInformations)
                 .HasForeignKey(d => d.CategoryId)
-                .HasConstraintName("FK__PersonPri__Categ__59C55456");
+                .HasConstraintName("FK__PersonPri__Categ__73852659");
 
             builder.HasOne(t => t.ParentalStatusDetail)
                 .WithMany(t => t.ParentalStatusPersonPrivateInformations)
                 .HasForeignKey(d => d.ParentalStatusId)
-                .HasConstraintName("FK__PersonPri__Paren__5AB9788F");
+                .HasConstraintName("FK__PersonPri__Paren__74794A92");
 
             builder.HasOne(t => t.Person)
                 .WithMany(t => t.PersonPrivateInformations)
                 .HasForeignKey(d => d.PersonId)
-                .HasConstraintName("FK__PersonPri__Perso__56E8E7AB");
+                .HasConstraintName("FK__PersonPri__Perso__70A8B9AE");
 
             builder.HasOne(t => t.ReligionDetail)
                 .WithMany(t => t.ReligionPersonPrivateInformations)
                 .HasForeignKey(d => d.ReligionId)
-                .HasConstraintName("FK__PersonPri__Relig__57DD0BE4");
+                .HasConstraintName("FK__PersonPri__Relig__719CDDE7");
 
             #endregion
         }
@@ -147,6 +153,7 @@ namespace PublicData.DAL.Mapping
             public const string PersonId = "PersonId";
             public const string MaritalStatus = "MaritalStatus";
             public const string AadharCardNo = "AadharCardNo";
+            public const string PANNo = "PANNo";
             public const string IsOwnBicycle = "IsOwnBicycle";
             public const string ReligionId = "ReligionId";
             public const string OtherReligion = "OtherReligion";

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace PublicData.DAL.Mapping
+namespace PublicData30102020.Data.Mapping
 {
     public partial class TransactionLogValueMap
         : IEntityTypeConfiguration<PublicData.DAL.Entities.TransactionLogValue>
@@ -48,7 +48,7 @@ namespace PublicData.DAL.Mapping
             builder.HasOne(t => t.TransactionLog)
                 .WithMany(t => t.TransactionLogValues)
                 .HasForeignKey(d => d.TransactionLogId)
-                .HasConstraintName("FK__Transacti__Trans__693CA210");
+                .HasConstraintName("FK__Transacti__Trans__3A81B327");
 
             #endregion
         }

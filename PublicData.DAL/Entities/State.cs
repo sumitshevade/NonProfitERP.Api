@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 
 namespace PublicData.DAL.Entities
@@ -11,13 +10,15 @@ namespace PublicData.DAL.Entities
             Cities = new HashSet<City>();
             Districts = new HashSet<District>();
             PersonAddresses = new HashSet<PersonAddress>();
+            Schools = new HashSet<School>();
             #endregion
         }
 
         #region Generated Properties
 
+        public int CountryId { get; set; }
+
         public string Name { get; set; }
-        public int? CountryId { get; set; }
 
         #endregion
 
@@ -29,6 +30,8 @@ namespace PublicData.DAL.Entities
         public virtual ICollection<District> Districts { get; set; }
 
         public virtual ICollection<PersonAddress> PersonAddresses { get; set; }
+
+        public virtual ICollection<School> Schools { get; set; }
 
         #endregion
 

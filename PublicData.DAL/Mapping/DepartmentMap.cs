@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace PublicData.DAL.Mapping
+namespace PublicData30102020.Data.Mapping
 {
     public partial class DepartmentMap
         : IEntityTypeConfiguration<PublicData.DAL.Entities.Department>
@@ -29,13 +29,33 @@ namespace PublicData.DAL.Mapping
                 .HasColumnType("varchar(50)")
                 .HasMaxLength(50);
 
-            builder.Property(t => t.StartedAt)
-                .HasColumnName("StartedAt")
+            builder.Property(t => t.StartDate)
+                .IsRequired()
+                .HasColumnName("StartDate")
                 .HasColumnType("date");
+
+            builder.Property(t => t.EndDate)
+                .HasColumnName("EndDate")
+                .HasColumnType("date");
+
+            builder.Property(t => t.ContactNo)
+                .HasColumnName("ContactNo")
+                .HasColumnType("varchar(15)")
+                .HasMaxLength(15);
+
+            builder.Property(t => t.EmailId)
+                .HasColumnName("EmailId")
+                .HasColumnType("varchar(50)")
+                .HasMaxLength(50);
+
+            builder.Property(t => t.WebLink)
+                .HasColumnName("WebLink")
+                .HasColumnType("varchar(100)")
+                .HasMaxLength(100);
 
             builder.Property(t => t.LongText)
                 .HasColumnName("LongText")
-                .HasColumnType("nvarchar(500)")
+                .HasColumnType("varchar(500)")
                 .HasMaxLength(500);
 
             builder.Property(t => t.CreatedById)
@@ -47,7 +67,8 @@ namespace PublicData.DAL.Mapping
             builder.Property(t => t.CreatedAt)
                 .IsRequired()
                 .HasColumnName("CreatedAt")
-                .HasColumnType("datetime");
+                .HasColumnType("datetime")
+                .HasDefaultValueSql("(getdate())");
 
             builder.Property(t => t.UpdatedById)
                 .HasColumnName("UpdatedById")
@@ -79,7 +100,11 @@ namespace PublicData.DAL.Mapping
         {
             public const string Id = "Id";
             public const string Name = "Name";
-            public const string StartedAt = "StartedAt";
+            public const string StartDate = "StartDate";
+            public const string EndDate = "EndDate";
+            public const string ContactNo = "ContactNo";
+            public const string EmailId = "EmailId";
+            public const string WebLink = "WebLink";
             public const string LongText = "LongText";
             public const string CreatedById = "CreatedById";
             public const string CreatedAt = "CreatedAt";

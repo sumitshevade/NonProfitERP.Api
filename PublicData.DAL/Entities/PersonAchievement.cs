@@ -12,13 +12,18 @@ namespace PublicData.DAL.Entities
         }
 
         #region Generated Properties
-
         public int PersonId { get; set; }
-        public string Title { get; set; }
-        public string GivenBy { get; set; }
-        public string Format { get; set; }
-        public string Reason { get; set; }
+
         public int? AwardLevelId { get; set; }
+
+        public string Title { get; set; }
+
+        public string GivenBy { get; set; }
+
+        public string Format { get; set; }
+
+        public string Reason { get; set; }
+
         public DateTime? ReceivedDate { get; set; }
 
         #endregion

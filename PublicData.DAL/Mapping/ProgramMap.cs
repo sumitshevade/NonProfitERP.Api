@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace PublicData.DAL.Mapping
+namespace PublicData30102020.Data.Mapping
 {
     public partial class ProgramMap
         : IEntityTypeConfiguration<PublicData.DAL.Entities.Program>
@@ -23,11 +23,55 @@ namespace PublicData.DAL.Mapping
                 .HasColumnType("int")
                 .ValueGeneratedOnAdd();
 
+            builder.Property(t => t.DepartmentId)
+                .IsRequired()
+                .HasColumnName("DepartmentId")
+                .HasColumnType("int");
+
             builder.Property(t => t.Name)
                 .IsRequired()
                 .HasColumnName("Name")
                 .HasColumnType("varchar(50)")
                 .HasMaxLength(50);
+
+            builder.Property(t => t.AddressLine1)
+                .HasColumnName("AddressLine1")
+                .HasColumnType("varchar(100)")
+                .HasMaxLength(100);
+
+            builder.Property(t => t.AddressLine2)
+                .HasColumnName("AddressLine2")
+                .HasColumnType("varchar(100)")
+                .HasMaxLength(100);
+
+            builder.Property(t => t.StartDate)
+                .IsRequired()
+                .HasColumnName("StartDate")
+                .HasColumnType("date");
+
+            builder.Property(t => t.EndDate)
+                .HasColumnName("EndDate")
+                .HasColumnType("date");
+
+            builder.Property(t => t.ContactNo)
+                .HasColumnName("ContactNo")
+                .HasColumnType("varchar(15)")
+                .HasMaxLength(15);
+
+            builder.Property(t => t.EmailId)
+                .HasColumnName("EmailId")
+                .HasColumnType("varchar(50)")
+                .HasMaxLength(50);
+
+            builder.Property(t => t.WebLink)
+                .HasColumnName("WebLink")
+                .HasColumnType("varchar(100)")
+                .HasMaxLength(100);
+
+            builder.Property(t => t.LongText)
+                .HasColumnName("LongText")
+                .HasColumnType("varchar(500)")
+                .HasMaxLength(500);
 
             builder.Property(t => t.CreatedById)
                 .IsRequired()
@@ -38,7 +82,8 @@ namespace PublicData.DAL.Mapping
             builder.Property(t => t.CreatedAt)
                 .IsRequired()
                 .HasColumnName("CreatedAt")
-                .HasColumnType("datetime");
+                .HasColumnType("datetime")
+                .HasDefaultValueSql("(getdate())");
 
             builder.Property(t => t.UpdatedById)
                 .HasColumnName("UpdatedById")
@@ -56,6 +101,11 @@ namespace PublicData.DAL.Mapping
                 .HasDefaultValueSql("((1))");
 
             // relationships
+            builder.HasOne(t => t.Department)
+                .WithMany(t => t.Programs)
+                .HasForeignKey(d => d.DepartmentId)
+                .HasConstraintName("FK__Program__Departm__70DDC3D8");
+
             #endregion
         }
 
@@ -69,7 +119,16 @@ namespace PublicData.DAL.Mapping
         public struct Columns
         {
             public const string Id = "Id";
+            public const string DepartmentId = "DepartmentId";
             public const string Name = "Name";
+            public const string AddressLine1 = "AddressLine1";
+            public const string AddressLine2 = "AddressLine2";
+            public const string StartDate = "StartDate";
+            public const string EndDate = "EndDate";
+            public const string ContactNo = "ContactNo";
+            public const string EmailId = "EmailId";
+            public const string WebLink = "WebLink";
+            public const string LongText = "LongText";
             public const string CreatedById = "CreatedById";
             public const string CreatedAt = "CreatedAt";
             public const string UpdatedById = "UpdatedById";

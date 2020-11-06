@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace PublicData.DAL.Mapping
+namespace PublicData30102020.Data.Mapping
 {
     public partial class PersonWorkExperienceMap
         : IEntityTypeConfiguration<PublicData.DAL.Entities.PersonWorkExperience>
@@ -28,15 +28,14 @@ namespace PublicData.DAL.Mapping
                 .HasColumnName("PersonId")
                 .HasColumnType("int");
 
-            builder.Property(t => t.IndustryId)
-                .IsRequired()
-                .HasColumnName("IndustryId")
+            builder.Property(t => t.OrganizationId)
+                .HasColumnName("OrganizationId")
                 .HasColumnType("int");
 
-            builder.Property(t => t.OtherIndustry)
-                .HasColumnName("OtherIndustry")
-                .HasColumnType("varchar(50)")
-                .HasMaxLength(50);
+            builder.Property(t => t.OtherOrganization)
+                .HasColumnName("OtherOrganization")
+                .HasColumnType("varchar(100)")
+                .HasMaxLength(100);
 
             builder.Property(t => t.WorkTypeId)
                 .HasColumnName("WorkTypeId")
@@ -47,22 +46,21 @@ namespace PublicData.DAL.Mapping
                 .HasColumnType("varchar(50)")
                 .HasMaxLength(50);
 
-            builder.Property(t => t.StatusId)
-                .HasColumnName("StatusId")
+            builder.Property(t => t.DepartmentId)
+                .HasColumnName("DepartmentId")
                 .HasColumnType("int");
 
-            builder.Property(t => t.OtherStatus)
-                .HasColumnName("OtherStatus")
+            builder.Property(t => t.OtherDepartment)
+                .HasColumnName("OtherDepartment")
                 .HasColumnType("varchar(50)")
                 .HasMaxLength(50);
 
-            builder.Property(t => t.CompanyName)
-                .HasColumnName("CompanyName")
-                .HasColumnType("varchar(50)")
-                .HasMaxLength(50);
+            builder.Property(t => t.DesignationId)
+                .HasColumnName("DesignationId")
+                .HasColumnType("int");
 
-            builder.Property(t => t.ActualWork)
-                .HasColumnName("ActualWork")
+            builder.Property(t => t.OtherDesignation)
+                .HasColumnName("OtherDesignation")
                 .HasColumnType("varchar(50)")
                 .HasMaxLength(50);
 
@@ -73,6 +71,19 @@ namespace PublicData.DAL.Mapping
             builder.Property(t => t.ToYear)
                 .HasColumnName("ToYear")
                 .HasColumnType("int");
+
+            builder.Property(t => t.Specialization)
+                .HasColumnName("Specialization")
+                .HasColumnType("varchar(50)")
+                .HasMaxLength(50);
+
+            builder.Property(t => t.IsFreeLance)
+                .HasColumnName("IsFreeLance")
+                .HasColumnType("bit");
+
+            builder.Property(t => t.IsFullTime)
+                .HasColumnName("IsFullTime")
+                .HasColumnType("bit");
 
             builder.Property(t => t.LongText)
                 .HasColumnName("LongText")
@@ -88,7 +99,8 @@ namespace PublicData.DAL.Mapping
             builder.Property(t => t.CreatedAt)
                 .IsRequired()
                 .HasColumnName("CreatedAt")
-                .HasColumnType("datetime");
+                .HasColumnType("datetime")
+                .HasDefaultValueSql("(getdate())");
 
             builder.Property(t => t.UpdatedById)
                 .HasColumnName("UpdatedById")
@@ -106,25 +118,30 @@ namespace PublicData.DAL.Mapping
                 .HasDefaultValueSql("((1))");
 
             // relationships
-            builder.HasOne(t => t.IndustryDetail)
-                .WithMany(t => t.IndustryPersonWorkExperiences)
-                .HasForeignKey(d => d.IndustryId)
-                .HasConstraintName("FK__PersonWor__Indus__65370702");
+            builder.HasOne(t => t.DepartmentDetail)
+                .WithMany(t => t.DepartmentPersonWorkExperiences)
+                .HasForeignKey(d => d.DepartmentId)
+                .HasConstraintName("FK__PersonWor__Depar__02C769E9");
+
+            builder.HasOne(t => t.DesignationDetail)
+                .WithMany(t => t.DesignationPersonWorkExperiences)
+                .HasForeignKey(d => d.DesignationId)
+                .HasConstraintName("FK__PersonWor__Desig__03BB8E22");
+
+            builder.HasOne(t => t.Organization)
+                .WithMany(t => t.PersonWorkExperiences)
+                .HasForeignKey(d => d.OrganizationId)
+                .HasConstraintName("FK__PersonWor__Organ__00DF2177");
 
             builder.HasOne(t => t.Person)
                 .WithMany(t => t.PersonWorkExperiences)
                 .HasForeignKey(d => d.PersonId)
-                .HasConstraintName("FK__PersonWor__Perso__6442E2C9");
-
-            builder.HasOne(t => t.StatusDetail)
-                .WithMany(t => t.StatusPersonWorkExperiences)
-                .HasForeignKey(d => d.StatusId)
-                .HasConstraintName("FK__PersonWor__Statu__671F4F74");
+                .HasConstraintName("FK__PersonWor__Perso__7FEAFD3E");
 
             builder.HasOne(t => t.WorkTypeDetail)
                 .WithMany(t => t.WorkTypePersonWorkExperiences)
                 .HasForeignKey(d => d.WorkTypeId)
-                .HasConstraintName("FK__PersonWor__WorkT__662B2B3B");
+                .HasConstraintName("FK__PersonWor__WorkT__01D345B0");
 
             #endregion
         }
@@ -140,16 +157,19 @@ namespace PublicData.DAL.Mapping
         {
             public const string Id = "Id";
             public const string PersonId = "PersonId";
-            public const string IndustryId = "IndustryId";
-            public const string OtherIndustry = "OtherIndustry";
+            public const string OrganizationId = "OrganizationId";
+            public const string OtherOrganization = "OtherOrganization";
             public const string WorkTypeId = "WorkTypeId";
             public const string OtherWorkType = "OtherWorkType";
-            public const string StatusId = "StatusId";
-            public const string OtherStatus = "OtherStatus";
-            public const string CompanyName = "CompanyName";
-            public const string ActualWork = "ActualWork";
+            public const string DepartmentId = "DepartmentId";
+            public const string OtherDepartment = "OtherDepartment";
+            public const string DesignationId = "DesignationId";
+            public const string OtherDesignation = "OtherDesignation";
             public const string FromYear = "FromYear";
             public const string ToYear = "ToYear";
+            public const string Specialization = "Specialization";
+            public const string IsFreeLance = "IsFreeLance";
+            public const string IsFullTime = "IsFullTime";
             public const string LongText = "LongText";
             public const string CreatedById = "CreatedById";
             public const string CreatedAt = "CreatedAt";

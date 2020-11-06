@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace PublicData.DAL.Mapping
+namespace PublicData30102020.Data.Mapping
 {
     public partial class UniversityMap
         : IEntityTypeConfiguration<PublicData.DAL.Entities.University>
@@ -43,7 +43,8 @@ namespace PublicData.DAL.Mapping
             builder.Property(t => t.CreatedAt)
                 .IsRequired()
                 .HasColumnName("CreatedAt")
-                .HasColumnType("datetime");
+                .HasColumnType("datetime")
+                .HasDefaultValueSql("(getdate())");
 
             builder.Property(t => t.UpdatedById)
                 .HasColumnName("UpdatedById")
@@ -64,7 +65,7 @@ namespace PublicData.DAL.Mapping
             builder.HasOne(t => t.City)
                 .WithMany(t => t.Universities)
                 .HasForeignKey(d => d.CityId)
-                .HasConstraintName("FK__Universit__CityI__7849DB76");
+                .HasConstraintName("FK__Universit__CityI__18B6AB08");
 
             #endregion
         }

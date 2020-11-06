@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace PublicData.DAL.Mapping
+namespace PublicData30102020.Data.Mapping
 {
     public partial class PersonAddressMap
         : IEntityTypeConfiguration<PublicData.DAL.Entities.PersonAddress>
@@ -106,7 +106,6 @@ namespace PublicData.DAL.Mapping
                 .HasColumnType("int");
 
             builder.Property(t => t.IsGovtBuildUp)
-                .IsRequired()
                 .HasColumnName("IsGovtBuildUp")
                 .HasColumnType("bit");
 
@@ -135,7 +134,8 @@ namespace PublicData.DAL.Mapping
             builder.Property(t => t.CreatedAt)
                 .IsRequired()
                 .HasColumnName("CreatedAt")
-                .HasColumnType("datetime");
+                .HasColumnType("datetime")
+                .HasDefaultValueSql("(getdate())");
 
             builder.Property(t => t.UpdatedById)
                 .HasColumnName("UpdatedById")
@@ -156,52 +156,52 @@ namespace PublicData.DAL.Mapping
             builder.HasOne(t => t.City)
                 .WithMany(t => t.PersonAddresses)
                 .HasForeignKey(d => d.CityId)
-                .HasConstraintName("FK__PersonAdd__CityI__236943A5");
+                .HasConstraintName("FK__PersonAdd__CityI__2BFE89A6");
 
             builder.HasOne(t => t.Country)
                 .WithMany(t => t.PersonAddresses)
                 .HasForeignKey(d => d.CountryId)
-                .HasConstraintName("FK__PersonAdd__Count__2180FB33");
+                .HasConstraintName("FK__PersonAdd__Count__2A164134");
 
             builder.HasOne(t => t.District)
                 .WithMany(t => t.PersonAddresses)
                 .HasForeignKey(d => d.DistrictId)
-                .HasConstraintName("FK__PersonAdd__Distr__25518C17");
+                .HasConstraintName("FK__PersonAdd__Distr__2DE6D218");
 
             builder.HasOne(t => t.HomeStatusDetail)
                 .WithMany(t => t.HomeStatusPersonAddresses)
                 .HasForeignKey(d => d.HomeStatusId)
-                .HasConstraintName("FK__PersonAdd__HomeS__2645B050");
+                .HasConstraintName("FK__PersonAdd__HomeS__2EDAF651");
 
             builder.HasOne(t => t.LocalityClassDetail)
                 .WithMany(t => t.LocalityClassPersonAddresses)
                 .HasForeignKey(d => d.LocalityClassId)
-                .HasConstraintName("FK__PersonAdd__Local__2739D489");
+                .HasConstraintName("FK__PersonAdd__Local__2FCF1A8A");
 
             builder.HasOne(t => t.Person)
                 .WithMany(t => t.PersonAddresses)
                 .HasForeignKey(d => d.PersonId)
-                .HasConstraintName("FK__PersonAdd__Perso__208CD6FA");
+                .HasConstraintName("FK__PersonAdd__Perso__29221CFB");
 
             builder.HasOne(t => t.ResidentialStatusDetail)
                 .WithMany(t => t.ResidentialStatusPersonAddresses)
                 .HasForeignKey(d => d.ResidentialStatusId)
-                .HasConstraintName("FK__PersonAdd__Resid__282DF8C2");
+                .HasConstraintName("FK__PersonAdd__Resid__30C33EC3");
 
             builder.HasOne(t => t.ResidentialAreaDetail)
                 .WithMany(t => t.ResidentialAreaPersonAddresses)
                 .HasForeignKey(d => d.ResidentialAreaId)
-                .HasConstraintName("FK__PersonAdd__Resid__29221CFB");
+                .HasConstraintName("FK__PersonAdd__Resid__31B762FC");
 
             builder.HasOne(t => t.State)
                 .WithMany(t => t.PersonAddresses)
                 .HasForeignKey(d => d.StateId)
-                .HasConstraintName("FK__PersonAdd__State__22751F6C");
+                .HasConstraintName("FK__PersonAdd__State__2B0A656D");
 
             builder.HasOne(t => t.Taluka)
                 .WithMany(t => t.PersonAddresses)
                 .HasForeignKey(d => d.TalukaId)
-                .HasConstraintName("FK__PersonAdd__Taluk__245D67DE");
+                .HasConstraintName("FK__PersonAdd__Taluk__2CF2ADDF");
 
             #endregion
         }

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace PublicData.DAL.Mapping
+namespace PublicData30102020.Data.Mapping
 {
     public partial class PersonLanguageMap
         : IEntityTypeConfiguration<PublicData.DAL.Entities.PersonLanguage>
@@ -29,7 +29,6 @@ namespace PublicData.DAL.Mapping
                 .HasColumnType("int");
 
             builder.Property(t => t.LanguageId)
-                .IsRequired()
                 .HasColumnName("LanguageId")
                 .HasColumnType("int");
 
@@ -52,7 +51,8 @@ namespace PublicData.DAL.Mapping
             builder.Property(t => t.CreatedAt)
                 .IsRequired()
                 .HasColumnName("CreatedAt")
-                .HasColumnType("datetime");
+                .HasColumnType("datetime")
+                .HasDefaultValueSql("(getdate())");
 
             builder.Property(t => t.UpdatedById)
                 .HasColumnName("UpdatedById")
@@ -73,12 +73,12 @@ namespace PublicData.DAL.Mapping
             builder.HasOne(t => t.LanguageDetail)
                 .WithMany(t => t.LanguagePersonLanguages)
                 .HasForeignKey(d => d.LanguageId)
-                .HasConstraintName("FK__PersonLan__Langu__531856C7");
+                .HasConstraintName("FK__PersonLan__Langu__6AEFE058");
 
             builder.HasOne(t => t.Person)
                 .WithMany(t => t.PersonLanguages)
                 .HasForeignKey(d => d.PersonId)
-                .HasConstraintName("FK__PersonLan__Perso__5224328E");
+                .HasConstraintName("FK__PersonLan__Perso__69FBBC1F");
 
             #endregion
         }

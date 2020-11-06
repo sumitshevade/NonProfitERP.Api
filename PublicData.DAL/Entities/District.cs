@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 
 namespace PublicData.DAL.Entities
@@ -9,20 +8,25 @@ namespace PublicData.DAL.Entities
         {
             #region Generated Constructor
             PersonAddresses = new HashSet<PersonAddress>();
+            Schools = new HashSet<School>();
             Talukas = new HashSet<Taluka>();
             #endregion
         }
 
         #region Generated Properties
 
-        public int? StateId { get; set; }
+        public int StateId { get; set; }
+
         public string Name { get; set; }
+
         public string LongText { get; set; }
 
         #endregion
 
         #region Generated Relationships
         public virtual ICollection<PersonAddress> PersonAddresses { get; set; }
+
+        public virtual ICollection<School> Schools { get; set; }
 
         public virtual State State { get; set; }
 

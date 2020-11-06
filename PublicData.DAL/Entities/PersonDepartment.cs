@@ -1,11 +1,10 @@
 using System;
-using System.Collections.Generic;
 
 namespace PublicData.DAL.Entities
 {
-    public partial class DepartmentHead : Entity
+    public partial class PersonDepartment : Entity
     {
-        public DepartmentHead()
+        public PersonDepartment()
         {
             #region Generated Constructor
             #endregion
@@ -14,9 +13,16 @@ namespace PublicData.DAL.Entities
         #region Generated Properties
 
         public int PersonId { get; set; }
+
         public int DepartmentId { get; set; }
-        public int FromYear { get; set; }
-        public int? ToYear { get; set; }
+
+        public string Role { get; set; }
+
+        public DateTime StartDate { get; set; }
+
+        public DateTime? EndDate { get; set; }
+
+        public string LongText { get; set; }
 
         #endregion
 
