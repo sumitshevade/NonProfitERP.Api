@@ -76,12 +76,6 @@ namespace PublicData.DAL.Mapping
                 .HasColumnType("bit")
                 .HasDefaultValueSql("((1))");
 
-            // relationships
-            builder.HasOne(t => t.Department)
-                .WithMany(t => t.Divisions)
-                .HasForeignKey(d => d.DepartmentId)
-                .HasConstraintName("FK__Division__Depart__0B91BA14");
-
             #endregion
         }
 

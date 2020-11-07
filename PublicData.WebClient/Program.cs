@@ -44,7 +44,6 @@ namespace PublicData.WebClient
             // Inject repositories - TODO: move to somewhere - use reflection
             builder.Services.AddScoped<ICityRepository, CityRepository>();
             builder.Services.AddScoped<ICountryRepository, CountryRepository>();
-            builder.Services.AddScoped<IDepartmentHeadRepository, DepartmentHeadRepository>();
             builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
             builder.Services.AddScoped<IDetailRepository, DetailRepository>();
             builder.Services.AddScoped<IDistrictRepository, DistrictRepository>();

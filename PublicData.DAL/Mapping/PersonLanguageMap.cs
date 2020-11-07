@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace PublicData30102020.Data.Mapping
+namespace PublicData.Data.Mapping
 {
     public partial class PersonLanguageMap
         : IEntityTypeConfiguration<PublicData.DAL.Entities.PersonLanguage>

@@ -24,7 +24,6 @@ namespace PublicData.Application.Shared
             PersonPrivateInformation = new HashSet<PersonPrivateInformation>();
             PersonSocialMediaAccount = new HashSet<PersonSocialMediaAccount>();
             PersonWorkExperience = new HashSet<PersonWorkExperience>();
-            ProgramAttendance = new HashSet<ProgramAttendance>();
             //Ticket = new HashSet<Ticket>();
         }
 
@@ -64,7 +63,6 @@ namespace PublicData.Application.Shared
         public virtual ICollection<PersonPrivateInformation> PersonPrivateInformation { get; set; }
         public virtual ICollection<PersonSocialMediaAccount> PersonSocialMediaAccount { get; set; }
         public virtual ICollection<PersonWorkExperience> PersonWorkExperience { get; set; }
-        public virtual ICollection<ProgramAttendance> ProgramAttendance { get; set; }
         //public virtual ICollection<Ticket> Ticket { get; set; }
 
         public void Mapping(Profile profile)

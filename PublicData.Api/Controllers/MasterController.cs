@@ -15,11 +15,6 @@ using PublicData.Application.Features.Master.Department.DeleteDepartment;
 using PublicData.Application.Features.Master.Department.GetAllDepartments;
 using PublicData.Application.Features.Master.Department.GetDepartmentById;
 using PublicData.Application.Features.Master.Department.UpdateDepartment;
-using PublicData.Application.Features.Master.DepartmentHead.CreateDepartmentHead;
-using PublicData.Application.Features.Master.DepartmentHead.DeleteDepartmentHead;
-using PublicData.Application.Features.Master.DepartmentHead.GetAllDepartmentHeads;
-using PublicData.Application.Features.Master.DepartmentHead.GetDepartmentHeadById;
-using PublicData.Application.Features.Master.DepartmentHead.UpdateDepartmentHeadById;
 using PublicData.Application.Features.Master.Detail.CreateDetail;
 using PublicData.Application.Features.Master.Detail.DeleteDetail;
 using PublicData.Application.Features.Master.Detail.GetDetailByHeaderId;
@@ -211,45 +206,6 @@ namespace PublicData.Api.Controllers
         public async Task<IActionResult> DeleteDepartment(int id)
         {
             return new JsonResult(await Mediator.Send(new DeleteDepartmentCommand { Id = id }));
-        }
-
-        #endregion
-
-        #region --- Department Head APIs ---
-
-        /// <summary>
-        /// Get the list of all heads
-        /// </summary>
-        [HttpGet("departmenthead")]
-        public async Task<IActionResult> GetDepartmentHeads()
-        {
-            var result = await Mediator.Send(new GetAllDepartmentHeadsQuery());
-            return new JsonResult(result);
-        }
-
-        [HttpGet("departmenthead/{id}")]
-        public async Task<IActionResult> GetDepartmentHeadById(int id)
-        {
-            var result = await Mediator.Send(new GetDepartmentHeadByIdQuery { Id = id });
-            return new JsonResult(result);
-        }
-
-        [HttpPost("departmenthead")]
-        public async Task<IActionResult> PostDepartmentHead(CreateDepartmentHeadCommand command)
-        {
-            return new JsonResult(await Mediator.Send(command));
-        }
-
-        [HttpPut("departmenthead")]
-        public async Task<IActionResult> PutDepartmentHead(UpdateDepartmentHeadByIdCommand command)
-        {
-            return new JsonResult(await Mediator.Send(command));
-        }
-
-        [HttpDelete("departmenthead/{id}")]
-        public async Task<IActionResult> DeleteDepartmentHead(int id)
-        {
-            return new JsonResult(await Mediator.Send(new DeleteDepartmentHeadCommand { Id = id }));
         }
 
         #endregion

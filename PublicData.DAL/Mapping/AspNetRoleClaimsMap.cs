@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore;
 namespace PublicData.DAL.Mapping
 {
     public partial class AspNetRoleClaimsMap
-        : IEntityTypeConfiguration<PublicData.DAL.Entities.AspNetRoleClaims>
+        : IEntityTypeConfiguration<Entities.AspNetRoleClaims>
     {
-        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<PublicData.DAL.Entities.AspNetRoleClaims> builder)
+        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Entities.AspNetRoleClaims> builder)
         {
             #region Generated Configure
             // table

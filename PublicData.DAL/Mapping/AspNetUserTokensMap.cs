@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore;
 namespace PublicData.DAL.Mapping
 {
     public partial class AspNetUserTokensMap
-        : IEntityTypeConfiguration<PublicData.DAL.Entities.AspNetUserTokens>
+        : IEntityTypeConfiguration<Entities.AspNetUserTokens>
     {
-        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<PublicData.DAL.Entities.AspNetUserTokens> builder)
+        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Entities.AspNetUserTokens> builder)
         {
             #region Generated Configure
             // table

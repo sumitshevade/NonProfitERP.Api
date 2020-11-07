@@ -10,7 +10,6 @@ namespace PublicData.Application.Shared
     {
         public DepartmentModel()
         {
-            DepartmentHead = new HashSet<DepartmentHead>();
             Division = new HashSet<Division>();
         }
 
@@ -19,7 +18,6 @@ namespace PublicData.Application.Shared
         public DateTime? StartedAt { get; set; }
         public string LongText { get; set; }
 
-        public virtual ICollection<DepartmentHead> DepartmentHead { get; set; }
         public virtual ICollection<Division> Division { get; set; }
 
         public void Mapping(Profile profile)

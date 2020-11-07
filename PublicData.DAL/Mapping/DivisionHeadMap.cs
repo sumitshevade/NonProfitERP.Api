@@ -74,11 +74,6 @@ namespace PublicData.DAL.Mapping
                 .HasForeignKey(d => d.DivisionId)
                 .HasConstraintName("FK__DivisionH__Divis__10566F31");
 
-            builder.HasOne(t => t.Person)
-                .WithMany(t => t.DivisionHeads)
-                .HasForeignKey(d => d.PersonId)
-                .HasConstraintName("FK__DivisionH__Perso__0F624AF8");
-
             #endregion
         }
 

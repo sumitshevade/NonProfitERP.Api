@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore;
 namespace PublicData.DAL.Mapping
 {
     public partial class AspNetUsersMap
-        : IEntityTypeConfiguration<PublicData.DAL.Entities.AspNetUsers>
+        : IEntityTypeConfiguration<Entities.AspNetUsers>
     {
-        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<PublicData.DAL.Entities.AspNetUsers> builder)
+        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Entities.AspNetUsers> builder)
         {
             #region Generated Configure
             // table

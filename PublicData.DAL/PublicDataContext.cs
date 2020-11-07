@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using PublicData.DAL.Entities;
 using PublicData.Common.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using PublicData.Data.Mapping;
 
 namespace PublicData.DAL
 {
@@ -22,101 +23,128 @@ namespace PublicData.DAL
             _currentUserService = currentUserService;
         }
 
-        public virtual DbSet<AspNetRoleClaims> AspNetRoleClaims { get; set; }
-        public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
-        public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
-        public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
-        public virtual DbSet<AspNetUserRoles> AspNetUserRoles { get; set; }
-        public virtual DbSet<AspNetUserTokens> AspNetUserTokens { get; set; }
-        public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
-        public virtual DbSet<City> City { get; set; }
-        public virtual DbSet<Country> Country { get; set; }
-        public virtual DbSet<Department> Department { get; set; }
-        public virtual DbSet<DepartmentHead> DepartmentHead { get; set; }
-        public virtual DbSet<Detail> Detail { get; set; }
-        public virtual DbSet<DeviceCodes> DeviceCodes { get; set; }
-        public virtual DbSet<District> District { get; set; }
-        public virtual DbSet<Division> Division { get; set; }
-        public virtual DbSet<DivisionHead> DivisionHead { get; set; }
-        public virtual DbSet<Header> Header { get; set; }
-        public virtual DbSet<PersistedGrants> PersistedGrants { get; set; }
-        public virtual DbSet<Person> Person { get; set; }
-        public virtual DbSet<PersonAchievement> PersonAchievement { get; set; }
-        public virtual DbSet<PersonAddress> PersonAddress { get; set; }
-        public virtual DbSet<PersonContact> PersonContact { get; set; }
-        public virtual DbSet<PersonDisability> PersonDisability { get; set; }
-        public virtual DbSet<PersonEducation> PersonEducation { get; set; }
-        public virtual DbSet<PersonFamilyDetail> PersonFamilyDetail { get; set; }
-        public virtual DbSet<PersonHealthDetail> PersonHealthDetail { get; set; }
-        public virtual DbSet<PersonHobbyFavorite> PersonHobbyFavorite { get; set; }
-        public virtual DbSet<PersonLanguage> PersonLanguage { get; set; }
-        public virtual DbSet<PersonPrivateInformation> PersonPrivateInformation { get; set; }
-        public virtual DbSet<PersonSocialMediaAccount> PersonSocialMediaAccount { get; set; }
-        public virtual DbSet<PersonWorkExperience> PersonWorkExperience { get; set; }
-        public virtual DbSet<Program> Program { get; set; }
-        public virtual DbSet<ProgramAttendance> ProgramAttendance { get; set; }
-        public virtual DbSet<School> School { get; set; }
-        public virtual DbSet<State> State { get; set; }
-        public virtual DbSet<Taluka> Taluka { get; set; }
-        public virtual DbSet<Ticket> Ticket { get; set; }
-        public virtual DbSet<University> University { get; set; }
+        #region -- Mappings
 
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    if (!optionsBuilder.IsConfigured)
-        //    {
-        //        //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-        //        optionsBuilder.UseLazyLoadingProxies()
-        //            .UseSqlServer("Server=.;Database=PublicData_19072020;Trusted_Connection=True;");
-        //    }
-        //}
+        public virtual DbSet<Batch> Batches { get; set; }
+
+        public virtual DbSet<City> Cities { get; set; }
+
+        public virtual DbSet<Country> Countries { get; set; }
+
+        public virtual DbSet<CourseHead> CourseHeads { get; set; }
+
+        public virtual DbSet<Course> Courses { get; set; }
+
+        public virtual DbSet<Department> Departments { get; set; }
+
+        public virtual DbSet<Detail> Details { get; set; }
+
+        public virtual DbSet<District> Districts { get; set; }
+
+        public virtual DbSet<EventAttendance> EventAttendances { get; set; }
+
+        public virtual DbSet<Event> Events { get; set; }
+
+        public virtual DbSet<Header> Headers { get; set; }
+
+        public virtual DbSet<Organization> Organizations { get; set; }
+
+        public virtual DbSet<Person> People { get; set; }
+
+        public virtual DbSet<PersonAchievement> PersonAchievements { get; set; }
+
+        public virtual DbSet<PersonAddress> PersonAddresses { get; set; }
+
+        public virtual DbSet<PersonBatch> PersonBatches { get; set; }
+
+        public virtual DbSet<PersonContact> PersonContacts { get; set; }
+
+        public virtual DbSet<PersonDepartment> PersonDepartments { get; set; }
+
+        public virtual DbSet<PersonDisability> PersonDisabilities { get; set; }
+
+        public virtual DbSet<PersonEducation> PersonEducations { get; set; }
+
+        public virtual DbSet<PersonFamilyDetail> PersonFamilyDetails { get; set; }
+
+        public virtual DbSet<PersonHealthDetail> PersonHealthDetails { get; set; }
+
+        public virtual DbSet<PersonHobbyFavorite> PersonHobbyFavorites { get; set; }
+
+        public virtual DbSet<PersonLanguage> PersonLanguages { get; set; }
+
+        public virtual DbSet<PersonPrivateInformation> PersonPrivateInformations { get; set; }
+
+        public virtual DbSet<PersonProgram> PersonPrograms { get; set; }
+
+        public virtual DbSet<PersonSocialMediaAccount> PersonSocialMediaAccounts { get; set; }
+
+        public virtual DbSet<PersonSubProgram> PersonSubPrograms { get; set; }
+
+        public virtual DbSet<PersonWorkExperience> PersonWorkExperiences { get; set; }
+
+        public virtual DbSet<Program> Programs { get; set; }
+
+        public virtual DbSet<School> Schools { get; set; }
+
+        public virtual DbSet<State> States { get; set; }
+
+        public virtual DbSet<SubProgram> SubPrograms { get; set; }
+
+        public virtual DbSet<Taluka> Talukas { get; set; }
+
+        public virtual DbSet<Ticket> Tickets { get; set; }
+
+        public virtual DbSet<TransactionLog> TransactionLogs { get; set; }
+
+        public virtual DbSet<TransactionLogValue> TransactionLogValues { get; set; }
+
+        public virtual DbSet<University> Universities { get; set; }
+
+#endregion
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             #region Generated Configuration
-            modelBuilder.ApplyConfiguration(new Mapping.AspNetRoleClaimsMap());
-            modelBuilder.ApplyConfiguration(new Mapping.AspNetRolesMap());
-            modelBuilder.ApplyConfiguration(new Mapping.AspNetUserClaimsMap());
-            modelBuilder.ApplyConfiguration(new Mapping.AspNetUserLoginsMap());
-            modelBuilder.ApplyConfiguration(new Mapping.AspNetUserRolesMap());
-            modelBuilder.ApplyConfiguration(new Mapping.AspNetUsersMap());
-            modelBuilder.ApplyConfiguration(new Mapping.AspNetUserTokensMap());
-            modelBuilder.ApplyConfiguration(new Mapping.CityMap());
-            modelBuilder.ApplyConfiguration(new Mapping.CountryMap());
-            modelBuilder.ApplyConfiguration(new Mapping.DepartmentHeadMap());
-            modelBuilder.ApplyConfiguration(new Mapping.DepartmentMap());
-            modelBuilder.ApplyConfiguration(new Mapping.DetailMap());
-            modelBuilder.ApplyConfiguration(new Mapping.DeviceCodesMap());
-            modelBuilder.ApplyConfiguration(new Mapping.DistrictMap());
-            modelBuilder.ApplyConfiguration(new Mapping.DivisionHeadMap());
-            modelBuilder.ApplyConfiguration(new Mapping.DivisionMap());
-            modelBuilder.ApplyConfiguration(new Mapping.HeaderMap());
-            modelBuilder.ApplyConfiguration(new Mapping.PersistedGrantsMap());
-            modelBuilder.ApplyConfiguration(new Mapping.PersonAchievementMap());
-            modelBuilder.ApplyConfiguration(new Mapping.PersonAddressMap());
-            modelBuilder.ApplyConfiguration(new Mapping.PersonContactMap());
-            modelBuilder.ApplyConfiguration(new Mapping.PersonDisabilityMap());
-            modelBuilder.ApplyConfiguration(new Mapping.PersonEducationMap());
-            modelBuilder.ApplyConfiguration(new Mapping.PersonFamilyDetailMap());
-            modelBuilder.ApplyConfiguration(new Mapping.PersonHealthDetailMap());
-            modelBuilder.ApplyConfiguration(new Mapping.PersonHobbyFavoriteMap());
-            modelBuilder.ApplyConfiguration(new Mapping.PersonLanguageMap());
-            modelBuilder.ApplyConfiguration(new Mapping.PersonMap());
-            modelBuilder.ApplyConfiguration(new Mapping.PersonPrivateInformationMap());
-            modelBuilder.ApplyConfiguration(new Mapping.PersonSocialMediaAccountMap());
-            modelBuilder.ApplyConfiguration(new Mapping.PersonWorkExperienceMap());
-            modelBuilder.ApplyConfiguration(new Mapping.ProgramAttendanceMap());
-            modelBuilder.ApplyConfiguration(new Mapping.ProgramMap());
-            modelBuilder.ApplyConfiguration(new Mapping.SchoolMap());
-            modelBuilder.ApplyConfiguration(new Mapping.StateMap());
-            modelBuilder.ApplyConfiguration(new Mapping.TalukaMap());
-            modelBuilder.ApplyConfiguration(new Mapping.TicketMap());
-            modelBuilder.ApplyConfiguration(new Mapping.TransactionLogMap());
-            modelBuilder.ApplyConfiguration(new Mapping.TransactionLogValueMap());
-            modelBuilder.ApplyConfiguration(new Mapping.UniversityMap());
+            modelBuilder.ApplyConfiguration(new BatchMap());
+            modelBuilder.ApplyConfiguration(new CityMap());
+            modelBuilder.ApplyConfiguration(new CountryMap());
+            modelBuilder.ApplyConfiguration(new CourseHeadMap());
+            modelBuilder.ApplyConfiguration(new CourseMap());
+            modelBuilder.ApplyConfiguration(new DepartmentMap());
+            modelBuilder.ApplyConfiguration(new DetailMap());
+            modelBuilder.ApplyConfiguration(new DistrictMap());
+            modelBuilder.ApplyConfiguration(new EventAttendanceMap());
+            modelBuilder.ApplyConfiguration(new EventMap());
+            modelBuilder.ApplyConfiguration(new HeaderMap());
+            modelBuilder.ApplyConfiguration(new OrganizationMap());
+            modelBuilder.ApplyConfiguration(new PersonAchievementMap());
+            modelBuilder.ApplyConfiguration(new PersonAddressMap());
+            modelBuilder.ApplyConfiguration(new PersonBatchMap());
+            modelBuilder.ApplyConfiguration(new PersonContactMap());
+            modelBuilder.ApplyConfiguration(new PersonDepartmentMap());
+            modelBuilder.ApplyConfiguration(new PersonDisabilityMap());
+            modelBuilder.ApplyConfiguration(new PersonEducationMap());
+            modelBuilder.ApplyConfiguration(new PersonFamilyDetailMap());
+            modelBuilder.ApplyConfiguration(new PersonHealthDetailMap());
+            modelBuilder.ApplyConfiguration(new PersonHobbyFavoriteMap());
+            modelBuilder.ApplyConfiguration(new PersonLanguageMap());
+            modelBuilder.ApplyConfiguration(new PersonMap());
+            modelBuilder.ApplyConfiguration(new PersonPrivateInformationMap());
+            modelBuilder.ApplyConfiguration(new PersonProgramMap());
+            modelBuilder.ApplyConfiguration(new PersonSocialMediaAccountMap());
+            modelBuilder.ApplyConfiguration(new PersonSubProgramMap());
+            modelBuilder.ApplyConfiguration(new PersonWorkExperienceMap());
+            modelBuilder.ApplyConfiguration(new ProgramMap());
+            modelBuilder.ApplyConfiguration(new SchoolMap());
+            modelBuilder.ApplyConfiguration(new StateMap());
+            modelBuilder.ApplyConfiguration(new SubProgramMap());
+            modelBuilder.ApplyConfiguration(new TalukaMap());
+            modelBuilder.ApplyConfiguration(new TicketMap());
+            modelBuilder.ApplyConfiguration(new TransactionLogMap());
+            modelBuilder.ApplyConfiguration(new TransactionLogValueMap());
+            modelBuilder.ApplyConfiguration(new UniversityMap());
             #endregion
-
-            base.OnModelCreating(modelBuilder);
         }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)

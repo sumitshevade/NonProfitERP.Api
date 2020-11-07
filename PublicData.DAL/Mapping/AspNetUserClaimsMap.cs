@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore;
 namespace PublicData.DAL.Mapping
 {
     public partial class AspNetUserClaimsMap
-        : IEntityTypeConfiguration<PublicData.DAL.Entities.AspNetUserClaims>
+        : IEntityTypeConfiguration<Entities.AspNetUserClaims>
     {
-        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<PublicData.DAL.Entities.AspNetUserClaims> builder)
+        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Entities.AspNetUserClaims> builder)
         {
             #region Generated Configure
             // table
