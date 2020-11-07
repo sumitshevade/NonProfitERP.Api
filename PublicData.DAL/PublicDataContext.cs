@@ -6,6 +6,7 @@ using PublicData.DAL.Entities;
 using PublicData.Common.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using PublicData.Data.Mapping;
+using PublicData.DAL.Mapping;
 
 namespace PublicData.DAL
 {
@@ -25,87 +26,69 @@ namespace PublicData.DAL
 
         #region -- Mappings
 
-        public virtual DbSet<Batch> Batches { get; set; }
+        public virtual DbSet<AspNetRoleClaims> AspNetRoleClaims { get; set; }
+        public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
+        public virtual DbSet<AspNetUserRoles> AspNetUserRoles { get; set; }
+        public virtual DbSet<AspNetUserTokens> AspNetUserTokens { get; set; }
+        public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
+        public virtual DbSet<Batch> Batch { get; set; }
+        public virtual DbSet<City> City { get; set; }
+        public virtual DbSet<Country> Country { get; set; }
+        public virtual DbSet<CourseHead> CourseHead { get; set; }
+        public virtual DbSet<Course> Course { get; set; }
+        public virtual DbSet<Department> Department { get; set; }
+        public virtual DbSet<Detail> Detail { get; set; }
+        public virtual DbSet<DeviceCodes> DeviceCodes { get; set; }
+        public virtual DbSet<District> District { get; set; }
+        public virtual DbSet<Division> Division { get; set; }
+        public virtual DbSet<DivisionHead> DivisionHead { get; set; }
+        public virtual DbSet<EventAttendance> EventAttendance { get; set; }
+        public virtual DbSet<Event> Event { get; set; }
+        public virtual DbSet<Header> Header { get; set; }
+        public virtual DbSet<Organization> Organization { get; set; }
+        public virtual DbSet<PersistedGrants> PersistedGrants { get; set; }
+        public virtual DbSet<Person> Person { get; set; }
+        public virtual DbSet<PersonAchievement> PersonAchievement { get; set; }
+        public virtual DbSet<PersonAddress> PersonAddress { get; set; }
+        public virtual DbSet<PersonBatch> PersonBatch { get; set; }
+        public virtual DbSet<PersonContact> PersonContact { get; set; }
+        public virtual DbSet<PersonDepartment> PersonDepartment { get; set; }
+        public virtual DbSet<PersonDisability> PersonDisability { get; set; }
+        public virtual DbSet<PersonEducation> PersonEducation { get; set; }
+        public virtual DbSet<PersonFamilyDetail> PersonFamilyDetail { get; set; }
+        public virtual DbSet<PersonHealthDetail> PersonHealthDetail { get; set; }
+        public virtual DbSet<PersonHobbyFavorite> PersonHobbyFavorite { get; set; }
+        public virtual DbSet<PersonLanguage> PersonLanguage { get; set; }
+        public virtual DbSet<PersonProgram> PersonProgram { get; set; }
+        public virtual DbSet<PersonSubProgram> PersonSubProgram { get; set; }
+        public virtual DbSet<PersonPrivateInformation> PersonPrivateInformation { get; set; }
+        public virtual DbSet<PersonSocialMediaAccount> PersonSocialMediaAccount { get; set; }
+        public virtual DbSet<PersonWorkExperience> PersonWorkExperience { get; set; }
+        public virtual DbSet<Program> Program { get; set; }
+        public virtual DbSet<School> School { get; set; }
+        public virtual DbSet<State> State { get; set; }
+        public virtual DbSet<SubProgram> SubProgram { get; set; }
+        public virtual DbSet<Taluka> Taluka { get; set; }
+        public virtual DbSet<Ticket> Ticket { get; set; }
+        public virtual DbSet<TransactionLog> TransactionLog { get; set; }
+        public virtual DbSet<TransactionLogValue> TransactionLogValue { get; set; }
+        public virtual DbSet<University> University { get; set; }
 
-        public virtual DbSet<City> Cities { get; set; }
-
-        public virtual DbSet<Country> Countries { get; set; }
-
-        public virtual DbSet<CourseHead> CourseHeads { get; set; }
-
-        public virtual DbSet<Course> Courses { get; set; }
-
-        public virtual DbSet<Department> Departments { get; set; }
-
-        public virtual DbSet<Detail> Details { get; set; }
-
-        public virtual DbSet<District> Districts { get; set; }
-
-        public virtual DbSet<EventAttendance> EventAttendances { get; set; }
-
-        public virtual DbSet<Event> Events { get; set; }
-
-        public virtual DbSet<Header> Headers { get; set; }
-
-        public virtual DbSet<Organization> Organizations { get; set; }
-
-        public virtual DbSet<Person> People { get; set; }
-
-        public virtual DbSet<PersonAchievement> PersonAchievements { get; set; }
-
-        public virtual DbSet<PersonAddress> PersonAddresses { get; set; }
-
-        public virtual DbSet<PersonBatch> PersonBatches { get; set; }
-
-        public virtual DbSet<PersonContact> PersonContacts { get; set; }
-
-        public virtual DbSet<PersonDepartment> PersonDepartments { get; set; }
-
-        public virtual DbSet<PersonDisability> PersonDisabilities { get; set; }
-
-        public virtual DbSet<PersonEducation> PersonEducations { get; set; }
-
-        public virtual DbSet<PersonFamilyDetail> PersonFamilyDetails { get; set; }
-
-        public virtual DbSet<PersonHealthDetail> PersonHealthDetails { get; set; }
-
-        public virtual DbSet<PersonHobbyFavorite> PersonHobbyFavorites { get; set; }
-
-        public virtual DbSet<PersonLanguage> PersonLanguages { get; set; }
-
-        public virtual DbSet<PersonPrivateInformation> PersonPrivateInformations { get; set; }
-
-        public virtual DbSet<PersonProgram> PersonPrograms { get; set; }
-
-        public virtual DbSet<PersonSocialMediaAccount> PersonSocialMediaAccounts { get; set; }
-
-        public virtual DbSet<PersonSubProgram> PersonSubPrograms { get; set; }
-
-        public virtual DbSet<PersonWorkExperience> PersonWorkExperiences { get; set; }
-
-        public virtual DbSet<Program> Programs { get; set; }
-
-        public virtual DbSet<School> Schools { get; set; }
-
-        public virtual DbSet<State> States { get; set; }
-
-        public virtual DbSet<SubProgram> SubPrograms { get; set; }
-
-        public virtual DbSet<Taluka> Talukas { get; set; }
-
-        public virtual DbSet<Ticket> Tickets { get; set; }
-
-        public virtual DbSet<TransactionLog> TransactionLogs { get; set; }
-
-        public virtual DbSet<TransactionLogValue> TransactionLogValues { get; set; }
-
-        public virtual DbSet<University> Universities { get; set; }
-
-#endregion
+        #endregion
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             #region Generated Configuration
+
+            modelBuilder.ApplyConfiguration(new AspNetRoleClaimsMap());
+            modelBuilder.ApplyConfiguration(new AspNetRolesMap());
+            modelBuilder.ApplyConfiguration(new AspNetUserClaimsMap());
+            modelBuilder.ApplyConfiguration(new AspNetUserLoginsMap());
+            modelBuilder.ApplyConfiguration(new AspNetUserRolesMap());
+            modelBuilder.ApplyConfiguration(new AspNetUsersMap());
+            modelBuilder.ApplyConfiguration(new AspNetUserTokensMap());
             modelBuilder.ApplyConfiguration(new BatchMap());
             modelBuilder.ApplyConfiguration(new CityMap());
             modelBuilder.ApplyConfiguration(new CountryMap());
@@ -113,11 +96,15 @@ namespace PublicData.DAL
             modelBuilder.ApplyConfiguration(new CourseMap());
             modelBuilder.ApplyConfiguration(new DepartmentMap());
             modelBuilder.ApplyConfiguration(new DetailMap());
+            modelBuilder.ApplyConfiguration(new DeviceCodesMap());
             modelBuilder.ApplyConfiguration(new DistrictMap());
+            modelBuilder.ApplyConfiguration(new DivisionHeadMap());
+            modelBuilder.ApplyConfiguration(new DivisionMap());
             modelBuilder.ApplyConfiguration(new EventAttendanceMap());
             modelBuilder.ApplyConfiguration(new EventMap());
             modelBuilder.ApplyConfiguration(new HeaderMap());
             modelBuilder.ApplyConfiguration(new OrganizationMap());
+            modelBuilder.ApplyConfiguration(new PersistedGrantsMap());
             modelBuilder.ApplyConfiguration(new PersonAchievementMap());
             modelBuilder.ApplyConfiguration(new PersonAddressMap());
             modelBuilder.ApplyConfiguration(new PersonBatchMap());
@@ -144,7 +131,10 @@ namespace PublicData.DAL
             modelBuilder.ApplyConfiguration(new TransactionLogMap());
             modelBuilder.ApplyConfiguration(new TransactionLogValueMap());
             modelBuilder.ApplyConfiguration(new UniversityMap());
+
             #endregion
+
+            base.OnModelCreating(modelBuilder);
         }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
