@@ -1,0 +1,80 @@
+﻿@page "/master/country"
+@inherits CountryComponent
+
+@if (MessageType == AlertMessageType.Error)
+{
+    <div class="alert alert-danger" role="alert">
+        <p>@Message</p>
+    </div>
+    // TODO: keep this alert with rest of the HTML which will auto close. Use toast
+}
+
+@if (CommonService.IsBusy == true)
+{
+    <div class="text-center m-auto" style="padding: 150px 0px">
+        <span class="spinner-border"></span>
+        <br />
+        Loading...
+        @* TODO: Add random text here like fun facts *@
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card-deck mb-3 text-left">
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-header">
+                        <h4 class="my-0 font-weight-normal">Manage Countries</h4>
+                    </div>
+
+                    <div class="card-body">
+                        <EditForm Model="Country" OnValidSubmit="SaveCountry">
+                            <DataAnnotationsValidator />
+                            <ValidationSummary />
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <a class="btn btn-success">+ Add Country</a>
+
+                                    <div class="row mt-3">
+                                        <div class="col">
+                                            Country Name
+                                            <InputText @bind-Value="Country.Name" class="form-control" placeholder="Value" required></InputText>
+                                            <br>
+                                            <button type="submit" class="btn btn-success">@SaveButton</button>
+                                            <a class="btn btn-warning" id="cancelDetail">Cancel</a>
+                                        </div>
+                                    </div>
+
+                                    <table class="table table-hover mt-5">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Value</th>
+                                                <th scope="col">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Countries)
+                                            {
+                                                <tr>
+                                                    <th scope="row">@item.Id</th>
+                                                    <td>@item.Name</td>
+                                                    <td>
+                                                        <a class="btn btn-success btn-sm" @onclick="(() => EditCountry(item.Id))">Edit</a>
+                                                        <a class="btn btn-danger btn-sm" @onclick="(() => DeleteCountry(item.Id))">Delete</a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </EditForm>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

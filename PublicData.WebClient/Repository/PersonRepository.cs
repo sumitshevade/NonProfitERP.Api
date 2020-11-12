@@ -1,7 +1,6 @@
-﻿using PublicData.WebClient.DataModels;
+﻿using System.Net.Http;
 using PublicData.WebClient.Interfaces;
-using PublicData.WebClient.Services;
-using System.Net.Http;
+using PublicData.WebClient.Shared.Entities;
 
 namespace PublicData.WebClient.Repository
 {

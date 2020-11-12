@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace PublicData.DAL.Mapping
+namespace PublicData.Data.Mapping
 {
     public partial class PersonHobbyFavoriteMap
         : IEntityTypeConfiguration<PublicData.DAL.Entities.PersonHobbyFavorite>
@@ -46,7 +46,8 @@ namespace PublicData.DAL.Mapping
             builder.Property(t => t.CreatedAt)
                 .IsRequired()
                 .HasColumnName("CreatedAt")
-                .HasColumnType("datetime");
+                .HasColumnType("datetime")
+                .HasDefaultValueSql("(getdate())");
 
             builder.Property(t => t.UpdatedById)
                 .HasColumnName("UpdatedById")
@@ -67,12 +68,12 @@ namespace PublicData.DAL.Mapping
             builder.HasOne(t => t.HobbyFavoriteDetail)
                 .WithMany(t => t.HobbyFavoritePersonHobbyFavorites)
                 .HasForeignKey(d => d.HobbyFavoriteId)
-                .HasConstraintName("FK__PersonHob__Hobby__4E53A1AA");
+                .HasConstraintName("FK__PersonHob__Hobby__65370702");
 
             builder.HasOne(t => t.Person)
                 .WithMany(t => t.PersonHobbyFavorites)
                 .HasForeignKey(d => d.PersonId)
-                .HasConstraintName("FK__PersonHob__Perso__4D5F7D71");
+                .HasConstraintName("FK__PersonHob__Perso__6442E2C9");
 
             #endregion
         }

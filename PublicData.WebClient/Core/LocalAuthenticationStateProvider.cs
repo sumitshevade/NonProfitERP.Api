@@ -1,6 +1,7 @@
 ﻿using Blazored.LocalStorage;
-using PublicData.WebClient.Models;
+
 using Microsoft.AspNetCore.Components.Authorization;
+using PublicData.WebClient.Models;
 using System.Security.Claims;
 using System.Threading.Tasks;
 

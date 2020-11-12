@@ -1,16 +1,16 @@
 ﻿using System;
+using System.Linq;
+using Blazored.LocalStorage;
 using System.Threading.Tasks;
+using Blazored.SessionStorage;
 using Blazored.Toast.Services;
 using System.Collections.Generic;
-using PublicData.WebClient.Models;
 using Microsoft.AspNetCore.Components;
-using PublicData.WebClient.DataModels;
 using PublicData.WebClient.Interfaces;
+using PublicData.WebClient.Shared.Models;
+using PublicData.WebClient.Shared.Entities;
 using Microsoft.AspNetCore.Components.Authorization;
-using Blazored.LocalStorage;
-using Blazored.SessionStorage;
-using System.Reflection;
-using System.Linq;
+using PublicData.WebClient.Models;
 
 namespace PublicData.WebClient.Components
 {
@@ -20,7 +20,7 @@ namespace PublicData.WebClient.Components
         [Inject] NavigationManager NavigationManager { get; set; }
         [Inject] IPersonRepository PersonRepository { get; set; }
         [Inject] IDetailRepository DetailRepository { get; set; }
-        [Inject] IDivisionRepository DivisionRepository { get; set; }
+        [Inject] IProgramRepository ProgramRepository { get; set; }
         [Inject] ICountryRepository CountryRepository  { get; set; }
         [Inject] IPersonContactRepository PersonContactRepository { get; set; }
         [Inject] IToastService ToastService { get; set; }
@@ -32,7 +32,6 @@ namespace PublicData.WebClient.Components
         [Parameter] public IList<PersonContact> PersonContacts { get; set; } = new List<PersonContact>();
         [Parameter] public string ContactFormDisplay { get; set; }
         [Parameter] public IList<Detail> JoinedAs { get; set; } = new List<Detail>();
-        //[Parameter] public IList<Division> Shakhas { get; set; } = new List<Division>();
         [Parameter] public IList<Detail> PersonTypes { get; set; } = new List<Detail>();
         [Parameter] public IList<Detail> WorkFrequencies { get; set; } = new List<Detail>();
         [Parameter] public IList<Country> Countries { get; set; } = new List<Country>();
@@ -48,7 +47,6 @@ namespace PublicData.WebClient.Components
         public string ContactDisabled { get; set; }
         public string SelectedContactTypeId { get; set; }
         public string SelectedIsDefaultContact { get; set; }
-        public string SelectedDivisionId { get; set; }
 
         public string Message = string.Empty;
         public string ContactSaveButton = string.Empty;
@@ -64,7 +62,7 @@ namespace PublicData.WebClient.Components
             var userState = AuthenticationState.Result;
             PersonRepository.SetToken(userState.User.FindFirst("AccessToken").Value);
             DetailRepository.SetToken(userState.User.FindFirst("AccessToken").Value);
-            DivisionRepository.SetToken(userState.User.FindFirst("AccessToken").Value);
+            ProgramRepository.SetToken(userState.User.FindFirst("AccessToken").Value);
             CountryRepository.SetToken(userState.User.FindFirst("AccessToken").Value);
             PersonContactRepository.SetToken(userState.User.FindFirst("AccessToken").Value);
 
@@ -80,7 +78,6 @@ namespace PublicData.WebClient.Components
                 PersonContacts = await PersonContactRepository.GetListAsync("/api/person/" + personId + "/contact");
             }
 
-            //Shakhas = await DivisionRepository.GetListAsync("/api/master/division");
             Countries = await CountryRepository.GetListAsync("/api/master/country");
             PersonTypes = await DetailRepository.GetListAsync("/api/master/header/16/detail");
             JoinedAs = await DetailRepository.GetListAsync("/api/master/header/10/detail");
@@ -88,7 +85,6 @@ namespace PublicData.WebClient.Components
 
             ContactTypes = await DetailRepository.GetListAsync("/api/master/header/15/detail");
 
-            //SelectedDivisionId = Person.DivisionId.ToString();
             SelectedCoutryId = Person.CountryId.ToString();
             SelectedPersonTypeId = Person.PersonTypeId.ToString();
             SelectedJoinedAsId = Person.JoinedAsId.ToString();
@@ -273,11 +269,6 @@ namespace PublicData.WebClient.Components
         public async Task ChangeIsDefaultContact(string value)
         {
             SelectedIsDefaultContact = value;
-        }
-
-        public async Task ChangeDivision(string value)
-        {
-            SelectedDivisionId = value;
         }
 
         public async Task CancelPerson()

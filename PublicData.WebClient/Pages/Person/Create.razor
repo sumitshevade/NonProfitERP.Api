@@ -95,23 +95,6 @@ else
                                     <DataAnnotationsValidator />
                                     <ValidationSummary />
                                     <div class="row">
-                                        @*<div class="col-sm-3">
-                                            Shakha / Branch
-                                            <select name="persontype" id="persontype" class="form-control" autofocus>
-                                                <option value="0">Select...</option>
-                                            </select>
-
-                                            <InputSelect ValueChanged="@((string value) => ChangeDivision(value))"
-                                                         ValueExpression="@(() => SelectedDivisionId)"
-                                                         Value="@SelectedDivisionId"
-                                                         class="form-control" required>
-                                                <option value="0">Select...</option>
-                                                @foreach (var item in Shakhas)
-                                                {
-                                                    <option value="@item.Id">@item.Name</option>
-                                                }
-                                            </InputSelect>
-                                        </div>*@
                                         <div class="col-sm-3">
                                             Current Role
                                             <InputSelect ValueChanged="@((string value) => ChangePersonType(value))"

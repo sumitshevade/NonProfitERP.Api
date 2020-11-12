@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace PublicData.DAL.Mapping
+namespace PublicData.Data.Mapping
 {
     public partial class TicketMap
         : IEntityTypeConfiguration<PublicData.DAL.Entities.Ticket>
@@ -23,9 +23,9 @@ namespace PublicData.DAL.Mapping
                 .HasColumnType("int")
                 .ValueGeneratedOnAdd();
 
-            builder.Property(t => t.ProgramId)
+            builder.Property(t => t.EventId)
                 .IsRequired()
-                .HasColumnName("ProgramId")
+                .HasColumnName("EventId")
                 .HasColumnType("int");
 
             builder.Property(t => t.PersonId)
@@ -48,7 +48,8 @@ namespace PublicData.DAL.Mapping
             builder.Property(t => t.CreatedAt)
                 .IsRequired()
                 .HasColumnName("CreatedAt")
-                .HasColumnType("datetime");
+                .HasColumnType("datetime")
+                .HasDefaultValueSql("(getdate())");
 
             builder.Property(t => t.UpdatedById)
                 .HasColumnName("UpdatedById")
@@ -66,15 +67,15 @@ namespace PublicData.DAL.Mapping
                 .HasDefaultValueSql("((1))");
 
             // relationships
+            builder.HasOne(t => t.Event)
+                .WithMany(t => t.Tickets)
+                .HasForeignKey(d => d.EventId)
+                .HasConstraintName("FK__Ticket__EventId__1209AD79");
+
             builder.HasOne(t => t.Person)
                 .WithMany(t => t.Tickets)
                 .HasForeignKey(d => d.PersonId)
-                .HasConstraintName("FK__Ticket__PersonId__73852659");
-
-            builder.HasOne(t => t.Program)
-                .WithMany(t => t.Tickets)
-                .HasForeignKey(d => d.ProgramId)
-                .HasConstraintName("FK__Ticket__ProgramI__72910220");
+                .HasConstraintName("FK__Ticket__PersonId__12FDD1B2");
 
             #endregion
         }
@@ -89,7 +90,7 @@ namespace PublicData.DAL.Mapping
         public struct Columns
         {
             public const string Id = "Id";
-            public const string ProgramId = "ProgramId";
+            public const string EventId = "EventId";
             public const string PersonId = "PersonId";
             public const string TicketCount = "TicketCount";
             public const string CreatedById = "CreatedById";

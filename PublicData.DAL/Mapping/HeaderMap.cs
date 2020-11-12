@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace PublicData.DAL.Mapping
+namespace PublicData.Data.Mapping
 {
     public partial class HeaderMap
         : IEntityTypeConfiguration<PublicData.DAL.Entities.Header>
@@ -38,7 +38,8 @@ namespace PublicData.DAL.Mapping
             builder.Property(t => t.CreatedAt)
                 .IsRequired()
                 .HasColumnName("CreatedAt")
-                .HasColumnType("datetime");
+                .HasColumnType("datetime")
+                .HasDefaultValueSql("(getdate())");
 
             builder.Property(t => t.UpdatedById)
                 .HasColumnName("UpdatedById")

@@ -1,5 +1,3 @@
-using System;
-
 namespace PublicData.DAL.Entities
 {
     public partial class PersonHobbyFavorite : Entity
@@ -11,9 +9,11 @@ namespace PublicData.DAL.Entities
         }
 
         #region Generated Properties
-
+        
         public int PersonId { get; set; }
+
         public int? HobbyFavoriteId { get; set; }
+
         public string LongText { get; set; }
 
         #endregion

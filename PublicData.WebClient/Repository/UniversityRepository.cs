@@ -1,4 +1,4 @@
-﻿using PublicData.WebClient.DataModels;
+﻿using PublicData.WebClient.Shared.Entities;
 using PublicData.WebClient.Interfaces;
 using System.Net.Http;
 

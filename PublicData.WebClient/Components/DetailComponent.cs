@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
-using PublicData.WebClient.DataModels;
+using PublicData.WebClient.Models;
 using PublicData.WebClient.Interfaces;
 using PublicData.WebClient.Services;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using PublicData.WebClient.Repository;
 using System;
 using System.Linq;
-using PublicData.WebClient.Models;
+using PublicData.WebClient.Shared.Entities;
 
 namespace PublicData.WebClient.Components
 {

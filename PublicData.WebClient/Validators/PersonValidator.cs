@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 using System.Text.RegularExpressions;
-using PublicData.WebClient.DataModels;
+using PublicData.WebClient.Shared.Entities;
 
 namespace PublicData.WebClient.Validators
 {

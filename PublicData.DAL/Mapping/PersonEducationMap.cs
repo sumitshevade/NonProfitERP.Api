@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace PublicData.DAL.Mapping
+namespace PublicData.Data.Mapping
 {
     public partial class PersonEducationMap
         : IEntityTypeConfiguration<PublicData.DAL.Entities.PersonEducation>
@@ -90,6 +90,11 @@ namespace PublicData.DAL.Mapping
                 .HasColumnType("varchar(50)")
                 .HasMaxLength(50);
 
+            builder.Property(t => t.Specialization)
+                .HasColumnName("Specialization")
+                .HasColumnType("varchar(50)")
+                .HasMaxLength(50);
+
             builder.Property(t => t.CreatedById)
                 .IsRequired()
                 .HasColumnName("CreatedById")
@@ -99,7 +104,8 @@ namespace PublicData.DAL.Mapping
             builder.Property(t => t.CreatedAt)
                 .IsRequired()
                 .HasColumnName("CreatedAt")
-                .HasColumnType("datetime");
+                .HasColumnType("datetime")
+                .HasDefaultValueSql("(getdate())");
 
             builder.Property(t => t.UpdatedById)
                 .HasColumnName("UpdatedById")
@@ -120,42 +126,42 @@ namespace PublicData.DAL.Mapping
             builder.HasOne(t => t.CourseDetail)
                 .WithMany(t => t.CoursePersonEducations)
                 .HasForeignKey(d => d.CourseId)
-                .HasConstraintName("FK__PersonEdu__Cours__40058253");
+                .HasConstraintName("FK__PersonEdu__Cours__4F47C5E3");
 
             builder.HasOne(t => t.DegreeDetail)
                 .WithMany(t => t.DegreePersonEducations)
                 .HasForeignKey(d => d.DegreeId)
-                .HasConstraintName("FK__PersonEdu__Degre__3F115E1A");
+                .HasConstraintName("FK__PersonEdu__Degre__4E53A1AA");
 
             builder.HasOne(t => t.FromStdDetail)
                 .WithMany(t => t.FromStdPersonEducations)
                 .HasForeignKey(d => d.FromStdId)
-                .HasConstraintName("FK__PersonEdu__FromS__3B40CD36");
+                .HasConstraintName("FK__PersonEdu__FromS__4A8310C6");
 
             builder.HasOne(t => t.MediumDetail)
                 .WithMany(t => t.MediumPersonEducations)
                 .HasForeignKey(d => d.MediumId)
-                .HasConstraintName("FK__PersonEdu__Mediu__3D2915A8");
+                .HasConstraintName("FK__PersonEdu__Mediu__4C6B5938");
 
             builder.HasOne(t => t.Person)
                 .WithMany(t => t.PersonEducations)
                 .HasForeignKey(d => d.PersonId)
-                .HasConstraintName("FK__PersonEdu__Perso__395884C4");
+                .HasConstraintName("FK__PersonEdu__Perso__489AC854");
 
             builder.HasOne(t => t.School)
                 .WithMany(t => t.PersonEducations)
                 .HasForeignKey(d => d.SchoolId)
-                .HasConstraintName("FK__PersonEdu__Schoo__3A4CA8FD");
+                .HasConstraintName("FK__PersonEdu__Schoo__498EEC8D");
 
             builder.HasOne(t => t.ToStdDetail)
                 .WithMany(t => t.ToStdPersonEducations)
                 .HasForeignKey(d => d.ToStdId)
-                .HasConstraintName("FK__PersonEdu__ToStd__3C34F16F");
+                .HasConstraintName("FK__PersonEdu__ToStd__4B7734FF");
 
             builder.HasOne(t => t.UniversityBoardDetail)
                 .WithMany(t => t.UniversityBoardPersonEducations)
                 .HasForeignKey(d => d.UniversityBoardId)
-                .HasConstraintName("FK__PersonEdu__Unive__3E1D39E1");
+                .HasConstraintName("FK__PersonEdu__Unive__4D5F7D71");
 
             #endregion
         }
@@ -185,6 +191,7 @@ namespace PublicData.DAL.Mapping
             public const string OtherDegree = "OtherDegree";
             public const string CourseId = "CourseId";
             public const string OtherCourse = "OtherCourse";
+            public const string Specialization = "Specialization";
             public const string CreatedById = "CreatedById";
             public const string CreatedAt = "CreatedAt";
             public const string UpdatedById = "UpdatedById";

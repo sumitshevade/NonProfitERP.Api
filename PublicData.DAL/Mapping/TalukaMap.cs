@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace PublicData.DAL.Mapping
+namespace PublicData.Data.Mapping
 {
     public partial class TalukaMap
         : IEntityTypeConfiguration<PublicData.DAL.Entities.Taluka>
@@ -24,6 +24,7 @@ namespace PublicData.DAL.Mapping
                 .ValueGeneratedOnAdd();
 
             builder.Property(t => t.DistrictId)
+                .IsRequired()
                 .HasColumnName("DistrictId")
                 .HasColumnType("int");
 
@@ -47,7 +48,8 @@ namespace PublicData.DAL.Mapping
             builder.Property(t => t.CreatedAt)
                 .IsRequired()
                 .HasColumnName("CreatedAt")
-                .HasColumnType("datetime");
+                .HasColumnType("datetime")
+                .HasDefaultValueSql("(getdate())");
 
             builder.Property(t => t.UpdatedById)
                 .HasColumnName("UpdatedById")
@@ -68,7 +70,7 @@ namespace PublicData.DAL.Mapping
             builder.HasOne(t => t.District)
                 .WithMany(t => t.Talukas)
                 .HasForeignKey(d => d.DistrictId)
-                .HasConstraintName("FK__Taluka__District__1CBC4616");
+                .HasConstraintName("FK__Taluka__District__4F7CD00D");
 
             #endregion
         }

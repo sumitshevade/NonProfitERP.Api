@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore;
 namespace PublicData.DAL.Mapping
 {
     public partial class AspNetUserRolesMap
-        : IEntityTypeConfiguration<PublicData.DAL.Entities.AspNetUserRoles>
+        : IEntityTypeConfiguration<Entities.AspNetUserRoles>
     {
-        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<PublicData.DAL.Entities.AspNetUserRoles> builder)
+        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Entities.AspNetUserRoles> builder)
         {
             #region Generated Configure
             // table

@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DataModels\" />
+    <ProjectReference Include="..\PublicData.WebClient.Shared\PublicData.WebClient.Shared.csproj" />
   </ItemGroup>
 
 </Project>

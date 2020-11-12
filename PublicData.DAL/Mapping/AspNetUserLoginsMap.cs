@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore;
 namespace PublicData.DAL.Mapping
 {
     public partial class AspNetUserLoginsMap
-        : IEntityTypeConfiguration<PublicData.DAL.Entities.AspNetUserLogins>
+        : IEntityTypeConfiguration<Entities.AspNetUserLogins>
     {
-        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<PublicData.DAL.Entities.AspNetUserLogins> builder)
+        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Entities.AspNetUserLogins> builder)
         {
             #region Generated Configure
             // table

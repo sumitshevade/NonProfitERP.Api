@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace PublicData.DAL.Mapping
+namespace PublicData.Data.Mapping
 {
     public partial class CityMap
         : IEntityTypeConfiguration<PublicData.DAL.Entities.City>
@@ -24,6 +24,7 @@ namespace PublicData.DAL.Mapping
                 .ValueGeneratedOnAdd();
 
             builder.Property(t => t.StateId)
+                .IsRequired()
                 .HasColumnName("StateId")
                 .HasColumnType("int");
 
@@ -42,7 +43,8 @@ namespace PublicData.DAL.Mapping
             builder.Property(t => t.CreatedAt)
                 .IsRequired()
                 .HasColumnName("CreatedAt")
-                .HasColumnType("datetime");
+                .HasColumnType("datetime")
+                .HasDefaultValueSql("(getdate())");
 
             builder.Property(t => t.UpdatedById)
                 .HasColumnName("UpdatedById")
@@ -63,7 +65,7 @@ namespace PublicData.DAL.Mapping
             builder.HasOne(t => t.State)
                 .WithMany(t => t.Cities)
                 .HasForeignKey(d => d.StateId)
-                .HasConstraintName("FK__City__StateId__72C60C4A");
+                .HasConstraintName("FK__City__StateId__45F365D3");
 
             #endregion
         }

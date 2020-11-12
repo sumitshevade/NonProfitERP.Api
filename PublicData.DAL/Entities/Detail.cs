@@ -15,10 +15,11 @@ namespace PublicData.DAL.Entities
             CoursePersonEducations = new HashSet<PersonEducation>();
             CoursePersonFamilyDetails = new HashSet<PersonFamilyDetail>();
             DegreePersonEducations = new HashSet<PersonEducation>();
+            DepartmentPersonWorkExperiences = new HashSet<PersonWorkExperience>();
+            DesignationPersonWorkExperiences = new HashSet<PersonWorkExperience>();
             FromStdPersonEducations = new HashSet<PersonEducation>();
             HobbyFavoritePersonHobbyFavorites = new HashSet<PersonHobbyFavorite>();
             HomeStatusPersonAddresses = new HashSet<PersonAddress>();
-            IndustryPersonWorkExperiences = new HashSet<PersonWorkExperience>();
             LanguagePersonLanguages = new HashSet<PersonLanguage>();
             LocalityClassPersonAddresses = new HashSet<PersonAddress>();
             MediumPersonEducations = new HashSet<PersonEducation>();
@@ -27,7 +28,6 @@ namespace PublicData.DAL.Entities
             ReligionPersonPrivateInformations = new HashSet<PersonPrivateInformation>();
             ResidentialAreaPersonAddresses = new HashSet<PersonAddress>();
             ResidentialStatusPersonAddresses = new HashSet<PersonAddress>();
-            StatusPersonWorkExperiences = new HashSet<PersonWorkExperience>();
             ToStdPersonEducations = new HashSet<PersonEducation>();
             TypeOfUserPersonSocialMediaAccounts = new HashSet<PersonSocialMediaAccount>();
             TypePeople = new HashSet<Person>();
@@ -41,9 +41,11 @@ namespace PublicData.DAL.Entities
         #region Generated Properties
         
         public int HeaderId { get; set; }
+
         public string Value { get; set; }
+
         public string ExtraField { get; set; }
-        
+
         #endregion
 
         #region Generated Relationships
@@ -63,6 +65,10 @@ namespace PublicData.DAL.Entities
 
         public virtual ICollection<PersonEducation> DegreePersonEducations { get; set; }
 
+        public virtual ICollection<PersonWorkExperience> DepartmentPersonWorkExperiences { get; set; }
+
+        public virtual ICollection<PersonWorkExperience> DesignationPersonWorkExperiences { get; set; }
+
         public virtual ICollection<PersonEducation> FromStdPersonEducations { get; set; }
 
         public virtual Header Header { get; set; }
@@ -70,8 +76,6 @@ namespace PublicData.DAL.Entities
         public virtual ICollection<PersonHobbyFavorite> HobbyFavoritePersonHobbyFavorites { get; set; }
 
         public virtual ICollection<PersonAddress> HomeStatusPersonAddresses { get; set; }
-
-        public virtual ICollection<PersonWorkExperience> IndustryPersonWorkExperiences { get; set; }
 
         public virtual ICollection<PersonLanguage> LanguagePersonLanguages { get; set; }
 
@@ -88,8 +92,6 @@ namespace PublicData.DAL.Entities
         public virtual ICollection<PersonAddress> ResidentialAreaPersonAddresses { get; set; }
 
         public virtual ICollection<PersonAddress> ResidentialStatusPersonAddresses { get; set; }
-
-        public virtual ICollection<PersonWorkExperience> StatusPersonWorkExperiences { get; set; }
 
         public virtual ICollection<PersonEducation> ToStdPersonEducations { get; set; }
 

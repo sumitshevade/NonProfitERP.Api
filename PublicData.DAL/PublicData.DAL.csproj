@@ -16,8 +16,4 @@
     <ProjectReference Include="..\PublicData.Common\PublicData.Common.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Script\" />
-  </ItemGroup>
-
 </Project>

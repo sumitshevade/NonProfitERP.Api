@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 
 namespace PublicData.DAL.Entities
@@ -13,7 +12,7 @@ namespace PublicData.DAL.Entities
         }
 
         #region Generated Properties
-
+        
         public string Title { get; set; }
 
         #endregion
@@ -22,6 +21,5 @@ namespace PublicData.DAL.Entities
         public virtual ICollection<Detail> Details { get; set; }
 
         #endregion
-
     }
 }

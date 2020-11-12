@@ -9,8 +9,9 @@ namespace PublicData.DAL.Entities
         }
 
         #region Generated Properties
-
+        
         public string Name { get; set; }
+
         public int CityId { get; set; }
 
         #endregion

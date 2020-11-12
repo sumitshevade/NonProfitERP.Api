@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace PublicData.DAL.Mapping
+namespace PublicData.Data.Mapping
 {
     public partial class PersonSocialMediaAccountMap
         : IEntityTypeConfiguration<PublicData.DAL.Entities.PersonSocialMediaAccount>
@@ -29,7 +29,6 @@ namespace PublicData.DAL.Mapping
                 .HasColumnType("int");
 
             builder.Property(t => t.AccountTypeId)
-                .IsRequired()
                 .HasColumnName("AccountTypeId")
                 .HasColumnType("int");
 
@@ -57,7 +56,8 @@ namespace PublicData.DAL.Mapping
             builder.Property(t => t.CreatedAt)
                 .IsRequired()
                 .HasColumnName("CreatedAt")
-                .HasColumnType("datetime");
+                .HasColumnType("datetime")
+                .HasDefaultValueSql("(getdate())");
 
             builder.Property(t => t.UpdatedById)
                 .HasColumnName("UpdatedById")
@@ -78,17 +78,17 @@ namespace PublicData.DAL.Mapping
             builder.HasOne(t => t.AccountTypeDetail)
                 .WithMany(t => t.AccountTypePersonSocialMediaAccounts)
                 .HasForeignKey(d => d.AccountTypeId)
-                .HasConstraintName("FK__PersonSoc__Accou__5F7E2DAC");
+                .HasConstraintName("FK__PersonSoc__Accou__7A3223E8");
 
             builder.HasOne(t => t.Person)
                 .WithMany(t => t.PersonSocialMediaAccounts)
                 .HasForeignKey(d => d.PersonId)
-                .HasConstraintName("FK__PersonSoc__Perso__5E8A0973");
+                .HasConstraintName("FK__PersonSoc__Perso__793DFFAF");
 
             builder.HasOne(t => t.TypeOfUserDetail)
                 .WithMany(t => t.TypeOfUserPersonSocialMediaAccounts)
                 .HasForeignKey(d => d.TypeOfUserId)
-                .HasConstraintName("FK__PersonSoc__TypeO__607251E5");
+                .HasConstraintName("FK__PersonSoc__TypeO__7B264821");
 
             #endregion
         }
