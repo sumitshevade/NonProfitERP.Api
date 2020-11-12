@@ -1,18 +1,12 @@
 ﻿using System;
 using AutoMapper;
 using PublicData.Application.Mappings;
-using System.Collections.Generic;
 using PublicData.DAL.Entities;
 
 namespace PublicData.Application.Shared
 {
-    public partial class DivisionModel : IMapFrom<Division>
+    public partial class ProgramModel : IMapFrom<Program>
     {
-        public DivisionModel()
-        {
-            DivisionHead = new HashSet<DivisionHead>();
-        }
-
         public int Id { get; set; }
         public int DepartmentId { get; set; }
         public string Name { get; set; }
@@ -21,11 +15,10 @@ namespace PublicData.Application.Shared
         public string LongText { get; set; }
 
         public virtual Department Department { get; set; }
-        public virtual ICollection<DivisionHead> DivisionHead { get; set; }
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<Division, DivisionModel>();
+            profile.CreateMap<Program, ProgramModel>();
         }
     }
 }

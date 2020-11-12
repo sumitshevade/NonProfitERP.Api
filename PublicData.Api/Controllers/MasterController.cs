@@ -24,21 +24,16 @@ using PublicData.Application.Features.Master.District.CreateDistrict;
 using PublicData.Application.Features.Master.District.GetAllDistrictByStateId;
 using PublicData.Application.Features.Master.District.GetDistrictById;
 using PublicData.Application.Features.Master.District.UpdateDistrict;
-using PublicData.Application.Features.Master.Division.CreateDivision;
-using PublicData.Application.Features.Master.Division.DeleteDivision;
-using PublicData.Application.Features.Master.Division.GetAllDivisions;
-using PublicData.Application.Features.Master.Division.GetDivisionById;
-using PublicData.Application.Features.Master.Division.UpdateDivision;
-using PublicData.Application.Features.Master.DivisionHead.CreateDivisionHead;
-using PublicData.Application.Features.Master.DivisionHead.DeleteDivisionHead;
-using PublicData.Application.Features.Master.DivisionHead.GetAllDivisionHeads;
-using PublicData.Application.Features.Master.DivisionHead.GetDivisionHeadById;
-using PublicData.Application.Features.Master.DivisionHead.UpdateDivisionHeadById;
 using PublicData.Application.Features.Master.Header.CreateHeader;
 using PublicData.Application.Features.Master.Header.DeleteHeader;
 using PublicData.Application.Features.Master.Header.GetAllHeaders;
 using PublicData.Application.Features.Master.Header.GetHeaderById;
 using PublicData.Application.Features.Master.Header.UpdateHeader;
+using PublicData.Application.Features.Master.Program.CreateProgram;
+using PublicData.Application.Features.Master.Program.DeleteProgram;
+using PublicData.Application.Features.Master.Program.GetAllPrograms;
+using PublicData.Application.Features.Master.Program.GetProgramById;
+using PublicData.Application.Features.Master.Program.UpdateProgram;
 using PublicData.Application.Features.Master.School.CreateSchool;
 using PublicData.Application.Features.Master.School.DeleteSchool;
 using PublicData.Application.Features.Master.School.GetAllSchools;
@@ -210,81 +205,41 @@ namespace PublicData.Api.Controllers
 
         #endregion
 
-        #region --- Division APIs ---
+        #region --- Program APIs ---
 
         /// <summary>
-        /// Get the list of all divisions
+        /// Get the list of all progams
         /// </summary>
-        /// <returns></returns>
-        [HttpGet("division")]
-        public async Task<IActionResult> GetDivisions()
+        [HttpGet("program")]
+        public async Task<IActionResult> GetPrograms()
         {
-            var result = await Mediator.Send(new GetAllDivisionsQuery());
+            var result = await Mediator.Send(new GetAllProgramsQuery());
             return new JsonResult(result);
         }
 
-        [HttpGet("division/{id}")]
-        public async Task<IActionResult> GetDivisionById(int id)
+        [HttpGet("program/{id}")]
+        public async Task<IActionResult> GetProgramById(int id)
         {
-            var result = await Mediator.Send(new GetDivisionByIdQuery { Id = id });
+            var result = await Mediator.Send(new GetProgramByIdQuery { Id = id });
             return new JsonResult(result);
         }
 
-        [HttpPost("division")]
-        public async Task<IActionResult> PostDivision(CreateDivisionCommand command)
+        [HttpPost("program")]
+        public async Task<IActionResult> PostProgram(CreateProgramCommand command)
         {
             return new JsonResult(await Mediator.Send(command));
         }
 
-        [HttpPut("division")]
-        public async Task<IActionResult> PutDivision(UpdateDivisionCommand command)
+        [HttpPut("program")]
+        public async Task<IActionResult> PutProgram(UpdateProgramCommand command)
         {
             return new JsonResult(await Mediator.Send(command));
         }
 
-        [HttpDelete("division/{id}")]
-        public async Task<IActionResult> DeleteDivision(int id)
+        [HttpDelete("program/{id}")]
+        public async Task<IActionResult> DeleteProgram(int id)
         {
-            return new JsonResult(await Mediator.Send(new DeleteDivisionCommand { Id = id }));
-        }
-
-        #endregion
-
-        #region --- Division Head APIs ---
-
-        /// <summary>
-        /// Get the list of all heads
-        /// </summary>
-        [HttpGet("divisionhead")]
-        public async Task<IActionResult> GetDivisionHeads()
-        {
-            var result = await Mediator.Send(new GetAllDivisionHeadsQuery());
-            return new JsonResult(result);
-        }
-
-        [HttpGet("divisionhead/{id}")]
-        public async Task<IActionResult> GetDivisionHeadById(int id)
-        {
-            var result = await Mediator.Send(new GetDivisionHeadByIdQuery { Id = id });
-            return new JsonResult(result);
-        }
-
-        [HttpPost("divisionhead")]
-        public async Task<IActionResult> PostDivisionHead(CreateDivisionHeadCommand command)
-        {
-            return new JsonResult(await Mediator.Send(command));
-        }
-
-        [HttpPut("divisionhead")]
-        public async Task<IActionResult> PutDivisionHead(UpdateDivisionHeadByIdCommand command)
-        {
-            return new JsonResult(await Mediator.Send(command));
-        }
-
-        [HttpDelete("divisionhead/{id}")]
-        public async Task<IActionResult> DeleteDivisionHead(int id)
-        {
-            return new JsonResult(await Mediator.Send(new DeleteDivisionHeadCommand { Id = id }));
+            return new JsonResult(await Mediator.Send(new DeleteProgramCommand { Id = id }));
         }
 
         #endregion

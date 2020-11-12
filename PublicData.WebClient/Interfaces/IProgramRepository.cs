@@ -2,7 +2,7 @@
 
 namespace PublicData.WebClient.Interfaces
 {
-    public interface IDivisionHeadRepository : IRepository<DivisionHead>
+    public interface IProgramRepository : IRepository<Shared.Entities.Program>
     {
     }
 }

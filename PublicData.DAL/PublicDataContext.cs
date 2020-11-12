@@ -42,8 +42,6 @@ namespace PublicData.DAL
         public virtual DbSet<Detail> Detail { get; set; }
         public virtual DbSet<DeviceCodes> DeviceCodes { get; set; }
         public virtual DbSet<District> District { get; set; }
-        public virtual DbSet<Division> Division { get; set; }
-        public virtual DbSet<DivisionHead> DivisionHead { get; set; }
         public virtual DbSet<EventAttendance> EventAttendance { get; set; }
         public virtual DbSet<Event> Event { get; set; }
         public virtual DbSet<Header> Header { get; set; }
@@ -98,8 +96,6 @@ namespace PublicData.DAL
             modelBuilder.ApplyConfiguration(new DetailMap());
             modelBuilder.ApplyConfiguration(new DeviceCodesMap());
             modelBuilder.ApplyConfiguration(new DistrictMap());
-            modelBuilder.ApplyConfiguration(new DivisionHeadMap());
-            modelBuilder.ApplyConfiguration(new DivisionMap());
             modelBuilder.ApplyConfiguration(new EventAttendanceMap());
             modelBuilder.ApplyConfiguration(new EventMap());
             modelBuilder.ApplyConfiguration(new HeaderMap());

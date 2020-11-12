@@ -10,7 +10,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using PublicData.WebClient.Repository;
-using PublicData.WebClient.Components;
 using Blazored.SessionStorage;
 
 namespace PublicData.WebClient
@@ -47,8 +46,7 @@ namespace PublicData.WebClient
             builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
             builder.Services.AddScoped<IDetailRepository, DetailRepository>();
             builder.Services.AddScoped<IDistrictRepository, DistrictRepository>();
-            builder.Services.AddScoped<IDivisionHeadRepository, DivisionHeadRepository>();
-            builder.Services.AddScoped<IDivisionRepository, DivisionRepository>();
+            builder.Services.AddScoped<IProgramRepository, ProgramRepository>();
             builder.Services.AddScoped<IHeaderRepository, HeaderRepository>();
             builder.Services.AddScoped<IPersonContactRepository, PersonContactRepository>();
             builder.Services.AddScoped<IPersonRepository, PersonRepository>();

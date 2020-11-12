@@ -11,7 +11,6 @@ namespace PublicData.Application.Shared
         public PersonModel()
         {
             //DepartmentHead = new HashSet<DepartmentHead>();
-            //DivisionHead = new HashSet<DivisionHead>();
             PersonAchievement = new HashSet<PersonAchievement>();
             PersonAddress = new HashSet<PersonAddress>();
             PersonContact = new HashSet<PersonContact>();
@@ -50,7 +49,6 @@ namespace PublicData.Application.Shared
         public virtual Detail PersonType { get; set; }
         public virtual Detail WorkFrequency { get; set; }
         //public virtual ICollection<DepartmentHead> DepartmentHead { get; set; }
-        //public virtual ICollection<DivisionHead> DivisionHead { get; set; }
         public virtual ICollection<PersonAchievement> PersonAchievement { get; set; }
         public virtual ICollection<PersonAddress> PersonAddress { get; set; }
         public virtual ICollection<PersonContact> PersonContact { get; set; }

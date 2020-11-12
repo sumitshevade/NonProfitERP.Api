@@ -4,9 +4,9 @@ using System.Net.Http;
 
 namespace PublicData.WebClient.Repository
 {
-    public class DivisionRepository : Repository<Division>, IDivisionRepository
+    public class ProgramRepository : Repository<Shared.Entities.Program>, IProgramRepository
     {
-        public DivisionRepository(HttpClient httpClient) : base(httpClient)
+        public ProgramRepository(HttpClient httpClient) : base(httpClient)
         {
         }
     }

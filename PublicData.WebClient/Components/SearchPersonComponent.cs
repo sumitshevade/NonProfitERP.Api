@@ -19,7 +19,7 @@ namespace PublicData.WebClient.Components
         [Inject] public ICommonService CommonService { get; set; }
         [Inject] IPersonRepository PersonRepository { get; set; }
         [Inject] IDetailRepository DetailRepository { get; set; }
-        [Inject] IDivisionRepository DivisionRepository { get; set; }
+        [Inject] IProgramRepository ProgramRepository { get; set; }
         [Inject] ICountryRepository CountryRepository  { get; set; }
         [Inject] IToastService ToastService { get; set; }
         [Inject] ISessionStorageService SessionStorageService { get; set; }
@@ -53,7 +53,7 @@ namespace PublicData.WebClient.Components
             var userState = AuthenticationState.Result;
             PersonRepository.SetToken(userState.User.FindFirst("AccessToken").Value);
             DetailRepository.SetToken(userState.User.FindFirst("AccessToken").Value);
-            DivisionRepository.SetToken(userState.User.FindFirst("AccessToken").Value);
+            ProgramRepository.SetToken(userState.User.FindFirst("AccessToken").Value);
             CountryRepository.SetToken(userState.User.FindFirst("AccessToken").Value);
 
             await SessionStorageService.RemoveItemAsync("personId");
