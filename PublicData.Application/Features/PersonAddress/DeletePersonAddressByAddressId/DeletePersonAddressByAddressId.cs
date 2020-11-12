@@ -1,14 +1,14 @@
 ﻿using MediatR;
 using PublicData.Common.Exceptions;
 using PublicData.Common.Interfaces;
-using PublicData.Data.Interfaces;
+using PublicData.DAL.Interfaces;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace PublicData.Application.Features.PersonAddress.DeletePersonAddressByAddressId
 {
-    using Data.Entities;
+    using DAL.Entities;
 
     public class DeletePersonAddressByAddressIdCommandHandler : IRequestHandler<DeletePersonAddressByAddressIdCommand, bool>
     {

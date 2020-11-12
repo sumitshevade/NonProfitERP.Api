@@ -1,0 +1,102 @@
+﻿@page "/master/other"
+@inherits DetailComponent
+
+@if (MessageType == AlertMessageType.Error)
+{
+    <div class="alert alert-danger" role="alert">
+        <p>@Message</p>
+    </div>
+    // TODO: keep this alert with rest of the HTML which will auto close. Use toast
+}
+
+@if (CommonService.IsBusy == true)
+{
+    <div class="text-center m-auto" style="padding: 150px 0px">
+        <span class="spinner-grow"></span>
+        <br />
+        Loading...
+        @* TODO: Add random text here like fun facts *@
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card-deck mb-3 text-left">
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-header">
+                        <h4 class="my-0 font-weight-normal">Other Masters</h4>
+                    </div>
+
+                    <div class="card-body">
+                        <EditForm Model="detail" OnValidSubmit="SaveDetail">
+                            <DataAnnotationsValidator />
+                            <ValidationSummary />
+
+                            <div class="row">
+                                <div class="col-sm-3 offset-sm-2">
+                                    Header
+                                    @*@bind-Value="SelectedHeaderId"*@
+                                    <InputSelect id="headerId" ValueChanged="@((string value) => ChangeHeader(value))"
+                                                 ValueExpression="@(() => SelectedHeaderId)"
+                                                 Value="@SelectedHeaderId"
+                                                 class="form-control">
+                                        <option value="0" disabled>Select...</option>
+                                        @foreach (var item in Headers)
+                                        {
+                                            <option value="@item.Id">@item.Title</option>
+                                        }
+                                    </InputSelect>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <a class="btn btn-success" @onclick="AddDetail">+ Add Details</a>
+
+                                    <div class="row mt-3 @DetailFormDisplay">
+                                        <div class="col">
+                                            Value
+                                            <InputText @bind-Value="detail.Value" class="form-control" placeholder="Value" required></InputText>
+                                            <br>
+                                            <button type="submit" class="btn btn-success">@DetailButton</button>
+                                            <a class="btn btn-warning" id="cancelDetail">Cancel</a>
+                                        </div>
+                                    </div>
+
+                                    <table class="table table-hover mt-5">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Value</th>
+                                                <th scope="col">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Details)
+                                            {
+                                                <tr>
+                                                    <th scope="row">@item.Id</th>
+                                                    <td>@item.Value</td>
+                                                    <td>
+                                                        <a class="btn btn-success btn-sm" @onclick="(() => EditDetail(item.Id))">Edit</a>
+                                                        <a class="btn btn-danger btn-sm" @onclick="(() => DeleteDetail(item.Id))">Delete</a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </EditForm>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    private void AddDetail()
+    {
+        DetailFormDisplay = CommonService.ToggleClass(DetailFormDisplay, "d-none");
+    }
+}

@@ -1,37 +1,45 @@
-﻿using MediatR;
-using AutoMapper;
+﻿using System;
+using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
-using PublicData.Data.Interfaces;
+using PublicData.DAL.Interfaces;
 using PublicData.Common.Interfaces;
+using PublicData.Common.Exceptions;
 
 namespace PublicData.Application.Features.Master.Detail.DeleteDetail
 {
     public class DeleteDetailCommandHandler : IRequestHandler<DeleteDetailCommand, bool>
     {
-        private readonly IMapper _mapper;
         private readonly IDetailRepository _detailRepository;
         private readonly IUnitOfWork _unitOfWork;
 
-        public DeleteDetailCommandHandler(IMapper mapper, IDetailRepository detailRepository, IUnitOfWork unitOfWork)
+        public DeleteDetailCommandHandler(IDetailRepository detailRepository, IUnitOfWork unitOfWork)
         {
-            _mapper = mapper;
             _detailRepository = detailRepository;
             _unitOfWork = unitOfWork;
         }
 
         public Task<bool> Handle(DeleteDetailCommand request, CancellationToken cancellationToken)
         {
-            if(request.Id != 0)
+            try
             {
-                var detail = _detailRepository.GetById(request.Id);
-                detail.IsActive = false;
-                _detailRepository.Update(detail);
+                var entity = _detailRepository.GetById(request.Id);
 
+                if (entity == null)
+                {
+                    throw new NotFoundException(nameof(Country), request.Id);
+                }
+
+                entity.IsActive = false;
+                _detailRepository.Update(entity);
                 _unitOfWork.Commit();
-            }
 
-            return Task.FromResult(true);
+                return Task.FromResult(true);
+            }
+            catch (Exception ex)
+            {
+                return Task.FromResult(false);
+            }
         }
     }
 

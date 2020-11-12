@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using System.Collections.Generic;
-using PublicData.Data.Interfaces;
+using PublicData.DAL.Interfaces;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -23,7 +23,7 @@ namespace PublicData.Application.Features.PersonContact.GetPersonAllContacts
 
         public async Task<IList<PersonContactModel>> Handle(GetPersonAllContactsQuery request, CancellationToken cancellationToken)
         {
-            return await _personContactRepository.GetList(x => x.PersonId == request.PersonId)
+            return await _personContactRepository.GetList(x => x.PersonId == request.PersonId && x.IsActive == true).Include(x => x.ContactTypeDetail)
                 .ProjectTo<PersonContactModel>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
         }

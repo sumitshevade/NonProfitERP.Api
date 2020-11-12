@@ -2,14 +2,14 @@
 using AutoMapper;
 using System.Threading;
 using System.Threading.Tasks;
-using PublicData.Data.Interfaces;
+using PublicData.DAL.Interfaces;
 using PublicData.Common.Exceptions;
 using PublicData.Common.Interfaces;
 using System;
 
 namespace PublicData.Application.Features.PersonAchievement.UpdatePersonAchievementByAchievementId
 {
-    using Data.Entities;
+    using DAL.Entities;
     using PublicData.Application.Mappings;
 
     public class UpdatePersonAchievementByAchievementIdCommandHandler : IRequestHandler<UpdatePersonAchievementByAchievementIdCommand, bool>
@@ -34,13 +34,14 @@ namespace PublicData.Application.Features.PersonAchievement.UpdatePersonAchievem
             }
 
             var entity = _mapper.Map<PersonAchievement>(request);
+            entity.IsActive = true;
             _personAchievementRepository.Update(entity);
 
             return Task.FromResult(_unitOfWork.Commit());
         }
     }
 
-    public class UpdatePersonAchievementByAchievementIdCommand : IRequest<bool>, IMapFrom<UpdatePersonAchievementByAchievementIdCommand>
+    public class UpdatePersonAchievementByAchievementIdCommand : IRequest<bool>, IMapFrom<PersonAchievement>
     {
         public int Id { get; set; }
         public int PersonId { get; set; }

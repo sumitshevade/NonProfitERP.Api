@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
-using PublicData.Data.Interfaces;
+using PublicData.DAL.Interfaces;
 using PublicData.Common.Exceptions;
 using PublicData.Common.Interfaces;
 using AutoMapper;
@@ -9,7 +9,7 @@ using System;
 
 namespace PublicData.Application.Features.PersonFamilyDetail.UpdatePersonFamilyDetailByFamilyId
 {
-    using Data.Entities;
+    using DAL.Entities;
     using PublicData.Application.Mappings;
 
     public class UpdatePersonFamilyDetailByFamilyIdCommandHandler : IRequestHandler<UpdatePersonFamilyDetailByFamilyIdCommand, bool>
@@ -34,6 +34,7 @@ namespace PublicData.Application.Features.PersonFamilyDetail.UpdatePersonFamilyD
             }
 
             var entity = _mapper.Map<PersonFamilyDetail>(request);
+            entity.IsActive = true;
             _personFamilyDetailsRepository.Update(entity);
 
             return Task.FromResult(_unitOfWork.Commit());

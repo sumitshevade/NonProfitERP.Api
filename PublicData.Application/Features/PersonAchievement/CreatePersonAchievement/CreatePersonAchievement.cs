@@ -2,13 +2,13 @@
 using MediatR;
 using AutoMapper;
 using PublicData.Common.Interfaces;
-using PublicData.Data.Interfaces;
+using PublicData.DAL.Interfaces;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace PublicData.Application.Features.PersonAchievement.CreatePersonAchievement
 {
-    using Data.Entities;
+    using DAL.Entities;
     using PublicData.Application.Mappings;
 
     public class CreatePersonAchievementCommandHandler : IRequestHandler<CreatePersonAchievementCommand, int>

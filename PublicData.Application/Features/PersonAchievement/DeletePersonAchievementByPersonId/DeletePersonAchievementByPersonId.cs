@@ -3,13 +3,13 @@ using MediatR;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using PublicData.Data.Interfaces;
+using PublicData.DAL.Interfaces;
 using PublicData.Common.Interfaces;
 using PublicData.Common.Exceptions;
 
 namespace PublicData.Application.Features.PersonAchievement.DeletePersonAchievementByPersonId
 {
-    using Data.Entities;
+    using DAL.Entities;
 
     public class DeletePersonAchievementByPersonIdCommandHandler : IRequestHandler<DeletePersonAchievementByPersonIdCommand, bool>
     {

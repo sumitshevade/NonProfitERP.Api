@@ -2,17 +2,15 @@
 using System;
 using PublicData.Application.Mappings;
 using System.Collections.Generic;
+using PublicData.DAL.Entities;
 
 namespace PublicData.Application.Shared
 {
-    using Data.Entities;
-
     public partial class PersonModel : IMapFrom<Person>
     {
         public PersonModel()
         {
-            DepartmentHead = new HashSet<DepartmentHead>();
-            DivisionHead = new HashSet<DivisionHead>();
+            //DepartmentHead = new HashSet<DepartmentHead>();
             PersonAchievement = new HashSet<PersonAchievement>();
             PersonAddress = new HashSet<PersonAddress>();
             PersonContact = new HashSet<PersonContact>();
@@ -25,10 +23,10 @@ namespace PublicData.Application.Shared
             PersonPrivateInformation = new HashSet<PersonPrivateInformation>();
             PersonSocialMediaAccount = new HashSet<PersonSocialMediaAccount>();
             PersonWorkExperience = new HashSet<PersonWorkExperience>();
-            ProgramAttendance = new HashSet<ProgramAttendance>();
-            Ticket = new HashSet<Ticket>();
+            //Ticket = new HashSet<Ticket>();
         }
 
+        public int Id { get; set; }
         public string LoginId { get; set; }
         public int PersonTypeId { get; set; }
         public string FirstName { get; set; }
@@ -50,8 +48,7 @@ namespace PublicData.Application.Shared
         public virtual Country Country { get; set; }
         public virtual Detail PersonType { get; set; }
         public virtual Detail WorkFrequency { get; set; }
-        public virtual ICollection<DepartmentHead> DepartmentHead { get; set; }
-        public virtual ICollection<DivisionHead> DivisionHead { get; set; }
+        //public virtual ICollection<DepartmentHead> DepartmentHead { get; set; }
         public virtual ICollection<PersonAchievement> PersonAchievement { get; set; }
         public virtual ICollection<PersonAddress> PersonAddress { get; set; }
         public virtual ICollection<PersonContact> PersonContact { get; set; }
@@ -64,8 +61,7 @@ namespace PublicData.Application.Shared
         public virtual ICollection<PersonPrivateInformation> PersonPrivateInformation { get; set; }
         public virtual ICollection<PersonSocialMediaAccount> PersonSocialMediaAccount { get; set; }
         public virtual ICollection<PersonWorkExperience> PersonWorkExperience { get; set; }
-        public virtual ICollection<ProgramAttendance> ProgramAttendance { get; set; }
-        public virtual ICollection<Ticket> Ticket { get; set; }
+        //public virtual ICollection<Ticket> Ticket { get; set; }
 
         public void Mapping(Profile profile)
         {

@@ -2,14 +2,14 @@
 using AutoMapper;
 using System.Threading;
 using System.Threading.Tasks;
-using PublicData.Data.Interfaces;
+using PublicData.DAL.Interfaces;
 using PublicData.Common.Exceptions;
 using PublicData.Common.Interfaces;
+using PublicData.Application.Mappings;
 
 namespace PublicData.Application.Features.PersonWorkExperience.UpdatePersonWorkExperienceByExperienceId
 {
-    using Data.Entities;
-    using PublicData.Application.Mappings;
+    using DAL.Entities;
 
     public class UpdatePersonWorkExperienceByExperienceIdCommandHandler : IRequestHandler<UpdatePersonWorkExperienceByExperienceIdCommand, bool>
     {
@@ -33,6 +33,7 @@ namespace PublicData.Application.Features.PersonWorkExperience.UpdatePersonWorkE
             }
 
             var entity = _mapper.Map<PersonWorkExperience>(request);
+            entity.IsActive = true;
             _personWorkExperienceRepository.Update(entity);
 
             return Task.FromResult(_unitOfWork.Commit());

@@ -1,11 +1,12 @@
 ﻿using PublicData.Application.Mappings;
-using PublicData.Data.Entities;
+using PublicData.DAL.Entities;
 using System;
 
 namespace PublicData.Application.Shared
 {
-    public class PersonAchievementModel : IMapFrom<PersonAchievement>
+    public partial class PersonAchievementModel : IMapFrom<PersonAchievement>
     {
+        public int Id { get; set; }
         public int PersonId { get; set; }
         public string Title { get; set; }
         public string GivenBy { get; set; }

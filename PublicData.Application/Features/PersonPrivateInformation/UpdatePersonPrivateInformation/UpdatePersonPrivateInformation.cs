@@ -2,13 +2,13 @@
 using AutoMapper;
 using System.Threading;
 using System.Threading.Tasks;
-using PublicData.Data.Interfaces;
+using PublicData.DAL.Interfaces;
 using PublicData.Common.Exceptions;
 using PublicData.Common.Interfaces;
 
 namespace PublicData.Application.Features.PersonPrivateInformation.UpdatePersonPrivateInformation
 {
-    using Data.Entities;
+    using DAL.Entities;
     using PublicData.Application.Mappings;
 
     public class UpdatePersonPrivateInformationQueryHandler : IRequestHandler<UpdatePersonPrivateInformationQuery, bool>
@@ -33,6 +33,7 @@ namespace PublicData.Application.Features.PersonPrivateInformation.UpdatePersonP
             }
 
             var entity = _mapper.Map<PersonPrivateInformation>(request);
+            entity.IsActive = true;
             _personPrivateInformationRepository.Update(entity);
 
             return Task.FromResult(_unitOfWork.Commit());

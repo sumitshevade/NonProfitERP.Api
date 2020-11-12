@@ -9,9 +9,9 @@ namespace PublicData.Common.Security.Identity
 {
     public class IdentityService : IIdentityService
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public IdentityService(UserManager<IdentityUser> userManager)
+        public IdentityService(UserManager<ApplicationUser> userManager)
         {
             _userManager = userManager;
         }
@@ -24,7 +24,7 @@ namespace PublicData.Common.Security.Identity
         }
         public async Task<(Result Result, string UserId)> CreateUserAsync(string userName, string password)
         {
-            var user = new IdentityUser
+            var user = new ApplicationUser
             {
                 UserName = userName,
                 Email = userName,
@@ -47,7 +47,7 @@ namespace PublicData.Common.Security.Identity
             return Result.Success();
         }
 
-        public async Task<Result> DeleteUserAsync(IdentityUser user)
+        public async Task<Result> DeleteUserAsync(ApplicationUser user)
         {
             var result = await _userManager.DeleteAsync(user);
 
