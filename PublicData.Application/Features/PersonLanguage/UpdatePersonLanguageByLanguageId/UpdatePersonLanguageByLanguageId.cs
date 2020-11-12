@@ -2,13 +2,13 @@
 using AutoMapper;
 using System.Threading;
 using System.Threading.Tasks;
-using PublicData.Data.Interfaces;
+using PublicData.DAL.Interfaces;
 using PublicData.Common.Exceptions;
 using PublicData.Common.Interfaces;
 
 namespace PublicData.Application.Features.PersonLanguage.UpdatePersonLanguageByLanguageId
 {
-    using Data.Entities;
+    using DAL.Entities;
     using PublicData.Application.Mappings;
 
     public class UpdatePersonLanguageByLanguageIdCommandHandler : IRequestHandler<UpdatePersonLanguageByLanguageIdCommand, bool>
@@ -33,6 +33,7 @@ namespace PublicData.Application.Features.PersonLanguage.UpdatePersonLanguageByL
             }
 
             var entity = _mapper.Map<PersonLanguage>(request);
+            entity.IsActive = true;
             _personLanguageRepository.Update(entity);
 
             return Task.FromResult(_unitOfWork.Commit());

@@ -2,13 +2,13 @@
 using AutoMapper;
 using System.Threading;
 using System.Threading.Tasks;
-using PublicData.Data.Interfaces;
+using PublicData.DAL.Interfaces;
 using PublicData.Common.Exceptions;
 using PublicData.Common.Interfaces;
 
 namespace PublicData.Application.Features.PersonHealthDetail.UpdatePersonHealthDetailByHealthId
 {
-    using Data.Entities;
+    using DAL.Entities;
     using PublicData.Application.Mappings;
 
     public class UpdatePersonHealthDetailByHealthIdCommandHandler : IRequestHandler<UpdatePersonHealthDetailByHealthIdCommand, bool>
@@ -33,6 +33,7 @@ namespace PublicData.Application.Features.PersonHealthDetail.UpdatePersonHealthD
             }
 
             var entity = _mapper.Map<PersonHealthDetail>(request);
+            entity.IsActive = true;
             _personHealthDetailsRepository.Update(entity);
 
             return Task.FromResult(_unitOfWork.Commit());

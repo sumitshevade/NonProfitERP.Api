@@ -1,0 +1,140 @@
+using System;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
+
+namespace PublicData.Data.Mapping
+{
+    public partial class ProgramMap
+        : IEntityTypeConfiguration<PublicData.DAL.Entities.Program>
+    {
+        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<PublicData.DAL.Entities.Program> builder)
+        {
+            #region Generated Configure
+            // table
+            builder.ToTable("Program", "dbo");
+
+            // key
+            builder.HasKey(t => t.Id);
+
+            // properties
+            builder.Property(t => t.Id)
+                .IsRequired()
+                .HasColumnName("Id")
+                .HasColumnType("int")
+                .ValueGeneratedOnAdd();
+
+            builder.Property(t => t.DepartmentId)
+                .IsRequired()
+                .HasColumnName("DepartmentId")
+                .HasColumnType("int");
+
+            builder.Property(t => t.Name)
+                .IsRequired()
+                .HasColumnName("Name")
+                .HasColumnType("varchar(50)")
+                .HasMaxLength(50);
+
+            builder.Property(t => t.AddressLine1)
+                .HasColumnName("AddressLine1")
+                .HasColumnType("varchar(100)")
+                .HasMaxLength(100);
+
+            builder.Property(t => t.AddressLine2)
+                .HasColumnName("AddressLine2")
+                .HasColumnType("varchar(100)")
+                .HasMaxLength(100);
+
+            builder.Property(t => t.StartDate)
+                .IsRequired()
+                .HasColumnName("StartDate")
+                .HasColumnType("date");
+
+            builder.Property(t => t.EndDate)
+                .HasColumnName("EndDate")
+                .HasColumnType("date");
+
+            builder.Property(t => t.ContactNo)
+                .HasColumnName("ContactNo")
+                .HasColumnType("varchar(15)")
+                .HasMaxLength(15);
+
+            builder.Property(t => t.EmailId)
+                .HasColumnName("EmailId")
+                .HasColumnType("varchar(50)")
+                .HasMaxLength(50);
+
+            builder.Property(t => t.WebLink)
+                .HasColumnName("WebLink")
+                .HasColumnType("varchar(100)")
+                .HasMaxLength(100);
+
+            builder.Property(t => t.LongText)
+                .HasColumnName("LongText")
+                .HasColumnType("varchar(500)")
+                .HasMaxLength(500);
+
+            builder.Property(t => t.CreatedById)
+                .IsRequired()
+                .HasColumnName("CreatedById")
+                .HasColumnType("nvarchar(450)")
+                .HasMaxLength(450);
+
+            builder.Property(t => t.CreatedAt)
+                .IsRequired()
+                .HasColumnName("CreatedAt")
+                .HasColumnType("datetime")
+                .HasDefaultValueSql("(getdate())");
+
+            builder.Property(t => t.UpdatedById)
+                .HasColumnName("UpdatedById")
+                .HasColumnType("nvarchar(450)")
+                .HasMaxLength(450);
+
+            builder.Property(t => t.UpdatedAt)
+                .HasColumnName("UpdatedAt")
+                .HasColumnType("datetime");
+
+            builder.Property(t => t.IsActive)
+                .IsRequired()
+                .HasColumnName("IsActive")
+                .HasColumnType("bit")
+                .HasDefaultValueSql("((1))");
+
+            // relationships
+            builder.HasOne(t => t.Department)
+                .WithMany(t => t.Programs)
+                .HasForeignKey(d => d.DepartmentId)
+                .HasConstraintName("FK__Program__Departm__70DDC3D8");
+
+            #endregion
+        }
+
+        #region Generated Constants
+        public struct Table
+        {
+            public const string Schema = "dbo";
+            public const string Name = "Program";
+        }
+
+        public struct Columns
+        {
+            public const string Id = "Id";
+            public const string DepartmentId = "DepartmentId";
+            public const string Name = "Name";
+            public const string AddressLine1 = "AddressLine1";
+            public const string AddressLine2 = "AddressLine2";
+            public const string StartDate = "StartDate";
+            public const string EndDate = "EndDate";
+            public const string ContactNo = "ContactNo";
+            public const string EmailId = "EmailId";
+            public const string WebLink = "WebLink";
+            public const string LongText = "LongText";
+            public const string CreatedById = "CreatedById";
+            public const string CreatedAt = "CreatedAt";
+            public const string UpdatedById = "UpdatedById";
+            public const string UpdatedAt = "UpdatedAt";
+            public const string IsActive = "IsActive";
+        }
+        #endregion
+    }
+}

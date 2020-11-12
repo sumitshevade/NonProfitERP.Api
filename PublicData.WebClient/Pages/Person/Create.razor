@@ -1,0 +1,718 @@
+﻿@page "/person/create"
+@inherits PersonComponent
+
+@if (MessageType == AlertMessageType.Error)
+{
+    <div class="alert alert-danger" role="alert">
+        <p>@Message</p>
+    </div>
+}
+
+@if (CommonService.IsBusy == true)
+{
+    <div class="text-center m-auto" style="padding: 150px 0px">
+        <span class="spinner-border"></span>
+        <br />
+        Loading...
+        @* TODO: Add random text here like fun facts *@
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card-deck mb-3 text-left">
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-header">
+                        @*TODO: Remove this save all button *@
+                        <h4 class="my-0 font-weight-normal">Create Person <span class="float-right">
+                            <button type="reset" class="btn btn-success text-white" @onclick="RemovePersonId">Save All</button></span>
+                        </h4>
+                    </div>
+
+                    <div class="card-body">
+                        <ul class="nav nav-pills">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="pills-basic-tab" data-toggle="pill" href="#pills-basic"
+                                   role="tab" aria-controls="pills-home" aria-selected="true">Basic</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @ContactDisabled" id="pills-contact-tab" data-toggle="pill" href="#pills-contact"
+                                   role="tab" aria-controls="pills-contact" aria-selected="false">Contact</a>
+                            </li>
+                            @*<li class="nav-item">
+                                    <a class="nav-link" id="pills-address-tab" data-toggle="pill" href="#pills-address"
+                                        role="tab" aria-controls="pills-address" aria-selected="false">Address</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-education-tab" data-toggle="pill" href="#pills-education"
+                                        role="tab" aria-controls="pills-education" aria-selected="false">Education</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-work-tab" data-toggle="pill" href="#pills-work"
+                                        role="tab" aria-controls="pills-work" aria-selected="false">Work Exp</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-family-tab" data-toggle="pill" href="#pills-family"
+                                        role="tab" aria-controls="pills-family" aria-selected="false">Family Details</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-disability-tab" data-toggle="pill" href="#pills-disability"
+                                        role="tab" aria-controls="pills-disability" aria-selected="false">Disabilities</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-health-tab" data-toggle="pill" href="#pills-health"
+                                        role="tab" aria-controls="pills-health" aria-selected="false">Health Details</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-achievement-tab" data-toggle="pill" href="#pills-achievement"
+                                        role="tab" aria-controls="pills-achievement" aria-selected="false">Achivement</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-sm-tab" data-toggle="pill" href="#pills-sm"
+                                        role="tab" aria-controls="pills-sm" aria-selected="false">Social Media</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-private-tab" data-toggle="pill" href="#pills-private"
+                                        role="tab" aria-controls="pills-private" aria-selected="false">Private</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-language-tab" data-toggle="pill" href="#pills-language"
+                                        role="tab" aria-controls="pills-language" aria-selected="false">Language</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-hobby-tab" data-toggle="pill" href="#pills-hobby"
+                                        role="tab" aria-controls="pills-hobby" aria-selected="false">Hobby</a>
+                                </li>*@
+                        </ul>
+
+                        // TODO
+                        ** If user logged in, don't show the shakha name
+                        ** If others logged in, show the shakha name
+                        <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade show active border m-3 p-4" id="pills-basic" role="tabpanel" aria-labelledby="pills-basic-tab">
+                                <EditForm Model="Person" OnValidSubmit="CreatePerson">
+                                    <DataAnnotationsValidator />
+                                    <ValidationSummary />
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            Current Role
+                                            <InputSelect ValueChanged="@((string value) => ChangePersonType(value))"
+                                                        ValueExpression="@(() => SelectedPersonTypeId)"
+                                                        Value="@SelectedPersonTypeId"
+                                                        class="form-control" required>
+                                                <option value="0">Select...</option>
+                                                @foreach (var item in PersonTypes)
+                                                {
+                                                    <option value="@item.Id">@item.Value</option>
+                                                }
+                                            </InputSelect>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            Is Worker
+                                            <InputSelect ValueChanged="@((string value) => ChangeIsWorker(value))"
+                                                        ValueExpression="@(() => SelectedIsWorker)"
+                                                        Value="@SelectedIsWorker"
+                                                         class="form-control" required title="This will help while assigning roles in work.">
+                                                <option disabled>Select...</option>
+                                                <option value="true">Yes</option>
+                                                <option value="false">No</option>
+                                            </InputSelect>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            Work Frequency
+                                            <InputSelect ValueChanged="@((string value) => ChangeWorkFrequency(value))"
+                                                        ValueExpression="@(() => SelectedWorkFrequencyId)"
+                                                        Value="@SelectedWorkFrequencyId"
+                                                        class="form-control" required>
+                                                <option value="0">Select...</option>
+                                                @foreach (var item in WorkFrequencies)
+                                                {
+                                                    <option value="@item.Id">@item.Value</option>
+                                                }
+                                            </InputSelect>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-3">
+                                        <div class="col-sm-3">
+                                            First Name
+                                            <InputText @bind-Value="Person.FirstName" class="form-control" placeholder="First Name" required></InputText>
+                                            <ValidationMessage For="@(() => Person.FirstName)" />
+                                        </div>
+                                        <div class="col-sm-3">
+                                            Middle Name
+                                            <InputText @bind-Value="Person.MiddleName" class="form-control" placeholder="Middle Name"></InputText>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            Last Name
+                                            <InputText @bind-Value="Person.LastName" class="form-control" placeholder="Last Name" required></InputText>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            Citizen Of
+                                            <InputSelect ValueChanged="@((string value) => ChangeCountry(value))"
+                                                        ValueExpression="@(() => SelectedCoutryId)"
+                                                        Value="@SelectedCoutryId"
+                                                         class="form-control" required>
+                                                <option value="0">Select...</option>
+                                                @foreach (var item in Countries)
+                                                {
+                                                    <option value="@item.Id">@item.Name</option>
+                                                }
+                                            </InputSelect>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-3">
+                                        <div class="col-sm-3">
+                                            Birth Date
+                                            <InputDate @bind-Value="Person.BirthDate" class="form-control"></InputDate>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            Birth Location
+                                            <InputText @bind-Value="Person.BirthLocation" class="form-control" placeholder="Birth Location"></InputText>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            Joining Date
+                                            <InputDate @bind-Value="Person.JoiningDate" class="form-control"></InputDate>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            Joined As
+                                            <InputSelect ValueChanged="@((string value) => ChangeJoinedAs(value))"
+                                                        ValueExpression="@(() => SelectedJoinedAsId)"
+                                                        Value="@SelectedJoinedAsId"
+                                                        class="form-control" required>
+                                                <option value="0">Select...</option>
+                                                @foreach (var item in JoinedAs)
+                                                {
+                                                    <option value="@item.Id">@item.Value</option>
+                                                }
+                                            </InputSelect>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-3">
+                                        <div class="col-sm-3">
+                                            Additional Information
+                                            <InputTextArea @bind-Value="Person.LongText" rows="3" class="form-control"></InputTextArea>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            Keywords
+                                            <InputTextArea @bind-Value="Person.Keywords" rows="3" class="form-control"></InputTextArea>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-4">
+                                        <div class="col-sm-3">
+                                            <button class="btn btn-primary" type="submit">Save</button>
+                                            <button class="btn btn-warning m-1" @onclick="CancelPerson" type="reset">Cancel</button>
+                                        </div>
+                                    </div>
+                                </EditForm>
+                            </div>
+
+                            <div class="tab-pane fade border m-3 p-4" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+                                <button type="button" class="btn btn-success" @onclick="AddContact">+ Add Contact</button>
+                                <EditForm Model="PersonContact" OnValidSubmit="CreatePersonContact">
+                                    <DataAnnotationsValidator />
+                                    <ValidationSummary />
+                                    <div class="mt-1 border p-3">
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                Contact Type
+                                                <InputSelect ValueChanged="@((string value) => ChangeContactType(value))"
+                                                                ValueExpression="@(() => SelectedContactTypeId)"
+                                                                Value="@SelectedContactTypeId"
+                                                                class="form-control" required>
+                                                    <option value="0">Select...</option>
+                                                    @foreach (var item in ContactTypes)
+                                                    {
+                                                        <option value="@item.Id">@item.Value</option>
+                                                    }
+                                                </InputSelect>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                Value
+                                                <InputText @bind-Value="PersonContact.Detail" class="form-control"></InputText>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                Is Default
+                                                <InputSelect ValueChanged="@((string value) => ChangeIsDefaultContact(value))"
+                                                             ValueExpression="@(() => SelectedIsDefaultContact)"
+                                                             Value="@SelectedIsDefaultContact"
+                                                             class="form-control" required>
+                                                    <option disabled>Select...</option>
+                                                    <option value="true">Yes</option>
+                                                    <option value="false">No</option>
+                                                </InputSelect>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mt-4">
+                                            <div class="col-sm-3">
+                                                <button class="btn btn-primary" type="submit">@ContactSaveButton</button>
+                                                <button class="btn btn-warning m-1" type="reset">Cancel</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </EditForm>
+
+                                <table class="table table-hover mt-5">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Type</th>
+                                            <th scope="col">Value</th>
+                                            <th scope="col">Default</th>
+                                            <th scope="col">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in PersonContacts)
+                                        {
+                                            <tr>
+                                                <td>@item.ContactTypeDetail.Value</td>
+                                                <td>@item.Detail</td>
+                                                <td>@item.IsDefault</td>
+                                                <td>
+                                                    <a class="btn btn-success text-white btn-sm" @onclick="(() => EditContact(item.Id))">Edit</a>
+                                                    <a class="btn btn-danger text-white btn-sm" @onclick="(() => DeleteContact(item.Id))">Delete</a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            @*<div class="tab-pane fade border m-3 p-4" id="pills-address" role="tabpanel" aria-labelledby="pills-address-tab">
+                                    <button type="button" class="btn btn-success">+ Add Address</button>
+                                    <table class="table table-hover mt-2">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">First</th>
+                                                <th scope="col">Last</th>
+                                                <th scope="col">Handle</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">1</th>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@@mdo</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">2</th>
+                                                <td>Jacob</td>
+                                                <td>Thornton</td>
+                                                <td>@@fat</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">3</th>
+                                                <td colspan="2">Larry the Bird</td>
+                                                <td>@@twitter</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="tab-pane fade border m-3 p-4" id="pills-education" role="tabpanel" aria-labelledby="pills-education-tab">
+                                    <button type="button" class="btn btn-success">+ Add Education</button>
+                                    <table class="table table-hover mt-2">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">First</th>
+                                                <th scope="col">Last</th>
+                                                <th scope="col">Handle</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">1</th>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@@mdo</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">2</th>
+                                                <td>Jacob</td>
+                                                <td>Thornton</td>
+                                                <td>@@fat</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">3</th>
+                                                <td colspan="2">Larry the Bird</td>
+                                                <td>@@twitter</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="tab-pane fade border m-3 p-4" id="pills-work" role="tabpanel" aria-labelledby="pills-work-tab">
+                                    <button type="button" class="btn btn-success">+ Add Work Experience</button>
+                                    <table class="table table-hover mt-2">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">First</th>
+                                                <th scope="col">Last</th>
+                                                <th scope="col">Handle</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">1</th>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@@mdo</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">2</th>
+                                                <td>Jacob</td>
+                                                <td>Thornton</td>
+                                                <td>@@fat</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">3</th>
+                                                <td colspan="2">Larry the Bird</td>
+                                                <td>@@twitter</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="tab-pane fade border m-3 p-4" id="pills-family" role="tabpanel" aria-labelledby="pills-family-tab">
+                                    <button type="button" class="btn btn-success">+ Add Family Member</button>
+                                    <table class="table table-hover mt-2">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">First</th>
+                                                <th scope="col">Last</th>
+                                                <th scope="col">Handle</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">1</th>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@@mdo</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">2</th>
+                                                <td>Jacob</td>
+                                                <td>Thornton</td>
+                                                <td>@@fat</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">3</th>
+                                                <td colspan="2">Larry the Bird</td>
+                                                <td>@@twitter</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="tab-pane fade border m-3 p-4" id="pills-disability" role="tabpanel" aria-labelledby="pills-disability-tab">
+                                    <button type="button" class="btn btn-success">+ Add Disability</button>
+                                    <table class="table table-hover mt-2">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">First</th>
+                                                <th scope="col">Last</th>
+                                                <th scope="col">Handle</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">1</th>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@@mdo</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">2</th>
+                                                <td>Jacob</td>
+                                                <td>Thornton</td>
+                                                <td>@@fat</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">3</th>
+                                                <td colspan="2">Larry the Bird</td>
+                                                <td>@@twitter</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="tab-pane fade border m-3 p-4" id="pills-health" role="tabpanel" aria-labelledby="pills-health-tab">
+                                    <button type="button" class="btn btn-success">+ Add Health Information</button>
+                                    <table class="table table-hover mt-2">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">First</th>
+                                                <th scope="col">Last</th>
+                                                <th scope="col">Handle</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">1</th>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@@mdo</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">2</th>
+                                                <td>Jacob</td>
+                                                <td>Thornton</td>
+                                                <td>@@fat</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">3</th>
+                                                <td colspan="2">Larry the Bird</td>
+                                                <td>@@twitter</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="tab-pane fade border m-3 p-4" id="pills-achievement" role="tabpanel" aria-labelledby="pills-achievement-tab">
+                                    <button type="button" class="btn btn-success">+ Add Achivement</button>
+                                    <table class="table table-hover mt-2">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">First</th>
+                                                <th scope="col">Last</th>
+                                                <th scope="col">Handle</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">1</th>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@@mdo</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">2</th>
+                                                <td>Jacob</td>
+                                                <td>Thornton</td>
+                                                <td>@@fat</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">3</th>
+                                                <td colspan="2">Larry the Bird</td>
+                                                <td>@@twitter</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="tab-pane fade border m-3 p-4" id="pills-sm" role="tabpanel" aria-labelledby="pills-sm-tab">
+                                    <button type="button" class="btn btn-success">+ Add Social Media Account</button>
+                                    <table class="table table-hover mt-2">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">First</th>
+                                                <th scope="col">Last</th>
+                                                <th scope="col">Handle</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">1</th>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@@mdo</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">2</th>
+                                                <td>Jacob</td>
+                                                <td>Thornton</td>
+                                                <td>@@fat</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">3</th>
+                                                <td colspan="2">Larry the Bird</td>
+                                                <td>@@twitter</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="tab-pane fade border m-3 p-4" id="pills-private" role="tabpanel" aria-labelledby="pills-private-tab">
+                                    Private Information
+                                    <form action="dashboard.html" method="POST">
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                Marital Status
+                                                <select name="maritalstatus" id="maritalstatus" class="form-control" autofocus>
+                                                    <option value="0">Select...</option>
+                                                    <option value="1">Unmarried</option>
+                                                    <option value="2">Married</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                Aadhar Card No
+                                                <input type="text" name="aadharcardno" id="aadharcardno" class="form-control" placeholder="Aadhar Card No">
+                                            </div>
+                                            <div class="col-sm-3">
+                                                Parental Status
+                                                <select name="parentalstatus" id="parentalstatus" class="form-control">
+                                                    <option value="0">Select...</option>
+                                                    <option value="1">Unmarried</option>
+                                                    <option value="2">Married</option>
+                                                </select>
+                                                <input type="text" name="otherparentalstatus" id="otherparentalstatus" class="form-control" placeholder="Parental Status">
+                                            </div>
+                                            <div class="col-sm-3">
+                                                Is Own Bicycle
+                                                <select name="isownbicycle" id="isownbicycle" class="form-control">
+                                                    <option value="0">Select...</option>
+                                                    <option value="1" selected>Yes</option>
+                                                    <option value="2">No</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mt-3">
+                                            <div class="col-sm-3">
+                                                Religion
+                                                <select name="religionid" id="religionid" class="form-control">
+                                                    <option value="0">Select...</option>
+                                                    <option value="1">Unmarried</option>
+                                                    <option value="2">Married</option>
+                                                </select>
+                                                <input type="text" name="otherreligion" id="otherreligion" class="form-control" placeholder="Other Religion">
+                                            </div>
+                                            <div class="col-sm-3">
+                                                Caste
+                                                <select name="casteid" id="casteid" class="form-control">
+                                                    <option value="0">Select...</option>
+                                                    <option value="1">Unmarried</option>
+                                                    <option value="2">Married</option>
+                                                </select>
+                                                <input type="text" name="othercaste" id="othercaste" class="form-control" placeholder="Other Caste">
+                                            </div>
+                                            <div class="col-sm-3">
+                                                Category
+                                                <select name="categoryid" id="categoryid" class="form-control">
+                                                    <option value="0">Select...</option>
+                                                    <option value="1">Unmarried</option>
+                                                    <option value="2">Married</option>
+                                                </select>
+                                                <input type="text" name="othercategory" id="othercategory" class="form-control" placeholder="Other Category">
+                                            </div>
+                                        </div>
+
+                                        <div class="row mt-3">
+                                            <div class="col-sm-3">
+                                                Is Alive
+                                                <select name="isalive" id="isalive" class="form-control" required>
+                                                    <option value="0">Select...</option>
+                                                    <option value="1" selected>Yes</option>
+                                                    <option value="2">No</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                Date of Expiry
+                                                <input type="date" name="dateofexpiry" id="dateofexpiry" class="form-control">
+                                            </div>
+                                        </div>
+
+                                        <div class="row mt-4">
+                                            <div class="col-sm-3">
+                                                <button id="savePrivate" class="btn btn-primary m-1" type="submit">Save</button>
+                                                <button id="cancelPrivate" class="btn btn-warning m-1" type="reset">Cancel</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <div class="tab-pane fade border m-3 p-4" id="pills-language" role="tabpanel" aria-labelledby="pills-language-tab">
+                                    <button type="button" class="btn btn-success">+ Add Language</button>
+                                    <table class="table table-hover mt-2">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">First</th>
+                                                <th scope="col">Last</th>
+                                                <th scope="col">Handle</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">1</th>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@@mdo</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">2</th>
+                                                <td>Jacob</td>
+                                                <td>Thornton</td>
+                                                <td>@@fat</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">3</th>
+                                                <td colspan="2">Larry the Bird</td>
+                                                <td>@@twitter</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="tab-pane fade border m-3 p-4" id="pills-hobby" role="tabpanel" aria-labelledby="pills-hobby-tab">
+                                    <button type="button" class="btn btn-success">+ Add Hobby</button>
+                                    <table class="table table-hover mt-2">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">First</th>
+                                                <th scope="col">Last</th>
+                                                <th scope="col">Handle</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">1</th>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@@mdo</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">2</th>
+                                                <td>Jacob</td>
+                                                <td>Thornton</td>
+                                                <td>@@fat</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">3</th>
+                                                <td colspan="2">Larry the Bird</td>
+                                                <td>@@twitter</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+
+    private void AddContact()
+    {
+        ContactFormDisplay = CommonService.ToggleClass(ContactFormDisplay, "d-none");
+    }
+}

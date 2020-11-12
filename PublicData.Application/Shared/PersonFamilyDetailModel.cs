@@ -1,12 +1,13 @@
 ﻿using System;
 using AutoMapper;
 using PublicData.Application.Mappings;
-using PublicData.Data.Entities;
+using PublicData.DAL.Entities;
 
 namespace PublicData.Application.Shared
 {
-    public class PersonFamilyDetailModel : IMapFrom<PersonFamilyDetail>
+    public partial class PersonFamilyDetailModel : IMapFrom<PersonFamilyDetail>
     {
+        public int Id { get; set; }
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
         public string LastName { get; set; }
@@ -24,7 +25,6 @@ namespace PublicData.Application.Shared
         public string AnyDisability { get; set; }
 
         public virtual Detail Course { get; set; }
-        public virtual Person Person { get; set; }
         public virtual Detail Relation { get; set; }
 
         public void Mapping(Profile profile)

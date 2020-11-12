@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
 using MediatR;
 using PublicData.Common.Interfaces;
-using PublicData.Data.Interfaces;
+using PublicData.DAL.Interfaces;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace PublicData.Application.Features.PersonEducation.CreatePersonEducation
 {
-    using Data.Entities;
+    using DAL.Entities;
     using PublicData.Application.Mappings;
 
     public class CreatePersonEducationCommandHandler : IRequestHandler<CreatePersonEducationCommand, int>

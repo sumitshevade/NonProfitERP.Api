@@ -2,13 +2,13 @@
 using AutoMapper;
 using System.Threading;
 using System.Threading.Tasks;
-using PublicData.Data.Interfaces;
+using PublicData.DAL.Interfaces;
 using PublicData.Common.Exceptions;
 using PublicData.Common.Interfaces;
 
 namespace PublicData.Application.Features.PersonHobbyFavorite.UpdatePersonHobbyFavoriteByHFId
 {
-    using Data.Entities;
+    using DAL.Entities;
     using PublicData.Application.Mappings;
 
     public class UpdatePersonHobbyFavoriteByHFIdCommandHandler : IRequestHandler<UpdatePersonHobbyFavoriteByHFIdCommand, bool>
@@ -33,6 +33,7 @@ namespace PublicData.Application.Features.PersonHobbyFavorite.UpdatePersonHobbyF
             }
 
             var entity = _mapper.Map<PersonHobbyFavorite>(request);
+            entity.IsActive = true;
             _personHobbyFavoriteRepository.Update(entity);
 
             return Task.FromResult(_unitOfWork.Commit());

@@ -2,13 +2,13 @@
 using MediatR;
 using PublicData.Common.Exceptions;
 using PublicData.Common.Interfaces;
-using PublicData.Data.Interfaces;
+using PublicData.DAL.Interfaces;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace PublicData.Application.Features.PersonAddress.UpdatePersonAddressByAddressId
 {
-    using Data.Entities;
+    using DAL.Entities;
     using PublicData.Application.Mappings;
 
     public class UpdatePersonAddressByAddressIdCommandHandler : IRequestHandler<UpdatePersonAddressByAddressIdCommand, bool>
@@ -33,6 +33,7 @@ namespace PublicData.Application.Features.PersonAddress.UpdatePersonAddressByAdd
             }
 
             var entity = _mapper.Map<PersonAddress>(request);
+            entity.IsActive = true;
             _peopleAddressRepository.Update(entity);
 
             return Task.FromResult(_unitOfWork.Commit());

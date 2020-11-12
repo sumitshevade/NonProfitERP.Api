@@ -1,18 +1,19 @@
 ﻿using AutoMapper;
 using PublicData.Application.Mappings;
-using PublicData.Data.Entities;
+using PublicData.DAL.Entities;
 
 namespace PublicData.Application.Shared
 {
-    public class PersonContactModel : IMapFrom<PersonContact>
+    public partial class PersonContactModel : IMapFrom<PersonContact>
     {
+        public int Id { get; set; }
         public int PersonId { get; set; }
         public int? ContactTypeId { get; set; }
         public string Detail { get; set; }
         public bool IsDefault { get; set; }
 
-        public virtual Detail ContactType { get; set; }
-        public virtual Person Person { get; set; }
+        public virtual Detail ContactTypeDetail { get; set; }
+        //public virtual Person Person { get; set; }
 
         public void Mapping(Profile profile)
         {

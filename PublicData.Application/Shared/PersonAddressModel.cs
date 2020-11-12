@@ -1,11 +1,12 @@
 ﻿using AutoMapper;
 using PublicData.Application.Mappings;
-using PublicData.Data.Entities;
+using PublicData.DAL.Entities;
 
 namespace PublicData.Application.Shared
 {
     public partial class PersonAddressModel : IMapFrom<PersonAddress>
     {
+        public int Id { get; set; }
         public int PersonId { get; set; }
         public int? CountryId { get; set; }
         public int? StateId { get; set; }
@@ -35,7 +36,7 @@ namespace PublicData.Application.Shared
         public virtual District District { get; set; }
         public virtual Detail HomeStatus { get; set; }
         public virtual Detail LocalityClass { get; set; }
-        public virtual Person Person { get; set; }
+        //public virtual Person Person { get; set; }
         public virtual Detail ResidentialArea { get; set; }
         public virtual Detail ResidentialStatus { get; set; }
         public virtual State State { get; set; }
