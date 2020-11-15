@@ -60,7 +60,7 @@ namespace PublicData.Common.Security.Identity
                 };
             });
 
-            services.AddAuthorization(options =>
+            services.AddMvcCore().AddAuthorization(options =>
             {
                 var defaultAuthorizationPolicyBuilder = new AuthorizationPolicyBuilder(JwtBearerDefaults.AuthenticationScheme);
                 defaultAuthorizationPolicyBuilder = defaultAuthorizationPolicyBuilder.RequireAuthenticatedUser();
@@ -73,7 +73,7 @@ namespace PublicData.Common.Security.Identity
             if (services == null) throw new ArgumentNullException(nameof(services));
             services.AddDbContext<IdentityDbContext>(options => options.UseSqlServer(connectionString));
 
-            services.AddAuthorization(options =>
+            services.AddMvcCore().AddAuthorization(options =>
             {
                 foreach (var pol in policies)
                 {
