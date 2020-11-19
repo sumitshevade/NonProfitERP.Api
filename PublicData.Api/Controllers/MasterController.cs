@@ -51,7 +51,7 @@ using PublicData.Application.Features.Master.Taluka.GetTalukaById;
 using PublicData.Application.Features.Master.Taluka.UpdateTaluka;
 using PublicData.Application.Features.Master.University.CreateUniversity;
 using PublicData.Application.Features.Master.University.DeleteUniversity;
-using PublicData.Application.Features.Master.University.GetAllUniversitiesById;
+using PublicData.Application.Features.Master.University.GetAllUniversities;
 using PublicData.Application.Features.Master.University.GetUniversityById;
 using PublicData.Application.Features.Master.University.UpdateUniversity;
 
