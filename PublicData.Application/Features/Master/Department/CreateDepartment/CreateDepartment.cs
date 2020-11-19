@@ -38,8 +38,13 @@ namespace PublicData.Application.Features.Master.Department.CreateDepartment
     public class CreateDepartmentCommand : IRequest<int>, IMapFrom<Department>
     {
         public string Name { get; set; }
-        public DateTime? StartedAt { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
+        public string ContactNo { get; set; }
+        public string EmailId { get; set; }
+        public string WebLink { get; set; }
         public string LongText { get; set; }
+        public bool IsActive { get; set; }
 
         public void Mapping(Profile profile)
         {

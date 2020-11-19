@@ -6,7 +6,7 @@ using PublicData.DAL.Interfaces;
 using PublicData.Common.Interfaces;
 using PublicData.Common.Exceptions;
 
-namespace PublicData.Application.Features.PersonLanguage.DeletePersonLanguage
+namespace PublicData.Application.Features.PersonLanguage.DeletePersonLanguageById
 {
     using DAL.Entities;
 

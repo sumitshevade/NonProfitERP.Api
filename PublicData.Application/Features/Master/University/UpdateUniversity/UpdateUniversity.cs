@@ -45,6 +45,7 @@ namespace PublicData.Application.Features.Master.University.UpdateUniversity
         public int Id { get; set; }
         public string Name { get; set; }
         public int CityId { get; set; }
+        public bool IsActive { get; set; }
 
         public void Mapping(Profile profile)
         {

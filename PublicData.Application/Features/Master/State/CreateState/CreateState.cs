@@ -38,6 +38,7 @@ namespace PublicData.Application.Features.Master.State.CreateState
     {
         public string Name { get; set; }
         public int? CountryId { get; set; }
+        public bool IsActive { get; set; }
 
         public void Mapping(Profile profile)
         {

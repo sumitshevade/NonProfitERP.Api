@@ -4,11 +4,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using PublicData.DAL.Interfaces;
 using PublicData.Common.Interfaces;
+using PublicData.Application.Mappings;
 
 namespace PublicData.Application.Features.PersonLanguage.CreatePersonLanguage
 {
     using DAL.Entities;
-    using PublicData.Application.Mappings;
 
     public class CreatePersonLanguageCommandHandler : IRequestHandler<CreatePersonLanguageCommand, int>
     {
@@ -40,6 +40,7 @@ namespace PublicData.Application.Features.PersonLanguage.CreatePersonLanguage
         public int LanguageId { get; set; }
         public string OtherLanguage { get; set; }
         public bool IsMotherTongue { get; set; }
+        public bool IsActive { get; set; }
 
         public void Mapping(Profile profile)
         {

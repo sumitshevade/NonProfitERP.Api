@@ -44,6 +44,7 @@ namespace PublicData.Application.Features.Master.Country.UpdateCountryById
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public bool IsActive { get; set; }
 
         public void Mapping(Profile profile)
         {

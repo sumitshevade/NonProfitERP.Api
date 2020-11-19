@@ -6,7 +6,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace PublicData.Application.Features.PersonFamilyDetail.DeletePersonFamilyDetail
+namespace PublicData.Application.Features.PersonFamilyDetail.DeletePersonFamilyDetailById
 {
     using DAL.Entities;
 

@@ -38,6 +38,7 @@ namespace PublicData.Application.Features.Master.City.CreateCity
     {
         public int? StateId { get; set; }
         public string Name { get; set; }
+        public bool IsActive { get; set; }
 
         public void Mapping(Profile profile)
         {

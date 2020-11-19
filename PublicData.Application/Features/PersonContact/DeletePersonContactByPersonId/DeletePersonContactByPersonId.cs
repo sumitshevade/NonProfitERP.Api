@@ -4,11 +4,11 @@ using PublicData.Common.Interfaces;
 using PublicData.DAL.Interfaces;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace PublicData.Application.Features.PersonContact.DeletePersonContactByPersonId
 {
     using DAL.Entities;
-    using System.Linq;
 
     public class DeletePersonContactByPersonIdCommandHandler : IRequestHandler<DeletePersonContactByPersonIdCommand, bool>
     {

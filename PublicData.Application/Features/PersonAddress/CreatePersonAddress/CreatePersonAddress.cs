@@ -54,11 +54,12 @@ namespace PublicData.Application.Features.PersonAddress.CreatePersonAddress
         public int? FromYear { get; set; }
         public int? ToYear { get; set; }
         public int? RoomsInHome { get; set; }
-        public bool IsGovtBuildUp { get; set; }
+        public bool? IsGovtBuildUp { get; set; }
         public int? HomeStatusId { get; set; }
         public int? LocalityClassId { get; set; }
         public int? ResidentialStatusId { get; set; }
         public int? ResidentialAreaId { get; set; }
+        public bool IsActive { get; set; }
 
         public void Mapping(Profile profile)
         {

@@ -58,6 +58,8 @@ namespace PublicData.Application.Features.PersonEducation.UpdatePersonEducationB
         public string OtherDegree { get; set; }
         public int? CourseId { get; set; }
         public string OtherCourse { get; set; }
+        public string Specialization { get; set; }
+        public bool IsActive { get; set; }
 
         public void Mapping(Profile profile)
         {

@@ -44,17 +44,21 @@ namespace PublicData.Application.Features.PersonWorkExperience.UpdatePersonWorkE
     {
         public int Id { get; set; }
         public int PersonId { get; set; }
-        public int IndustryId { get; set; }
-        public string OtherIndustry { get; set; }
+        public int? OrganizationId { get; set; }
+        public string OtherOrganization { get; set; }
         public int? WorkTypeId { get; set; }
         public string OtherWorkType { get; set; }
-        public int? StatusId { get; set; }
-        public string OtherStatus { get; set; }
-        public string CompanyName { get; set; }
-        public string ActualWork { get; set; }
+        public int? DepartmentId { get; set; }
+        public string OtherDepartment { get; set; }
+        public int? DesignationId { get; set; }
+        public string OtherDesignation { get; set; }
         public int? FromYear { get; set; }
         public int? ToYear { get; set; }
+        public string Specialization { get; set; }
+        public bool? IsFreeLance { get; set; }
+        public bool? IsFullTime { get; set; }
         public string LongText { get; set; }
+        public bool IsActive { get; set; }
 
         public void Mapping(Profile profile)
         {

@@ -47,7 +47,8 @@ namespace PublicData.Application.Features.Master.Program.CreateProgram
         public string EmailId { get; set; }
         public string WebLink { get; set; }
         public string LongText { get; set; }
-        
+        public bool IsActive { get; set; }
+
         public void Mapping(Profile profile)
         {
             profile.CreateMap<Program, CreateProgramCommand>();

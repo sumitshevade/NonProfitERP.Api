@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 using PublicData.DAL.Interfaces;
 using PublicData.Common.Exceptions;
 using PublicData.Common.Interfaces;
+using PublicData.Application.Mappings;
 
 namespace PublicData.Application.Features.PersonLanguage.UpdatePersonLanguageByLanguageId
 {
     using DAL.Entities;
-    using PublicData.Application.Mappings;
 
     public class UpdatePersonLanguageByLanguageIdCommandHandler : IRequestHandler<UpdatePersonLanguageByLanguageIdCommand, bool>
     {
@@ -47,6 +47,7 @@ namespace PublicData.Application.Features.PersonLanguage.UpdatePersonLanguageByL
         public int LanguageId { get; set; }
         public string OtherLanguage { get; set; }
         public bool IsMotherTongue { get; set; }
+        public bool IsActive { get; set; }
 
         public void Mapping(Profile profile)
         {

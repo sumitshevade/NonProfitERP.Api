@@ -41,6 +41,7 @@ namespace PublicData.Application.Features.PersonDisability.CreatePersonDisabilit
         public string Detail { get; set; }
         public int? FromYear { get; set; }
         public int? ToYear { get; set; }
+        public bool IsActive { get; set; }
 
         public void Mapping(Profile profile)
         {

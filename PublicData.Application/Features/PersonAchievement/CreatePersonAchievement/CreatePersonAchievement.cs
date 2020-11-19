@@ -44,6 +44,7 @@ namespace PublicData.Application.Features.PersonAchievement.CreatePersonAchievem
         public string Reason { get; set; }
         public int? AwardLevelId { get; set; }
         public DateTime? ReceivedDate { get; set; }
+        public bool IsActive { get; set; }
 
         public void Mapping(Profile profile)
         {

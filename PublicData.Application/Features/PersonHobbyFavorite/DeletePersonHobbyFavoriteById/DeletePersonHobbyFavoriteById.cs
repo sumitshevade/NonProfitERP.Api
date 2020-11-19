@@ -6,7 +6,7 @@ using PublicData.DAL.Interfaces;
 using PublicData.Common.Interfaces;
 using PublicData.Common.Exceptions;
 
-namespace PublicData.Application.Features.PersonHobbyFavorite.DeletePersonHobbyFavorite
+namespace PublicData.Application.Features.PersonHobbyFavorite.DeletePersonHobbyFavoriteById
 {
     using DAL.Entities;
 

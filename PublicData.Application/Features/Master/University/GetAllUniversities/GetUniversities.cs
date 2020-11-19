@@ -8,7 +8,7 @@ using PublicData.Application.Shared;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper.QueryableExtensions;
 
-namespace PublicData.Application.Features.Master.University.GetAllUniversitiesById
+namespace PublicData.Application.Features.Master.University.GetAllUniversities
 {
     public class GetAllUniversitiesQueryHandler : IRequestHandler<GetAllUniversitiesQuery, IList<UniversityModel>>
     {

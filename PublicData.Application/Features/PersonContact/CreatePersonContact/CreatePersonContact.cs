@@ -40,6 +40,7 @@ namespace PublicData.Application.Features.PersonContact.CreatePersonContact
         public int? ContactTypeId { get; set; }
         public string Detail { get; set; }
         public bool IsDefault { get; set; }
+        public bool IsActive { get; set; }
 
         public void Mapping(Profile profile)
         {

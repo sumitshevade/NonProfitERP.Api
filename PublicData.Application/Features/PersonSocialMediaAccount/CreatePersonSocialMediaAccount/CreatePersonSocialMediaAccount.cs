@@ -41,6 +41,7 @@ namespace PublicData.Application.Features.PersonSocialMediaAccount.CreatePersonS
         public string OtherAccountType { get; set; }
         public string Link { get; set; }
         public int TypeOfUserId { get; set; }
+        public bool IsActive { get; set; }
 
         public void Mapping(Profile profile)
         {

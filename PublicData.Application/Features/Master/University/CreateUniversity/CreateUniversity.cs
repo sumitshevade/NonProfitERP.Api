@@ -38,6 +38,7 @@ namespace PublicData.Application.Features.Master.University.CreateUniversity
     {
         public string Name { get; set; }
         public int CityId { get; set; }
+        public bool IsActive { get; set; }
 
         public void Mapping(Profile profile)
         {

@@ -45,12 +45,21 @@ namespace PublicData.Application.Features.Master.School.UpdateSchool
         public int Id { get; set; }
         public string Name { get; set; }
         public string ContactPersonName { get; set; }
+        public string ContactPersonDesignation { get; set; }
         public string ContactPersonContactNo { get; set; }
-        public string Address { get; set; }
+        public string AddressLine1 { get; set; }
+        public string AddressLine2 { get; set; }
+        public int? TalukaId { get; set; }
+        public string OtherTaluka { get; set; }
+        public int? DistrictId { get; set; }
+        public string OtherDistrict { get; set; }
+        public int? StateId { get; set; }
         public string PhoneNo { get; set; }
         public string Email { get; set; }
-        public string Website { get; set; }
+        public string WebLink { get; set; }
         public int? SchoolTypeId { get; set; }
+        public string LongText { get; set; }
+        public bool IsActive { get; set; }
 
         public void Mapping(Profile profile)
         {

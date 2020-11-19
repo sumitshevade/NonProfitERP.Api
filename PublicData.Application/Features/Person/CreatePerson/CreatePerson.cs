@@ -45,12 +45,15 @@ namespace PublicData.Application.Features.People.CreatePerson
         public DateTime? BirthDate { get; set; }
         public string BirthLocation { get; set; }
         public string LongText { get; set; }
+        public string HighLightText { get; set; }
         public string Keywords { get; set; }
         public bool IsWorker { get; set; }
         public int WorkFrequencyId { get; set; }
-        public DateTime? JoiningDate { get; set; }
+        public DateTime JoiningDate { get; set; }
         public int? JoinedAsId { get; set; }
         public int? CountryId { get; set; }
+        public string ProfilePicturePath { get; set; }
+        public string HeroPicturePath { get; set; }
         public bool IsAlive { get; set; }
         public DateTime? DateOfExpiry { get; set; }
         public bool IsActive { get; set; }

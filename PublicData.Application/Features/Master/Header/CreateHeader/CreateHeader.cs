@@ -37,6 +37,7 @@ namespace PublicData.Application.Features.Master.Header.CreateHeader
     public class CreateHeaderCommand : IRequest<int>, IMapFrom<Header>
     {
         public string Title { get; set; }
+        public bool IsActive { get; set; }
 
         public void Mapping(Profile profile)
         {

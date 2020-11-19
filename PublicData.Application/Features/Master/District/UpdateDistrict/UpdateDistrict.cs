@@ -46,6 +46,7 @@ namespace PublicData.Application.Features.Master.District.UpdateDistrict
         public int? StateId { get; set; }
         public string Name { get; set; }
         public string LongText { get; set; }
+        public bool IsActive { get; set; }
 
         public void Mapping(Profile profile)
         {

@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 using PublicData.DAL.Interfaces;
 using PublicData.Common.Exceptions;
 using PublicData.Common.Interfaces;
+using PublicData.Application.Mappings;
 
 namespace PublicData.Application.Features.PersonPrivateInformation.UpdatePersonPrivateInformation
 {
     using DAL.Entities;
-    using PublicData.Application.Mappings;
 
     public class UpdatePersonPrivateInformationQueryHandler : IRequestHandler<UpdatePersonPrivateInformationQuery, bool>
     {
@@ -46,6 +46,7 @@ namespace PublicData.Application.Features.PersonPrivateInformation.UpdatePersonP
         public int PersonId { get; set; }
         public bool MaritalStatus { get; set; }
         public string AadharCardNo { get; set; }
+        public string PANNo { get; set; }
         public bool IsOwnBicycle { get; set; }
         public int? ReligionId { get; set; }
         public string OtherReligion { get; set; }
@@ -55,6 +56,7 @@ namespace PublicData.Application.Features.PersonPrivateInformation.UpdatePersonP
         public string OtherCategory { get; set; }
         public int? ParentalStatusId { get; set; }
         public string OtherParentalStatus { get; set; }
+        public bool IsActive { get; set; }
 
         public void Mapping(Profile profile)
         {

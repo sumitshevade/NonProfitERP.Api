@@ -42,6 +42,7 @@ namespace PublicData.Application.Features.PersonHealthDetail.CreatePersonHealthD
         public double? Iq { get; set; }
         public double? WakeUpTiming { get; set; }
         public double? SleepTiming { get; set; }
+        public bool IsActive { get; set; }
 
         public void Mapping(Profile profile)
         {
