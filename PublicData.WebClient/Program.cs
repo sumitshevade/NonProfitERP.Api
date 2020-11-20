@@ -25,8 +25,8 @@ namespace PublicData.WebClient
             //    builder.Configuration.Bind("Local", options.ProviderOptions);
             //});
 
-            builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri("https://localhost:44333/") });
-            //builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri("https://publicdataapi20200814200023.azurewebsites.net/") });
+            //builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri("https://localhost:44333/") });
+            builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri("https://peoplemanagement-api.azurewebsites.net/") });
 
             builder.Services.AddBlazoredLocalStorage();
             builder.Services.AddBlazoredSessionStorage(options =>
