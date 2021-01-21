@@ -23,7 +23,7 @@ namespace PublicData.Application.Shared
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<Country, CountryModel>();
+            profile.CreateMap<State, StateModel>();
         }
     }
 }
