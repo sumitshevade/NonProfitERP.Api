@@ -57,7 +57,6 @@ using PublicData.Application.Features.Master.University.UpdateUniversity;
 
 namespace PublicData.Api.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
     public class MasterController : ApiController
     {

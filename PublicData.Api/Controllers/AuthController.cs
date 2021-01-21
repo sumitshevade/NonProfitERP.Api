@@ -7,7 +7,6 @@ using Microsoft.Extensions.Configuration;
 
 namespace PublicData.Api.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
     public class AuthController : ControllerBase
     {

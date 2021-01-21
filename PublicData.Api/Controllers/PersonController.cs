@@ -68,7 +68,6 @@ using PublicData.Application.Features.PersonWorkExperience.UpdatePersonWorkExper
 namespace PublicData.Api.Controllers
 {
     //[Authorize]
-    [Route("api/[controller]")]
     [ApiController]
     public class PersonController : ApiController
     {

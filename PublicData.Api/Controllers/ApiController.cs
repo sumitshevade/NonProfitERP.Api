@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 namespace PublicData.Api.Controllers
 {
     [ApiController]
-    [Route("apis/[controller]")]
+    [Route("api/[controller]")]
     public abstract class ApiController : Controller
     {
         private IMediator _mediator;
