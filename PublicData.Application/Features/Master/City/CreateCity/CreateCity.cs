@@ -42,7 +42,7 @@ namespace PublicData.Application.Features.Master.City.CreateCity
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<City, CreateCityCommand>();
+            profile.CreateMap<CreateCityCommand, City>();
         }
     }
 }
