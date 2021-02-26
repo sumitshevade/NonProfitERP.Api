@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PublicData.DAL", "PublicDat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PublicData.WebClient.Shared", "PublicData.WebClient.Shared\PublicData.WebClient.Shared.csproj", "{FBE4C697-62B4-4289-A325-3050BFE23304}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PublicData.FunctionApp", "PublicData.FunctionApp\PublicData.FunctionApp.csproj", "{6491F189-3C3D-4742-9661-D782E02E225C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PublicData.FunctionApp", "PublicData.FunctionApp\PublicData.FunctionApp.csproj", "{6491F189-3C3D-4742-9661-D782E02E225C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
