@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace PublicData.DAL.Entities
 {
     public partial class University : Entity
@@ -18,6 +20,8 @@ namespace PublicData.DAL.Entities
 
         #region Generated Relationships
         public virtual City City { get; set; }
+
+        public virtual IEnumerable<PersonEducation> UniversityBoardPersonEducations { get; set; }
 
         #endregion
 

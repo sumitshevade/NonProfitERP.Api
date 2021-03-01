@@ -28,7 +28,7 @@ namespace PublicData.Application.Features.PersonHealthDetail.DeletePersonHealthD
                 var entity = _personHealthDetailsRepository.GetById(request.HealthDetailId);
                 if (entity == null)
                 {
-                    throw new NotFoundException(nameof(PersonEducation), request.HealthDetailId);
+                    throw new NotFoundException(nameof(PersonHealthDetail), request.HealthDetailId);
                 }
 
                 entity.IsActive = false;

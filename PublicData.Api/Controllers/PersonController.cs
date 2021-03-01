@@ -250,7 +250,7 @@ namespace PublicData.Api.Controllers
         }
 
         [HttpGet]
-        [Route("{personId}/education/{achievementId}")]
+        [Route("{personId}/education/{educationId}")]
         public async Task<IActionResult> GetEducationById(int educationId)
         {
             var result = await Mediator.Send(new GetPersonEducationByEducationIdQuery { EducationId = educationId });
@@ -292,10 +292,10 @@ namespace PublicData.Api.Controllers
         }
 
         [HttpGet]
-        [Route("{personId}/familydetails/{familydetailId}")]
-        public async Task<IActionResult> GetFamilyDetailById(int familydetailId)
+        [Route("{personId}/familydetails/{familyDetailId}")]
+        public async Task<IActionResult> GetFamilyDetailById(int familyDetailId)
         {
-            var result = await Mediator.Send(new GetPersonFamilyDetailByFamilyIdQuery { FamilyId = familydetailId });
+            var result = await Mediator.Send(new GetPersonFamilyDetailByFamilyIdQuery { FamilyId = familyDetailId });
             return new JsonResult(result);
         }
 
@@ -315,10 +315,10 @@ namespace PublicData.Api.Controllers
         }
 
         [HttpDelete]
-        [Route("{personId}/familidetails/{familyMemberId}")]
-        public async Task<IActionResult> DeleteFamilyMember(int familyMemberId)
+        [Route("{personId}/familidetails/{familyDetailId}")]
+        public async Task<IActionResult> DeleteFamilyMember(int familyDetailId)
         {
-            return new JsonResult(await Mediator.Send(new DeletePersonFamilyDetailByIdCommand { FamilyMemberId = familyMemberId }));
+            return new JsonResult(await Mediator.Send(new DeletePersonFamilyDetailByIdCommand { FamilyMemberId = familyDetailId }));
         }
 
         #endregion
@@ -334,7 +334,7 @@ namespace PublicData.Api.Controllers
         }
 
         [HttpGet]
-        [Route("{personId}/disabilities/{familydetailId}")]
+        [Route("{personId}/disabilities/{disabilityId}")]
         public async Task<IActionResult> GetDisabilityById(int disabilityId)
         {
             var result = await Mediator.Send(new GetPersonDisabilityByDisabilityIdQuery { DisabilityId = disabilityId });

@@ -8,7 +8,7 @@ using Microsoft.Extensions.Configuration;
 namespace PublicData.Api.Controllers
 {
     [ApiController]
-    public class AuthController : ControllerBase
+    public class AuthController : ApiController
     {
         private IUserService _userService;
         private IConfiguration _configuration;

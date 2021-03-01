@@ -51,7 +51,7 @@ namespace PublicData.Application.Features.Master.Program.CreateProgram
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<Program, CreateProgramCommand>();
+            profile.CreateMap<CreateProgramCommand, Program>();
         }
     }
 }
