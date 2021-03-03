@@ -53,7 +53,6 @@ using PublicData.Application.Features.PersonLanguage.GetPersonLanguageByLanguage
 using PublicData.Application.Features.PersonLanguage.UpdatePersonLanguageByLanguageId;
 using PublicData.Application.Features.PersonPrivateInformation.CreatePersonPrivateInformation;
 using PublicData.Application.Features.PersonPrivateInformation.GetPersonPrivateInformation;
-using PublicData.Application.Features.PersonPrivateInformation.UpdatePersonPrivateInformation;
 using PublicData.Application.Features.PersonSocialMediaAccount.CreatePersonSocialMediaAccount;
 using PublicData.Application.Features.PersonSocialMediaAccount.DeletePersonSocialMediaAccount;
 using PublicData.Application.Features.PersonSocialMediaAccount.GetPersonAllSocialMediaAccount;
@@ -506,13 +505,6 @@ namespace PublicData.Api.Controllers
         public async Task<IActionResult> PostPrivate(CreatePersonPrivateInformationCommand command, int personId)
         {
             command.PersonId = personId;
-            return new JsonResult(await Mediator.Send(command));
-        }
-
-        [HttpPut]
-        [Route("{personId}/private")]
-        public async Task<IActionResult> PutPrivate(UpdatePersonPrivateInformationQuery command)
-        {
             return new JsonResult(await Mediator.Send(command));
         }
 

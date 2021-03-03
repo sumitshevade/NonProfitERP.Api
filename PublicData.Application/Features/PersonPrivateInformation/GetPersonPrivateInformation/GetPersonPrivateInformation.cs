@@ -20,7 +20,9 @@ namespace PublicData.Application.Features.PersonPrivateInformation.GetPersonPriv
 
         public async Task<PersonPrivateInformationModel> Handle(GetPersonPrivateInformationQuery request, CancellationToken cancellationToken)
         {
-            return await Task.FromResult(_mapper.Map<PersonPrivateInformationModel>(_personPrivateInformationRepository.GetById(request.PersonId)));
+            return await Task.FromResult(
+                _mapper.Map<PersonPrivateInformationModel>(_personPrivateInformationRepository.GetSingleOrDefault(x => x.PersonId == request.PersonId))
+            );
         }
     }
 
