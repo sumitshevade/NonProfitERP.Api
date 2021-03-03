@@ -32,7 +32,6 @@ namespace PublicData.DAL.Entities
             TypeOfUserPersonSocialMediaAccounts = new HashSet<PersonSocialMediaAccount>();
             TypePeople = new HashSet<Person>();
             TypeSchools = new HashSet<School>();
-            UniversityBoardPersonEducations = new HashSet<PersonEducation>();
             WorkFrequencyPeople = new HashSet<Person>();
             WorkTypePersonWorkExperiences = new HashSet<PersonWorkExperience>();
             #endregion
@@ -100,8 +99,6 @@ namespace PublicData.DAL.Entities
         public virtual ICollection<Person> TypePeople { get; set; }
 
         public virtual ICollection<School> TypeSchools { get; set; }
-
-        public virtual ICollection<PersonEducation> UniversityBoardPersonEducations { get; set; }
 
         public virtual ICollection<Person> WorkFrequencyPeople { get; set; }
 

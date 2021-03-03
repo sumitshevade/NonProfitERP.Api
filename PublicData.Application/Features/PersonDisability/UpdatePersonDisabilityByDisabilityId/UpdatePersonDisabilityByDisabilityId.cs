@@ -27,7 +27,7 @@ namespace PublicData.Application.Features.PersonDisability.UpdatePersonDisabilit
         public Task<bool> Handle(UpdatePersonDisabilityByDisabilityIdCommand request, CancellationToken cancellationToken)
         {
             var result = _personDisabilityRepository.Exists(x => x.Id == request.Id);
-            if (result)
+            if (!result)
             {
                 throw new NotFoundException(nameof(PersonDisability), request.Id);
             }

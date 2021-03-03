@@ -21,7 +21,7 @@ namespace PublicData.DAL.Entities
         #region Generated Relationships
         public virtual City City { get; set; }
 
-        public virtual IEnumerable<PersonEducation> UniversityBoardPersonEducations { get; set; }
+        public virtual ICollection<PersonEducation> PersonEducations { get; set; }
 
         #endregion
 

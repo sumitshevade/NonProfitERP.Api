@@ -37,7 +37,7 @@ namespace PublicData.Application.Features.PersonLanguage.CreatePersonLanguage
     public class CreatePersonLanguageCommand : IRequest<int>, IMapFrom<PersonLanguage>
     {
         public int PersonId { get; set; }
-        public int LanguageId { get; set; }
+        public int? LanguageId { get; set; }
         public string OtherLanguage { get; set; }
         public bool IsMotherTongue { get; set; }
         public bool IsActive { get; set; }

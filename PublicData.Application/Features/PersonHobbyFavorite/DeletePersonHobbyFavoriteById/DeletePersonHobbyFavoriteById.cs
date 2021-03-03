@@ -25,10 +25,10 @@ namespace PublicData.Application.Features.PersonHobbyFavorite.DeletePersonHobbyF
         {
             try
             {
-                var entity = _personHobbyFavoriteRepository.GetById(request.HobbyId);
+                var entity = _personHobbyFavoriteRepository.GetById(request.HFId);
                 if (entity == null)
                 {
-                    throw new NotFoundException(nameof(PersonEducation), request.HobbyId);
+                    throw new NotFoundException(nameof(PersonEducation), request.HFId);
                 }
 
                 entity.IsActive = false;
@@ -45,6 +45,6 @@ namespace PublicData.Application.Features.PersonHobbyFavorite.DeletePersonHobbyF
 
     public class DeletePersonHobbyFavoriteByIdCommand : IRequest<bool>
     {
-        public int HobbyId { get; set; }
+        public int HFId { get; set; }
     }
 }

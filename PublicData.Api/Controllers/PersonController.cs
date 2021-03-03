@@ -315,7 +315,7 @@ namespace PublicData.Api.Controllers
         }
 
         [HttpDelete]
-        [Route("{personId}/familidetails/{familyDetailId}")]
+        [Route("{personId}/familydetails/{familyDetailId}")]
         public async Task<IActionResult> DeleteFamilyMember(int familyDetailId)
         {
             return new JsonResult(await Mediator.Send(new DeletePersonFamilyDetailByIdCommand { FamilyMemberId = familyDetailId }));
@@ -441,10 +441,10 @@ namespace PublicData.Api.Controllers
         }
 
         [HttpDelete]
-        [Route("{personId}/hobbyfavorite/{hobbyId}")]
-        public async Task<IActionResult> DeleteHobbyFavorite(int hobbyId)
+        [Route("{personId}/hobbyfavorite/{hfId}")]
+        public async Task<IActionResult> DeleteHobbyFavorite(int hfId)
         {
-            return new JsonResult(await Mediator.Send(new DeletePersonHobbyFavoriteByIdCommand { HobbyId = hobbyId }));
+            return new JsonResult(await Mediator.Send(new DeletePersonHobbyFavoriteByIdCommand { HFId = hfId }));
         }
 
         #endregion
@@ -484,9 +484,9 @@ namespace PublicData.Api.Controllers
 
         [HttpDelete]
         [Route("{personId}/languages/{languageId}")]
-        public async Task<IActionResult> DeleteLanguage(int personLaguangeId)
+        public async Task<IActionResult> DeleteLanguage(int languageId)
         {
-            return new JsonResult(await Mediator.Send(new DeletePersonLanguageByIdCommand { PersonLanguageId = personLaguangeId }));
+            return new JsonResult(await Mediator.Send(new DeletePersonLanguageByIdCommand { PersonLanguageId = languageId }));
         }
 
         #endregion

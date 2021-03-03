@@ -27,7 +27,7 @@ namespace PublicData.Application.Features.PersonEducation.UpdatePersonEducationB
         public Task<bool> Handle(UpdatePersonEducationByEducationIdCommand request, CancellationToken cancellationToken)
         {
             var result = _personEducationRepository.Exists(x => x.Id == request.Id);
-            if (result)
+            if (!result)
             {
                 throw new NotFoundException(nameof(PersonEducation), request.Id);
             }
