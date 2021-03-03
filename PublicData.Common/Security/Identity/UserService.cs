@@ -107,10 +107,11 @@ namespace PublicData.Common.Security.Identity
 
             return new UserManagerResponse
             {
+                Token = tokenAsString,
                 UserInfo = claims.ToDictionary(c => c.Type, c => c.Value),
-                Message = tokenAsString,
+                Message = "User logged in successfully.",
                 IsSuccess = true,
-                ExpireDate = token.ValidTo
+                ExpiryDate = token.ValidTo
             };
         }
     }
