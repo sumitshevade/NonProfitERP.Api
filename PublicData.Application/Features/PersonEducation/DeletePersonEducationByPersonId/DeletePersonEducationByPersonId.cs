@@ -41,7 +41,7 @@ namespace PublicData.Application.Features.PersonEducation.DeletePersonEducationB
                 
                 return Task.FromResult(true);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return Task.FromResult(false);
             }

@@ -12,7 +12,7 @@ namespace PublicData.Application.Features.PersonContact.DeletePersonContactByCon
 
     public class DeletePersonContactByContactIdCommandHandler : IRequestHandler<DeletePersonContactByContactIdCommand, bool>
     {
-        private IPersonContactRepository _personContactRepository;
+        private readonly IPersonContactRepository _personContactRepository;
         private readonly IUnitOfWork _unitOfWork;
 
         public DeletePersonContactByContactIdCommandHandler(IPersonContactRepository personContactRepository, IUnitOfWork unitOfWork)
@@ -37,7 +37,7 @@ namespace PublicData.Application.Features.PersonContact.DeletePersonContactByCon
 
                 return Task.FromResult(_unitOfWork.Commit());
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return Task.FromResult(false);
             }

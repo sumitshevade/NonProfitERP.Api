@@ -12,7 +12,7 @@ namespace PublicData.Application.Features.Master.Header.DeleteHeader
 
     public class DeleteHeaderCommandHandler : IRequestHandler<DeleteHeaderCommand, bool>
     {
-        private IHeaderRepository _headerRepository;
+        private readonly IHeaderRepository _headerRepository;
         private readonly IUnitOfWork _unitOfWork;
 
         public DeleteHeaderCommandHandler(IHeaderRepository headerRepository, IUnitOfWork unitOfWork)
@@ -39,7 +39,7 @@ namespace PublicData.Application.Features.Master.Header.DeleteHeader
 
                 return Task.FromResult(true);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return Task.FromResult(false);
             }
