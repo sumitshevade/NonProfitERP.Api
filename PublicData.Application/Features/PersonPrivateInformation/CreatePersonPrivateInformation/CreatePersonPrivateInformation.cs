@@ -10,7 +10,7 @@ namespace PublicData.Application.Features.PersonPrivateInformation.CreatePersonP
 {
     using DAL.Entities;
 
-    public class CreatePersonPrivateInformationCommandHandler : IRequestHandler<CreatePersonPrivateInformationCommand, int>
+    public class CreatePersonPrivateInformationCommandHandler : IRequestHandler<CreatePersonPrivateInformationCommand, bool>
     {
         private readonly IMapper _mapper;
         private readonly IPersonPrivateInformationRepository _personPrivateInformationRepository;
@@ -23,19 +23,26 @@ namespace PublicData.Application.Features.PersonPrivateInformation.CreatePersonP
             _personPrivateInformationRepository = personPrivateInformationRepository;
         }
 
-        public Task<int> Handle(CreatePersonPrivateInformationCommand request, CancellationToken cancellationToken)
+        public Task<bool> Handle(CreatePersonPrivateInformationCommand request, CancellationToken cancellationToken)
         {
+            // get the primary key of existing record first
+            var primaryKey = _personPrivateInformationRepository.GetSingleOrDefault(x => x.PersonId == request.PersonId)?.Id;
+
+            if (primaryKey != null)
+            request.Id = primaryKey.Value;
+
             var entity = _mapper.Map<PersonPrivateInformation>(request);
 
-            _personPrivateInformationRepository.Add(entity);
-            _unitOfWork.Commit();
+            entity.IsActive = true;
+            _personPrivateInformationRepository.Update(entity);
 
-            return Task.FromResult(entity.Id);
+            return Task.FromResult(_unitOfWork.Commit());
         }
     }
 
-    public class CreatePersonPrivateInformationCommand : IRequest<int>, IMapFrom<PersonPrivateInformation>
+    public class CreatePersonPrivateInformationCommand : IRequest<bool>, IMapFrom<PersonPrivateInformation>
     {
+        public int Id { get; set; }
         public int PersonId { get; set; }
         public bool MaritalStatus { get; set; }
         public string AadharCardNo { get; set; }

@@ -27,12 +27,12 @@ namespace PublicData.Common.Security.Identity
         public async Task<UserManagerResponse> RegisterUserAsync(UserRegistration model)
         {
             if (model == null)
-                throw new NullReferenceException("Reigster Model is null");
+                throw new NullReferenceException("Invalid data provided.");
 
             if (model.Password != model.ConfirmPassword)
                 return new UserManagerResponse
                 {
-                    Message = "Confirm password doesn't match the password",
+                    Message = "Confirm password doesn't match the password.",
                     IsSuccess = false,
                 };
 
@@ -58,7 +58,7 @@ namespace PublicData.Common.Security.Identity
 
             return new UserManagerResponse
             {
-                Message = "User did not create",
+                Message = "User did not create.",
                 IsSuccess = false,
                 Errors = result.Errors.Select(e => e.Description)
             };
@@ -72,7 +72,7 @@ namespace PublicData.Common.Security.Identity
             {
                 return new UserManagerResponse
                 {
-                    Message = "There is no user with that Email address",
+                    Message = "User not found with specified email address.",
                     IsSuccess = false,
                 };
             }
@@ -107,10 +107,11 @@ namespace PublicData.Common.Security.Identity
 
             return new UserManagerResponse
             {
+                Token = tokenAsString,
                 UserInfo = claims.ToDictionary(c => c.Type, c => c.Value),
-                Message = tokenAsString,
+                Message = "User logged in successfully.",
                 IsSuccess = true,
-                ExpireDate = token.ValidTo
+                ExpiryDate = token.ValidTo
             };
         }
     }

@@ -12,7 +12,7 @@ namespace PublicData.Application.Features.PersonAddress.DeletePersonAddressByAdd
 
     public class DeletePersonAddressByAddressIdCommandHandler : IRequestHandler<DeletePersonAddressByAddressIdCommand, bool>
     {
-        private IPersonAddressRepository _personAddressRepository;
+        private readonly IPersonAddressRepository _personAddressRepository;
         private readonly IUnitOfWork _unitOfWork;
 
         public DeletePersonAddressByAddressIdCommandHandler(IPersonAddressRepository personAddressRepository, IUnitOfWork unitOfWork)
@@ -37,7 +37,7 @@ namespace PublicData.Application.Features.PersonAddress.DeletePersonAddressByAdd
 
                 return Task.FromResult(_unitOfWork.Commit());
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return Task.FromResult(false);
             }

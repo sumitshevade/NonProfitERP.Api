@@ -3,19 +3,16 @@ using PublicData.Common.Models;
 using Microsoft.AspNetCore.Mvc;
 using PublicData.Common.Interfaces;
 using PublicData.Common.Identity.Models;
-using Microsoft.Extensions.Configuration;
 
 namespace PublicData.Api.Controllers
 {
     [ApiController]
-    public class AuthController : ControllerBase
+    public class AuthController : ApiController
     {
-        private IUserService _userService;
-        private IConfiguration _configuration;
-        public AuthController(IUserService userService, IConfiguration configuration)
+        private readonly IUserService _userService;
+        public AuthController(IUserService userService)
         {
             _userService = userService;
-            _configuration = configuration;
         }
 
         // /api/auth/register

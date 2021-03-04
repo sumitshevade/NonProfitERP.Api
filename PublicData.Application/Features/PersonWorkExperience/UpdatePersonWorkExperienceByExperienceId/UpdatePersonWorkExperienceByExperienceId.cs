@@ -27,9 +27,9 @@ namespace PublicData.Application.Features.PersonWorkExperience.UpdatePersonWorkE
         public Task<bool> Handle(UpdatePersonWorkExperienceByExperienceIdCommand request, CancellationToken cancellationToken)
         {
             var result = _personWorkExperienceRepository.Exists(x => x.Id == request.Id);
-            if (result)
+            if (!result)
             {
-                throw new NotFoundException(nameof(PersonSocialMediaAccount), request.Id);
+                throw new NotFoundException(nameof(PersonWorkExperience), request.Id);
             }
 
             var entity = _mapper.Map<PersonWorkExperience>(request);

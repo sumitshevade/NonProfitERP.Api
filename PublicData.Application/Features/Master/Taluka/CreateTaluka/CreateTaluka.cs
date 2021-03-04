@@ -43,7 +43,7 @@ namespace PublicData.Application.Features.Master.Taluka.CreateTaluka
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<Taluka, CreateTalukaCommand>();
+            profile.CreateMap<CreateTalukaCommand, Taluka>();
         }
     }
 }

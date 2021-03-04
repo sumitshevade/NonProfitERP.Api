@@ -38,7 +38,7 @@ namespace PublicData.Application.Features.Master.Country.DeleteCountry
 
                 return Task.FromResult(true);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return Task.FromResult(false);
             }

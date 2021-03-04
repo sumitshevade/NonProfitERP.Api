@@ -126,42 +126,42 @@ namespace PublicData.Data.Mapping
             builder.HasOne(t => t.CourseDetail)
                 .WithMany(t => t.CoursePersonEducations)
                 .HasForeignKey(d => d.CourseId)
-                .HasConstraintName("FK__PersonEdu__Cours__4F47C5E3");
+                .HasConstraintName("FK__PersonEdu__Cours__725BF7F6");
 
             builder.HasOne(t => t.DegreeDetail)
                 .WithMany(t => t.DegreePersonEducations)
                 .HasForeignKey(d => d.DegreeId)
-                .HasConstraintName("FK__PersonEdu__Degre__4E53A1AA");
+                .HasConstraintName("FK__PersonEdu__Degre__7167D3BD");
 
             builder.HasOne(t => t.FromStdDetail)
                 .WithMany(t => t.FromStdPersonEducations)
                 .HasForeignKey(d => d.FromStdId)
-                .HasConstraintName("FK__PersonEdu__FromS__4A8310C6");
+                .HasConstraintName("FK__PersonEdu__FromS__6D9742D9");
 
             builder.HasOne(t => t.MediumDetail)
                 .WithMany(t => t.MediumPersonEducations)
                 .HasForeignKey(d => d.MediumId)
-                .HasConstraintName("FK__PersonEdu__Mediu__4C6B5938");
+                .HasConstraintName("FK__PersonEdu__Mediu__6F7F8B4B");
 
             builder.HasOne(t => t.Person)
                 .WithMany(t => t.PersonEducations)
                 .HasForeignKey(d => d.PersonId)
-                .HasConstraintName("FK__PersonEdu__Perso__489AC854");
+                .HasConstraintName("FK__PersonEdu__Perso__6BAEFA67");
 
             builder.HasOne(t => t.School)
                 .WithMany(t => t.PersonEducations)
                 .HasForeignKey(d => d.SchoolId)
-                .HasConstraintName("FK__PersonEdu__Schoo__498EEC8D");
+                .HasConstraintName("FK__PersonEdu__Schoo__6CA31EA0");
 
             builder.HasOne(t => t.ToStdDetail)
                 .WithMany(t => t.ToStdPersonEducations)
                 .HasForeignKey(d => d.ToStdId)
-                .HasConstraintName("FK__PersonEdu__ToStd__4B7734FF");
+                .HasConstraintName("FK__PersonEdu__ToStd__6E8B6712");
 
-            builder.HasOne(t => t.UniversityBoardDetail)
-                .WithMany(t => t.UniversityBoardPersonEducations)
+            builder.HasOne(t => t.UniversityBoard)
+                .WithMany(t => t.PersonEducations)
                 .HasForeignKey(d => d.UniversityBoardId)
-                .HasConstraintName("FK__PersonEdu__Unive__4D5F7D71");
+                .HasConstraintName("FK__PersonEdu__Unive__7073AF84");
 
             #endregion
         }

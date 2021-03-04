@@ -28,7 +28,7 @@ namespace PublicData.Application.Features.PersonFamilyDetail.UpdatePersonFamilyD
         public Task<bool> Handle(UpdatePersonFamilyDetailByFamilyIdCommand request, CancellationToken cancellationToken)
         {
             var result = _personFamilyDetailsRepository.Exists(x => x.Id == request.Id);
-            if (result)
+            if (!result)
             {
                 throw new NotFoundException(nameof(PersonFamilyDetail), request.Id);
             }

@@ -27,7 +27,7 @@ namespace PublicData.Application.Features.PersonHobbyFavorite.UpdatePersonHobbyF
         public Task<bool> Handle(UpdatePersonHobbyFavoriteByHFIdCommand request, CancellationToken cancellationToken)
         {
             var result = _personHobbyFavoriteRepository.Exists(x => x.Id == request.Id);
-            if (result)
+            if (!result)
             {
                 throw new NotFoundException(nameof(PersonHobbyFavorite), request.Id);
             }

@@ -50,7 +50,7 @@ namespace PublicData.WebClient.Components
                     IsBusy = false;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 IsBusy = false;
             }

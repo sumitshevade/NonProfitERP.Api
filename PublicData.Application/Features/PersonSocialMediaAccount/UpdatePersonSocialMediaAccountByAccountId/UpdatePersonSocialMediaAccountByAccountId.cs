@@ -27,7 +27,7 @@ namespace PublicData.Application.Features.PersonSocialMediaAccount.UpdatePersonS
         public Task<bool> Handle(UpdatePersonSocialMediaAccountQuery request, CancellationToken cancellationToken)
         {
             var result = _personSocialMediaAccountRepository.Exists(x => x.Id == request.Id);
-            if (result)
+            if (!result)
             {
                 throw new NotFoundException(nameof(PersonSocialMediaAccount), request.Id);
             }

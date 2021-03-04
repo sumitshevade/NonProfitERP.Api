@@ -42,7 +42,7 @@ namespace PublicData.Application.Features.Master.University.CreateUniversity
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<University, CreateUniversityCommand>();
+            profile.CreateMap<CreateUniversityCommand, University>();
         }
     }
 }

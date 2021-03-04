@@ -36,7 +36,7 @@ namespace PublicData.Application.Features.Master.University.DeleteUniversity
 
                 return Task.FromResult(true);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return Task.FromResult(false);
             }

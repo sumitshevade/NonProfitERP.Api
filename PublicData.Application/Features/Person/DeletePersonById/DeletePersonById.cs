@@ -14,7 +14,7 @@ namespace PublicData.Application.Features.Person.DeletePersonById
     public class DeletePersonByIdHandler : IRequestHandler<DeletePersonByIdCommand, bool>
     {
         private readonly IMapper _mapper;
-        private IPersonRepository _peopleRepository;
+        private readonly IPersonRepository _peopleRepository;
         private readonly IUnitOfWork _unitOfWork;
 
         public int Id { get; set; }
@@ -43,7 +43,7 @@ namespace PublicData.Application.Features.Person.DeletePersonById
 
                 return Task.FromResult(true);
             }
-            catch(Exception ex)
+            catch(Exception)
             {
                 return Task.FromResult(false);
             }

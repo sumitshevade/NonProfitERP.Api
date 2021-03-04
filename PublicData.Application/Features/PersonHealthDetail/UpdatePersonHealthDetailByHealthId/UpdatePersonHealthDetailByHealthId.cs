@@ -27,7 +27,7 @@ namespace PublicData.Application.Features.PersonHealthDetail.UpdatePersonHealthD
         public Task<bool> Handle(UpdatePersonHealthDetailByHealthIdCommand request, CancellationToken cancellationToken)
         {
             var result = _personHealthDetailsRepository.Exists(x => x.Id == request.Id);
-            if (result)
+            if (!result)
             {
                 throw new NotFoundException(nameof(PersonHealthDetail), request.Id);
             }

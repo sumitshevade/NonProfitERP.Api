@@ -29,7 +29,7 @@ namespace PublicData.Application.Shared
         public virtual Detail Medium { get; set; }
         public virtual School School { get; set; }
         public virtual Detail ToStd { get; set; }
-        public virtual Detail UniversityBoard { get; set; }
+        public virtual University UniversityBoard { get; set; }
 
         public void Mapping(Profile profile)
         {
