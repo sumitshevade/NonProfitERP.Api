@@ -5,22 +5,24 @@ using System;
 
 namespace PublicData.Application.Shared
 {
-    public partial class BatchModel : IMapFrom<Batch>
+    public partial class SubProgramModel : IMapFrom<SubProgram>
     {
         public int Id { get; set; }
-        public int CourseId { get; set; }
+        public int? ProgramId { get; set; }
+        public string AddressLine1 { get; set; }
+        public string AddressLine2 { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime? EndDate { get; set; }
-        public string Year { get; set; }
         public string ContactNo { get; set; }
-        public string Email { get; set; }
+        public string EmailId { get; set; }
+        public string WebLink { get; set; }
         public string LongText { get; set; }
 
-        public virtual Course Course { get; set; }
+        public virtual Program Program { get; set; }
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<Batch, BatchModel>();
+            profile.CreateMap<SubProgram, SubProgramModel>();
         }
     }
 }
