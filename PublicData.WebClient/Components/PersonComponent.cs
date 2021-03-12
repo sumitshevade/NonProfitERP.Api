@@ -155,14 +155,15 @@ namespace PublicData.WebClient.Components
             else
             {
                 PersonContact.Id = _editContactId;
+                PersonContact.PersonId = savedPersonId;
                 var boolResult = await PersonContactRepository.UpdateAsync(PersonContact, "/api/person/" + savedPersonId + "/contact");        // update
-                _editContactId = 0;
-                if (boolResult == true)
-                    result = 1;
+                result = boolResult ? 1 : 0;
             }
 
             if (result > 0)
             {
+                ContactSaveButton = "Save";
+                _editContactId = 0;
                 PersonContact.Id = result;
                 PersonContact.ContactTypeDetail = await DetailRepository.GetByIdAsync("/api/master/detail/" + SelectedContactTypeId);
                 PersonContacts.Remove(PersonContact);
