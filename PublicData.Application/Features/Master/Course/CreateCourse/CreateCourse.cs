@@ -1,0 +1,57 @@
+﻿using MediatR;
+using AutoMapper;
+using System.Threading;
+using System.Threading.Tasks;
+using PublicData.DAL.Interfaces;
+using PublicData.Common.Interfaces;
+using PublicData.Application.Mappings;
+using System;
+
+namespace PublicData.Application.Features.Master.Course.CreateCourse
+{
+    using DAL.Entities;
+
+    public class CreateCourseCommandHandler : IRequestHandler<CreateCourseCommand, int>
+    {
+        private readonly IMapper _mapper;
+        private readonly ICourseRepository _courseRepository;
+        private readonly IUnitOfWork _unitOfWork;
+
+        public CreateCourseCommandHandler(ICourseRepository courseRepository, IUnitOfWork unitOfWork, IMapper mapper)
+        {
+            _mapper = mapper;
+            _courseRepository = courseRepository;
+            _unitOfWork = unitOfWork;
+        }
+
+        public Task<int> Handle(CreateCourseCommand request, CancellationToken cancellationToken)
+        {
+            var entity = _mapper.Map<Course>(request);
+
+            _courseRepository.Add(entity);
+            _unitOfWork.Commit();
+
+            return Task.FromResult(entity.Id);
+        }
+    }
+
+    public class CreateCourseCommand : IRequest<int>, IMapFrom<Course>
+    {
+        public int? DepartmentId { get; set; }
+        public int? ProgramId { get; set; }
+        public int? SubProgramId { get; set; }
+        public int? HeadId { get; set; }
+        public string CourseName { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
+        public string ContactNo { get; set; }
+        public string Email { get; set; }
+        public string LongText { get; set; }
+        public bool IsActive { get; set; }
+
+        public void Mapping(Profile profile)
+        {
+            profile.CreateMap<CreateCourseCommand, Course>();
+        }
+    }
+}

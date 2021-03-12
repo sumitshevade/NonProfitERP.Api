@@ -39,12 +39,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Master\Course\" />
-    <Folder Include="Features\Master\CourseHead\" />
     <Folder Include="Features\Master\Event\" />
     <Folder Include="Features\Master\Ticket\" />
     <Folder Include="Features\Master\SubProgram\" />
-    <Folder Include="Features\Master\Organization\" />
   </ItemGroup>
 
 </Project>
