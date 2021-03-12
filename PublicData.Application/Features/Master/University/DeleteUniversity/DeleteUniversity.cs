@@ -8,6 +8,8 @@ using PublicData.Common.Interfaces;
 
 namespace PublicData.Application.Features.Master.University.DeleteUniversity
 {
+    using DAL.Entities;
+
     public class DeleteUniversityCommandHandler : IRequestHandler<DeleteUniversityCommand, bool>
     {
         private readonly IUniversityRepository _universityRepository;
@@ -27,7 +29,7 @@ namespace PublicData.Application.Features.Master.University.DeleteUniversity
 
                 if (entity == null)
                 {
-                    throw new NotFoundException(nameof(School), request.Id);
+                    throw new NotFoundException(nameof(University), request.Id);
                 }
 
                 entity.IsActive = false;
@@ -36,7 +38,7 @@ namespace PublicData.Application.Features.Master.University.DeleteUniversity
 
                 return Task.FromResult(true);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return Task.FromResult(false);
             }
