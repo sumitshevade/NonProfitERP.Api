@@ -29,7 +29,7 @@ namespace PublicData.Application.Features.Master.University.UpdateUniversity
             var result = _universityRepository.Exists(x => x.Id == request.Id);
             if (!result)
             {
-                throw new NotFoundException(nameof(People), request.Id);
+                throw new NotFoundException(nameof(University), request.Id);
             }
 
             var entity = _mapper.Map<University>(request);
