@@ -8,7 +8,7 @@ using Microsoft.Extensions.Configuration;
 namespace PublicData.Api.Controllers
 {
     [ApiController]
-    public class AuthController : ControllerBase
+    public class AuthController : ApiController
     {
         private IUserService _userService;
         private IConfiguration _configuration;
@@ -19,7 +19,7 @@ namespace PublicData.Api.Controllers
         }
 
         // /api/auth/register
-        [HttpPost("Register")]
+        [HttpPost("register")]
         [ProducesResponseType(200, Type = typeof(UserManagerResponse))]
         [ProducesResponseType(400, Type = typeof(UserManagerResponse))]
         public async Task<IActionResult> RegisterAsync([FromBody]UserRegistration model)
@@ -42,7 +42,7 @@ namespace PublicData.Api.Controllers
         }
 
         // /api/auth/login
-        [HttpPost("Login")]
+        [HttpPost("login")]
         [ProducesResponseType(200, Type = typeof(UserManagerResponse))]
         [ProducesResponseType(400, Type = typeof(UserManagerResponse))]
         public async Task<IActionResult> LoginAsync([FromBody]UserLogin model)
