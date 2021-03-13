@@ -3,25 +3,21 @@ using PublicData.Common.Models;
 using Microsoft.AspNetCore.Mvc;
 using PublicData.Common.Interfaces;
 using PublicData.Common.Identity.Models;
-using Microsoft.Extensions.Configuration;
 
 namespace PublicData.Api.Controllers
 {
     [ApiController]
     public class AuthController : ApiController
     {
-        private IUserService _userService;
-        private IConfiguration _configuration;
-        public AuthController(IUserService userService, IConfiguration configuration)
+        private readonly IUserService _userService;
+
+        public AuthController(IUserService userService)
         {
             _userService = userService;
-            _configuration = configuration;
         }
 
         // /api/auth/register
         [HttpPost("register")]
-        [ProducesResponseType(200, Type = typeof(UserManagerResponse))]
-        [ProducesResponseType(400, Type = typeof(UserManagerResponse))]
         public async Task<IActionResult> RegisterAsync([FromBody]UserRegistration model)
         {
             if (ModelState.IsValid)
@@ -43,8 +39,6 @@ namespace PublicData.Api.Controllers
 
         // /api/auth/login
         [HttpPost("login")]
-        [ProducesResponseType(200, Type = typeof(UserManagerResponse))]
-        [ProducesResponseType(400, Type = typeof(UserManagerResponse))]
         public async Task<IActionResult> LoginAsync([FromBody]UserLogin model)
         {
             if (ModelState.IsValid)
