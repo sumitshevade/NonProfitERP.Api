@@ -1,34 +1,82 @@
 ﻿@inherits PersonComponent
 
 <div class="tab-pane fade border m-3 p-4" id="pills-address" role="tabpanel" aria-labelledby="pills-address-tab">
-    <button type="button" class="btn btn-success">+ Add Address</button>
-    <table class="table table-hover mt-2">
+    <button type="button" class="btn btn-success" @onclick="AddAddress">+ Add Address</button>
+
+    <EditForm Model="PersonAddress" OnValidSubmit="CreatePersonAddress">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        <div class="mt-1 border p-3 @FormDisplay">
+            <div class="row">
+                <div class="col-sm-3">
+                    Contact Type
+                    <InputSelect ValueChanged="@((string value) => ChangeContactType(value))"
+                                 ValueExpression="@(() => SelectedContactTypeId)"
+                                 Value="@SelectedContactTypeId"
+                                 class="form-control" required>
+                        <option value="0">Select...</option>
+                        @foreach (var item in ContactTypes)
+                        {
+                            <option value="@item.Id">@item.Value</option>
+                        }
+                    </InputSelect>
+                </div>
+                <div class="col-sm-3">
+                    Value
+                    <InputText @bind-Value="PersonContact.Detail" required class="form-control"></InputText>
+                </div>
+                <div class="col-sm-3">
+                    Is Default
+                    <InputSelect ValueChanged="@((string value) => ChangeIsDefaultContact(value))"
+                                 ValueExpression="@(() => SelectedIsDefaultContact)"
+                                 Value="@SelectedIsDefaultContact"
+                                 class="form-control" required>
+                        <option disabled>Select...</option>
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                    </InputSelect>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-sm-3">
+                    <button class="btn btn-primary" type="submit">@ContactSaveButton</button>
+                    <button class="btn btn-warning m-1" type="reset">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </EditForm>
+
+    <table class="table table-hover mt-5">
         <thead>
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th scope="col">Type</th>
+                <th scope="col">Value</th>
+                <th scope="col">Default</th>
+                <th scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@@mdo</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@@fat</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@@twitter</td>
-            </tr>
+            @foreach (var item in PersonContacts)
+            {
+                <tr id="contact@item.Id">
+                    <td>@item.ContactTypeDetail.Value</td>
+                    <td>@item.Detail</td>
+                    <td>@item.IsDefault</td>
+                    <td>
+                        <a class="btn btn-success text-white btn-sm" @onclick="(() => EditContact(item.Id))">Edit</a>
+                        <a class="btn btn-danger text-white btn-sm" @onclick="(() => DeleteContact(item.Id))">Delete</a>
+                    </td>
+                </tr>
+            }
         </tbody>
     </table>
 </div>
+
+@code {
+
+    private void AddAddress()
+    {
+        FormDisplay = CommonService.ToggleClass(FormDisplay, "d-none");
+    }
+}

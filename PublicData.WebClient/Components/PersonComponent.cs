@@ -11,11 +11,13 @@ using PublicData.WebClient.Shared.Models;
 using PublicData.WebClient.Shared.Entities;
 using Microsoft.AspNetCore.Components.Authorization;
 using PublicData.WebClient.Models;
+using Microsoft.JSInterop;
 
 namespace PublicData.WebClient.Components
 {
     public class PersonComponent : ComponentBase
     {
+        #region -- Inject
         [Inject] public ICommonService CommonService { get; set; }
         [Inject] NavigationManager NavigationManager { get; set; }
         [Inject] IPersonRepository PersonRepository { get; set; }
@@ -26,11 +28,14 @@ namespace PublicData.WebClient.Components
         [Inject] IToastService ToastService { get; set; }
         [Inject] ILocalStorageService LocalStorageService { get; set; }
         [Inject] ISessionStorageService SessionStorageService { get; set; }
+        [Inject] IJSRuntime JSRuntime { get; set; }
+        #endregion
 
+        #region -- Parameters
         [Parameter] public Person Person { get; set; } = new Person();
         [Parameter] public PersonContact PersonContact { get; set; } = new PersonContact();
         [Parameter] public IList<PersonContact> PersonContacts { get; set; } = new List<PersonContact>();
-        [Parameter] public string ContactFormDisplay { get; set; }
+        [Parameter] public string FormDisplay { get; set; } // helps to hide show form
         [Parameter] public IList<Detail> JoinedAs { get; set; } = new List<Detail>();
         [Parameter] public IList<Detail> PersonTypes { get; set; } = new List<Detail>();
         [Parameter] public IList<Detail> WorkFrequencies { get; set; } = new List<Detail>();
@@ -38,6 +43,9 @@ namespace PublicData.WebClient.Components
         [Parameter] public IList<Detail> ContactTypes { get; set; } = new List<Detail>();
         [CascadingParameter] private Task<AuthenticationState> AuthenticationState { get; set; }
 
+        #endregion
+
+        #region -- Properties
         public string SelectedShakhaId { get; set; }
         public string SelectedPersonTypeId { get; set; }
         public string SelectedJoinedAsId { get; set; }
@@ -51,6 +59,8 @@ namespace PublicData.WebClient.Components
         public string Message = string.Empty;
         public string ContactSaveButton = string.Empty;
         public AlertMessageType MessageType = AlertMessageType.Success;
+
+        #endregion
 
         private int _editContactId = 0;
 
@@ -137,6 +147,8 @@ namespace PublicData.WebClient.Components
             CommonService.IsBusy = false;
         }
 
+        #region -- Person Contact
+
         public async Task CreatePersonContact()
         {
             CommonService.IsBusy = true;
@@ -197,10 +209,115 @@ namespace PublicData.WebClient.Components
                 ToastService.ShowError("Something went wrong!!!", "Error");
             else
             {
-                await PersonContactRepository.RemoveAsync("/api/person/" + personId + "/contact/" + contactId);
-                StateHasChanged();
+                if (await JSRuntime.InvokeAsync<bool>("confirm", "Are you sure?"))
+                {
+                    CommonService.IsBusy = true;
+
+                    if (await PersonContactRepository.RemoveAsync("/api/person/" + personId + "/contact/" + contactId))
+                    {
+                        var pC = PersonContacts.Where(pc => pc.Id == contactId).SingleOrDefault();
+                        PersonContacts.Remove(pC);
+
+                        ToastService.ShowSuccess("Contact has been deleted!!!", "Success");
+                        StateHasChanged();
+                    }
+
+                    CommonService.IsBusy = false;
+                }
+                else
+                {
+                    ToastService.ShowInfo("Your record is safe!!!", "Error");
+                }
             }
         }
+
+        #endregion
+
+        #region -- Person Address
+
+        public async Task CreateAddress()
+        {
+            CommonService.IsBusy = true;
+
+            PersonContact.ContactTypeId = Convert.ToInt32(SelectedContactTypeId);
+            PersonContact.IsDefault = Convert.ToBoolean(SelectedIsDefaultContact);
+
+            var result = 0;
+
+            var savedPersonId = await SessionStorageService.GetItemAsync<int>("personId");
+
+            if (_editContactId == 0)
+            {
+                result = await PersonContactRepository.AddAsync(PersonContact, "/api/person/" + savedPersonId + "/contact");        // create new
+            }
+            else
+            {
+                PersonContact.Id = _editContactId;
+                PersonContact.PersonId = savedPersonId;
+                var boolResult = await PersonContactRepository.UpdateAsync(PersonContact, "/api/person/" + savedPersonId + "/contact");        // update
+                result = boolResult ? 1 : 0;
+            }
+
+            if (result > 0)
+            {
+                ContactSaveButton = "Save";
+                _editContactId = 0;
+                PersonContact.Id = result;
+                PersonContact.ContactTypeDetail = await DetailRepository.GetByIdAsync("/api/master/detail/" + SelectedContactTypeId);
+                PersonContacts.Remove(PersonContact);
+                PersonContacts.Add(PersonContact);
+                PersonContact = new PersonContact();
+                ToastService.ShowSuccess("The contact has been created!!!", "Success");
+                StateHasChanged();
+            }
+            else
+            {
+                ToastService.ShowError("Something went wrong!!!", "Error");
+            }
+
+            CommonService.IsBusy = false;
+        }
+
+        public void EditAddress(int contactId)
+        {
+            ContactSaveButton = "Update";
+            _editContactId = contactId;
+            PersonContact = PersonContacts.Where(x => x.Id == contactId).FirstOrDefault();
+            SelectedContactTypeId = PersonContact.ContactTypeId.ToString();
+            SelectedIsDefaultContact = PersonContact.IsDefault == false ? "false" : "true";
+            StateHasChanged();
+        }
+
+        public async Task DeleteAddress(int contactId)
+        {
+            var personId = await SessionStorageService.GetItemAsync<int>("personId");
+            if (personId == 0)
+                ToastService.ShowError("Something went wrong!!!", "Error");
+            else
+            {
+                if (await JSRuntime.InvokeAsync<bool>("confirm", "Are you sure?"))
+                {
+                    CommonService.IsBusy = true;
+
+                    if (await PersonContactRepository.RemoveAsync("/api/person/" + personId + "/contact/" + contactId))
+                    {
+                        var pC = PersonContacts.Where(pc => pc.Id == contactId).SingleOrDefault();
+                        PersonContacts.Remove(pC);
+
+                        ToastService.ShowSuccess("Contact has been deleted!!!", "Success");
+                        StateHasChanged();
+                    }
+
+                    CommonService.IsBusy = false;
+                }
+                else
+                {
+                    ToastService.ShowInfo("Your record is safe!!!", "Error");
+                }
+            }
+        }
+
+        #endregion
 
         public async Task RemovePersonId()
         {
@@ -212,6 +329,8 @@ namespace PublicData.WebClient.Components
             StateHasChanged();
             ToastService.ShowSuccess("Ready to add new Person!!!", "Success");
         }
+
+        #region -- Change value methods
 
         public async Task ChangeCountry(string value)
         {
@@ -277,5 +396,7 @@ namespace PublicData.WebClient.Components
             ToastService.ShowError("This person will be saved...!!! You have to delete explicitly.", "Error");
             await RemovePersonId();
         }
+
+        #endregion
     }
 }
