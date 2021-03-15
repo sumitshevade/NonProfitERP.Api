@@ -5,7 +5,7 @@
     <EditForm Model="PersonContact" OnValidSubmit="CreatePersonContact">
         <DataAnnotationsValidator />
         <ValidationSummary />
-        <div class="mt-1 border p-3 @ContactFormDisplay">
+        <div class="mt-1 border p-3 @FormDisplay">
             <div class="row">
                 <div class="col-sm-3">
                     Contact Type
@@ -76,6 +76,6 @@
 
     private void AddContact()
     {
-        ContactFormDisplay = CommonService.ToggleClass(ContactFormDisplay, "d-none");
+        FormDisplay = CommonService.ToggleClass(FormDisplay, "d-none");
     }
 }
