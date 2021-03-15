@@ -332,68 +332,30 @@ namespace PublicData.WebClient.Components
 
         #region -- Change value methods
 
-        public async Task ChangeCountry(string value)
-        {
-            CommonService.IsBusy = true;
+        public void ChangeCountry(string value)
+            => SelectedCoutryId = value;
 
-            SelectedCoutryId = value;
+        public void ChangePersonType(string value)
+            => SelectedPersonTypeId = value;
 
-            CommonService.IsBusy = false;
-        }
+        public void ChangeWorkFrequency(string value)
+            => SelectedWorkFrequencyId = value;
 
-        public async Task ChangePersonType(string value)
-        {
-            CommonService.IsBusy = true;
+        public void ChangeJoinedAs(string value)
+            => SelectedJoinedAsId = value;
 
-            SelectedPersonTypeId = value;
+        public void ChangeIsWorker(string value)
+            => SelectedIsWorker = value;
 
-            CommonService.IsBusy = false;
-        }
+        public void ChangeContactType(string value)
+            => SelectedContactTypeId = value;
 
-        public async Task ChangeWorkFrequency(string value)
-        {
-            CommonService.IsBusy = true;
-
-            SelectedWorkFrequencyId = value;
-
-            CommonService.IsBusy = false;
-        }
-
-        public async Task ChangeJoinedAs(string value)
-        {
-            CommonService.IsBusy = true;
-
-            SelectedJoinedAsId = value;
-
-            CommonService.IsBusy = false;
-        }
-
-        public async Task ChangeIsWorker(string value)
-        {
-            CommonService.IsBusy = true;
-
-            SelectedIsWorker = value;
-
-            CommonService.IsBusy = false;
-        }
-
-        public async Task ChangeContactType(string value)
-        {
-            CommonService.IsBusy = true;
-
-            SelectedContactTypeId = value;
-
-            CommonService.IsBusy = false;
-        }
-
-        public async Task ChangeIsDefaultContact(string value)
-        {
-            SelectedIsDefaultContact = value;
-        }
+        public void ChangeIsDefaultContact(string value)
+            => SelectedIsDefaultContact = value;
 
         public async Task CancelPerson()
         {
-            ToastService.ShowError("This person will be saved...!!! You have to delete explicitly.", "Error");
+            ToastService.ShowError("This record is already saved...!!! You have to delete explicitly.", "Error");
             await RemovePersonId();
         }
 
