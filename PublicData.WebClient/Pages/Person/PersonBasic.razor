@@ -60,9 +60,9 @@
             </div>
             <div class="col-sm-3">
                 Citizen Of
-                <InputSelect ValueChanged="@((string value) => ChangeCountry(value))"
-                             ValueExpression="@(() => SelectedCoutryId)"
-                             Value="@SelectedCoutryId"
+                <InputSelect ValueChanged="@((string value) => ChangeNationality(value))"
+                             ValueExpression="@(() => SelectedNationalityId)"
+                             Value="@SelectedNationalityId"
                              class="form-control" required>
                     <option value="0">Select...</option>
                     @foreach (var item in Countries)
