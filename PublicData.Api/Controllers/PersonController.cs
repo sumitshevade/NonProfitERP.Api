@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PublicData.Application.Features.People.CreatePerson;
 using PublicData.Application.Features.People.GetAllPerson;
@@ -67,7 +68,7 @@ using PublicData.Application.Features.PersonWorkExperience.UpdatePersonWorkExper
 
 namespace PublicData.Api.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [ApiController]
     public class PersonController : ApiController
     {
