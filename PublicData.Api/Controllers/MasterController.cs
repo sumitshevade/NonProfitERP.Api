@@ -19,6 +19,7 @@ using PublicData.Application.Features.Master.Detail.CreateDetail;
 using PublicData.Application.Features.Master.Detail.DeleteDetail;
 using PublicData.Application.Features.Master.Detail.GetDetailByHeaderId;
 using PublicData.Application.Features.Master.Detail.GetDetailById;
+using PublicData.Application.Features.Master.Detail.GetDetails;
 using PublicData.Application.Features.Master.Detail.UpdateDetail;
 using PublicData.Application.Features.Master.District.CreateDistrict;
 using PublicData.Application.Features.Master.District.GetAllDistrictByStateId;
@@ -317,8 +318,18 @@ namespace PublicData.Api.Controllers
 
         #region --- Detail APIs ---
 
+        /// <summary>
+        /// Single endpoint to return all details
+        /// </summary>
+        [HttpGet("header/details")]
+        public async Task<IActionResult> GetDetails()
+        {
+            var result = await Mediator.Send(new GetDetailsQuery { });
+            return new JsonResult(result);
+        }
+
         [HttpGet("header/{headerId}/detail")]
-        public async Task<IActionResult> GetDetails(int headerId)
+        public async Task<IActionResult> GetDetailsByHeaderId(int headerId)
         {
             var result = await Mediator.Send(new GetDetailsByHeaderIdQuery { HeaderId = headerId });
             return new JsonResult(result);
