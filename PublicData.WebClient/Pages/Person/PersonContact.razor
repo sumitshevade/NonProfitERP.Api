@@ -40,7 +40,7 @@
             <div class="row mt-4">
                 <div class="col-sm-3">
                     <button class="btn btn-primary" type="submit">@ContactSaveButton</button>
-                    <button class="btn btn-warning m-1" type="reset">Cancel</button>
+                    <button class="btn btn-warning m-1" type="reset" @onclick="(() => CancelContact())">Cancel</button>
                 </div>
             </div>
         </div>
@@ -58,7 +58,7 @@
         <tbody>
             @foreach (var item in PersonContacts)
             {
-                <tr id="contact@item.Id">
+                <tr>
                     <td>@item.ContactTypeDetail.Value</td>
                     <td>@item.Detail</td>
                     <td>@item.IsDefault</td>
