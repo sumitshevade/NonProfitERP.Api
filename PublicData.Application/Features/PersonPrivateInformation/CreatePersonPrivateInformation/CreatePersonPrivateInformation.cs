@@ -26,8 +26,8 @@ namespace PublicData.Application.Features.PersonPrivateInformation.CreatePersonP
         public Task<int> Handle(CreatePersonPrivateInformationCommand request, CancellationToken cancellationToken)
         {
             var entity = _mapper.Map<PersonPrivateInformation>(request);
-
-            _personPrivateInformationRepository.Add(entity);
+            entity.IsActive = true;
+            _personPrivateInformationRepository.Update(entity);
             _unitOfWork.Commit();
 
             return Task.FromResult(entity.Id);
@@ -36,6 +36,7 @@ namespace PublicData.Application.Features.PersonPrivateInformation.CreatePersonP
 
     public class CreatePersonPrivateInformationCommand : IRequest<int>, IMapFrom<PersonPrivateInformation>
     {
+        public int Id { get; set; }
         public int PersonId { get; set; }
         public bool MaritalStatus { get; set; }
         public string AadharCardNo { get; set; }
