@@ -1,0 +1,166 @@
+﻿@page "/person/view"
+@inherits PersonComponent
+
+<strong class="display-4">Wardhak Profile</strong>
+<a href="/person/create" name="editProfile" class="btn btn-link">Edit Profile</a>
+
+<div class="row mt-lg-5 border border-dark rounded-sm p-lg-5">
+    <div class="col-md-4">
+        <img src="./profile2.png" alt="Profile page" class="w-50 rounded-circle border-danger align-content-center" />
+
+        <br />
+
+        <div class="row mt-lg-5">
+            <div class="col-md-5"><strong>Mobile No 1:</strong></div>
+            <div class="col-md-7">+91 7845124512</div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-5"><strong>Mobile No 2:</strong></div>
+            <div class="col-md-7">+91 7845124524</div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-5"><strong>Email:</strong></div>
+            <div class="col-md-7">user@example.com</div>
+        </div>
+    </div>
+
+    <div class="col-md-8 border-left border-primary">
+        <ul class="nav nav-pills">
+            <li class="nav-item">
+                <a class="nav-link active" id="pills-basic-tab" data-toggle="pill" href="#pills-basic"
+                   role="tab" aria-controls="pills-basic" aria-selected="true">Basic</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact"
+                   role="tab" aria-controls="pills-contact" aria-selected="false">Contact</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="pills-address-tab" data-toggle="pill" href="#pills-address"
+                   role="tab" aria-controls="pills-address" aria-selected="false">Address</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="pills-private-tab" data-toggle="pill" href="#pills-private"
+                   role="tab" aria-controls="pills-private" aria-selected="false">Private</a>
+            </li>
+        </ul>
+
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active border m-3 p-4" id="pills-basic" role="tabpanel" aria-labelledby="pills-basic-tab">
+                <div class="row mt-3">
+                    <div class="col-md-5"><strong>Name:</strong></div>
+                    <div class="col-md-7">@Person.FirstName @Person.MiddleName @Person.LastName</div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-5"><strong>Birth Date</strong></div>
+                    <div class="col-md-7">@Person.BirthDate</div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-5"><strong>Joining Date</strong></div>
+                    <div class="col-md-7">@Person.JoiningDate</div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-5"><strong>More Info</strong></div>
+                    <div class="col-md-7">@Person.LongText</div>
+                </div>
+            </div>
+
+            <div class="tab-pane fade border m-3 p-4" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+                <div class="row mt-3">
+                    <div class="col-md-5"><strong>Mobile No 1:</strong></div>
+                    <div class="col-md-7">@PersonContact.Detail</div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-5"><strong>Mobile No 2:</strong></div>
+                    <div class="col-md-7">@PersonContact.Detail</div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-5"><strong>Email:</strong></div>
+                    <div class="col-md-7">@PersonContact.Detail</div>
+                </div>
+            </div>
+
+            <div class="tab-pane fade border m-3 p-4" id="pills-address" role="tabpanel" aria-labelledby="pills-address-tab">
+                <div class="row mt-3">
+                    <div class="col-md-5"><strong>Country:</strong></div>
+                    <div class="col-md-7">@PersonAddress.CountryId</div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-5"><strong>State:</strong></div>
+                    <div class="col-md-7">@PersonAddress.StateId</div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-5"><strong>City:</strong></div>
+                    <div class="col-md-7">@PersonAddress.CityId</div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-5"><strong>Line 1:</strong></div>
+                    <div class="col-md-7">@PersonAddress.Line1</div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-5"><strong>Line 2:</strong></div>
+                    <div class="col-md-7">@PersonAddress.Line2</div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-5"><strong>Road Name:</strong></div>
+                    <div class="col-md-7">@PersonAddress.RoadName</div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-5"><strong>Zip Code:</strong></div>
+                    <div class="col-md-7">@PersonAddress.ZipCode</div>
+                </div>
+            </div>
+
+            <div class="tab-pane fade border m-3 p-4" id="pills-private" role="tabpanel" aria-labelledby="pills-private-tab">
+                <div class="row mt-3">
+                    <div class="col-md-5"><strong>PAN Card #:</strong></div>
+                    <div class="col-md-7">Yet to connect</div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-5"><strong>Aadhar Card #:</strong></div>
+                    <div class="col-md-7">@PersonPrivateInformation.AadharCardNo</div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-5"><strong>Religion:</strong></div>
+                    <div class="col-md-7">@PersonPrivateInformation.ReligionId</div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-5"><strong>Caste:</strong></div>
+                    <div class="col-md-7">@PersonPrivateInformation.CasteId</div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-5"><strong>Category:</strong></div>
+                    <div class="col-md-7">@PersonPrivateInformation.CategoryId</div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-5"><strong>Marital Status:</strong></div>
+                    <div class="col-md-7">@PersonPrivateInformation.MaritalStatus</div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-5"><strong>Parental Status:</strong></div>
+                    <div class="col-md-7">@PersonPrivateInformation.ParentalStatusId</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+
+}
