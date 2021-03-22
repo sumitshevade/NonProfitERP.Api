@@ -12,7 +12,7 @@ namespace PublicData.DAL.Entities
 
         public int PersonId { get; set; }
 
-        public bool MaritalStatus { get; set; }
+        public int MaritalStatus { get; set; }
 
         public string AadharCardNo { get; set; }
 

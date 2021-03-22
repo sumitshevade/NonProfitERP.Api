@@ -31,7 +31,7 @@ namespace PublicData.Data.Mapping
             builder.Property(t => t.MaritalStatus)
                 .IsRequired()
                 .HasColumnName("MaritalStatus")
-                .HasColumnType("bit");
+                .HasColumnType("int");
 
             builder.Property(t => t.AadharCardNo)
                 .HasColumnName("AadharCardNo")
