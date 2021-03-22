@@ -51,6 +51,8 @@ namespace PublicData.WebClient
             builder.Services.AddScoped<IPersonRepository, PersonRepository>();
             builder.Services.AddScoped<IPersonContactRepository, PersonContactRepository>();
             builder.Services.AddScoped<IPersonAddressRepository, PersonAddressRepository>();
+            builder.Services.AddScoped<IPersonPrivateInfoRepository, PersonPrivateInfoRepository>();
+
             builder.Services.AddScoped<ISchoolRepository, SchoolRepository>();
             builder.Services.AddScoped<IStateRepository, StateRepository>();
             builder.Services.AddScoped<ITalukaRepository, TalukaRepository>();

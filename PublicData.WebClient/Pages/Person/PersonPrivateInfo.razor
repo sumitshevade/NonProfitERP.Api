@@ -1,88 +1,95 @@
-﻿<div class="tab-pane fade border m-3 p-4" id="pills-private" role="tabpanel" aria-labelledby="pills-private-tab">
-    Private Information
-    <form action="dashboard.html" method="POST">
-        <div class="row">
-            <div class="col-sm-3">
-                Marital Status
-                <select name="maritalstatus" id="maritalstatus" class="form-control" autofocus>
-                    <option value="0">Select...</option>
-                    <option value="1">Unmarried</option>
-                    <option value="2">Married</option>
-                </select>
-            </div>
-            <div class="col-sm-3">
-                Aadhar Card No
-                <input type="text" name="aadharcardno" id="aadharcardno" class="form-control" placeholder="Aadhar Card No">
-            </div>
-            <div class="col-sm-3">
-                Parental Status
-                <select name="parentalstatus" id="parentalstatus" class="form-control">
-                    <option value="0">Select...</option>
-                    <option value="1">Unmarried</option>
-                    <option value="2">Married</option>
-                </select>
-                <input type="text" name="otherparentalstatus" id="otherparentalstatus" class="form-control" placeholder="Parental Status">
-            </div>
-            <div class="col-sm-3">
-                Is Own Bicycle
-                <select name="isownbicycle" id="isownbicycle" class="form-control">
-                    <option value="0">Select...</option>
-                    <option value="1" selected>Yes</option>
-                    <option value="2">No</option>
-                </select>
-            </div>
-        </div>
+﻿@inherits PersonComponent
 
-        <div class="row mt-3">
-            <div class="col-sm-3">
-                Religion
-                <select name="religionid" id="religionid" class="form-control">
-                    <option value="0">Select...</option>
-                    <option value="1">Unmarried</option>
-                    <option value="2">Married</option>
-                </select>
-                <input type="text" name="otherreligion" id="otherreligion" class="form-control" placeholder="Other Religion">
-            </div>
-            <div class="col-sm-3">
-                Caste
-                <select name="casteid" id="casteid" class="form-control">
-                    <option value="0">Select...</option>
-                    <option value="1">Unmarried</option>
-                    <option value="2">Married</option>
-                </select>
-                <input type="text" name="othercaste" id="othercaste" class="form-control" placeholder="Other Caste">
-            </div>
-            <div class="col-sm-3">
-                Category
-                <select name="categoryid" id="categoryid" class="form-control">
-                    <option value="0">Select...</option>
-                    <option value="1">Unmarried</option>
-                    <option value="2">Married</option>
-                </select>
-                <input type="text" name="othercategory" id="othercategory" class="form-control" placeholder="Other Category">
-            </div>
-        </div>
+<div class="tab-pane fade border m-3 p-4" id="pills-private" role="tabpanel" aria-labelledby="pills-private-tab">
+    <EditForm Model="PersonPrivateInformation" OnValidSubmit="SavePrivateInfo">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        <div class="mt-1 border p-3 @FormDisplay">
 
-        <div class="row mt-3">
-            <div class="col-sm-3">
-                Is Alive
-                <select name="isalive" id="isalive" class="form-control" required>
-                    <option value="0">Select...</option>
-                    <option value="1" selected>Yes</option>
-                    <option value="2">No</option>
-                </select>
-            </div>
-            <div class="col-sm-3">
-                Date of Expiry
-                <input type="date" name="dateofexpiry" id="dateofexpiry" class="form-control">
-            </div>
-        </div>
+            <input type="hidden" name="Id" @bind-value="PersonPrivateInformation.Id"  />
 
-        <div class="row mt-4">
-            <div class="col-sm-3">
-                <button id="savePrivate" class="btn btn-primary m-1" type="submit">Save</button>
-                <button id="cancelPrivate" class="btn btn-warning m-1" type="reset">Cancel</button>
+            <div class="row">
+                <div class="col-sm-3">
+                    Marital Status
+                    <InputSelect ValueChanged="@((string value) => ChangeMaritalStatus(value))"
+                                 ValueExpression="@(() => SelectedMaritalStatus)"
+                                 Value="@SelectedMaritalStatus"
+                                 class="form-control" required> q
+                        <option selected>Select...</option>
+                        <option value="1">Unmarried</option>
+                        <option value="2">Married</option>
+                        <option value="3">Divorced</option>
+                        <option value="4">Widowed</option>
+                    </InputSelect>
+                </div>
+                <div class="col-sm-3">
+                    Aadhar Card No
+                    <InputText @bind-Value="PersonPrivateInformation.AadharCardNo" class="form-control"></InputText>
+                </div>
+                <div class="col-sm-3">
+                    Parental Status
+                    <InputSelect ValueChanged="@((string value) => ChangeParentalStatus(value))"
+                                 ValueExpression="@(() => SelectedParentalStatusId)"
+                                 Value="@SelectedParentalStatusId"
+                                 class="form-control">
+                        <option value="0" selected>Select...</option>
+                        @foreach (var item in ParentalStatus)
+                        {
+                            <option value="@item.Id">@item.Value</option>
+                        }
+                    </InputSelect>
+                    @*<input type="text" name="otherparentalstatus" id="otherparentalstatus" class="form-control" placeholder="Parental Status">*@
+                </div>
+                <div class="col-sm-3">
+                    Religion
+                    <InputSelect ValueChanged="@((string value) => ChangeReligion(value))"
+                                 ValueExpression="@(() => SelectedReligionId)"
+                                 Value="@SelectedReligionId"
+                                 class="form-control">
+                        <option value="0" selected>Select...</option>
+                        @foreach (var item in Religions)
+                        {
+                            <option value="@item.Id">@item.Value</option>
+                        }
+                    </InputSelect>
+                    @*<input type="text" name="otherreligion" id="otherreligion" class="form-control" placeholder="Other Religion">*@
+                </div>
+                <div class="col-sm-3">
+                    Caste
+                    <InputSelect ValueChanged="@((string value) => ChangeCaste(value))"
+                                 ValueExpression="@(() => SelectedCasteId)"
+                                 Value="@SelectedCasteId"
+                                 class="form-control">
+                        <option value="0" selected>Select...</option>
+                        @foreach (var item in Castes)
+                        {
+                            <option value="@item.Id">@item.Value</option>
+                        }
+                    </InputSelect>
+                    @*<input type="text" name="othercaste" id="othercaste" class="form-control" placeholder="Other Caste">*@
+                </div>
+                <div class="col-sm-3">
+                    Category
+                    <InputSelect ValueChanged="@((string value) => ChangeCategory(value))"
+                                 ValueExpression="@(() => SelectedCategoryId)"
+                                 Value="@SelectedCategoryId"
+                                 class="form-control">
+                        <option value="0" selected>Select...</option>
+                        @foreach (var item in Categories)
+                        {
+                            <option value="@item.Id">@item.Value</option>
+                        }
+                    </InputSelect>
+                    @*<input type="text" name="othercategory" id="othercategory" class="form-control" placeholder="Other Category">*@
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-sm-3">
+                    <button class="btn btn-primary" type="submit">Save</button>
+                    <button class="btn btn-warning m-1" type="reset">Cancel</button>
+                </div>
             </div>
         </div>
-    </form>
+    </EditForm>
 </div>

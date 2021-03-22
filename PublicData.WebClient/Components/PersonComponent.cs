@@ -17,7 +17,7 @@ namespace PublicData.WebClient.Components
 {
     public class PersonComponent : ComponentBase
     {
-        #region -- Inject
+        #region -- Injected repositories / dependencies
         [Inject] public ICommonService CommonService { get; set; }
         [Inject] NavigationManager NavigationManager { get; set; }
         [Inject] IPersonRepository PersonRepository { get; set; }
@@ -30,19 +30,22 @@ namespace PublicData.WebClient.Components
         [Inject] ITalukaRepository TalukaRepository  { get; set; }
         [Inject] IPersonContactRepository PersonContactRepository { get; set; }
         [Inject] IPersonAddressRepository PersonAddressRepository { get; set; }
+        [Inject] IPersonPrivateInfoRepository PersonPrivateInfoRepository { get; set; }
         [Inject] IToastService ToastService { get; set; }
         [Inject] ILocalStorageService LocalStorageService { get; set; }
         [Inject] ISessionStorageService SessionStorageService { get; set; }
         [Inject] IJSRuntime JSRuntime { get; set; }
         #endregion
 
-        #region -- Parameters
+        #region -- Parameters / Model instances
         [Parameter] public Person Person { get; set; } = new Person();
         [Parameter] public PersonContact PersonContact { get; set; } = new PersonContact();
-        [Parameter] public IList<PersonContact> PersonContacts { get; set; } = new List<PersonContact>();
         [Parameter] public PersonAddress PersonAddress { get; set; } = new PersonAddress();
-        [Parameter] public IList<PersonAddress> PersonAddresses { get; set; } = new List<PersonAddress>();
+        [Parameter] public PersonPrivateInformation PersonPrivateInformation { get; set; } = new PersonPrivateInformation();
         [Parameter] public string FormDisplay { get; set; } // helps to hide show form
+        [Parameter] public IList<PersonContact> PersonContacts { get; set; } = new List<PersonContact>();
+        [Parameter] public IList<PersonAddress> PersonAddresses { get; set; } = new List<PersonAddress>();
+        [Parameter] public IList<Detail> ContactTypes { get; set; } = new List<Detail>();
         [Parameter] public IList<Detail> Details { get; set; } = new List<Detail>();
         [Parameter] public IList<Detail> HomeStatus { get; set; } = new List<Detail>();
         [Parameter] public IList<Detail> LocalityClass { get; set; } = new List<Detail>();
@@ -51,17 +54,21 @@ namespace PublicData.WebClient.Components
         [Parameter] public IList<Detail> JoinedAs { get; set; } = new List<Detail>();
         [Parameter] public IList<Detail> PersonTypes { get; set; } = new List<Detail>();
         [Parameter] public IList<Detail> WorkFrequencies { get; set; } = new List<Detail>();
+        [Parameter] public IList<Detail> ParentalStatus { get; set; } = new List<Detail>();
+        [Parameter] public IList<Detail> Religions { get; set; } = new List<Detail>();
+        [Parameter] public IList<Detail> Castes { get; set; } = new List<Detail>();
+        [Parameter] public IList<Detail> Categories { get; set; } = new List<Detail>();
+
         [Parameter] public IList<Country> Countries { get; set; } = new List<Country>();
         [Parameter] public IList<State> States { get; set; } = new List<State>();
         [Parameter] public IList<City> Cities { get; set; } = new List<City>();
         [Parameter] public IList<District> Districts { get; set; } = new List<District>();
         [Parameter] public IList<Taluka> Talukas { get; set; } = new List<Taluka>();
-        [Parameter] public IList<Detail> ContactTypes { get; set; } = new List<Detail>();
         [CascadingParameter] private Task<AuthenticationState> AuthenticationState { get; set; }
 
         #endregion
 
-        #region -- Public properties
+        #region -- Public properties / Selected properties
         public string SelectedShakhaId { get; set; } = "0";
         public string SelectedPersonTypeId { get; set; } = "0";
         public string SelectedJoinedAsId { get; set; } = "0";
@@ -81,13 +88,19 @@ namespace PublicData.WebClient.Components
         public string SelectedLocalityClassId { get; set; } = "0";
         public string SelectedResidentialStatusId { get; set; } = "0";
         public string SelectedResidentialAreaId { get; set; } = "0";
-
+        public string SelectedMaritalStatus { get; set; } = "0";
+        public string SelectedParentalStatusId { get; set; } = "0";
+        public string SelectedReligionId { get; set; } = "0";
+        public string SelectedCasteId { get; set; } = "0";
+        public string SelectedCategoryId { get; set; } = "0";
 
         public string ContactDisabled { get; set; }
 
         public string Message = string.Empty;
         public string ContactSaveButton = string.Empty;
         public string AddressSaveButton = string.Empty;
+        public string PrivateSaveButton = string.Empty;
+
         public AlertMessageType MessageType = AlertMessageType.Success;
 
         #endregion
@@ -106,6 +119,7 @@ namespace PublicData.WebClient.Components
             PersonRepository.SetToken(userState.User.FindFirst("AccessToken").Value);
             PersonContactRepository.SetToken(userState.User.FindFirst("AccessToken").Value);
             PersonAddressRepository.SetToken(userState.User.FindFirst("AccessToken").Value);
+            PersonPrivateInfoRepository.SetToken(userState.User.FindFirst("AccessToken").Value);
 
             DetailRepository.SetToken(userState.User.FindFirst("AccessToken").Value);
             ProgramRepository.SetToken(userState.User.FindFirst("AccessToken").Value);
@@ -126,6 +140,8 @@ namespace PublicData.WebClient.Components
                 Person = await PersonRepository.GetByIdAsync("/api/person/" + personId);
                 PersonContacts = await PersonContactRepository.GetListAsync("/api/person/" + personId + "/contact");
                 PersonAddresses = await PersonAddressRepository.GetListAsync("/api/person/" + personId + "/address");
+                var ppi = await PersonPrivateInfoRepository.GetByIdAsync("/api/person/" + personId + "/private");
+                PersonPrivateInformation = ppi ?? new PersonPrivateInformation();
 
                 Countries = await CountryRepository.GetListAsync("/api/master/country");
 
@@ -133,13 +149,17 @@ namespace PublicData.WebClient.Components
 
                 if (Details != null)
                 {
+                    Castes = Details.Where(w => w.HeaderId == 2).ToList();
+                    Categories = Details.Where(w => w.HeaderId == 3).ToList();
                     HomeStatus = Details.Where(h => h.HeaderId == 8).ToList();
-                    LocalityClass = Details.Where(h => h.HeaderId == 8).ToList();
-                    ResidentialAreas = Details.Where(h => h.HeaderId == 19).ToList();
-                    ResidentialStatus = Details.Where(h => h.HeaderId == 20).ToList();
                     JoinedAs = Details.Where(j => j.HeaderId == 10).ToList();
+                    LocalityClass = Details.Where(h => h.HeaderId == 12).ToList();
+                    ParentalStatus = Details.Where(c => c.HeaderId == 14).ToList();
                     ContactTypes = Details.Where(c => c.HeaderId == 15).ToList();
                     PersonTypes = Details.Where(p => p.HeaderId == 16).ToList();
+                    Religions = Details.Where(w => w.HeaderId == 18).ToList();
+                    ResidentialAreas = Details.Where(h => h.HeaderId == 19).ToList();
+                    ResidentialStatus = Details.Where(h => h.HeaderId == 20).ToList();
                     WorkFrequencies = Details.Where(w => w.HeaderId == 26).ToList();
                 }
 
@@ -151,6 +171,12 @@ namespace PublicData.WebClient.Components
 
                 SelectedContactTypeId = PersonContact.ContactTypeId.ToString();
                 SelectedIsDefaultContact = PersonContact.IsDefault == false ? "false" : "true";
+
+                SelectedMaritalStatus = PersonPrivateInformation.MaritalStatus.ToString();
+                SelectedParentalStatusId = PersonPrivateInformation.ParentalStatusId.ToString();
+                SelectedReligionId = PersonPrivateInformation.ReligionId.ToString();
+                SelectedCasteId = PersonPrivateInformation.CasteId.ToString();
+                SelectedCategoryId = PersonPrivateInformation.CategoryId.ToString();
 
                 ContactSaveButton = "Save";
                 AddressSaveButton = "Save";
@@ -411,15 +437,54 @@ namespace PublicData.WebClient.Components
 
         #endregion
 
+        #region -- Person Private Info
+
+        public async Task SavePrivateInfo()
+        {
+            CommonService.IsBusy = true;
+
+            PersonPrivateInformation.ReligionId = Convert.ToInt32(SelectedReligionId);
+            PersonPrivateInformation.CasteId = Convert.ToInt32(SelectedCasteId);
+            PersonPrivateInformation.CategoryId = Convert.ToInt32(SelectedCategoryId);
+            PersonPrivateInformation.MaritalStatus = Convert.ToInt32(SelectedMaritalStatus);
+            PersonPrivateInformation.ParentalStatusId = Convert.ToInt32(SelectedParentalStatusId);
+
+            var savedPersonId = await SessionStorageService.GetItemAsync<int>("personId");
+
+            PersonPrivateInformation.PersonId = savedPersonId;
+            var result = await PersonPrivateInfoRepository.AddAsync(PersonPrivateInformation, "/api/person/" + savedPersonId + "/private");        // update or add
+
+            if (result > 0)
+            {
+                PersonPrivateInformation.Id = result;
+                ToastService.ShowSuccess("The record has been saved!!!", "Success");
+                StateHasChanged();
+            }
+            else
+            {
+                ToastService.ShowError("Something went wrong!!!", "Error");
+            }
+
+            CommonService.IsBusy = false;
+        }
+
+        #endregion
+
         public async Task RemovePersonId()
         {
+            CommonService.IsBusy = true;
+
             await SessionStorageService.RemoveItemAsync("personId");
-            //await SessionStorageService.RemoveItemAsync("personContactId");
+
             Person = new Person();
             PersonContact = new PersonContact();
+            PersonAddress = new PersonAddress();
+
             ContactDisabled = "disabled";
             StateHasChanged();
             ToastService.ShowSuccess("Ready to add new Person!!!", "Success");
+
+            CommonService.IsBusy = false;
         }
 
         #region -- Change value methods
@@ -549,6 +614,21 @@ namespace PublicData.WebClient.Components
 
         public void ChangeLocalityStatus(string value)
             => SelectedLocalityClassId = value;
+
+        public void ChangeMaritalStatus(string value)
+            => SelectedMaritalStatus = value;
+
+        public void ChangeParentalStatus(string value)
+            => SelectedParentalStatusId = value;
+
+        public void ChangeReligion(string value)
+            => SelectedReligionId = value;
+
+        public void ChangeCaste(string value)
+            => SelectedCasteId = value;
+
+        public void ChangeCategory(string value)
+            => SelectedCategoryId = value;
 
         #endregion
     }
