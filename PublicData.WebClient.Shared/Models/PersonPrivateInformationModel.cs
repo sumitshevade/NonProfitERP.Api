@@ -4,7 +4,7 @@ namespace PublicData.WebClient.Shared.Models
     {
         public int Id { get; set; }
         public int PersonId { get; set; }
-        public bool MaritalStatus { get; set; }
+        public int MaritalStatus { get; set; }
         public string AadharCardNo { get; set; }
         public bool IsOwnBicycle { get; set; }
         public int? ReligionId { get; set; }
