@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
 namespace PublicData.Data.Mapping
@@ -58,6 +56,10 @@ namespace PublicData.Data.Mapping
                 .HasColumnName("BirthLocation")
                 .HasColumnType("varchar(50)")
                 .HasMaxLength(50);
+
+            builder.Property(t => t.Gender)
+                .HasColumnName("Gender")
+                .HasColumnType("char");
 
             builder.Property(t => t.LongText)
                 .HasColumnName("LongText")
@@ -171,6 +173,7 @@ namespace PublicData.Data.Mapping
             public const string LastName = "LastName";
             public const string BirthDate = "BirthDate";
             public const string BirthLocation = "BirthLocation";
+            public const string Gender = "Gender";
             public const string LongText = "LongText";
             public const string HighLightText = "HighLightText";
             public const string Keywords = "Keywords";

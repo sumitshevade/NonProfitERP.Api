@@ -47,6 +47,8 @@ namespace PublicData.DAL.Entities
 
         public string BirthLocation { get; set; }
 
+        public char Gender { get; set; }
+
         public string LongText { get; set; }
 
         public string HighLightText { get; set; }

@@ -12,6 +12,7 @@ namespace PublicData.WebClient.Shared.Entities
         public string LastName { get; set; }
         public DateTime? BirthDate { get; set; }
         public string BirthLocation { get; set; }
+        public char Gender { get; set; }
         public string LongText { get; set; }
         public string Keywords { get; set; }
         public bool IsWorker { get; set; }
