@@ -19,8 +19,6 @@ namespace PublicData.WebClient.Shared.Entities
         public DateTime? JoiningDate { get; set; }
         public int? JoinedAsId { get; set; }
         public int? CountryId { get; set; }
-        public bool IsAlive { get; set; }
-        public DateTime? DateOfExpiry { get; set; }
         public bool IsActive { get; set; }
     }
 }

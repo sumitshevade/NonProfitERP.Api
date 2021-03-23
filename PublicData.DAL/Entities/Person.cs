@@ -67,9 +67,6 @@ namespace PublicData.DAL.Entities
 
         public string HeroPicturePath { get; set; }
 
-        public bool IsAlive { get; set; }
-
-        public DateTime? DateOfExpiry { get; set; }
 
         #endregion
 

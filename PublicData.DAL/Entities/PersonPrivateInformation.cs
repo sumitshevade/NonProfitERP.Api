@@ -1,3 +1,5 @@
+using System;
+
 namespace PublicData.DAL.Entities
 {
     public partial class PersonPrivateInformation : Entity
@@ -35,6 +37,10 @@ namespace PublicData.DAL.Entities
         public int? ParentalStatusId { get; set; }
 
         public string OtherParentalStatus { get; set; }
+        
+        public bool IsAlive { get; set; }
+
+        public DateTime? DateOfExpiry { get; set; }
 
         #endregion
 

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using PublicData.Application.Mappings;
 using PublicData.DAL.Entities;
+using System;
 
 namespace PublicData.Application.Shared
 {
@@ -19,6 +20,9 @@ namespace PublicData.Application.Shared
         public string OtherCategory { get; set; }
         public int? ParentalStatusId { get; set; }
         public string OtherParentalStatus { get; set; }
+        public bool IsAlive { get; set; }
+        public DateTime? DateOfExpiry { get; set; }
+        public bool IsActive { get; set; }
 
         public virtual Detail Caste { get; set; }
         public virtual Detail Category { get; set; }

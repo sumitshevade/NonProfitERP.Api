@@ -108,16 +108,6 @@ namespace PublicData.Data.Mapping
                 .HasColumnType("varchar(250)")
                 .HasMaxLength(250);
 
-            builder.Property(t => t.IsAlive)
-                .IsRequired()
-                .HasColumnName("IsAlive")
-                .HasColumnType("bit")
-                .HasDefaultValueSql("((1))");
-
-            builder.Property(t => t.DateOfExpiry)
-                .HasColumnName("DateOfExpiry")
-                .HasColumnType("date");
-
             builder.Property(t => t.CreatedById)
                 .IsRequired()
                 .HasColumnName("CreatedById")
@@ -191,8 +181,6 @@ namespace PublicData.Data.Mapping
             public const string CountryId = "CountryId";
             public const string ProfilePicturePath = "ProfilePicturePath";
             public const string HeroPicturePath = "HeroPicturePath";
-            public const string IsAlive = "IsAlive";
-            public const string DateOfExpiry = "DateOfExpiry";
             public const string CreatedById = "CreatedById";
             public const string CreatedAt = "CreatedAt";
             public const string UpdatedById = "UpdatedById";

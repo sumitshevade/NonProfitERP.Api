@@ -1,3 +1,5 @@
+using System;
+
 namespace PublicData.WebClient.Shared.Models
 {
     public partial class PersonPrivateInformationModel
@@ -16,5 +18,7 @@ namespace PublicData.WebClient.Shared.Models
         public int? ParentalStatusId { get; set; }
         public string OtherParentalStatus { get; set; }
         public bool IsActive { get; set; }
+        public bool IsAlive { get; set; }
+        public DateTime? DateOfExpiry { get; set; }
     }
 }

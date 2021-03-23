@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
 namespace PublicData.Data.Mapping
@@ -105,6 +103,16 @@ namespace PublicData.Data.Mapping
                 .HasColumnName("UpdatedAt")
                 .HasColumnType("datetime");
 
+            builder.Property(t => t.IsAlive)
+                .IsRequired()
+                .HasColumnName("IsAlive")
+                .HasColumnType("bit")
+                .HasDefaultValueSql("((1))");
+
+            builder.Property(t => t.DateOfExpiry)
+                .HasColumnName("DateOfExpiry")
+                .HasColumnType("date");
+
             builder.Property(t => t.IsActive)
                 .IsRequired()
                 .HasColumnName("IsActive")
@@ -167,6 +175,8 @@ namespace PublicData.Data.Mapping
             public const string CreatedAt = "CreatedAt";
             public const string UpdatedById = "UpdatedById";
             public const string UpdatedAt = "UpdatedAt";
+            public const string IsAlive = "IsAlive";
+            public const string DateOfExpiry = "DateOfExpiry";
             public const string IsActive = "IsActive";
         }
         #endregion
