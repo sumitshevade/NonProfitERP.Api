@@ -93,6 +93,7 @@ namespace PublicData.WebClient.Components
         public string SelectedReligionId { get; set; } = "0";
         public string SelectedCasteId { get; set; } = "0";
         public string SelectedCategoryId { get; set; } = "0";
+        public string SelectedGenderId { get; set; }
 
         public string ContactDisabled { get; set; }
 
@@ -185,6 +186,7 @@ namespace PublicData.WebClient.Components
             CommonService.IsBusy = false;
         }
 
+        #region -- Person
         public async Task CreatePerson()
         {
             CommonService.IsBusy = true;
@@ -194,6 +196,8 @@ namespace PublicData.WebClient.Components
             Person.CountryId = Convert.ToInt32(SelectedCountryId);
             Person.JoinedAsId = Convert.ToInt32(SelectedJoinedAsId);
             Person.IsWorker = Convert.ToBoolean(SelectedIsWorker);
+            Person.Gender = Convert.ToChar(SelectedGenderId);
+
             var result = 0;
 
             var savedPersonId = await SessionStorageService.GetItemAsync<int>("personId");
@@ -222,6 +226,25 @@ namespace PublicData.WebClient.Components
 
             CommonService.IsBusy = false;
         }
+
+        public async Task RemovePersonId()
+        {
+            CommonService.IsBusy = true;
+
+            await SessionStorageService.RemoveItemAsync("personId");
+
+            Person = new Person();
+            PersonContact = new PersonContact();
+            PersonAddress = new PersonAddress();
+
+            ContactDisabled = "disabled";
+            StateHasChanged();
+            ToastService.ShowSuccess("Ready to add new Person!!!", "Success");
+
+            CommonService.IsBusy = false;
+        }
+
+        #endregion
 
         #region -- Person Contact
 
@@ -470,22 +493,6 @@ namespace PublicData.WebClient.Components
 
         #endregion
 
-        public async Task RemovePersonId()
-        {
-            CommonService.IsBusy = true;
-
-            await SessionStorageService.RemoveItemAsync("personId");
-
-            Person = new Person();
-            PersonContact = new PersonContact();
-            PersonAddress = new PersonAddress();
-
-            ContactDisabled = "disabled";
-            StateHasChanged();
-            ToastService.ShowSuccess("Ready to add new Person!!!", "Success");
-
-            CommonService.IsBusy = false;
-        }
 
         #region -- Change value methods
 
@@ -629,6 +636,9 @@ namespace PublicData.WebClient.Components
 
         public void ChangeCategory(string value)
             => SelectedCategoryId = value;
+
+        public void ChangeGender(string value)
+            => SelectedGenderId = value;
 
         #endregion
     }

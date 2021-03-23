@@ -68,7 +68,7 @@ namespace PublicData.WebClient.Components
             SelectedPersonTypeId = Person.PersonTypeId.ToString();
             SelectedWorkFrequencyId = Person.WorkFrequencyId.ToString();
             SelectedIsWorker = Person.IsWorker == false ? "false" : "true";
-            SelectedIsAlive = Person.IsAlive == false ? "false" : "true";
+            //SelectedIsAlive = Personprivate.IsAlive == false ? "false" : "true";
 
             CommonService.IsBusy = false;
         }
