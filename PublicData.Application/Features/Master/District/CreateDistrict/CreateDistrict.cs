@@ -44,7 +44,7 @@ namespace PublicData.Application.Features.Master.District.CreateDistrict
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<District, CreateDistrictCommand>();
+            profile.CreateMap<CreateDistrictCommand, District>();
         }
     }
 }

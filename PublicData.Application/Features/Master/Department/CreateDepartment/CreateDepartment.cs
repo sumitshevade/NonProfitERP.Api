@@ -48,7 +48,7 @@ namespace PublicData.Application.Features.Master.Department.CreateDepartment
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<Department, CreateDepartmentCommand>();
+            profile.CreateMap<CreateDepartmentCommand, Department>();
         }
     }
 }

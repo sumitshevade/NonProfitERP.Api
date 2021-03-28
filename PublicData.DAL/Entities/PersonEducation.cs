@@ -59,7 +59,7 @@ namespace PublicData.DAL.Entities
 
         public virtual Detail ToStdDetail { get; set; }
 
-        public virtual Detail UniversityBoardDetail { get; set; }
+        public virtual University UniversityBoard { get; set; }
 
         #endregion
 

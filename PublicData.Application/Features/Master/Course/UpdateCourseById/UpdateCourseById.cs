@@ -30,7 +30,7 @@ namespace PublicData.Application.Features.Master.Course.UpdateCourseById
             var result = _courseRepository.Exists(x => x.Id == request.Id);
             if (!result)
             {
-                throw new NotFoundException(nameof(People), request.Id);
+                throw new NotFoundException(nameof(Course), request.Id);
             }
 
             var entity = _mapper.Map<Course>(request);

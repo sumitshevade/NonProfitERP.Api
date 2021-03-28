@@ -36,7 +36,7 @@ namespace PublicData.Application.Features.PersonEducation.DeletePersonEducationB
 
                 return Task.FromResult(_unitOfWork.Commit());
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return Task.FromResult(false);
             }

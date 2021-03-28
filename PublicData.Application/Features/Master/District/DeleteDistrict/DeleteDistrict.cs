@@ -38,7 +38,7 @@ namespace PublicData.Application.Features.Master.District.DeleteDistrict
 
                 return Task.FromResult(true);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return Task.FromResult(false);
             }

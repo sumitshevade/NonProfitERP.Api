@@ -28,7 +28,7 @@ namespace PublicData.Application.Features.PersonLanguage.DeletePersonLanguageByI
                 var entity = _personLanguageRepository.GetById(request.PersonLanguageId);
                 if (entity == null)
                 {
-                    throw new NotFoundException(nameof(PersonEducation), request.PersonLanguageId);
+                    throw new NotFoundException(nameof(PersonLanguage), request.PersonLanguageId);
                 }
 
                 entity.IsActive = false;
@@ -36,7 +36,7 @@ namespace PublicData.Application.Features.PersonLanguage.DeletePersonLanguageByI
 
                 return Task.FromResult(_unitOfWork.Commit());
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return Task.FromResult(false);
             }

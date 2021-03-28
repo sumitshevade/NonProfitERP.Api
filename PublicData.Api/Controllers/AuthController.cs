@@ -10,7 +10,6 @@ namespace PublicData.Api.Controllers
     public class AuthController : ApiController
     {
         private readonly IUserService _userService;
-
         public AuthController(IUserService userService)
         {
             _userService = userService;

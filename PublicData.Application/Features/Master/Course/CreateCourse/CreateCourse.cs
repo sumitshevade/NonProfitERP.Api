@@ -17,7 +17,7 @@ namespace PublicData.Application.Features.Master.Course.CreateCourse
         private readonly ICourseRepository _courseRepository;
         private readonly IUnitOfWork _unitOfWork;
 
-        public CreateCourseCommandHandler(ICourseRepository courseRepository, IUnitOfWork unitOfWork, IMapper mapper)
+        public CreateCourseCommandHandler(IMapper mapper, ICourseRepository courseRepository, IUnitOfWork unitOfWork)
         {
             _mapper = mapper;
             _courseRepository = courseRepository;
@@ -28,6 +28,7 @@ namespace PublicData.Application.Features.Master.Course.CreateCourse
         {
             var entity = _mapper.Map<Course>(request);
 
+            entity.IsActive = true;
             _courseRepository.Add(entity);
             _unitOfWork.Commit();
 

@@ -40,7 +40,7 @@ namespace PublicData.Application.Features.PersonDisability.DeletePersonDisabilit
 
                 return Task.FromResult(true);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return Task.FromResult(false);
             }

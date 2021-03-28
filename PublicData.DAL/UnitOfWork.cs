@@ -1,6 +1,4 @@
-﻿
-using FluentValidation.Results;
-using PublicData.Common.Interfaces;
+﻿using PublicData.Common.Interfaces;
 using System;
 
 namespace PublicData.DAL
@@ -21,7 +19,7 @@ namespace PublicData.DAL
                 var result = _context.SaveChangesAsync().GetAwaiter().GetResult();
                 return result > 0;
             }
-            catch (Exception ex)
+            catch (Exception)
             { 
             }
             return false;

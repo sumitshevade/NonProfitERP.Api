@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PublicData.Application.Features.Master.City.CreateCity;
 using PublicData.Application.Features.Master.City.DeleteCity;
@@ -22,6 +23,7 @@ using PublicData.Application.Features.Master.Detail.GetDetailById;
 using PublicData.Application.Features.Master.Detail.GetDetails;
 using PublicData.Application.Features.Master.Detail.UpdateDetail;
 using PublicData.Application.Features.Master.District.CreateDistrict;
+using PublicData.Application.Features.Master.District.DeleteDistrict;
 using PublicData.Application.Features.Master.District.GetAllDistrictByStateId;
 using PublicData.Application.Features.Master.District.GetDistrictById;
 using PublicData.Application.Features.Master.District.UpdateDistrict;
@@ -59,6 +61,7 @@ using PublicData.Application.Features.Master.University.UpdateUniversity;
 namespace PublicData.Api.Controllers
 {
     [ApiController]
+    [Authorize]
     public class MasterController : ApiController
     {
         #region --- City APIs ---
@@ -393,7 +396,7 @@ namespace PublicData.Api.Controllers
         [HttpDelete("district/{id}")]
         public async Task<IActionResult> DeleteDistrict(int id)
         {
-            return new JsonResult(await Mediator.Send(new DeleteSchoolCommand { Id = id }));
+            return new JsonResult(await Mediator.Send(new DeleteDistrictCommand { Id = id }));
         }
 
         #endregion

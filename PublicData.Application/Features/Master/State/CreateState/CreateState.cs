@@ -42,7 +42,7 @@ namespace PublicData.Application.Features.Master.State.CreateState
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<State, CreateStateCommand>();
+            profile.CreateMap<CreateStateCommand, State>();
         }
     }
 }

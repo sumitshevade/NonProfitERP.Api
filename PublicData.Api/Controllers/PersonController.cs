@@ -54,7 +54,6 @@ using PublicData.Application.Features.PersonLanguage.GetPersonLanguageByLanguage
 using PublicData.Application.Features.PersonLanguage.UpdatePersonLanguageByLanguageId;
 using PublicData.Application.Features.PersonPrivateInformation.CreatePersonPrivateInformation;
 using PublicData.Application.Features.PersonPrivateInformation.GetPersonPrivateInformation;
-using PublicData.Application.Features.PersonPrivateInformation.UpdatePersonPrivateInformation;
 using PublicData.Application.Features.PersonSocialMediaAccount.CreatePersonSocialMediaAccount;
 using PublicData.Application.Features.PersonSocialMediaAccount.DeletePersonSocialMediaAccount;
 using PublicData.Application.Features.PersonSocialMediaAccount.GetPersonAllSocialMediaAccount;
@@ -251,7 +250,7 @@ namespace PublicData.Api.Controllers
         }
 
         [HttpGet]
-        [Route("{personId}/education/{achievementId}")]
+        [Route("{personId}/education/{educationId}")]
         public async Task<IActionResult> GetEducationById(int educationId)
         {
             var result = await Mediator.Send(new GetPersonEducationByEducationIdQuery { EducationId = educationId });
@@ -293,10 +292,10 @@ namespace PublicData.Api.Controllers
         }
 
         [HttpGet]
-        [Route("{personId}/familydetails/{familydetailId}")]
-        public async Task<IActionResult> GetFamilyDetailById(int familydetailId)
+        [Route("{personId}/familydetails/{familyDetailId}")]
+        public async Task<IActionResult> GetFamilyDetailById(int familyDetailId)
         {
-            var result = await Mediator.Send(new GetPersonFamilyDetailByFamilyIdQuery { FamilyId = familydetailId });
+            var result = await Mediator.Send(new GetPersonFamilyDetailByFamilyIdQuery { FamilyId = familyDetailId });
             return new JsonResult(result);
         }
 
@@ -316,10 +315,10 @@ namespace PublicData.Api.Controllers
         }
 
         [HttpDelete]
-        [Route("{personId}/familidetails/{familyMemberId}")]
-        public async Task<IActionResult> DeleteFamilyMember(int familyMemberId)
+        [Route("{personId}/familydetails/{familyDetailId}")]
+        public async Task<IActionResult> DeleteFamilyMember(int familyDetailId)
         {
-            return new JsonResult(await Mediator.Send(new DeletePersonFamilyDetailByIdCommand { FamilyMemberId = familyMemberId }));
+            return new JsonResult(await Mediator.Send(new DeletePersonFamilyDetailByIdCommand { FamilyMemberId = familyDetailId }));
         }
 
         #endregion
@@ -335,7 +334,7 @@ namespace PublicData.Api.Controllers
         }
 
         [HttpGet]
-        [Route("{personId}/disabilities/{familydetailId}")]
+        [Route("{personId}/disabilities/{disabilityId}")]
         public async Task<IActionResult> GetDisabilityById(int disabilityId)
         {
             var result = await Mediator.Send(new GetPersonDisabilityByDisabilityIdQuery { DisabilityId = disabilityId });
@@ -442,10 +441,10 @@ namespace PublicData.Api.Controllers
         }
 
         [HttpDelete]
-        [Route("{personId}/hobbyfavorite/{hobbyId}")]
-        public async Task<IActionResult> DeleteHobbyFavorite(int hobbyId)
+        [Route("{personId}/hobbyfavorite/{hfId}")]
+        public async Task<IActionResult> DeleteHobbyFavorite(int hfId)
         {
-            return new JsonResult(await Mediator.Send(new DeletePersonHobbyFavoriteByIdCommand { HobbyId = hobbyId }));
+            return new JsonResult(await Mediator.Send(new DeletePersonHobbyFavoriteByIdCommand { HFId = hfId }));
         }
 
         #endregion
@@ -485,9 +484,9 @@ namespace PublicData.Api.Controllers
 
         [HttpDelete]
         [Route("{personId}/languages/{languageId}")]
-        public async Task<IActionResult> DeleteLanguage(int personLaguangeId)
+        public async Task<IActionResult> DeleteLanguage(int languageId)
         {
-            return new JsonResult(await Mediator.Send(new DeletePersonLanguageByIdCommand { PersonLanguageId = personLaguangeId }));
+            return new JsonResult(await Mediator.Send(new DeletePersonLanguageByIdCommand { PersonLanguageId = languageId }));
         }
 
         #endregion
@@ -507,13 +506,6 @@ namespace PublicData.Api.Controllers
         public async Task<IActionResult> PostPrivate(CreatePersonPrivateInformationCommand command, int personId)
         {
             command.PersonId = personId;
-            return new JsonResult(await Mediator.Send(command));
-        }
-
-        [HttpPut]
-        [Route("{personId}/private")]
-        public async Task<IActionResult> PutPrivate(UpdatePersonPrivateInformationQuery command)
-        {
             return new JsonResult(await Mediator.Send(command));
         }
 

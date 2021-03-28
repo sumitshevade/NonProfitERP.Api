@@ -2,6 +2,7 @@
 using PublicData.Application.Mappings;
 using PublicData.DAL.Entities;
 using System;
+using System.Collections.Generic;
 
 namespace PublicData.Application.Shared
 {

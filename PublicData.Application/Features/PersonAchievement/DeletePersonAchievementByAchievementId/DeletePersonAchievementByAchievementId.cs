@@ -12,7 +12,7 @@ namespace PublicData.Application.Features.PersonAchievement.DeletePersonAchievem
 
     public class DeletePersonAchievementByAchievementIdCommandHandler : IRequestHandler<DeletePersonAchievementByAchievementIdCommand, bool>
     {
-        private IPersonAchievementRepository _personAchievementRepository;
+        private readonly IPersonAchievementRepository _personAchievementRepository;
         private readonly IUnitOfWork _unitOfWork;
 
         public DeletePersonAchievementByAchievementIdCommandHandler(IPersonAchievementRepository personAchievementRepository, IUnitOfWork unitOfWork)
@@ -37,7 +37,7 @@ namespace PublicData.Application.Features.PersonAchievement.DeletePersonAchievem
                 
                 return Task.FromResult(_unitOfWork.Commit());
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return Task.FromResult(false);
             }

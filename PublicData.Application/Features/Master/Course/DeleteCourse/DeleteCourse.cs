@@ -6,7 +6,7 @@ using PublicData.DAL.Interfaces;
 using PublicData.Common.Exceptions;
 using PublicData.Common.Interfaces;
 
-namespace PublicData.Application.Features.Master.Batch.DeleteCourse
+namespace PublicData.Application.Features.Master.Course.DeleteCourse
 {
     using DAL.Entities;
 
@@ -38,7 +38,7 @@ namespace PublicData.Application.Features.Master.Batch.DeleteCourse
 
                 return Task.FromResult(true);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return Task.FromResult(false);
             }

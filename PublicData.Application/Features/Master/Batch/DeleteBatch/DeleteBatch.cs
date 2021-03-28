@@ -29,7 +29,7 @@ namespace PublicData.Application.Features.Master.Batch.DeleteBatch
 
                 if (entity == null)
                 {
-                    throw new NotFoundException(nameof(Country), request.Id);
+                    throw new NotFoundException(nameof(Batch), request.Id);
                 }
 
                 entity.IsActive = false;
@@ -38,7 +38,7 @@ namespace PublicData.Application.Features.Master.Batch.DeleteBatch
 
                 return Task.FromResult(true);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return Task.FromResult(false);
             }

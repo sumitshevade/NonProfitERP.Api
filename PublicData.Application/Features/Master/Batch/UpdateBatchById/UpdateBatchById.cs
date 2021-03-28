@@ -6,6 +6,7 @@ using PublicData.Common.Interfaces;
 using PublicData.DAL.Interfaces;
 using System.Threading;
 using System.Threading.Tasks;
+using System;
 
 namespace PublicData.Application.Features.Master.Batch.UpdateBatchById
 {
@@ -30,7 +31,7 @@ namespace PublicData.Application.Features.Master.Batch.UpdateBatchById
             var result = _batchRepository.Exists(x => x.Id == request.Id);
             if (!result)
             {
-                throw new NotFoundException(nameof(People), request.Id);
+                throw new NotFoundException(nameof(Batch), request.Id);
             }
 
             var entity = _mapper.Map<Batch>(request);

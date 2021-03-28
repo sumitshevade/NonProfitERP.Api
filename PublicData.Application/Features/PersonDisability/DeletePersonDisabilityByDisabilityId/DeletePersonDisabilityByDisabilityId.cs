@@ -36,7 +36,7 @@ namespace PublicData.Application.Features.PersonDisability.DeletePersonDisabilit
 
                 return Task.FromResult(_unitOfWork.Commit());
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return Task.FromResult(false);
             }

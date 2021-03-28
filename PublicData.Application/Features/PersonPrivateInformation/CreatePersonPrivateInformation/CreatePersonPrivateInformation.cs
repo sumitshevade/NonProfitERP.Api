@@ -36,7 +36,6 @@ namespace PublicData.Application.Features.PersonPrivateInformation.CreatePersonP
 
     public class CreatePersonPrivateInformationCommand : IRequest<int>, IMapFrom<PersonPrivateInformation>
     {
-        public int Id { get; set; }
         public int PersonId { get; set; }
         public int MaritalStatus { get; set; }
         public string AadharCardNo { get; set; }
