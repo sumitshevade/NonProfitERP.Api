@@ -31,11 +31,12 @@ namespace PublicData.WebClient.Components
                 {
                     var userInfo = new LocalUserInfo()
                     {
-                        AccessToken = result.Message,
-                        Email = result.UserInfo["Email"],
+                        Id = result.UserInfo[System.Security.Claims.ClaimTypes.NameIdentifier],
                         FirstName = result.UserInfo["FirstName"],
                         LastName = result.UserInfo["LastName"],
-                        Id = result.UserInfo[System.Security.Claims.ClaimTypes.NameIdentifier],
+                        Email = result.UserInfo["Email"],
+                        AccessToken = result.Token,
+                        Message = result.Message,
                     };
 
                     await StorageService.SetItemAsync("User", userInfo);

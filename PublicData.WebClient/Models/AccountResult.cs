@@ -5,6 +5,7 @@ namespace PublicData.WebClient.Models
 {
     public class AccountResult
     {
+        public string Token { get; set; }
         public string Message { get; set; }
         public bool IsSuccess { get; set; }
         public string[] Errors { get; set; }
