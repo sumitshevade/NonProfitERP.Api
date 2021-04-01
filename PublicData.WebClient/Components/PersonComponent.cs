@@ -76,31 +76,28 @@ namespace PublicData.WebClient.Components
         public string SelectedCountryId { get; set; } = "0";
         public string SelectedStateId { get; set; } = "0";
         public string SelectedCityId { get; set; } = "0";
-        public string SelectedTalukaId { get; set; } = "0";
-        public string SelectedDistrictId { get; set; } = "0";
+        public string SelectedTalukaId { get; set; } = null;
+        public string SelectedDistrictId { get; set; } = null;
         public string SelectedWorkFrequencyId { get; set; } = "0";
         public string SelectedIsWorker { get; set; } = "0";
         public string SelectedContactTypeId { get; set; } = "0";
         public string SelectedIsDefaultContact { get; set; } = "0";
         public string SelectedIsPermanentAddress { get; set; } = "0";
         public string SelectedIsGovtBuiltUp { get; set; } = "0";
-        public string SelectedHomeStatusId { get; set; } = "0";
-        public string SelectedLocalityClassId { get; set; } = "0";
-        public string SelectedResidentialStatusId { get; set; } = "0";
-        public string SelectedResidentialAreaId { get; set; } = "0";
+        public string SelectedHomeStatusId { get; set; } = null;
+        public string SelectedLocalityClassId { get; set; } = null;
+        public string SelectedResidentialStatusId { get; set; } = null;
+        public string SelectedResidentialAreaId { get; set; } = null;
         public string SelectedMaritalStatus { get; set; } = "0";
         public string SelectedParentalStatusId { get; set; } = "0";
-        public string SelectedReligionId { get; set; } = "0";
-        public string SelectedCasteId { get; set; } = "0";
-        public string SelectedCategoryId { get; set; } = "0";
+        public string SelectedReligionId { get; set; } = null;
+        public string SelectedCasteId { get; set; } = null;
+        public string SelectedCategoryId { get; set; } = null;
         public string SelectedGenderId { get; set; }
 
-        public string ContactDisabled { get; set; }
-
         public string Message = string.Empty;
-        public string ContactSaveButton = string.Empty;
-        public string AddressSaveButton = string.Empty;
-        public string PrivateSaveButton = string.Empty;
+        public string ContactSaveButton { get; set; } = "Save";
+        public string AddressSaveButton { get; set; } = "Save";
 
         public AlertMessageType MessageType = AlertMessageType.Success;
 
@@ -130,45 +127,42 @@ namespace PublicData.WebClient.Components
             DistrictRepository.SetToken(userState.User.FindFirst("AccessToken").Value);
             TalukaRepository.SetToken(userState.User.FindFirst("AccessToken").Value);
 
-            var personId = await SessionStorageService.GetItemAsync<int>("personId");
-            if (personId == 0)
+            Countries = await CountryRepository.GetListAsync("/api/master/country");
+
+            Details = await DetailRepository.GetListAsync("/api/master/header/details");
+
+            if (Details != null)
             {
-                ContactDisabled = "disabled";
+                Castes = Details.Where(w => w.HeaderId == 2).ToList();
+                Categories = Details.Where(w => w.HeaderId == 3).ToList();
+                HomeStatus = Details.Where(h => h.HeaderId == 8).ToList();
+                JoinedAs = Details.Where(j => j.HeaderId == 10).ToList();
+                LocalityClass = Details.Where(h => h.HeaderId == 12).ToList();
+                ParentalStatus = Details.Where(c => c.HeaderId == 14).ToList();
+                ContactTypes = Details.Where(c => c.HeaderId == 15).ToList();
+                PersonTypes = Details.Where(p => p.HeaderId == 16).ToList();
+                Religions = Details.Where(w => w.HeaderId == 18).ToList();
+                ResidentialAreas = Details.Where(h => h.HeaderId == 19).ToList();
+                ResidentialStatus = Details.Where(h => h.HeaderId == 20).ToList();
+                WorkFrequencies = Details.Where(w => w.HeaderId == 26).ToList();
             }
-            else
+
+            var personId = await SessionStorageService.GetItemAsync<int>("personId");
+            
+            if (personId != 0)
             {
-                ContactDisabled = "";
                 Person = await PersonRepository.GetByIdAsync("/api/person/" + personId);
                 PersonContacts = await PersonContactRepository.GetListAsync("/api/person/" + personId + "/contact");
                 PersonAddresses = await PersonAddressRepository.GetListAsync("/api/person/" + personId + "/address");
                 var ppi = await PersonPrivateInfoRepository.GetByIdAsync("/api/person/" + personId + "/private");
                 PersonPrivateInformation = ppi ?? new PersonPrivateInformation();
 
-                Countries = await CountryRepository.GetListAsync("/api/master/country");
-
-                Details = await DetailRepository.GetListAsync("/api/master/header/details");
-
-                if (Details != null)
-                {
-                    Castes = Details.Where(w => w.HeaderId == 2).ToList();
-                    Categories = Details.Where(w => w.HeaderId == 3).ToList();
-                    HomeStatus = Details.Where(h => h.HeaderId == 8).ToList();
-                    JoinedAs = Details.Where(j => j.HeaderId == 10).ToList();
-                    LocalityClass = Details.Where(h => h.HeaderId == 12).ToList();
-                    ParentalStatus = Details.Where(c => c.HeaderId == 14).ToList();
-                    ContactTypes = Details.Where(c => c.HeaderId == 15).ToList();
-                    PersonTypes = Details.Where(p => p.HeaderId == 16).ToList();
-                    Religions = Details.Where(w => w.HeaderId == 18).ToList();
-                    ResidentialAreas = Details.Where(h => h.HeaderId == 19).ToList();
-                    ResidentialStatus = Details.Where(h => h.HeaderId == 20).ToList();
-                    WorkFrequencies = Details.Where(w => w.HeaderId == 26).ToList();
-                }
-
                 SelectedNationalityId = Person.CountryId.ToString();
                 SelectedPersonTypeId = Person.PersonTypeId.ToString();
                 SelectedJoinedAsId = Person.JoinedAsId.ToString();
                 SelectedWorkFrequencyId = Person.WorkFrequencyId.ToString();
                 SelectedIsWorker = Person.IsWorker == false ? "false" : "true";
+                SelectedGenderId = Person.Gender.ToString();
 
                 SelectedContactTypeId = PersonContact.ContactTypeId.ToString();
                 SelectedIsDefaultContact = PersonContact.IsDefault == false ? "false" : "true";
@@ -178,51 +172,49 @@ namespace PublicData.WebClient.Components
                 SelectedReligionId = PersonPrivateInformation.ReligionId.ToString();
                 SelectedCasteId = PersonPrivateInformation.CasteId.ToString();
                 SelectedCategoryId = PersonPrivateInformation.CategoryId.ToString();
-
-                ContactSaveButton = "Save";
-                AddressSaveButton = "Save";
             }
 
             CommonService.IsBusy = false;
         }
 
         #region -- Person
+
         public async Task CreatePerson()
         {
             CommonService.IsBusy = true;
 
             Person.PersonTypeId = Convert.ToInt32(SelectedPersonTypeId);
             Person.WorkFrequencyId = Convert.ToInt32(SelectedWorkFrequencyId);
-            Person.CountryId = Convert.ToInt32(SelectedCountryId);
+            Person.CountryId = Convert.ToInt32(SelectedNationalityId);
             Person.JoinedAsId = Convert.ToInt32(SelectedJoinedAsId);
             Person.IsWorker = Convert.ToBoolean(SelectedIsWorker);
             Person.Gender = Convert.ToChar(SelectedGenderId);
 
-            var result = 0;
-
             var savedPersonId = await SessionStorageService.GetItemAsync<int>("personId");
             if (savedPersonId == 0)
             {
-                result = await PersonRepository.AddAsync(Person, "/api/person");        // create new
+                var result = await PersonRepository.AddAsync(Person, "/api/person");        // create new
+
+                if (result > 0)
+                {
+                    await SessionStorageService.SetItemAsync("personId", result);
+                    StateHasChanged();
+
+                    ToastService.ShowSuccess("Record has been created!!!", "Success");
+                }
+                else
+                    ToastService.ShowError("Something went wrong!!!", "Error");
             }
             else
             {
                 Person.Id = Convert.ToInt32(savedPersonId);
                 var boolResult = await PersonRepository.UpdateAsync(Person, "/api/person");        // update
                 if (boolResult == true)
-                    result = 1;
+                    ToastService.ShowSuccess("Record has been updated!!!", "Success");
+                else
+                    ToastService.ShowError("Something went wrong!!!", "Error");
             }
 
-            if (result > 0)
-            {
-                ContactDisabled = "";
-                await SessionStorageService.SetItemAsync("personId", result);
-                ToastService.ShowSuccess("The person has been created!!!", "Success");
-            }
-            else
-            {
-                ToastService.ShowError("Something went wrong!!!", "Error");
-            }
 
             CommonService.IsBusy = false;
         }
@@ -237,7 +229,6 @@ namespace PublicData.WebClient.Components
             PersonContact = new PersonContact();
             PersonAddress = new PersonAddress();
 
-            ContactDisabled = "disabled";
             StateHasChanged();
             ToastService.ShowSuccess("Ready to add new Person!!!", "Success");
 
@@ -347,14 +338,21 @@ namespace PublicData.WebClient.Components
             PersonAddress.CountryId = Convert.ToInt32(SelectedCountryId);
             PersonAddress.StateId = Convert.ToInt32(SelectedStateId);
             PersonAddress.CityId = Convert.ToInt32(SelectedCityId);
-            PersonAddress.DistrictId = Convert.ToInt32(SelectedDistrictId);
-            PersonAddress.TalukaId = Convert.ToInt32(SelectedTalukaId);
             PersonAddress.IsGovtBuildUp = Convert.ToBoolean(SelectedIsGovtBuiltUp);
             PersonAddress.IsPermanent = Convert.ToBoolean(SelectedIsPermanentAddress);
-            PersonAddress.HomeStatusId = Convert.ToInt32(SelectedHomeStatusId);
-            PersonAddress.LocalityClassId = Convert.ToInt32(SelectedLocalityClassId);
-            PersonAddress.ResidentialStatusId = Convert.ToInt32(SelectedResidentialStatusId);
-            PersonAddress.ResidentialAreaId = Convert.ToInt32(SelectedResidentialAreaId);
+
+            if (!string.IsNullOrWhiteSpace(SelectedDistrictId))
+                PersonAddress.DistrictId = Convert.ToInt32(SelectedDistrictId);
+            if (!string.IsNullOrWhiteSpace(SelectedTalukaId))
+                PersonAddress.TalukaId = Convert.ToInt32(SelectedTalukaId);
+            if (!string.IsNullOrWhiteSpace(SelectedHomeStatusId))
+                PersonAddress.HomeStatusId = Convert.ToInt32(SelectedHomeStatusId);
+            if (!string.IsNullOrWhiteSpace(SelectedLocalityClassId))
+                PersonAddress.LocalityClassId = Convert.ToInt32(SelectedLocalityClassId);
+            if (!string.IsNullOrWhiteSpace(SelectedResidentialStatusId))
+                PersonAddress.ResidentialStatusId = Convert.ToInt32(SelectedResidentialStatusId);
+            if (!string.IsNullOrWhiteSpace(SelectedResidentialAreaId))
+                PersonAddress.ResidentialAreaId = Convert.ToInt32(SelectedResidentialAreaId);
 
             var result = 0;
 
@@ -410,6 +408,7 @@ namespace PublicData.WebClient.Components
 
             SelectedCityId = PersonAddress.CityId.ToString();
             SelectedDistrictId = PersonAddress.DistrictId.ToString();
+            if (!string.IsNullOrWhiteSpace(SelectedDistrictId))
             await GetTalukasByDistrict();
 
             SelectedTalukaId = PersonAddress.TalukaId.ToString();
@@ -466,11 +465,15 @@ namespace PublicData.WebClient.Components
         {
             CommonService.IsBusy = true;
 
-            PersonPrivateInformation.ReligionId = Convert.ToInt32(SelectedReligionId);
-            PersonPrivateInformation.CasteId = Convert.ToInt32(SelectedCasteId);
-            PersonPrivateInformation.CategoryId = Convert.ToInt32(SelectedCategoryId);
+            if (!string.IsNullOrWhiteSpace(SelectedReligionId))
+                PersonPrivateInformation.ReligionId = Convert.ToInt32(SelectedReligionId);
+            if (!string.IsNullOrWhiteSpace(SelectedCasteId))
+                PersonPrivateInformation.CasteId = Convert.ToInt32(SelectedCasteId);
+            if (!string.IsNullOrWhiteSpace(SelectedCategoryId))
+                PersonPrivateInformation.CategoryId = Convert.ToInt32(SelectedCategoryId);
+            if (!string.IsNullOrWhiteSpace(SelectedParentalStatusId))
+                PersonPrivateInformation.ParentalStatusId = Convert.ToInt32(SelectedParentalStatusId);
             PersonPrivateInformation.MaritalStatus = Convert.ToInt32(SelectedMaritalStatus);
-            PersonPrivateInformation.ParentalStatusId = Convert.ToInt32(SelectedParentalStatusId);
 
             var savedPersonId = await SessionStorageService.GetItemAsync<int>("personId");
 
@@ -493,11 +496,10 @@ namespace PublicData.WebClient.Components
 
         #endregion
 
-
         #region -- Change value methods
 
         public void ChangeNationality(string value)
-            => SelectedCountryId = value;
+            => SelectedNationalityId = value;
 
         public void ChangeState(string value)
             => SelectedStateId = value;

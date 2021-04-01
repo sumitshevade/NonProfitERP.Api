@@ -14,7 +14,7 @@
                     <InputSelect ValueChanged="@((string value) => ChangeMaritalStatus(value))"
                                  ValueExpression="@(() => SelectedMaritalStatus)"
                                  Value="@SelectedMaritalStatus"
-                                 class="form-control" required> q
+                                 class="form-control" required>
                         <option selected>Select...</option>
                         <option value="1">Unmarried</option>
                         <option value="2">Married</option>
@@ -32,7 +32,7 @@
                                  ValueExpression="@(() => SelectedParentalStatusId)"
                                  Value="@SelectedParentalStatusId"
                                  class="form-control">
-                        <option value="0" selected>Select...</option>
+                        <option value="" selected>Select...</option>
                         @foreach (var item in ParentalStatus)
                         {
                             <option value="@item.Id">@item.Value</option>
@@ -46,7 +46,7 @@
                                  ValueExpression="@(() => SelectedReligionId)"
                                  Value="@SelectedReligionId"
                                  class="form-control">
-                        <option value="0" selected>Select...</option>
+                        <option value="" selected>Select...</option>
                         @foreach (var item in Religions)
                         {
                             <option value="@item.Id">@item.Value</option>
@@ -60,7 +60,7 @@
                                  ValueExpression="@(() => SelectedCasteId)"
                                  Value="@SelectedCasteId"
                                  class="form-control">
-                        <option value="0" selected>Select...</option>
+                        <option value="" selected>Select...</option>
                         @foreach (var item in Castes)
                         {
                             <option value="@item.Id">@item.Value</option>
@@ -74,7 +74,7 @@
                                  ValueExpression="@(() => SelectedCategoryId)"
                                  Value="@SelectedCategoryId"
                                  class="form-control">
-                        <option value="0" selected>Select...</option>
+                        <option value="" selected>Select...</option>
                         @foreach (var item in Categories)
                         {
                             <option value="@item.Id">@item.Value</option>

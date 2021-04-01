@@ -14,7 +14,7 @@
                                  ValueExpression="@(() => SelectedCountryId)"
                                  Value="@SelectedCountryId"
                                  class="form-control" required>
-                        <option selected>Select...</option>
+                        <option value="" selected>Select...</option>
                         @foreach (var item in Countries)
                         {
                             <option value="@item.Id">@item.Name</option>
@@ -27,7 +27,7 @@
                                  ValueExpression="@(() => SelectedStateId)"
                                  Value="@SelectedStateId"
                                  class="form-control" required>
-                        @*<option selected>Select...</option>*@
+                        <option value="" selected>Select...</option>
                         @foreach (var item in States)
                         {
                             <option value="@item.Id">@item.Name</option>
@@ -40,7 +40,7 @@
                                  ValueExpression="@(() => SelectedCityId)"
                                  Value="@SelectedCityId"
                                  class="form-control" required>
-                        @*<option selected>Select...</option>*@
+                        <option value="" selected>Select...</option>
                         @foreach (var item in Cities)
                         {
                             <option value="@item.Id">@item.Name</option>
@@ -53,7 +53,7 @@
                                  ValueExpression="@(() => SelectedDistrictId)"
                                  Value="@SelectedDistrictId"
                                  class="form-control">
-                        <option value="0" selected>Select...</option>
+                        <option value="" selected>Select...</option>
                         @foreach (var item in Districts)
                         {
                             <option value="@item.Id">@item.Name</option>
@@ -66,7 +66,7 @@
                                  ValueExpression="@(() => SelectedTalukaId)"
                                  Value="@SelectedTalukaId"
                                  class="form-control">
-                        <option value="0" selected>Select...</option>
+                        <option value="" selected>Select...</option>
                         @foreach (var item in Talukas)
                         {
                             <option value="@item.Id">@item.Name</option>
@@ -83,7 +83,7 @@
                                  ValueExpression="@(() => SelectedIsPermanentAddress)"
                                  Value="@SelectedIsPermanentAddress"
                                  class="form-control" required>
-                        @*<option selected>Select...</option>*@
+                        <option value="" selected>Select...</option>
                         <option value="true">Yes</option>
                         <option value="false">No</option>
                     </InputSelect>
@@ -121,8 +121,7 @@
                     <InputSelect ValueChanged="@((string value) => ChangeIsGovtBuiltUp(value))"
                                  ValueExpression="@(() => SelectedIsGovtBuiltUp)"
                                  Value="@SelectedIsGovtBuiltUp"
-                                 class="form-control">
-                        <option selected value="0">Select...</option>
+                                 class="form-control" required>
                         <option value="true">Yes</option>
                         <option value="false">No</option>
                     </InputSelect>
@@ -133,7 +132,7 @@
                                  ValueExpression="@(() => SelectedHomeStatusId)"
                                  Value="@SelectedHomeStatusId"
                                  class="form-control">
-                        <option value="0" selected>Select...</option>
+                        <option value="" selected>Select...</option>
                         @foreach (var item in HomeStatus)
                         {
                             <option value="@item.Id">@item.Value</option>
@@ -146,7 +145,7 @@
                                  ValueExpression="@(() => SelectedLocalityClassId)"
                                  Value="@SelectedLocalityClassId"
                                  class="form-control">
-                        <option value="0" selected>Select...</option>
+                        <option value="" selected>Select...</option>
                         @foreach (var item in LocalityClass)
                         {
                             <option value="@item.Id">@item.Value</option>
@@ -159,7 +158,7 @@
                                  ValueExpression="@(() => SelectedResidentialStatusId)"
                                  Value="@SelectedResidentialStatusId"
                                  class="form-control">
-                        <option value="0" selected>Select...</option>
+                        <option value="" selected>Select...</option>
                         @foreach (var item in ResidentialStatus)
                         {
                             <option value="@item.Id">@item.Value</option>
@@ -172,7 +171,7 @@
                                  ValueExpression="@(() => SelectedResidentialAreaId)"
                                  Value="@SelectedResidentialAreaId"
                                  class="form-control">
-                        <option value="0" selected>Select...</option>
+                        <option value="" selected>Select...</option>
                         @foreach (var item in ResidentialAreas)
                         {
                             <option value="@item.Id">@item.Value</option>

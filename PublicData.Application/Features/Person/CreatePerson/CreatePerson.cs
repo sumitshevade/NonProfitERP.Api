@@ -44,6 +44,7 @@ namespace PublicData.Application.Features.People.CreatePerson
         public string LastName { get; set; }
         public DateTime? BirthDate { get; set; }
         public string BirthLocation { get; set; }
+        public char Gender { get; set; }
         public string LongText { get; set; }
         public string HighLightText { get; set; }
         public string Keywords { get; set; }
@@ -54,8 +55,6 @@ namespace PublicData.Application.Features.People.CreatePerson
         public int? CountryId { get; set; }
         public string ProfilePicturePath { get; set; }
         public string HeroPicturePath { get; set; }
-        public bool IsAlive { get; set; }
-        public DateTime? DateOfExpiry { get; set; }
         public bool IsActive { get; set; }
 
         public void Mapping(Profile profile)

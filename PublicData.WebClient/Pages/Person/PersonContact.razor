@@ -13,7 +13,7 @@
                                  ValueExpression="@(() => SelectedContactTypeId)"
                                  Value="@SelectedContactTypeId"
                                  class="form-control" required>
-                        <option value="0">Select...</option>
+                        <option value="">Select...</option>
                         @foreach (var item in ContactTypes)
                         {
                             <option value="@item.Id">@item.Value</option>

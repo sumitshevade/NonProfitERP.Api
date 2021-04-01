@@ -9,6 +9,7 @@ using PublicData.Application.Mappings;
 namespace PublicData.Application.Features.PersonPrivateInformation.CreatePersonPrivateInformation
 {
     using DAL.Entities;
+    using System;
 
     public class CreatePersonPrivateInformationCommandHandler : IRequestHandler<CreatePersonPrivateInformationCommand, int>
     {
@@ -36,6 +37,7 @@ namespace PublicData.Application.Features.PersonPrivateInformation.CreatePersonP
 
     public class CreatePersonPrivateInformationCommand : IRequest<int>, IMapFrom<PersonPrivateInformation>
     {
+        public int Id { get; set; }
         public int PersonId { get; set; }
         public int MaritalStatus { get; set; }
         public string AadharCardNo { get; set; }
@@ -49,6 +51,8 @@ namespace PublicData.Application.Features.PersonPrivateInformation.CreatePersonP
         public string OtherCategory { get; set; }
         public int? ParentalStatusId { get; set; }
         public string OtherParentalStatus { get; set; }
+        public bool IsAlive { get; set; }
+        public DateTime? DateOfExpiry { get; set; }
         public bool IsActive { get; set; }
 
         public void Mapping(Profile profile)
