@@ -9,5 +9,7 @@ namespace PublicData.Common.Interfaces
         Task<UserManagerResponse> RegisterUserAsync(UserRegistration model);
 
         Task<UserManagerResponse> LoginUserAsync(UserLogin model);
+
+        Task<UserManagerResponse> CreateRolesAndUsersAsync(UserRegistration model);
     }
 }
