@@ -10,24 +10,20 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using PublicData.Common.Identity.Models;
 using Microsoft.Extensions.Configuration;
-using System.Collections.Generic;
 
 namespace PublicData.Common.Security.Identity
 {
     public class UserService : IUserService
     {
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly UserManager<ApplicationUser> _userManger;
         private readonly IConfiguration _configuration;
 
-        public UserService(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration)
+        public UserService(UserManager<ApplicationUser> userManager, IConfiguration configuration)
         {
-            _userManager = userManager;
+            _userManger = userManager;
             _configuration = configuration;
-            _roleManager = roleManager;
         }
 
-        // TODO: Registration functionality mostly not needed
         public async Task<UserManagerResponse> RegisterUserAsync(UserRegistration model)
         {
             if (model == null)
@@ -48,10 +44,11 @@ namespace PublicData.Common.Security.Identity
                 LastName = model.LastName
             };
 
-            var result = await _userManager.CreateAsync(identityUser, model.Password);
+            var result = await _userManger.CreateAsync(identityUser, model.Password);
 
             if (result.Succeeded)
             {
+
                 return new UserManagerResponse
                 {
                     Message = "User created successfully!",
@@ -69,7 +66,7 @@ namespace PublicData.Common.Security.Identity
 
         public async Task<UserManagerResponse> LoginUserAsync(UserLogin model)
         {
-            var user = await _userManager.FindByEmailAsync(model.Email);
+            var user = await _userManger.FindByEmailAsync(model.Email);
 
             if (user == null)
             {
@@ -80,7 +77,7 @@ namespace PublicData.Common.Security.Identity
                 };
             }
 
-            var result = await _userManager.CheckPasswordAsync(user, model.Password);
+            var result = await _userManger.CheckPasswordAsync(user, model.Password);
 
             if (!result)
                 return new UserManagerResponse
@@ -89,9 +86,15 @@ namespace PublicData.Common.Security.Identity
                     IsSuccess = false,
                 };
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["AuthSettings:Key"]));
+            var claims = new[]
+            {
+                new Claim("Email", model.Email),
+                new Claim(ClaimTypes.NameIdentifier, user.Id),
+                new Claim("FirstName", user.FirstName),
+                new Claim("LastName", user.LastName)
+            };
 
-            var claims = await GetValidClaims(model.Email, user);
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["AuthSettings:Key"]));
 
             var token = new JwtSecurityToken(
                 issuer: _configuration["AuthSettings:Issuer"],
@@ -111,95 +114,5 @@ namespace PublicData.Common.Security.Identity
                 ExpiryDate = token.ValidTo
             };
         }
-
-        // TODO: Maybe two different methods needed for allowing users to add login... Not sure
-        public async Task<UserManagerResponse> CreateRolesAndUsersAsync(UserRegistration model)
-        {
-            await CreateRoleIfDoesNotExist(model.Role);
-
-            var user = new ApplicationUser
-            {
-                UserName = model.Email,
-                Email = model.Email,
-                FirstName = model.FirstName,
-                LastName = model.LastName
-            };
-
-            string password = model.Password;
-
-            var chkUser = await _userManager.CreateAsync(user, password);
-
-            //Add default User to Role Admin
-            if (chkUser.Succeeded)
-            {
-                var result = await _userManager.AddToRoleAsync(user, model.Role);
-
-                return new UserManagerResponse
-                {
-                    Message = "User created and Role assigned.",
-                    IsSuccess = true
-                };
-            }
-
-            return new UserManagerResponse
-            {
-                Message = "User did not create.",
-                IsSuccess = false,
-                Errors = chkUser.Errors.Select(e => e.Description)
-            };
-        }
-
-        #region -- Helper methods
-        private async Task<List<Claim>> GetValidClaims(string email, ApplicationUser user)
-        {
-            //IdentityOptions _options = new IdentityOptions();
-
-            // TODO: Use actual claim names e.g. for email, firstname (name)
-
-            var claims = new List<Claim>
-            {
-                new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
-                //new Claim(_options.ClaimsIdentity.UserIdClaimType, user.Id.ToString()),
-                //new Claim(_options.ClaimsIdentity.UserNameClaimType, user.UserName),
-                new Claim("Email", email),
-                new Claim(ClaimTypes.NameIdentifier, user.Id),
-                new Claim("FirstName", user.FirstName),
-                new Claim("LastName", user.LastName)
-            };
-
-            var userClaims = await _userManager.GetClaimsAsync(user);
-            var userRoles = await _userManager.GetRolesAsync(user);
-            claims.AddRange(userClaims);
-            foreach (var userRole in userRoles)
-            {
-                claims.Add(new Claim(ClaimTypes.Role, userRole));
-                var role = await _roleManager.FindByNameAsync(userRole);
-                if (role != null)
-                {
-                    var roleClaims = await _roleManager.GetClaimsAsync(role);
-                    foreach (Claim roleClaim in roleClaims)
-                    {
-                        claims.Add(roleClaim);
-                    }
-                }
-            }
-
-            return claims;
-        }
-
-        private async Task CreateRoleIfDoesNotExist(string roleName)
-        {
-            if (!await _roleManager.RoleExistsAsync(roleName))
-            {
-                var role = new IdentityRole
-                {
-                    Name = roleName
-                };
-
-                await _roleManager.CreateAsync(role);
-            }
-        }
-
-        #endregion
     }
 }
