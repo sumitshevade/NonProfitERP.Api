@@ -2,12 +2,12 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace PublicData.Data.Mapping
+namespace NonProfitERP.Data.Mapping
 {
     public partial class TransactionLogValueMap
-        : IEntityTypeConfiguration<PublicData.DAL.Entities.TransactionLogValue>
+        : IEntityTypeConfiguration<NonProfitERP.DAL.Entities.TransactionLogValue>
     {
-        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<PublicData.DAL.Entities.TransactionLogValue> builder)
+        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<NonProfitERP.DAL.Entities.TransactionLogValue> builder)
         {
             #region Generated Configure
             // table

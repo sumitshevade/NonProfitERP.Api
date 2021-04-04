@@ -1,7 +1,7 @@
-﻿using PublicData.Common.Interfaces;
-using PublicData.DAL.Entities;
+﻿using NonProfitERP.Common.Interfaces;
+using NonProfitERP.DAL.Entities;
 
-namespace PublicData.DAL.Interfaces
+namespace NonProfitERP.DAL.Interfaces
 {
     public interface IPersonHobbyFavoriteRepository : IRepository<PersonHobbyFavorite>
     {

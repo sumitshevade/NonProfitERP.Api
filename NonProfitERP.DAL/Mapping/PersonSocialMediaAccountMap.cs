@@ -2,12 +2,12 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace PublicData.Data.Mapping
+namespace NonProfitERP.Data.Mapping
 {
     public partial class PersonSocialMediaAccountMap
-        : IEntityTypeConfiguration<PublicData.DAL.Entities.PersonSocialMediaAccount>
+        : IEntityTypeConfiguration<NonProfitERP.DAL.Entities.PersonSocialMediaAccount>
     {
-        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<PublicData.DAL.Entities.PersonSocialMediaAccount> builder)
+        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<NonProfitERP.DAL.Entities.PersonSocialMediaAccount> builder)
         {
             #region Generated Configure
             // table

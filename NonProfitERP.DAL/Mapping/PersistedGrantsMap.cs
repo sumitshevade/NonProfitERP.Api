@@ -2,12 +2,12 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace PublicData.DAL.Mapping
+namespace NonProfitERP.DAL.Mapping
 {
     public partial class PersistedGrantsMap
-        : IEntityTypeConfiguration<PublicData.DAL.Entities.PersistedGrants>
+        : IEntityTypeConfiguration<NonProfitERP.DAL.Entities.PersistedGrants>
     {
-        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<PublicData.DAL.Entities.PersistedGrants> builder)
+        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<NonProfitERP.DAL.Entities.PersistedGrants> builder)
         {
             #region Generated Configure
             // table

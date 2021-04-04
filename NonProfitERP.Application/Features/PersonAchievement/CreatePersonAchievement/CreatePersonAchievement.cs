@@ -1,15 +1,15 @@
 ﻿using System;
 using MediatR;
 using AutoMapper;
-using PublicData.Common.Interfaces;
-using PublicData.DAL.Interfaces;
+using NonProfitERP.Common.Interfaces;
+using NonProfitERP.DAL.Interfaces;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace PublicData.Application.Features.PersonAchievement.CreatePersonAchievement
+namespace NonProfitERP.Application.Features.PersonAchievement.CreatePersonAchievement
 {
     using DAL.Entities;
-    using PublicData.Application.Mappings;
+    using NonProfitERP.Application.Mappings;
 
     public class CreatePersonAchievementCommandHandler : IRequestHandler<CreatePersonAchievementCommand, int>
     {

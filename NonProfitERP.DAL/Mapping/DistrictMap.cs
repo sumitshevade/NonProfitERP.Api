@@ -2,12 +2,12 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace PublicData.Data.Mapping
+namespace NonProfitERP.Data.Mapping
 {
     public partial class DistrictMap
-        : IEntityTypeConfiguration<PublicData.DAL.Entities.District>
+        : IEntityTypeConfiguration<NonProfitERP.DAL.Entities.District>
     {
-        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<PublicData.DAL.Entities.District> builder)
+        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<NonProfitERP.DAL.Entities.District> builder)
         {
             #region Generated Configure
             // table

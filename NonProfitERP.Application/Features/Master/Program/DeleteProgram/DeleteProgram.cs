@@ -2,13 +2,13 @@
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
-using PublicData.DAL.Interfaces;
-using PublicData.Common.Exceptions;
-using PublicData.Common.Interfaces;
+using NonProfitERP.DAL.Interfaces;
+using NonProfitERP.Common.Exceptions;
+using NonProfitERP.Common.Interfaces;
 
-namespace PublicData.Application.Features.Master.Program.DeleteProgram
+namespace NonProfitERP.Application.Features.Master.Program.DeleteProgram
 {
-    using PublicData.DAL.Entities;
+    using NonProfitERP.DAL.Entities;
 
     public class DeleteProgramCommandHandler : IRequestHandler<DeleteProgramCommand, bool>
     {

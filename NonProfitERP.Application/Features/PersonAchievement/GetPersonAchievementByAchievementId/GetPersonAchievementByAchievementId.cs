@@ -2,10 +2,10 @@
 using AutoMapper;
 using System.Threading;
 using System.Threading.Tasks;
-using PublicData.DAL.Interfaces;
-using PublicData.Application.Shared;
+using NonProfitERP.DAL.Interfaces;
+using NonProfitERP.Application.Shared;
 
-namespace PublicData.Application.Features.PersonAchievement.GetPersonAchievementByAchievementId
+namespace NonProfitERP.Application.Features.PersonAchievement.GetPersonAchievementByAchievementId
 {
     public class GetPersonAchievementByAchievementIdQueryHandler : IRequestHandler<GetPersonAchievementByAchievementIdQuery, PersonAchievementModel>
     {

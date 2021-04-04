@@ -1,7 +1,7 @@
-using PublicData.DAL;
+using NonProfitERP.DAL;
 using System;
 
-namespace PublicData.DAL.Entities
+namespace NonProfitERP.DAL.Entities
 {
     public partial class Batch: Entity
     {

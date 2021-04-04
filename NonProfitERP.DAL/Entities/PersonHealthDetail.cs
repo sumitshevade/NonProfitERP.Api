@@ -1,4 +1,4 @@
-namespace PublicData.DAL.Entities
+namespace NonProfitERP.DAL.Entities
 {
     public partial class PersonHealthDetail : Entity
     {

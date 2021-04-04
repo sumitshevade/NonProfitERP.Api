@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using PublicData.Application.Mappings;
-using PublicData.DAL.Entities;
+using NonProfitERP.Application.Mappings;
+using NonProfitERP.DAL.Entities;
 using System;
 
-namespace PublicData.Application.Shared
+namespace NonProfitERP.Application.Shared
 {
     public partial class BatchModel : IMapFrom<Batch>
     {

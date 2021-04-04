@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace PublicData.Api.Controllers
+namespace NonProfitERP.Main.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

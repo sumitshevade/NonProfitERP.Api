@@ -2,12 +2,12 @@
 using AutoMapper;
 using System.Threading;
 using System.Threading.Tasks;
-using PublicData.DAL.Interfaces;
-using PublicData.Common.Interfaces;
-using PublicData.Common.Exceptions;
-using PublicData.Application.Mappings;
+using NonProfitERP.DAL.Interfaces;
+using NonProfitERP.Common.Interfaces;
+using NonProfitERP.Common.Exceptions;
+using NonProfitERP.Application.Mappings;
 
-namespace PublicData.Application.Features.Master.State.UpdateStateById
+namespace NonProfitERP.Application.Features.Master.State.UpdateStateById
 {
     using DAL.Entities;
 

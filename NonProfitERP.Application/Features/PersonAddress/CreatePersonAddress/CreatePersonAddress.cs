@@ -1,14 +1,14 @@
 ﻿using MediatR;
 using AutoMapper;
-using PublicData.Common.Interfaces;
-using PublicData.DAL.Interfaces;
+using NonProfitERP.Common.Interfaces;
+using NonProfitERP.DAL.Interfaces;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace PublicData.Application.Features.PersonAddress.CreatePersonAddress
+namespace NonProfitERP.Application.Features.PersonAddress.CreatePersonAddress
 {
     using DAL.Entities;
-    using PublicData.Application.Mappings;
+    using NonProfitERP.Application.Mappings;
 
     public class CreatePersonAddressCommandHandler : IRequestHandler<CreatePersonAddressCommand, int>
     {

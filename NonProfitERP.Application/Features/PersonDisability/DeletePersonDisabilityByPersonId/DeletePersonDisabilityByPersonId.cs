@@ -1,13 +1,13 @@
 ﻿using MediatR;
-using PublicData.Common.Exceptions;
-using PublicData.Common.Interfaces;
-using PublicData.DAL.Interfaces;
+using NonProfitERP.Common.Exceptions;
+using NonProfitERP.Common.Interfaces;
+using NonProfitERP.DAL.Interfaces;
 using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace PublicData.Application.Features.PersonDisability.DeletePersonDisabilityByPersonId
+namespace NonProfitERP.Application.Features.PersonDisability.DeletePersonDisabilityByPersonId
 {
     public class DeletePersonDisabilityByPersonIdCommandHandler : IRequestHandler<DeletePersonDisabilityByPersonIdCommand, bool>
     {

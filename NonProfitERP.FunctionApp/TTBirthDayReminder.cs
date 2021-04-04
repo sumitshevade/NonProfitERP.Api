@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 using SendGrid;
 using SendGrid.Helpers.Mail;
 
-namespace PublicData.FunctionApp
+namespace NonProfitERP.FunctionApp
 {
     public static class TTBirthDayReminder
     {

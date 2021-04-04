@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore.Query;
-using PublicData.Common.Interfaces;
-using PublicData.DAL.Entities;
+using NonProfitERP.Common.Interfaces;
+using NonProfitERP.DAL.Entities;
 using System;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
 
-namespace PublicData.DAL.Interfaces
+namespace NonProfitERP.DAL.Interfaces
 {
     public interface IPersonRepository : IRepository<Person>
     {

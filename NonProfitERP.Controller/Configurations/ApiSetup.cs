@@ -1,9 +1,9 @@
 ﻿using System;
-using PublicData.Common.Interfaces;
+using NonProfitERP.Common.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
-using PublicData.Api.Services;
+using NonProfitERP.Main.Services;
 
-namespace PublicData.Api.Configurations
+namespace NonProfitERP.Main.Configurations
 {
     public static class ApiSetup
     {

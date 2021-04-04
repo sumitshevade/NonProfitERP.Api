@@ -4,7 +4,7 @@ using AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
 using FluentValidation;
 
-namespace PublicData.Application
+namespace NonProfitERP.Application
 {
     public static class DependencyInjection
     {

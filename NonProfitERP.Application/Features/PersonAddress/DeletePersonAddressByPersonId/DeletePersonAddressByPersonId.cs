@@ -1,13 +1,13 @@
 ﻿using MediatR;
-using PublicData.Common.Interfaces;
-using PublicData.DAL.Interfaces;
+using NonProfitERP.Common.Interfaces;
+using NonProfitERP.DAL.Interfaces;
 using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using PublicData.Common.Exceptions;
+using NonProfitERP.Common.Exceptions;
 
-namespace PublicData.Application.Features.PersonAddress.DeletePersonAddressByPersonId
+namespace NonProfitERP.Application.Features.PersonAddress.DeletePersonAddressByPersonId
 {
     using DAL.Entities;
 

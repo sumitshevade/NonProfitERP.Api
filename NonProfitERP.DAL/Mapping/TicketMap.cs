@@ -2,12 +2,12 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace PublicData.Data.Mapping
+namespace NonProfitERP.Data.Mapping
 {
     public partial class TicketMap
-        : IEntityTypeConfiguration<PublicData.DAL.Entities.Ticket>
+        : IEntityTypeConfiguration<NonProfitERP.DAL.Entities.Ticket>
     {
-        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<PublicData.DAL.Entities.Ticket> builder)
+        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<NonProfitERP.DAL.Entities.Ticket> builder)
         {
             #region Generated Configure
             // table

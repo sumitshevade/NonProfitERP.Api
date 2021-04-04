@@ -2,13 +2,13 @@
 using AutoMapper;
 using System.Threading;
 using System.Threading.Tasks;
-using PublicData.DAL.Interfaces;
-using PublicData.Common.Interfaces;
+using NonProfitERP.DAL.Interfaces;
+using NonProfitERP.Common.Interfaces;
 
-namespace PublicData.Application.Features.PersonSocialMediaAccount.CreatePersonSocialMediaAccount
+namespace NonProfitERP.Application.Features.PersonSocialMediaAccount.CreatePersonSocialMediaAccount
 {
     using DAL.Entities;
-    using PublicData.Application.Mappings;
+    using NonProfitERP.Application.Mappings;
 
     public class CreatePersonSocialMediaAccountCommandHandler : IRequestHandler<CreatePersonSocialMediaAccountCommand, int>
     {

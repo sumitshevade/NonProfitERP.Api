@@ -2,11 +2,11 @@
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
-using PublicData.DAL.Interfaces;
-using PublicData.Common.Interfaces;
-using PublicData.Common.Exceptions;
+using NonProfitERP.DAL.Interfaces;
+using NonProfitERP.Common.Interfaces;
+using NonProfitERP.Common.Exceptions;
 
-namespace PublicData.Application.Features.PersonHealthDetail.DeletePersonHealthDetailById
+namespace NonProfitERP.Application.Features.PersonHealthDetail.DeletePersonHealthDetailById
 {
     using DAL.Entities;
 

@@ -1,11 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace PublicData.Data.Mapping
+namespace NonProfitERP.Data.Mapping
 {
     public partial class PersonPrivateInformationMap
-        : IEntityTypeConfiguration<PublicData.DAL.Entities.PersonPrivateInformation>
+        : IEntityTypeConfiguration<NonProfitERP.DAL.Entities.PersonPrivateInformation>
     {
-        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<PublicData.DAL.Entities.PersonPrivateInformation> builder)
+        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<NonProfitERP.DAL.Entities.PersonPrivateInformation> builder)
         {
             #region Generated Configure
             // table

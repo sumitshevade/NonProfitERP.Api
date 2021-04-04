@@ -2,12 +2,12 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace PublicData.Data.Mapping
+namespace NonProfitERP.Data.Mapping
 {
     public partial class CourseHeadMap
-        : IEntityTypeConfiguration<PublicData.DAL.Entities.CourseHead>
+        : IEntityTypeConfiguration<NonProfitERP.DAL.Entities.CourseHead>
     {
-        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<PublicData.DAL.Entities.CourseHead> builder)
+        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<NonProfitERP.DAL.Entities.CourseHead> builder)
         {
             #region Generated Configure
             // table

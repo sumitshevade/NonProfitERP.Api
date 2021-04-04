@@ -1,16 +1,16 @@
 ﻿using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
-using PublicData.DAL.Interfaces;
-using PublicData.Common.Exceptions;
-using PublicData.Common.Interfaces;
+using NonProfitERP.DAL.Interfaces;
+using NonProfitERP.Common.Exceptions;
+using NonProfitERP.Common.Interfaces;
 using AutoMapper;
 using System;
 
-namespace PublicData.Application.Features.PersonFamilyDetail.UpdatePersonFamilyDetailByFamilyId
+namespace NonProfitERP.Application.Features.PersonFamilyDetail.UpdatePersonFamilyDetailByFamilyId
 {
     using DAL.Entities;
-    using PublicData.Application.Mappings;
+    using NonProfitERP.Application.Mappings;
 
     public class UpdatePersonFamilyDetailByFamilyIdCommandHandler : IRequestHandler<UpdatePersonFamilyDetailByFamilyIdCommand, bool>
     {

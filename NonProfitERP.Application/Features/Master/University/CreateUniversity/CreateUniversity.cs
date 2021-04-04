@@ -2,11 +2,11 @@
 using AutoMapper;
 using System.Threading;
 using System.Threading.Tasks;
-using PublicData.DAL.Interfaces;
-using PublicData.Common.Interfaces;
-using PublicData.Application.Mappings;
+using NonProfitERP.DAL.Interfaces;
+using NonProfitERP.Common.Interfaces;
+using NonProfitERP.Application.Mappings;
 
-namespace PublicData.Application.Features.Master.University.CreateUniversity
+namespace NonProfitERP.Application.Features.Master.University.CreateUniversity
 {
     using DAL.Entities;
 

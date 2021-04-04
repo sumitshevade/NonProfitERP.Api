@@ -3,12 +3,12 @@ using AutoMapper;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using PublicData.DAL.Interfaces;
+using NonProfitERP.DAL.Interfaces;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
-using PublicData.Application.Shared;
+using NonProfitERP.Application.Shared;
 
-namespace PublicData.Application.Features.PersonSocialMediaAccount.GetPersonAllSocialMediaAccount
+namespace NonProfitERP.Application.Features.PersonSocialMediaAccount.GetPersonAllSocialMediaAccount
 {
     public class GetPersonAllSocialMediaAccountsQueryHandler : IRequestHandler<GetPersonAllSocialMediaAccountsQuery, IList<PersonSocialMediaAccountModel>>
     {

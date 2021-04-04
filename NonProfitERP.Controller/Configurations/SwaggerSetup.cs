@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 
-namespace PublicData.Api.Configurations
+namespace NonProfitERP.Main.Configurations
 {
     public static class SwaggerSetup
     {
@@ -17,9 +17,9 @@ namespace PublicData.Api.Configurations
                 s.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "PublicData",
-                    Description = "PublicData API Swagger surface",
-                    Contact = new OpenApiContact { Name = "PublicData", Email = "it@swaroopwardhinee.org", Url = new Uri("http://www.swaroopwardhinee.org") },
+                    Title = "NonProfitERP",
+                    Description = "NonProfitERP API Swagger surface",
+                    Contact = new OpenApiContact { Name = "NonProfitERP", Email = "it@swaroopwardhinee.org", Url = new Uri("http://www.swaroopwardhinee.org") },
                     License = new OpenApiLicense() { Name = "MIT", Url = new Uri("https://github.com/") }
                 });
 
@@ -60,7 +60,7 @@ namespace PublicData.Api.Configurations
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "PublicData");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "NonProfitERP");
             });
         }
     }

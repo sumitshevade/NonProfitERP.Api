@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using MediatR;
-using PublicData.Application.Shared;
-using PublicData.DAL.Interfaces;
+using NonProfitERP.Application.Shared;
+using NonProfitERP.DAL.Interfaces;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace PublicData.Application.Features.Master.Country.GetCountryById
+namespace NonProfitERP.Application.Features.Master.Country.GetCountryById
 {
     public class GetCountryByIdQueryHandler : IRequestHandler<GetCountryByIdQuery, CountryModel>
     {

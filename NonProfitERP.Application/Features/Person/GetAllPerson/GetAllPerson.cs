@@ -3,12 +3,12 @@ using AutoMapper;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using PublicData.DAL.Interfaces;
+using NonProfitERP.DAL.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using PublicData.Application.Shared;
+using NonProfitERP.Application.Shared;
 using AutoMapper.QueryableExtensions;
 
-namespace PublicData.Application.Features.People.GetAllPerson
+namespace NonProfitERP.Application.Features.People.GetAllPerson
 {
     public class GetAllPersonHandler : IRequestHandler<GetAllPersonQuery, IList<PersonModel>>
     {

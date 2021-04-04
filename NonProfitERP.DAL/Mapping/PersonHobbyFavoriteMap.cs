@@ -2,12 +2,12 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace PublicData.Data.Mapping
+namespace NonProfitERP.Data.Mapping
 {
     public partial class PersonHobbyFavoriteMap
-        : IEntityTypeConfiguration<PublicData.DAL.Entities.PersonHobbyFavorite>
+        : IEntityTypeConfiguration<NonProfitERP.DAL.Entities.PersonHobbyFavorite>
     {
-        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<PublicData.DAL.Entities.PersonHobbyFavorite> builder)
+        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<NonProfitERP.DAL.Entities.PersonHobbyFavorite> builder)
         {
             #region Generated Configure
             // table

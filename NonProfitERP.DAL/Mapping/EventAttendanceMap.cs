@@ -2,12 +2,12 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace PublicData.Data.Mapping
+namespace NonProfitERP.Data.Mapping
 {
     public partial class EventAttendanceMap
-        : IEntityTypeConfiguration<PublicData.DAL.Entities.EventAttendance>
+        : IEntityTypeConfiguration<NonProfitERP.DAL.Entities.EventAttendance>
     {
-        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<PublicData.DAL.Entities.EventAttendance> builder)
+        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<NonProfitERP.DAL.Entities.EventAttendance> builder)
         {
             #region Generated Configure
             // table

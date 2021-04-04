@@ -2,13 +2,13 @@
 using AutoMapper;
 using System.Threading;
 using System.Threading.Tasks;
-using PublicData.DAL.Interfaces;
+using NonProfitERP.DAL.Interfaces;
 using System.Collections.Generic;
-using PublicData.Application.Shared;
+using NonProfitERP.Application.Shared;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper.QueryableExtensions;
 
-namespace PublicData.Application.Features.Master.Organization.GetOrganizations
+namespace NonProfitERP.Application.Features.Master.Organization.GetOrganizations
 {
     public class GetOrganizationsQueryHandler : IRequestHandler<GetOrganizationsQuery, IList<OrganizationModel>>
     {

@@ -3,12 +3,12 @@ using AutoMapper;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using PublicData.DAL.Interfaces;
+using NonProfitERP.DAL.Interfaces;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
-using PublicData.Application.Shared;
+using NonProfitERP.Application.Shared;
 
-namespace PublicData.Application.Features.PersonWorkExperience.GetPersonAllWorkExperiences
+namespace NonProfitERP.Application.Features.PersonWorkExperience.GetPersonAllWorkExperiences
 {
     public class GetPersonAllWorkExperiencesQueryHandler : IRequestHandler<GetPersonAllWorkExperiencesQuery, IList<PersonWorkExperienceModel>>
     {

@@ -2,12 +2,12 @@
 using AutoMapper;
 using System.Threading;
 using System.Threading.Tasks;
-using PublicData.DAL.Interfaces;
-using PublicData.Common.Interfaces;
-using PublicData.Application.Mappings;
+using NonProfitERP.DAL.Interfaces;
+using NonProfitERP.Common.Interfaces;
+using NonProfitERP.Application.Mappings;
 using System;
 
-namespace PublicData.Application.Features.Master.Batch.CreateBatch
+namespace NonProfitERP.Application.Features.Master.Batch.CreateBatch
 {
     using DAL.Entities;
 

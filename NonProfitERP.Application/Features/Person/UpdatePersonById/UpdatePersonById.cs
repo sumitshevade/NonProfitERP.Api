@@ -3,12 +3,12 @@ using MediatR;
 using AutoMapper;
 using System.Threading;
 using System.Threading.Tasks;
-using PublicData.DAL.Interfaces;
-using PublicData.Common.Interfaces;
-using PublicData.Common.Exceptions;
-using PublicData.Application.Mappings;
+using NonProfitERP.DAL.Interfaces;
+using NonProfitERP.Common.Interfaces;
+using NonProfitERP.Common.Exceptions;
+using NonProfitERP.Application.Mappings;
 
-namespace PublicData.Application.Features.Person.UpdatePersonById
+namespace NonProfitERP.Application.Features.Person.UpdatePersonById
 {
     using DAL.Entities;
 

@@ -2,12 +2,12 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace PublicData.Data.Mapping
+namespace NonProfitERP.Data.Mapping
 {
     public partial class PersonAchievementMap
-        : IEntityTypeConfiguration<PublicData.DAL.Entities.PersonAchievement>
+        : IEntityTypeConfiguration<NonProfitERP.DAL.Entities.PersonAchievement>
     {
-        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<PublicData.DAL.Entities.PersonAchievement> builder)
+        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<NonProfitERP.DAL.Entities.PersonAchievement> builder)
         {
             #region Generated Configure
             // table

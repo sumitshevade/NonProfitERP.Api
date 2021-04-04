@@ -1,10 +1,10 @@
 ﻿using System.Threading.Tasks;
-using PublicData.Common.Models;
+using NonProfitERP.Common.Models;
 using Microsoft.AspNetCore.Mvc;
-using PublicData.Common.Interfaces;
-using PublicData.Common.Identity.Models;
+using NonProfitERP.Common.Interfaces;
+using NonProfitERP.Common.Identity.Models;
 
-namespace PublicData.Api.Controllers
+namespace NonProfitERP.Main.Controllers
 {
     [ApiController]
     public class AuthController : ApiController

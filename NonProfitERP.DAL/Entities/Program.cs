@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace PublicData.DAL.Entities
+namespace NonProfitERP.DAL.Entities
 {
     public partial class Program : Entity
     {

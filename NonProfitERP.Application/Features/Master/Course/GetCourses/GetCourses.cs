@@ -3,12 +3,12 @@ using AutoMapper;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using PublicData.DAL.Interfaces;
+using NonProfitERP.DAL.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using PublicData.Application.Shared;
+using NonProfitERP.Application.Shared;
 using AutoMapper.QueryableExtensions;
 
-namespace PublicData.Application.Features.Master.Course.GetCourses
+namespace NonProfitERP.Application.Features.Master.Course.GetCourses
 {
     public class GetCoursesQueryHandler : IRequestHandler<GetCoursesQuery, IList<CourseModel>>
     {

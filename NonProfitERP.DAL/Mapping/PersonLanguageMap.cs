@@ -2,12 +2,12 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace PublicData.Data.Mapping
+namespace NonProfitERP.Data.Mapping
 {
     public partial class PersonLanguageMap
-        : IEntityTypeConfiguration<PublicData.DAL.Entities.PersonLanguage>
+        : IEntityTypeConfiguration<NonProfitERP.DAL.Entities.PersonLanguage>
     {
-        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<PublicData.DAL.Entities.PersonLanguage> builder)
+        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<NonProfitERP.DAL.Entities.PersonLanguage> builder)
         {
             #region Generated Configure
             // table

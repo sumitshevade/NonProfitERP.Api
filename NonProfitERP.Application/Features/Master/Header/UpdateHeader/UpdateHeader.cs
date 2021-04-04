@@ -2,14 +2,14 @@
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
-using PublicData.DAL.Interfaces;
-using PublicData.Common.Interfaces;
+using NonProfitERP.DAL.Interfaces;
+using NonProfitERP.Common.Interfaces;
 
-namespace PublicData.Application.Features.Master.Header.UpdateHeader
+namespace NonProfitERP.Application.Features.Master.Header.UpdateHeader
 {
     using DAL.Entities;
-    using PublicData.Application.Mappings;
-    using PublicData.Common.Exceptions;
+    using NonProfitERP.Application.Mappings;
+    using NonProfitERP.Common.Exceptions;
 
     public class UpdateHeaderCommandHandler : IRequestHandler<UpdateHeaderCommand, bool>
     {

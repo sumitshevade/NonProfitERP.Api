@@ -3,12 +3,12 @@ using AutoMapper;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
-using PublicData.DAL.Interfaces;
+using NonProfitERP.DAL.Interfaces;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
-using PublicData.Application.Shared;
+using NonProfitERP.Application.Shared;
 
-namespace PublicData.Application.Features.PersonDisability.GetPersonAllDisabilities
+namespace NonProfitERP.Application.Features.PersonDisability.GetPersonAllDisabilities
 {
     public class GetPersonAllDisabilitiesQueryHandler : IRequestHandler<GetPersonAllDisabilitiesQuery, IList<PersonDisabilityModel>>
     {

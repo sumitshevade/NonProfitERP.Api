@@ -1,15 +1,15 @@
 ﻿using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
-using PublicData.DAL.Interfaces;
-using PublicData.Common.Exceptions;
-using PublicData.Common.Interfaces;
+using NonProfitERP.DAL.Interfaces;
+using NonProfitERP.Common.Exceptions;
+using NonProfitERP.Common.Interfaces;
 using AutoMapper;
 
-namespace PublicData.Application.Features.PersonDisability.UpdatePersonDisabilityByDisabilityId
+namespace NonProfitERP.Application.Features.PersonDisability.UpdatePersonDisabilityByDisabilityId
 {
     using DAL.Entities;
-    using PublicData.Application.Mappings;
+    using NonProfitERP.Application.Mappings;
 
     public class UpdatePersonDisabilityByDisabilityIdCommandHandler : IRequestHandler<UpdatePersonDisabilityByDisabilityIdCommand, bool>
     {

@@ -2,12 +2,12 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace PublicData.DAL.Mapping
+namespace NonProfitERP.DAL.Mapping
 {
     public partial class DeviceCodesMap
-        : IEntityTypeConfiguration<PublicData.DAL.Entities.DeviceCodes>
+        : IEntityTypeConfiguration<NonProfitERP.DAL.Entities.DeviceCodes>
     {
-        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<PublicData.DAL.Entities.DeviceCodes> builder)
+        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<NonProfitERP.DAL.Entities.DeviceCodes> builder)
         {
             #region Generated Configure
             // table

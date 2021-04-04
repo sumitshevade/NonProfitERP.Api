@@ -2,10 +2,10 @@
 using AutoMapper;
 using System.Threading;
 using System.Threading.Tasks;
-using PublicData.DAL.Interfaces;
-using PublicData.Application.Shared;
+using NonProfitERP.DAL.Interfaces;
+using NonProfitERP.Application.Shared;
 
-namespace PublicData.Application.Features.PersonHealthDetail.GetPersonHealthDetailsByHealthId
+namespace NonProfitERP.Application.Features.PersonHealthDetail.GetPersonHealthDetailsByHealthId
 {
     public class GetPersonHealthDetailsByHealthIdQueryHandler : IRequestHandler<GetPersonHealthDetailsByHealthIdQuery, PersonHealthDetailModel>
     {

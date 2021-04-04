@@ -2,10 +2,10 @@
 using AutoMapper;
 using System.Threading;
 using System.Threading.Tasks;
-using PublicData.DAL.Interfaces;
-using PublicData.Application.Shared;
+using NonProfitERP.DAL.Interfaces;
+using NonProfitERP.Application.Shared;
 
-namespace PublicData.Application.Features.PersonHobbyFavorite.GetPersonHobbyFavoriteByHFId
+namespace NonProfitERP.Application.Features.PersonHobbyFavorite.GetPersonHobbyFavoriteByHFId
 {
     public class GetPersonHobbyFavoriteByHFIdQueryHandler : IRequestHandler<GetPersonHobbyFavoriteByHFIdQuery, PersonHobbyFavoriteModel>
     {

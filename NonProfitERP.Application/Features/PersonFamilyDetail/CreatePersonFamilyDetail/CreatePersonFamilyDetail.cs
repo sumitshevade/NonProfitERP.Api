@@ -3,13 +3,13 @@ using MediatR;
 using AutoMapper;
 using System.Threading;
 using System.Threading.Tasks;
-using PublicData.DAL.Interfaces;
-using PublicData.Common.Interfaces;
+using NonProfitERP.DAL.Interfaces;
+using NonProfitERP.Common.Interfaces;
 
-namespace PublicData.Application.Features.PersonFamilyDetail.CreatePersonFamilyDetail
+namespace NonProfitERP.Application.Features.PersonFamilyDetail.CreatePersonFamilyDetail
 {
     using DAL.Entities;
-    using PublicData.Application.Mappings;
+    using NonProfitERP.Application.Mappings;
 
     public class CreatePersonFamilyDetailQueryHandler : IRequestHandler<CreatePersonFamilyDetailCommand, int>
     {

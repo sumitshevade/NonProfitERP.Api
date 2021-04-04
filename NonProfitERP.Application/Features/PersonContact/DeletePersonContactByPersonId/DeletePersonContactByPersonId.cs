@@ -1,12 +1,12 @@
 ﻿using MediatR;
-using PublicData.Common.Exceptions;
-using PublicData.Common.Interfaces;
-using PublicData.DAL.Interfaces;
+using NonProfitERP.Common.Exceptions;
+using NonProfitERP.Common.Interfaces;
+using NonProfitERP.DAL.Interfaces;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Linq;
 
-namespace PublicData.Application.Features.PersonContact.DeletePersonContactByPersonId
+namespace NonProfitERP.Application.Features.PersonContact.DeletePersonContactByPersonId
 {
     using DAL.Entities;
 

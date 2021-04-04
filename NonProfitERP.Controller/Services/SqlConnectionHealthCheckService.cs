@@ -5,7 +5,7 @@ using System.Data.Common;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace PublicData.Api.Services
+namespace NonProfitERP.Main.Services
 {
     public class SqlConnectionHealthCheckService : IHealthCheck
     {

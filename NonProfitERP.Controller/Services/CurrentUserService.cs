@@ -1,8 +1,8 @@
-﻿using PublicData.Common.Interfaces;
+﻿using NonProfitERP.Common.Interfaces;
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 
-namespace PublicData.Api.Services
+namespace NonProfitERP.Main.Services
 {
     public class CurrentUserService : ICurrentUserService
     {

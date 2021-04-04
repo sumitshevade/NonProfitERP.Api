@@ -2,10 +2,10 @@
 using AutoMapper;
 using System.Threading;
 using System.Threading.Tasks;
-using PublicData.DAL.Interfaces;
-using PublicData.Application.Shared;
+using NonProfitERP.DAL.Interfaces;
+using NonProfitERP.Application.Shared;
 
-namespace PublicData.Application.Features.Master.Detail.GetDetailById
+namespace NonProfitERP.Application.Features.Master.Detail.GetDetailById
 {
     public class GetDetailByIdQueryHandler : IRequestHandler<GetDetailByIdQuery, DetailModel>
     {

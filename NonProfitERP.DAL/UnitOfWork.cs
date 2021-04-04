@@ -1,7 +1,7 @@
-﻿using PublicData.Common.Interfaces;
+﻿using NonProfitERP.Common.Interfaces;
 using System;
 
-namespace PublicData.DAL
+namespace NonProfitERP.DAL
 {
     public class UnitOfWork : IUnitOfWork
     {

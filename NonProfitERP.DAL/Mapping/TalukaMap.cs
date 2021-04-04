@@ -2,12 +2,12 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace PublicData.Data.Mapping
+namespace NonProfitERP.Data.Mapping
 {
     public partial class TalukaMap
-        : IEntityTypeConfiguration<PublicData.DAL.Entities.Taluka>
+        : IEntityTypeConfiguration<NonProfitERP.DAL.Entities.Taluka>
     {
-        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<PublicData.DAL.Entities.Taluka> builder)
+        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<NonProfitERP.DAL.Entities.Taluka> builder)
         {
             #region Generated Configure
             // table

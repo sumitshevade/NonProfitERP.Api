@@ -2,12 +2,12 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace PublicData.Data.Mapping
+namespace NonProfitERP.Data.Mapping
 {
     public partial class BatchMap
-        : IEntityTypeConfiguration<PublicData.DAL.Entities.Batch>
+        : IEntityTypeConfiguration<NonProfitERP.DAL.Entities.Batch>
     {
-        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<PublicData.DAL.Entities.Batch> builder)
+        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<NonProfitERP.DAL.Entities.Batch> builder)
         {
             #region Generated Configure
             // table

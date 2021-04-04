@@ -2,11 +2,11 @@
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
-using PublicData.DAL.Interfaces;
-using PublicData.Common.Interfaces;
-using PublicData.Common.Exceptions;
+using NonProfitERP.DAL.Interfaces;
+using NonProfitERP.Common.Interfaces;
+using NonProfitERP.Common.Exceptions;
 
-namespace PublicData.Application.Features.Master.State.DeleteState
+namespace NonProfitERP.Application.Features.Master.State.DeleteState
 {
     using DAL.Entities;
 

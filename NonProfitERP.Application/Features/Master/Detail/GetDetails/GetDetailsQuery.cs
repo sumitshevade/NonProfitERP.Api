@@ -1,14 +1,14 @@
 ﻿using AutoMapper;
 using MediatR;
-using PublicData.DAL.Interfaces;
+using NonProfitERP.DAL.Interfaces;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
-using PublicData.Application.Shared;
+using NonProfitERP.Application.Shared;
 
-namespace PublicData.Application.Features.Master.Detail.GetDetails
+namespace NonProfitERP.Application.Features.Master.Detail.GetDetails
 {
     public class GetDetailsQueryHandler : IRequestHandler<GetDetailsQuery, IList<DetailModel>>
     {

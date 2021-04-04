@@ -1,14 +1,14 @@
 ﻿using AutoMapper;
 using MediatR;
-using PublicData.Common.Interfaces;
-using PublicData.DAL.Interfaces;
+using NonProfitERP.Common.Interfaces;
+using NonProfitERP.DAL.Interfaces;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace PublicData.Application.Features.PersonContact.CreatePersonContact
+namespace NonProfitERP.Application.Features.PersonContact.CreatePersonContact
 {
     using DAL.Entities;
-    using PublicData.Application.Mappings;
+    using NonProfitERP.Application.Mappings;
 
     public class CreatePersonContactCommandHandler : IRequestHandler<CreatePersonContactCommand, int>
     {

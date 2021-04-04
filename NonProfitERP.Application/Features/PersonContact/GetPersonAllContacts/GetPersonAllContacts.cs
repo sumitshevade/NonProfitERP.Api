@@ -1,14 +1,14 @@
 ﻿using MediatR;
 using System.Collections.Generic;
-using PublicData.DAL.Interfaces;
+using NonProfitERP.DAL.Interfaces;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
-using PublicData.Application.Shared;
+using NonProfitERP.Application.Shared;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 
-namespace PublicData.Application.Features.PersonContact.GetPersonAllContacts
+namespace NonProfitERP.Application.Features.PersonContact.GetPersonAllContacts
 {
     public class GetPersonAllContactsQueryHandler : IRequestHandler<GetPersonAllContactsQuery, IList<PersonContactModel>>
     {

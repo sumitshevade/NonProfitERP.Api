@@ -1,13 +1,13 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using PublicData.DAL.Interfaces;
-using PublicData.DAL.Repository;
-using PublicData.Common.Interfaces;
+using NonProfitERP.DAL.Interfaces;
+using NonProfitERP.DAL.Repository;
+using NonProfitERP.Common.Interfaces;
 using System.Reflection;
 using System.Linq;
 
-namespace PublicData.DAL.Configurations
+namespace NonProfitERP.DAL.Configurations
 {
     public static class DatabaseSetup
     {

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace PublicData.DAL.Mapping
+namespace NonProfitERP.DAL.Mapping
 {
     public partial class AspNetUserRolesMap
         : IEntityTypeConfiguration<Entities.AspNetUserRoles>

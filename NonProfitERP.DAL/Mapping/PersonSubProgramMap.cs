@@ -2,12 +2,12 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace PublicData.Data.Mapping
+namespace NonProfitERP.Data.Mapping
 {
     public partial class PersonSubProgramMap
-        : IEntityTypeConfiguration<PublicData.DAL.Entities.PersonSubProgram>
+        : IEntityTypeConfiguration<NonProfitERP.DAL.Entities.PersonSubProgram>
     {
-        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<PublicData.DAL.Entities.PersonSubProgram> builder)
+        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<NonProfitERP.DAL.Entities.PersonSubProgram> builder)
         {
             #region Generated Configure
             // table

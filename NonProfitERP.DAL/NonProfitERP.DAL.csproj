@@ -10,7 +10,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="3.1.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.6" />
     <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="3.1.6" />
-    <PackageReference Include="NonProfitERP.Common" Version="1.0.0-CI-20210404-062449" />
+    <PackageReference Include="NonProfitERP.Common" Version="1.0.0" />
   </ItemGroup>
 
 </Project>

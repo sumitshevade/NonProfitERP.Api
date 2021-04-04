@@ -2,11 +2,11 @@
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
-using PublicData.DAL.Interfaces;
-using PublicData.Common.Exceptions;
-using PublicData.Common.Interfaces;
+using NonProfitERP.DAL.Interfaces;
+using NonProfitERP.Common.Exceptions;
+using NonProfitERP.Common.Interfaces;
 
-namespace PublicData.Application.Features.Master.Course.DeleteCourse
+namespace NonProfitERP.Application.Features.Master.Course.DeleteCourse
 {
     using DAL.Entities;
 

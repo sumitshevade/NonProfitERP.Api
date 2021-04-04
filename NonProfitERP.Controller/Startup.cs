@@ -1,11 +1,11 @@
-using PublicData.Application;
-using PublicData.Common.Behaviours;
-using PublicData.Common.Exceptions;
-using PublicData.Common.Security.Authorization;
-using PublicData.Common.Security.Identity;
-using PublicData.DAL.Configurations;
-using PublicData.Api.Configurations;
-using PublicData.Api.Services;
+using NonProfitERP.Application;
+using NonProfitERP.Common.Behaviours;
+using NonProfitERP.Common.Exceptions;
+using NonProfitERP.Common.Security.Authorization;
+using NonProfitERP.Common.Security.Identity;
+using NonProfitERP.DAL.Configurations;
+using NonProfitERP.Main.Configurations;
+using NonProfitERP.Main.Services;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -18,7 +18,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 
-namespace PublicData.API
+namespace NonProfitERP.Main
 {
     public class Startup
     {
@@ -91,7 +91,7 @@ namespace PublicData.API
                     "PublicDataDb-check",
                     new SqlConnectionHealthCheckService(Configuration.GetConnectionString("DefaultConnection")),
                     HealthStatus.Unhealthy,
-                    new string[] { "PublicData" });
+                    new string[] { "NonProfitERP" });
 
             services.ConfigureSwaggerGen(option =>
                 option.CustomSchemaIds(x => x.FullName)

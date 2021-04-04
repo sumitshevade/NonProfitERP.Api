@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PublicData.DAL
+namespace NonProfitERP.DAL
 {
     public abstract class Entity
     {

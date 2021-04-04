@@ -2,13 +2,13 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using PublicData.DAL.Entities;
-using PublicData.Common.Interfaces;
+using NonProfitERP.DAL.Entities;
+using NonProfitERP.Common.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using PublicData.Data.Mapping;
-using PublicData.DAL.Mapping;
+using NonProfitERP.Data.Mapping;
+using NonProfitERP.DAL.Mapping;
 
-namespace PublicData.DAL
+namespace NonProfitERP.DAL
 {
     public partial class PublicDataContext : DbContext
     {

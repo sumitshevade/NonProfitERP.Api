@@ -1,7 +1,7 @@
 ﻿using MediatR;
-using PublicData.Common.Exceptions;
-using PublicData.Common.Interfaces;
-using PublicData.DAL.Interfaces;
+using NonProfitERP.Common.Exceptions;
+using NonProfitERP.Common.Interfaces;
+using NonProfitERP.DAL.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace PublicData.Application.Features.PersonEducation.DeletePersonEducationByPersonId
+namespace NonProfitERP.Application.Features.PersonEducation.DeletePersonEducationByPersonId
 {
     public class DeletePersonEducationByPersonIdCommandHandler : IRequestHandler<DeletePersonEducationByPersonIdCommand, bool>
     {

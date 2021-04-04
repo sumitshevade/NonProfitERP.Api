@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using System;
-using PublicData.Application.Mappings;
+using NonProfitERP.Application.Mappings;
 using System.Collections.Generic;
-using PublicData.DAL.Entities;
+using NonProfitERP.DAL.Entities;
 
-namespace PublicData.Application.Shared
+namespace NonProfitERP.Application.Shared
 {
     public partial class PersonModel : IMapFrom<Person>
     {

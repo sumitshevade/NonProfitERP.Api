@@ -2,10 +2,10 @@
 using AutoMapper;
 using System.Threading;
 using System.Threading.Tasks;
-using PublicData.DAL.Interfaces;
-using PublicData.Application.Shared;
+using NonProfitERP.DAL.Interfaces;
+using NonProfitERP.Application.Shared;
 
-namespace PublicData.Application.Features.PersonWorkExperience.GetPersonWorkExperienceByExperienceId
+namespace NonProfitERP.Application.Features.PersonWorkExperience.GetPersonWorkExperienceByExperienceId
 {
     public class GetPersonWorkExperienceByExperienceIdQueryHandler : IRequestHandler<GetPersonWorkExperienceByExperienceIdQuery, PersonWorkExperienceModel>
     {

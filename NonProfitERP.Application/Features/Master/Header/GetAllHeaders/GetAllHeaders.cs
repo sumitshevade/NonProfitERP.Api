@@ -2,13 +2,13 @@
 using AutoMapper;
 using System.Threading;
 using System.Threading.Tasks;
-using PublicData.DAL.Interfaces;
+using NonProfitERP.DAL.Interfaces;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using PublicData.Application.Shared;
+using NonProfitERP.Application.Shared;
 using AutoMapper.QueryableExtensions;
 
-namespace PublicData.Application.Features.Master.Header.GetAllHeaders
+namespace NonProfitERP.Application.Features.Master.Header.GetAllHeaders
 {
     public class GetHeadersQueryHandler : IRequestHandler<GetHeadersQuery, IList<HeaderModel>>
     {

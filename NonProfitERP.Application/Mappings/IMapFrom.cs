@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace PublicData.Application.Mappings
+namespace NonProfitERP.Application.Mappings
 {
     public interface IMapFrom<T>
     {

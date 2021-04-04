@@ -1,4 +1,4 @@
-﻿using PublicData.Common.Interfaces;
+﻿using NonProfitERP.Common.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 using System;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
 
-namespace PublicData.DAL.Repository
+namespace NonProfitERP.DAL.Repository
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : Entity
     {

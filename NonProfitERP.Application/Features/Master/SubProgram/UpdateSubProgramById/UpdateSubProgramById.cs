@@ -1,14 +1,14 @@
 ﻿using MediatR;
 using AutoMapper;
-using PublicData.Application.Mappings;
-using PublicData.Common.Exceptions;
-using PublicData.Common.Interfaces;
-using PublicData.DAL.Interfaces;
+using NonProfitERP.Application.Mappings;
+using NonProfitERP.Common.Exceptions;
+using NonProfitERP.Common.Interfaces;
+using NonProfitERP.DAL.Interfaces;
 using System.Threading;
 using System.Threading.Tasks;
 using System;
 
-namespace PublicData.Application.Features.Master.SubProgram.UpdateSubProgramById
+namespace NonProfitERP.Application.Features.Master.SubProgram.UpdateSubProgramById
 {
     using DAL.Entities;
 

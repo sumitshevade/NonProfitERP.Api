@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace PublicData.API
+namespace NonProfitERP.Main
 {
     public class Program
     {

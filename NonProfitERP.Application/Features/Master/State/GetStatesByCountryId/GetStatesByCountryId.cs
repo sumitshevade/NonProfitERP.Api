@@ -2,13 +2,13 @@
 using AutoMapper.QueryableExtensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using PublicData.Application.Shared;
-using PublicData.DAL.Interfaces;
+using NonProfitERP.Application.Shared;
+using NonProfitERP.DAL.Interfaces;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace PublicData.Application.Features.Master.State.GetStatesByCountryId
+namespace NonProfitERP.Application.Features.Master.State.GetStatesByCountryId
 {
     public class GetStatesByCountryIdQueryHandler : IRequestHandler<GetStatesByCountryIdQuery, IList<StateModel>>
     {

@@ -2,14 +2,14 @@
 using AutoMapper;
 using System.Threading;
 using System.Threading.Tasks;
-using PublicData.DAL.Interfaces;
-using PublicData.Common.Exceptions;
-using PublicData.Common.Interfaces;
+using NonProfitERP.DAL.Interfaces;
+using NonProfitERP.Common.Exceptions;
+using NonProfitERP.Common.Interfaces;
 
-namespace PublicData.Application.Features.PersonHealthDetail.UpdatePersonHealthDetailByHealthId
+namespace NonProfitERP.Application.Features.PersonHealthDetail.UpdatePersonHealthDetailByHealthId
 {
     using DAL.Entities;
-    using PublicData.Application.Mappings;
+    using NonProfitERP.Application.Mappings;
 
     public class UpdatePersonHealthDetailByHealthIdCommandHandler : IRequestHandler<UpdatePersonHealthDetailByHealthIdCommand, bool>
     {

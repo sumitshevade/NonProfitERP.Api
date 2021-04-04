@@ -2,11 +2,11 @@
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
-using PublicData.DAL.Interfaces;
+using NonProfitERP.DAL.Interfaces;
 
-namespace PublicData.Application.Features.People.GetPersonById
+namespace NonProfitERP.Application.Features.People.GetPersonById
 {
-    using PublicData.Application.Shared;
+    using NonProfitERP.Application.Shared;
 
     public class GetPersonByIdQueryHandler : IRequestHandler<GetPersonByIdQuery, PersonModel>
     {

@@ -2,13 +2,13 @@
 using AutoMapper;
 using System.Threading;
 using System.Threading.Tasks;
-using PublicData.DAL.Interfaces;
-using PublicData.Common.Interfaces;
+using NonProfitERP.DAL.Interfaces;
+using NonProfitERP.Common.Interfaces;
 
-namespace PublicData.Application.Features.PersonHealthDetail.CreatePersonHealthDetail
+namespace NonProfitERP.Application.Features.PersonHealthDetail.CreatePersonHealthDetail
 {
     using DAL.Entities;
-    using PublicData.Application.Mappings;
+    using NonProfitERP.Application.Mappings;
 
     public class CreatePersonHealthDetailCommandHandler : IRequestHandler<CreatePersonHealthDetailCommand, int>
     {

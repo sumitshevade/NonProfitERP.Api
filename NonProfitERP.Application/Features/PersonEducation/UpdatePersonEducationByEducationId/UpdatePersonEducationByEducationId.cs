@@ -1,15 +1,15 @@
 ﻿using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
-using PublicData.DAL.Interfaces;
-using PublicData.Common.Exceptions;
-using PublicData.Common.Interfaces;
+using NonProfitERP.DAL.Interfaces;
+using NonProfitERP.Common.Exceptions;
+using NonProfitERP.Common.Interfaces;
 using AutoMapper;
 
-namespace PublicData.Application.Features.PersonEducation.UpdatePersonEducationByEducationId
+namespace NonProfitERP.Application.Features.PersonEducation.UpdatePersonEducationByEducationId
 {
     using DAL.Entities;
-    using PublicData.Application.Mappings;
+    using NonProfitERP.Application.Mappings;
 
     public class UpdatePersonEducationByEducationIdCommandHandler : IRequestHandler<UpdatePersonEducationByEducationIdCommand, bool>
     {

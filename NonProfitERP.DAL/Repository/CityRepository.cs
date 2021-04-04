@@ -1,7 +1,7 @@
-﻿using PublicData.DAL.Entities;
-using PublicData.DAL.Interfaces;
+﻿using NonProfitERP.DAL.Entities;
+using NonProfitERP.DAL.Interfaces;
 
-namespace PublicData.DAL.Repository
+namespace NonProfitERP.DAL.Repository
 {
     public class CityRepository : Repository<City>, ICityRepository
     {

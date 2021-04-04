@@ -2,11 +2,11 @@
 using AutoMapper;
 using System.Threading;
 using System.Threading.Tasks;
-using PublicData.DAL.Interfaces;
-using PublicData.Common.Interfaces;
-using PublicData.Application.Mappings;
+using NonProfitERP.DAL.Interfaces;
+using NonProfitERP.Common.Interfaces;
+using NonProfitERP.Application.Mappings;
 
-namespace PublicData.Application.Features.Master.Taluka.CreateTaluka
+namespace NonProfitERP.Application.Features.Master.Taluka.CreateTaluka
 {
     using DAL.Entities;
 

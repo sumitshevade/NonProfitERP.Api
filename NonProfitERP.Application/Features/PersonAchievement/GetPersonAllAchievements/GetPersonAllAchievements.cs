@@ -3,12 +3,12 @@ using AutoMapper;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using PublicData.DAL.Interfaces;
-using PublicData.Application.Shared;
+using NonProfitERP.DAL.Interfaces;
+using NonProfitERP.Application.Shared;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper.QueryableExtensions;
 
-namespace PublicData.Application.Features.PersonAchievement.GetPersonAllAchievements
+namespace NonProfitERP.Application.Features.PersonAchievement.GetPersonAllAchievements
 {
     public class GetPersonAllAchievementsQueryHandler : IRequestHandler<GetPersonAllAchievementsQuery, IList<PersonAchievementModel>>
     {

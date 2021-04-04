@@ -1,9 +1,9 @@
 ﻿using System;
 using AutoMapper;
-using PublicData.Application.Mappings;
-using PublicData.DAL.Entities;
+using NonProfitERP.Application.Mappings;
+using NonProfitERP.DAL.Entities;
 
-namespace PublicData.Application.Shared
+namespace NonProfitERP.Application.Shared
 {
     public partial class ProgramModel : IMapFrom<Program>
     {

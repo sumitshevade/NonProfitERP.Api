@@ -3,7 +3,7 @@ using System;
 using System.Linq;
 using System.Reflection;
 
-namespace PublicData.Application.Mappings
+namespace NonProfitERP.Application.Mappings
 {
     public class MappingProfile : Profile
     {
