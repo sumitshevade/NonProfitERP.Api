@@ -3,7 +3,6 @@ using PublicData.Common.Behaviours;
 using PublicData.Common.Exceptions;
 using PublicData.Common.Security.Authorization;
 using PublicData.Common.Security.Identity;
-using PublicData.DAL;
 using PublicData.DAL.Configurations;
 using PublicData.Api.Configurations;
 using PublicData.Api.Services;

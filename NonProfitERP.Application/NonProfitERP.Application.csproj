@@ -34,7 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PublicData.DAL\PublicData.DAL.csproj" />
+    <ProjectReference Include="..\NonProfitERP.DAL\NonProfitERP.DAL.csproj" />
   </ItemGroup>
 
   <ItemGroup>
