@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PublicData.Api", "PublicDat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PublicData.Application", "PublicData.Application\PublicData.Application.csproj", "{2ACA4DB9-81D9-4354-A178-6BADFDB0A3C9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PublicData.Common", "PublicData.Common\PublicData.Common.csproj", "{B67EC883-0FE4-404C-B190-8151DB57A985}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PublicData.DAL", "PublicData.DAL\PublicData.DAL.csproj", "{9FBBC030-A4B1-48FE-A5B2-373269C084FB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PublicData.FunctionApp", "PublicData.FunctionApp\PublicData.FunctionApp.csproj", "{6491F189-3C3D-4742-9661-D782E02E225C}"
@@ -27,10 +25,6 @@ Global
 		{2ACA4DB9-81D9-4354-A178-6BADFDB0A3C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2ACA4DB9-81D9-4354-A178-6BADFDB0A3C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2ACA4DB9-81D9-4354-A178-6BADFDB0A3C9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B67EC883-0FE4-404C-B190-8151DB57A985}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B67EC883-0FE4-404C-B190-8151DB57A985}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B67EC883-0FE4-404C-B190-8151DB57A985}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B67EC883-0FE4-404C-B190-8151DB57A985}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9FBBC030-A4B1-48FE-A5B2-373269C084FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9FBBC030-A4B1-48FE-A5B2-373269C084FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9FBBC030-A4B1-48FE-A5B2-373269C084FB}.Release|Any CPU.ActiveCfg = Release|Any CPU

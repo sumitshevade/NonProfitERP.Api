@@ -34,7 +34,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PublicData.Common\PublicData.Common.csproj" />
     <ProjectReference Include="..\PublicData.DAL\PublicData.DAL.csproj" />
   </ItemGroup>
 
