@@ -10,6 +10,7 @@ namespace NonProfitERP.Main.Controllers
     public class AuthController : ApiController
     {
         private readonly IUserService _userService;
+
         public AuthController(IUserService userService)
         {
             _userService = userService;
@@ -57,5 +58,11 @@ namespace NonProfitERP.Main.Controllers
             }); // Status code: 400
         }
 
+        // /api/auth/profile
+        [HttpGet("profile/{id}")]
+        public async Task<IActionResult> UserProfile(string id)
+        {
+            return new JsonResult(await _userService.GetUser(id));
+        }
     }
 }

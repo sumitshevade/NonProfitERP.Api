@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Linq;
 using System.Text.Json;
 using Microsoft.Azure.WebJobs;
@@ -15,12 +16,13 @@ namespace NonProfitERP.FunctionApp
     {
         // This function will run on every day at 8 AM
         [FunctionName("TTBirthDayReminder")]
-        public static void Run([TimerTrigger("0 13 11 * * *")]TimerInfo myTimer, ILogger log)
+        public static void Run([TimerTrigger("0 10 9 * * *")]TimerInfo myTimer, ILogger log, ExecutionContext context)
         {
             //log.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
             //var message = JsonConvert.DeserializeObject<SendgridDataModel>(emailMessage);
 
-            var jsonBytes = System.IO.File.ReadAllBytes("BirthData.json");
+            var executionRoot = context.FunctionAppDirectory;
+            var jsonBytes = System.IO.File.ReadAllBytes(Path.Combine(executionRoot, "BirthData.json"));
             using var jsonDoc = JsonDocument.Parse(jsonBytes);
 
             var todaysBirthdays = jsonDoc.RootElement.EnumerateArray().Select(x => new
