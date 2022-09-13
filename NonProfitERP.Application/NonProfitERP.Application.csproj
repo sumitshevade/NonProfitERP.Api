@@ -31,10 +31,10 @@
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="9.1.1" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.6" />
-    <PackageReference Include="NonProfitERP.Common" Version="1.0.2" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\NonProfitERP.Common\NonProfitERP.Common.csproj" />
     <ProjectReference Include="..\NonProfitERP.DAL\NonProfitERP.DAL.csproj" />
   </ItemGroup>
 
