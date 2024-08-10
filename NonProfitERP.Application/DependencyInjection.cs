@@ -1,8 +1,7 @@
-﻿using System.Reflection;
+﻿using FluentValidation;
 using MediatR;
-using AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
-using FluentValidation;
+using System.Reflection;
 
 namespace NonProfitERP.Application
 {

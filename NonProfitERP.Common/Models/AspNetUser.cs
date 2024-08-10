@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Http;
+using NonProfitERP.Common.Interfaces;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
-using NonProfitERP.Common.Interfaces;
-using Microsoft.AspNetCore.Http;
 
 namespace NonProfitERP.Common.Identity.Models
 {
@@ -19,7 +19,7 @@ namespace NonProfitERP.Common.Identity.Models
 
         private string GetName()
         {
-            return _accessor.HttpContext.User.Identity.Name ?? 
+            return _accessor.HttpContext.User.Identity.Name ??
                    _accessor.HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
         }
 
@@ -30,7 +30,7 @@ namespace NonProfitERP.Common.Identity.Models
 
         public IEnumerable<Claim> GetClaimsIdentity()
         {
-            return  _accessor.HttpContext.User.Claims;
+            return _accessor.HttpContext.User.Claims;
         }
     }
 }

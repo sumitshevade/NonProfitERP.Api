@@ -1,11 +1,11 @@
 ﻿using MediatR;
+using NonProfitERP.Common.Exceptions;
 using NonProfitERP.Common.Interfaces;
 using NonProfitERP.DAL.Interfaces;
 using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using NonProfitERP.Common.Exceptions;
 
 namespace NonProfitERP.Application.Features.PersonAddress.DeletePersonAddressByPersonId
 {
@@ -39,7 +39,7 @@ namespace NonProfitERP.Application.Features.PersonAddress.DeletePersonAddressByP
                     _personAddressRepository.Update(item);
                     _unitOfWork.Commit();
                 }
-                
+
                 return Task.FromResult(true);
             }
             catch (Exception)

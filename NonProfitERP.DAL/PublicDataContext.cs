@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using NonProfitERP.Common.Interfaces;
+using NonProfitERP.DAL.Entities;
+using NonProfitERP.DAL.Mapping;
+using NonProfitERP.Data.Mapping;
+using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using NonProfitERP.DAL.Entities;
-using NonProfitERP.Common.Interfaces;
-using Microsoft.EntityFrameworkCore;
-using NonProfitERP.Data.Mapping;
-using NonProfitERP.DAL.Mapping;
 
 namespace NonProfitERP.DAL
 {

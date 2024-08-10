@@ -14,7 +14,7 @@ namespace NonProfitERP.DAL.Entities
         }
 
         #region Generated Properties
-        
+
         public int? DepartmentId { get; set; }
 
         public int? ProgramId { get; set; }

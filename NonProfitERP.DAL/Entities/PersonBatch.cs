@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 
 namespace NonProfitERP.DAL.Entities
 {
@@ -12,7 +11,7 @@ namespace NonProfitERP.DAL.Entities
         }
 
         #region Generated Properties
-        
+
         public int PersonId { get; set; }
 
         public string Role { get; set; }

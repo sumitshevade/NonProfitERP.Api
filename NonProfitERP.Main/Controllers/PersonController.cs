@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NonProfitERP.Application.Features.People.CreatePerson;
 using NonProfitERP.Application.Features.People.GetAllPerson;
@@ -64,6 +63,7 @@ using NonProfitERP.Application.Features.PersonWorkExperience.DeletePersonWorkExp
 using NonProfitERP.Application.Features.PersonWorkExperience.GetPersonAllWorkExperiences;
 using NonProfitERP.Application.Features.PersonWorkExperience.GetPersonWorkExperienceByExperienceId;
 using NonProfitERP.Application.Features.PersonWorkExperience.UpdatePersonWorkExperienceByExperienceId;
+using System.Threading.Tasks;
 
 namespace NonProfitERP.Main.Controllers
 {

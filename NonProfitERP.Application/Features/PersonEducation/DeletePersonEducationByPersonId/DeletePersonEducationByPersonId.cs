@@ -3,9 +3,7 @@ using NonProfitERP.Common.Exceptions;
 using NonProfitERP.Common.Interfaces;
 using NonProfitERP.DAL.Interfaces;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -38,7 +36,7 @@ namespace NonProfitERP.Application.Features.PersonEducation.DeletePersonEducatio
                     _personEducationRepository.Update(item);
                     _unitOfWork.Commit();
                 }
-                
+
                 return Task.FromResult(true);
             }
             catch (Exception)

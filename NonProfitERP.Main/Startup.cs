@@ -1,11 +1,3 @@
-using NonProfitERP.Application;
-using NonProfitERP.Common.Behaviours;
-using NonProfitERP.Common.Exceptions;
-using NonProfitERP.Common.Security.Authorization;
-using NonProfitERP.Common.Security.Identity;
-using NonProfitERP.DAL.Configurations;
-using NonProfitERP.Main.Configurations;
-using NonProfitERP.Main.Services;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -16,6 +8,14 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using NonProfitERP.Application;
+using NonProfitERP.Common.Behaviours;
+using NonProfitERP.Common.Exceptions;
+using NonProfitERP.Common.Security.Authorization;
+using NonProfitERP.Common.Security.Identity;
+using NonProfitERP.DAL.Configurations;
+using NonProfitERP.Main.Configurations;
+using NonProfitERP.Main.Services;
 using System.Collections.Generic;
 
 namespace NonProfitERP.Main
@@ -57,12 +57,12 @@ namespace NonProfitERP.Main
             // WebAPI Config
             services.AddControllers(options =>
                     options.Filters.Add(new ApiExceptionFilter()));
-                //.AddNewtonsoftJson(options =>
-                //{
-                //    options.SerializerSettings.ContractResolver = new Newtonsoft.Json.Serialization.DefaultContractResolver();
-                //    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
-                //    //options.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.Objects;
-                //});
+            //.AddNewtonsoftJson(options =>
+            //{
+            //    options.SerializerSettings.ContractResolver = new Newtonsoft.Json.Serialization.DefaultContractResolver();
+            //    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            //    //options.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.Objects;
+            //});
 
             // Authorization
             var policies = new Dictionary<string, ClaimRequirement>

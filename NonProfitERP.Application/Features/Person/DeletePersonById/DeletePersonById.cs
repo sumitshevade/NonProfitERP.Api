@@ -43,7 +43,7 @@ namespace NonProfitERP.Application.Features.Person.DeletePersonById
 
                 return Task.FromResult(true);
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return Task.FromResult(false);
             }

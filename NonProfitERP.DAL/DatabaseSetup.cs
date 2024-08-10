@@ -1,11 +1,9 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using NonProfitERP.DAL.Interfaces;
-using NonProfitERP.DAL.Repository;
 using NonProfitERP.Common.Interfaces;
-using System.Reflection;
+using System;
 using System.Linq;
+using System.Reflection;
 
 namespace NonProfitERP.DAL.Configurations
 {
@@ -19,13 +17,13 @@ namespace NonProfitERP.DAL.Configurations
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<PublicDataContext>();
             //Dynamically DI repositories 
-            var types = Assembly.GetExecutingAssembly().GetExportedTypes().Where(t => t.GetInterfaces().Any(i=> i.Name == "IRepository`1") && !t.IsInterface); 
+            var types = Assembly.GetExecutingAssembly().GetExportedTypes().Where(t => t.GetInterfaces().Any(i => i.Name == "IRepository`1") && !t.IsInterface);
 
             foreach (var type in types)
             {
                 var intfc = type.GetInterfaces().Where(x => x.Name.Contains(type.Name)).FirstOrDefault();
-                if(intfc.Name != "IRepository`1")
-                    services.AddScoped(intfc,type);
+                if (intfc.Name != "IRepository`1")
+                    services.AddScoped(intfc, type);
             }
 
         }

@@ -2,9 +2,9 @@
 using NonProfitERP.Common.Exceptions;
 using NonProfitERP.Common.Interfaces;
 using NonProfitERP.DAL.Interfaces;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Linq;
 
 namespace NonProfitERP.Application.Features.PersonContact.DeletePersonContactByPersonId
 {

@@ -20,7 +20,7 @@ namespace NonProfitERP.DAL
                 return result > 0;
             }
             catch (Exception)
-            { 
+            {
             }
             return false;
         }

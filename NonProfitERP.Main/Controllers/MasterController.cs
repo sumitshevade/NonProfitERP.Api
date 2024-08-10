@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NonProfitERP.Application.Features.Master.City.CreateCity;
 using NonProfitERP.Application.Features.Master.City.DeleteCity;
@@ -57,6 +56,7 @@ using NonProfitERP.Application.Features.Master.University.DeleteUniversity;
 using NonProfitERP.Application.Features.Master.University.GetAllUniversities;
 using NonProfitERP.Application.Features.Master.University.GetUniversityById;
 using NonProfitERP.Application.Features.Master.University.UpdateUniversity;
+using System.Threading.Tasks;
 
 namespace NonProfitERP.Main.Controllers
 {

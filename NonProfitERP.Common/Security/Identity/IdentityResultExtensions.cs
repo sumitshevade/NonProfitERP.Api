@@ -1,5 +1,5 @@
-﻿using NonProfitERP.Common.Models;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
+using NonProfitERP.Common.Models;
 using System.Linq;
 
 namespace NonProfitERP.Common.Security.Identity

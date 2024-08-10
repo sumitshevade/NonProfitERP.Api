@@ -38,7 +38,7 @@ namespace NonProfitERP.DAL.Entities
         }
 
         #region Generated Properties
-        
+
         public int HeaderId { get; set; }
 
         public string Value { get; set; }

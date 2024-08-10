@@ -1,5 +1,3 @@
-using System;
-
 namespace NonProfitERP.DAL.Entities
 {
     public class ErrorViewModel

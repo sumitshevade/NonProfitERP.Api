@@ -13,7 +13,7 @@ namespace NonProfitERP.FunctionApp
     {
         // This function will run on every day at 8 AM
         [FunctionName("TTBirthDayReminder")]
-        public static void Run([TimerTrigger("0 10 9 * * *")]TimerInfo myTimer, ILogger log, ExecutionContext context)
+        public static void Run([TimerTrigger("0 10 9 * * *")] TimerInfo myTimer, ILogger log, ExecutionContext context)
         {
             //log.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
             //var message = JsonConvert.DeserializeObject<SendgridDataModel>(emailMessage);

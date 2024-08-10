@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using System.Collections.Generic;
 using NonProfitERP.Application.Mappings;
 using NonProfitERP.DAL.Entities;
+using System.Collections.Generic;
 
 namespace NonProfitERP.Application.Shared
 {

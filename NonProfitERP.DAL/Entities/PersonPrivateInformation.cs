@@ -37,7 +37,7 @@ namespace NonProfitERP.DAL.Entities
         public int? ParentalStatusId { get; set; }
 
         public string OtherParentalStatus { get; set; }
-        
+
         public bool IsAlive { get; set; }
 
         public DateTime? DateOfExpiry { get; set; }

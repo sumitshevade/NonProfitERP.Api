@@ -1,8 +1,8 @@
-﻿using System.Threading.Tasks;
-using NonProfitERP.Common.Models;
-using Microsoft.AspNetCore.Mvc;
-using NonProfitERP.Common.Interfaces;
+﻿using Microsoft.AspNetCore.Mvc;
 using NonProfitERP.Common.Identity.Models;
+using NonProfitERP.Common.Interfaces;
+using NonProfitERP.Common.Models;
+using System.Threading.Tasks;
 
 namespace NonProfitERP.Main.Controllers
 {
@@ -18,7 +18,7 @@ namespace NonProfitERP.Main.Controllers
 
         // /api/auth/register
         [HttpPost("register")]
-        public async Task<IActionResult> RegisterAsync([FromBody]UserRegistration model)
+        public async Task<IActionResult> RegisterAsync([FromBody] UserRegistration model)
         {
             if (ModelState.IsValid)
             {
@@ -39,7 +39,7 @@ namespace NonProfitERP.Main.Controllers
 
         // /api/auth/login
         [HttpPost("login")]
-        public async Task<IActionResult> LoginAsync([FromBody]UserLogin model)
+        public async Task<IActionResult> LoginAsync([FromBody] UserLogin model)
         {
             if (ModelState.IsValid)
             {

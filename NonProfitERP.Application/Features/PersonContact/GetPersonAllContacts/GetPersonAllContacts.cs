@@ -1,12 +1,12 @@
-﻿using MediatR;
-using System.Collections.Generic;
+﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
+using NonProfitERP.Application.Shared;
 using NonProfitERP.DAL.Interfaces;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using AutoMapper;
-using NonProfitERP.Application.Shared;
-using AutoMapper.QueryableExtensions;
-using Microsoft.EntityFrameworkCore;
 
 namespace NonProfitERP.Application.Features.PersonContact.GetPersonAllContacts
 {

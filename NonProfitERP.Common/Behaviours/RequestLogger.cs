@@ -1,6 +1,6 @@
-﻿using NonProfitERP.Common.Interfaces;
-using MediatR.Pipeline;
+﻿using MediatR.Pipeline;
 using Microsoft.Extensions.Logging;
+using NonProfitERP.Common.Interfaces;
 using System.Threading;
 using System.Threading.Tasks;
 

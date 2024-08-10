@@ -1,6 +1,6 @@
-﻿using NonProfitERP.Common.Interfaces;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
+using NonProfitERP.Common.Interfaces;
 using System;
 using System.Linq;
 using System.Linq.Expressions;

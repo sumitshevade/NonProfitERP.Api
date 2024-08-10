@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
 using NonProfitERP.Common.Interfaces;
-using Microsoft.Extensions.DependencyInjection;
 using NonProfitERP.Main.Services;
+using System;
 
 namespace NonProfitERP.Main.Configurations
 {

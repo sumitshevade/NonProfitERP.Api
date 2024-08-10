@@ -1,12 +1,12 @@
-﻿using MediatR;
-using AutoMapper;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using NonProfitERP.DAL.Interfaces;
+﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using NonProfitERP.Application.Shared;
+using NonProfitERP.DAL.Interfaces;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace NonProfitERP.Application.Features.PersonWorkExperience.GetPersonAllWorkExperiences
 {

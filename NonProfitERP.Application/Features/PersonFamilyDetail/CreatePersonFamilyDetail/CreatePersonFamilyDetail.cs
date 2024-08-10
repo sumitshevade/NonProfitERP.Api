@@ -1,10 +1,10 @@
-﻿using System;
+﻿using AutoMapper;
 using MediatR;
-using AutoMapper;
+using NonProfitERP.Common.Interfaces;
+using NonProfitERP.DAL.Interfaces;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
-using NonProfitERP.DAL.Interfaces;
-using NonProfitERP.Common.Interfaces;
 
 namespace NonProfitERP.Application.Features.PersonFamilyDetail.CreatePersonFamilyDetail
 {

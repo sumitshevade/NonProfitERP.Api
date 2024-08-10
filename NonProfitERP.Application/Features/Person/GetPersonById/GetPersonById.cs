@@ -1,8 +1,8 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
+using NonProfitERP.DAL.Interfaces;
 using System.Threading;
 using System.Threading.Tasks;
-using AutoMapper;
-using NonProfitERP.DAL.Interfaces;
 
 namespace NonProfitERP.Application.Features.People.GetPersonById
 {

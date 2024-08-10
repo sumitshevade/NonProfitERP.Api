@@ -1,9 +1,9 @@
-﻿using MediatR;
-using AutoMapper;
+﻿using AutoMapper;
+using MediatR;
+using NonProfitERP.Application.Shared;
+using NonProfitERP.DAL.Interfaces;
 using System.Threading;
 using System.Threading.Tasks;
-using NonProfitERP.DAL.Interfaces;
-using NonProfitERP.Application.Shared;
 
 namespace NonProfitERP.Application.Features.PersonDisability.GetPersonDisabilityByDisabilityId
 {

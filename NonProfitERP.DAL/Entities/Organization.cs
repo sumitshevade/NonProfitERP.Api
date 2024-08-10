@@ -13,7 +13,7 @@ namespace NonProfitERP.DAL.Entities
         }
 
         #region Generated Properties
-        
+
         public string Name { get; set; }
 
         public string AddressLine1 { get; set; }

@@ -1,5 +1,5 @@
-﻿using MediatR;
-using AutoMapper;
+﻿using AutoMapper;
+using MediatR;
 using NonProfitERP.Common.Interfaces;
 using NonProfitERP.DAL.Interfaces;
 using System.Threading;

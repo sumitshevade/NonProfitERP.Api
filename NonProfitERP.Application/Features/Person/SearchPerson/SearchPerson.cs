@@ -1,13 +1,13 @@
-﻿using MediatR;
-using AutoMapper;
+﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
+using NonProfitERP.Application.Shared;
+using NonProfitERP.DAL.Interfaces;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using NonProfitERP.DAL.Interfaces;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
-using NonProfitERP.Application.Shared;
-using AutoMapper.QueryableExtensions;
 
 namespace NonProfitERP.Application.Features.Person.SearchPerson
 {
@@ -36,7 +36,7 @@ namespace NonProfitERP.Application.Features.Person.SearchPerson
 
             if (request.LastName != null)
                 result = result.Where(x => x.LastName.Contains(request.LastName));
-            
+
             if (request.BirthLocation != null)
                 result = result.Where(x => x.BirthLocation.Contains(request.BirthLocation));
 
@@ -45,7 +45,7 @@ namespace NonProfitERP.Application.Features.Person.SearchPerson
 
             if (request.CountryId != 0)
                 result = result.Where(x => x.CountryId == request.CountryId);
-            
+
             if (request.WorkFrequencyId != 0)
                 result = result.Where(x => x.WorkFrequencyId == request.WorkFrequencyId);
 

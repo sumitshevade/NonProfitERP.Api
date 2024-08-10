@@ -1,10 +1,10 @@
-﻿using System;
-using MediatR;
-using System.Threading;
-using System.Threading.Tasks;
-using NonProfitERP.DAL.Interfaces;
+﻿using MediatR;
 using NonProfitERP.Common.Exceptions;
 using NonProfitERP.Common.Interfaces;
+using NonProfitERP.DAL.Interfaces;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace NonProfitERP.Application.Features.Master.Course.DeleteCourse
 {

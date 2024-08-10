@@ -1,5 +1,5 @@
-﻿using MediatR;
-using AutoMapper;
+﻿using AutoMapper;
+using MediatR;
 using NonProfitERP.Application.Mappings;
 using NonProfitERP.Common.Exceptions;
 using NonProfitERP.Common.Interfaces;

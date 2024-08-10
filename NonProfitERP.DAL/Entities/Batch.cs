@@ -1,9 +1,8 @@
-using NonProfitERP.DAL;
 using System;
 
 namespace NonProfitERP.DAL.Entities
 {
-    public partial class Batch: Entity
+    public partial class Batch : Entity
     {
         public Batch()
         {

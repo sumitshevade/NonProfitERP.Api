@@ -1,10 +1,10 @@
-﻿using System;
+﻿using AutoMapper;
 using MediatR;
-using AutoMapper;
 using NonProfitERP.Application.Mappings;
 using NonProfitERP.Common.Exceptions;
 using NonProfitERP.Common.Interfaces;
 using NonProfitERP.DAL.Interfaces;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 

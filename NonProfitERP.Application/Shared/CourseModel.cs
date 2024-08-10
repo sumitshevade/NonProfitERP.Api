@@ -2,7 +2,6 @@
 using NonProfitERP.Application.Mappings;
 using NonProfitERP.DAL.Entities;
 using System;
-using System.Collections.Generic;
 
 namespace NonProfitERP.Application.Shared
 {

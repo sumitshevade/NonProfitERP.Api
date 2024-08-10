@@ -1,12 +1,12 @@
-﻿using MediatR;
-using AutoMapper;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
+using NonProfitERP.Application.Shared;
 using NonProfitERP.DAL.Interfaces;
 using System.Collections.Generic;
-using NonProfitERP.Application.Shared;
-using Microsoft.EntityFrameworkCore;
-using AutoMapper.QueryableExtensions;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace NonProfitERP.Application.Features.Master.Organization.GetOrganizations
 {

@@ -1,11 +1,11 @@
-﻿using System;
+﻿using AutoMapper;
 using MediatR;
-using AutoMapper;
+using NonProfitERP.Application.Mappings;
+using NonProfitERP.Common.Interfaces;
+using NonProfitERP.DAL.Interfaces;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
-using NonProfitERP.DAL.Interfaces;
-using NonProfitERP.Common.Interfaces;
-using NonProfitERP.Application.Mappings;
 
 namespace NonProfitERP.Application.Features.Master.Program.CreateProgram
 {

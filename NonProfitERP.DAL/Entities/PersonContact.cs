@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-
 namespace NonProfitERP.DAL.Entities
 {
     public partial class PersonContact : Entity

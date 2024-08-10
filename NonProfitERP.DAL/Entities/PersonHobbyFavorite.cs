@@ -9,7 +9,7 @@ namespace NonProfitERP.DAL.Entities
         }
 
         #region Generated Properties
-        
+
         public int PersonId { get; set; }
 
         public int? HobbyFavoriteId { get; set; }

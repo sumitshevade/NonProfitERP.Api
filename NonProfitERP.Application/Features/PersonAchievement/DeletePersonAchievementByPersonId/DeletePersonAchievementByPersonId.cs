@@ -1,11 +1,11 @@
-﻿using System;
-using MediatR;
+﻿using MediatR;
+using NonProfitERP.Common.Exceptions;
+using NonProfitERP.Common.Interfaces;
+using NonProfitERP.DAL.Interfaces;
+using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using NonProfitERP.DAL.Interfaces;
-using NonProfitERP.Common.Interfaces;
-using NonProfitERP.Common.Exceptions;
 
 namespace NonProfitERP.Application.Features.PersonAchievement.DeletePersonAchievementByPersonId
 {

@@ -1,7 +1,7 @@
-﻿using NonProfitERP.Common.Interfaces;
-using NonProfitERP.Common.Models;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using NonProfitERP.Common.Interfaces;
+using NonProfitERP.Common.Models;
 using System.Linq;
 using System.Threading.Tasks;
 

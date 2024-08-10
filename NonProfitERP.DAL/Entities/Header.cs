@@ -12,7 +12,7 @@ namespace NonProfitERP.DAL.Entities
         }
 
         #region Generated Properties
-        
+
         public string Title { get; set; }
 
         #endregion

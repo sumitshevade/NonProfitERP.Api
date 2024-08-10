@@ -1,10 +1,10 @@
-﻿using MediatR;
-using AutoMapper;
-using System.Threading;
-using System.Threading.Tasks;
-using NonProfitERP.DAL.Interfaces;
+﻿using AutoMapper;
+using MediatR;
 using NonProfitERP.Common.Exceptions;
 using NonProfitERP.Common.Interfaces;
+using NonProfitERP.DAL.Interfaces;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace NonProfitERP.Application.Features.PersonHobbyFavorite.UpdatePersonHobbyFavoriteByHFId
 {
