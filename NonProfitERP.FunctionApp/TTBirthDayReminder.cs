@@ -1,14 +1,11 @@
+using Microsoft.Azure.WebJobs;
+using Microsoft.Extensions.Logging;
+using SendGrid;
+using SendGrid.Helpers.Mail;
 using System;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
-using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Host;
-using Microsoft.Build.Utilities;
-using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
-using SendGrid;
-using SendGrid.Helpers.Mail;
 
 namespace NonProfitERP.FunctionApp
 {

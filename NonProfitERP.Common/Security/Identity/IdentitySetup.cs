@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using NonProfitERP.Common.Identity.Models;
-using NonProfitERP.Common.Interfaces;
-using NonProfitERP.Common.Security.Authorization;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using NonProfitERP.Common.Identity.Models;
+using NonProfitERP.Common.Interfaces;
+using NonProfitERP.Common.Security.Authorization;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace NonProfitERP.Common.Security.Identity
 {

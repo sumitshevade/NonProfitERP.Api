@@ -11,7 +11,7 @@ namespace NonProfitERP.Data.Mapping
         {
             #region Generated Configure
             // table
-            builder.ToTable("PersonAchievement", "dbo");
+            builder.ToTable("PersonAchievements", "dbo");
 
             // key
             builder.HasKey(t => t.Id);
