@@ -1,5 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using NonProfitERP.Application.Features.Master.Batch.CreateBatch;
+using NonProfitERP.Application.Features.Master.Batch.DeleteBatch;
+using NonProfitERP.Application.Features.Master.Batch.GetBatchById;
+using NonProfitERP.Application.Features.Master.Batch.GetBatchesByCourseId;
+using NonProfitERP.Application.Features.Master.Batch.UpdateBatchById;
 using NonProfitERP.Application.Features.Master.City.CreateCity;
 using NonProfitERP.Application.Features.Master.City.DeleteCity;
 using NonProfitERP.Application.Features.Master.City.GetCitiesByStateId;
@@ -64,6 +69,43 @@ namespace NonProfitERP.Main.Controllers
     [Authorize]
     public class MasterController : ApiController
     {
+        #region --- Batch APIs ---
+
+        [HttpGet, Route("courses/{courseId}/batches")]
+        public async Task<IActionResult> GetBatchesByCourseId(int courseId)
+        {
+            var result = await Mediator.Send(new GetBatchesByCourseId { CourseId = courseId });
+            return new JsonResult(result);
+        }
+
+        [HttpGet("batches/{id}")]
+        public async Task<IActionResult> GetBatchById(int id)
+        {
+            var result = await Mediator.Send(new GetBatchByIdQuery { Id = id });
+            return new JsonResult(result);
+        }
+
+        [HttpPost("batches")]
+        public async Task<IActionResult> PostBatch(CreateBatchCommand command)
+        {
+            return new JsonResult(await Mediator.Send(command));
+        }
+
+        [HttpPut("batches")]
+        public async Task<IActionResult> PutBatch(UpdateBatchByIdCommand command)
+        {
+            return new JsonResult(await Mediator.Send(command));
+        }
+
+        [HttpDelete("batches/{id}")]
+        public async Task<IActionResult> DeleteBatch(int id)
+        {
+            return new JsonResult(await Mediator.Send(new DeleteBatchCommand { Id = id }));
+        }
+
+        // TODO: Maybe in future we will require delete multiple by passing ids
+        #endregion
+
         #region --- City APIs ---
 
         [HttpGet, Route("state/{stateId}/city")]
