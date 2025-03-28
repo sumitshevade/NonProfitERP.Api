@@ -122,6 +122,13 @@ namespace NonProfitERP.Main.Controllers
             return new JsonResult(result);
         }
 
+        [HttpGet("city/search/{strName}")]
+        public async Task<IActionResult> GetCityByName(string strName)
+        {
+            var result = await Mediator.Send(new SearchCityByNameQuery { Name = strName });
+            return new JsonResult(result);
+        }
+
         [HttpPost("city")]
         public async Task<IActionResult> PostCity(CreateCityCommand command)
         {
