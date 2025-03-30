@@ -23,7 +23,7 @@ namespace NonProfitERP.Application.Features.Master.University.GetAllUniversities
 
         public async Task<IList<UniversityModel>> Handle(GetAllUniversitiesQuery request, CancellationToken cancellationToken)
         {
-            return await _universityRepository.GetList(x => x.IsActive == true)
+            return await _universityRepository.GetList(x => x.IsActive == true).Include("City")
                 .ProjectTo<UniversityModel>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
         }
