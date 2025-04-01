@@ -10,7 +10,6 @@ namespace NonProfitERP.Application.Shared
         public CityModel()
         {
             //PersonAddress = new HashSet<PersonAddress>();
-            University = new HashSet<University>();
         }
 
         public int Id { get; set; }
@@ -19,7 +18,6 @@ namespace NonProfitERP.Application.Shared
 
         public virtual State State { get; set; }
         //public virtual ICollection<PersonAddress> PersonAddress { get; set; }
-        public virtual ICollection<University> University { get; set; }
 
         public void Mapping(Profile profile)
         {

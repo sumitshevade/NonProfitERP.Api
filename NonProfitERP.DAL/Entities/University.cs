@@ -14,12 +14,11 @@ namespace NonProfitERP.DAL.Entities
 
         public string Name { get; set; }
 
-        public int CityId { get; set; }
+        public string City { get; set; }
 
         #endregion
 
         #region Generated Relationships
-        public virtual City City { get; set; }
 
         public virtual ICollection<PersonEducation> PersonEducations { get; set; }
 
