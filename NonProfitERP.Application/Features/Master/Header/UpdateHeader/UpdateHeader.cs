@@ -43,7 +43,7 @@ namespace NonProfitERP.Application.Features.Master.Header.UpdateHeader
     public class UpdateHeaderCommand : IRequest<bool>, IMapFrom<Header>
     {
         public int Id { get; set; }
-        public string Title { get; set; }
+        public string Name { get; set; }
         public bool IsActive { get; set; }
 
         public void Mapping(Profile profile)

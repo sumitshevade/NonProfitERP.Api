@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace NonProfitERP.DAL.Entities
 {
@@ -13,7 +14,7 @@ namespace NonProfitERP.DAL.Entities
 
         #region Generated Properties
 
-        public string Title { get; set; }
+        public string Name { get; set; }
 
         #endregion
 

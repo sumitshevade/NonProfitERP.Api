@@ -21,9 +21,9 @@ namespace NonProfitERP.Data.Mapping
                 .HasColumnType("int")
                 .ValueGeneratedOnAdd();
 
-            builder.Property(t => t.Title)
+            builder.Property(t => t.Name)
                 .IsRequired()
-                .HasColumnName("Title")
+                .HasColumnName("Name")
                 .HasColumnType("varchar(50)")
                 .HasMaxLength(50);
 
