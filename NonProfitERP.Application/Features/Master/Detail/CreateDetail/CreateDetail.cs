@@ -37,7 +37,7 @@ namespace NonProfitERP.Application.Features.Master.Detail.CreateDetail
     public class CreateDetailCommand : IRequest<int>, IMapFrom<Detail>
     {
         public int HeaderId { get; set; }
-        public string Value { get; set; }
+        public string Name { get; set; }
         public string ExtraField { get; set; }
         public bool IsActive { get; set; }
 
