@@ -12,7 +12,8 @@ namespace NonProfitERP.Data.Mapping
             builder.ToTable("Universities", "dbo");
 
             // key
-            builder.HasKey(t => t.Id);
+            builder.HasKey(t => t.Id)
+                .HasName("PK__Universi__3214EC07FD029DF3");
 
             // properties
             builder.Property(t => t.Id)
@@ -25,13 +26,15 @@ namespace NonProfitERP.Data.Mapping
                 .IsRequired()
                 .HasColumnName("Name")
                 .HasColumnType("varchar(50)")
-                .HasMaxLength(50);
+                .HasMaxLength(50)
+                .IsUnicode(false);
 
             builder.Property(t => t.City)
                 .IsRequired()
                 .HasColumnName("City")
                 .HasColumnType("varchar(50)")
-                .HasMaxLength(50);
+                .HasMaxLength(50)
+                .IsUnicode(false);
 
             builder.Property(t => t.CreatedById)
                 .IsRequired()
@@ -58,7 +61,7 @@ namespace NonProfitERP.Data.Mapping
                 .IsRequired()
                 .HasColumnName("IsActive")
                 .HasColumnType("bit")
-                .HasDefaultValueSql("((1))");
+                .HasDefaultValue(true);
 
             #endregion
         }

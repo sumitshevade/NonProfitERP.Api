@@ -12,7 +12,8 @@ namespace NonProfitERP.Data.Mapping
             builder.ToTable("States", "dbo");
 
             // key
-            builder.HasKey(t => t.Id);
+            builder.HasKey(t => t.Id)
+                .HasName("PK__States__3214EC07B0873B68");
 
             // properties
             builder.Property(t => t.Id)
@@ -30,7 +31,8 @@ namespace NonProfitERP.Data.Mapping
                 .IsRequired()
                 .HasColumnName("Name")
                 .HasColumnType("varchar(50)")
-                .HasMaxLength(50);
+                .HasMaxLength(50)
+                .IsUnicode(false);
 
             builder.Property(t => t.CreatedById)
                 .IsRequired()
@@ -57,13 +59,13 @@ namespace NonProfitERP.Data.Mapping
                 .IsRequired()
                 .HasColumnName("IsActive")
                 .HasColumnType("bit")
-                .HasDefaultValueSql("((1))");
+                .HasDefaultValue(true);
 
             // relationships
             builder.HasOne(t => t.Country)
                 .WithMany(t => t.States)
                 .HasForeignKey(d => d.CountryId)
-                .HasConstraintName("FK__State__CountryId__412EB0B6");
+                .HasConstraintName("FK__States__CountryI__29E1370A");
 
             #endregion
         }

@@ -1,28 +1,24 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace NonProfitERP.DAL.Entities
+namespace NonProfitERP.DAL.Entities;
+
+public partial class University : Entity
 {
-    public partial class University : Entity
+    public University()
     {
-        public University()
-        {
-            #region Generated Constructor
-            #endregion
-        }
-
-        #region Generated Properties
-
-        public string Name { get; set; }
-
-        public string City { get; set; }
-
+        #region Generated Constructor
         #endregion
-
-        #region Generated Relationships
-
-        public virtual ICollection<PersonEducation> PersonEducations { get; set; }
-
-        #endregion
-
     }
+
+    #region Generated Properties
+    public string Name { get; set; }
+
+    public string City { get; set; }
+    #endregion
+
+    #region Generated Relationships
+
+    public virtual ICollection<PersonEducation> PersonEducations { get; set; }
+
+    #endregion
 }

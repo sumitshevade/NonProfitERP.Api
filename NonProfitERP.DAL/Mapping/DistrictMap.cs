@@ -1,4 +1,6 @@
+using System.Reflection.Emit;
 using Microsoft.EntityFrameworkCore;
+using NonProfitERP.DAL.Entities;
 
 namespace NonProfitERP.Data.Mapping
 {
@@ -12,7 +14,8 @@ namespace NonProfitERP.Data.Mapping
             builder.ToTable("Districts", "dbo");
 
             // key
-            builder.HasKey(t => t.Id);
+            builder.HasKey(t => t.Id)
+                .HasName("PK__District__3214EC07C2AB83A9");
 
             // properties
             builder.Property(t => t.Id)
@@ -30,13 +33,14 @@ namespace NonProfitERP.Data.Mapping
                 .IsRequired()
                 .HasColumnName("Name")
                 .HasColumnType("varchar(50)")
-                .HasMaxLength(50);
+                .HasMaxLength(50)
+                .IsUnicode(false);
 
             builder.Property(t => t.LongText)
                 .HasColumnName("LongText")
                 .HasColumnType("nvarchar(500)")
                 .HasMaxLength(500);
-
+            
             builder.Property(t => t.CreatedById)
                 .IsRequired()
                 .HasColumnName("CreatedById")
@@ -62,13 +66,13 @@ namespace NonProfitERP.Data.Mapping
                 .IsRequired()
                 .HasColumnName("IsActive")
                 .HasColumnType("bit")
-                .HasDefaultValueSql("((1))");
+                .HasDefaultValue(true);
 
             // relationships
             builder.HasOne(t => t.State)
                 .WithMany(t => t.Districts)
                 .HasForeignKey(d => d.StateId)
-                .HasConstraintName("FK__District__StateI__4AB81AF0");
+                .HasConstraintName("FK__Districts__State__70A8B9AE");
 
             #endregion
         }

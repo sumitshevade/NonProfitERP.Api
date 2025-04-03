@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using NonProfitERP.DAL;
 
 namespace NonProfitERP.Data.Mapping
 {
@@ -12,7 +13,8 @@ namespace NonProfitERP.Data.Mapping
             builder.ToTable("Countries", "dbo");
 
             // key
-            builder.HasKey(t => t.Id);
+            builder.HasKey(t => t.Id)
+                .HasName("PK__Countrie__3214EC07A912DE70");
 
             // properties
             builder.Property(t => t.Id)
@@ -25,7 +27,8 @@ namespace NonProfitERP.Data.Mapping
                 .IsRequired()
                 .HasColumnName("Name")
                 .HasColumnType("varchar(50)")
-                .HasMaxLength(50);
+                .HasMaxLength(50)
+                .IsUnicode(false);
 
             builder.Property(t => t.CreatedById)
                 .IsRequired()
@@ -52,8 +55,8 @@ namespace NonProfitERP.Data.Mapping
                 .IsRequired()
                 .HasColumnName("IsActive")
                 .HasColumnType("bit")
-                .HasDefaultValueSql("((1))");
-
+                .HasDefaultValue(true);
+            
             // relationships
             #endregion
         }
