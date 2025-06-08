@@ -1,25 +1,24 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace NonProfitERP.DAL.Entities
+namespace NonProfitERP.DAL.Entities;
+
+public partial class Header : Entity
 {
-    public partial class Header : Entity
+    public Header()
     {
-        public Header()
-        {
-            #region Generated Constructor
-            Details = new HashSet<Detail>();
-            #endregion
-        }
-
-        #region Generated Properties
-
-        public string Title { get; set; }
-
-        #endregion
-
-        #region Generated Relationships
-        public virtual ICollection<Detail> Details { get; set; }
-
+        #region Generated Constructor
+        Details = new HashSet<Detail>();
         #endregion
     }
+
+    #region Generated Properties
+
+    public string Name { get; set; }
+
+    #endregion
+
+    #region Generated Relationships
+    public virtual ICollection<Detail> Details { get; set; } = new List<Detail>();
+    
+    #endregion
 }

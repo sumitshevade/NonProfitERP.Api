@@ -27,6 +27,7 @@ namespace NonProfitERP.Application.Features.Master.University.UpdateUniversity
         public Task<bool> Handle(UpdateUniversityCommand request, CancellationToken cancellationToken)
         {
             var result = _universityRepository.Exists(x => x.Id == request.Id);
+
             if (!result)
             {
                 throw new NotFoundException(nameof(University), request.Id);
@@ -44,7 +45,7 @@ namespace NonProfitERP.Application.Features.Master.University.UpdateUniversity
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int CityId { get; set; }
+        public string City { get; set; }
         public bool IsActive { get; set; }
 
         public void Mapping(Profile profile)

@@ -12,7 +12,8 @@ namespace NonProfitERP.Data.Mapping
             builder.ToTable("Details", "dbo");
 
             // key
-            builder.HasKey(t => t.Id);
+            builder.HasKey(t => t.Id)
+                .HasName("PK__Details__3214EC07B4C7CBDB");
 
             // properties
             builder.Property(t => t.Id)
@@ -25,17 +26,19 @@ namespace NonProfitERP.Data.Mapping
                 .IsRequired()
                 .HasColumnName("HeaderId")
                 .HasColumnType("int");
-
-            builder.Property(t => t.Value)
+            
+            builder.Property(t => t.Name)
                 .IsRequired()
-                .HasColumnName("Value")
+                .HasColumnName("Name")
                 .HasColumnType("varchar(100)")
-                .HasMaxLength(100);
+                .HasMaxLength(100)
+                .IsUnicode(false);
 
             builder.Property(t => t.ExtraField)
                 .HasColumnName("ExtraField")
                 .HasColumnType("varchar(250)")
-                .HasMaxLength(250);
+                .HasMaxLength(250)
+                .IsUnicode(false);
 
             builder.Property(t => t.CreatedById)
                 .IsRequired()
@@ -62,15 +65,16 @@ namespace NonProfitERP.Data.Mapping
                 .IsRequired()
                 .HasColumnName("IsActive")
                 .HasColumnType("bit")
-                .HasDefaultValueSql("((1))");
+                .HasDefaultValue(true);
 
             // relationships
             builder.HasOne(t => t.Header)
                 .WithMany(t => t.Details)
                 .HasForeignKey(d => d.HeaderId)
-                .HasConstraintName("FK__Detail__HeaderId__5812160E");
+                .HasConstraintName("FK__Details__HeaderI__6FB49575");
 
             #endregion
+            
         }
 
         #region Generated Constants

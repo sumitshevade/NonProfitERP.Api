@@ -13,7 +13,7 @@ namespace NonProfitERP.Application.Shared
         }
 
         public int Id { get; set; }
-        public string Title { get; set; }
+        public string Name { get; set; }
 
         public virtual ICollection<Detail> Detail { get; set; }
 

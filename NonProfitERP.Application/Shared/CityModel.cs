@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using AutoMapper;
 using NonProfitERP.Application.Mappings;
 using NonProfitERP.DAL.Entities;
 
@@ -6,11 +7,10 @@ namespace NonProfitERP.Application.Shared
 {
     public partial class CityModel : IMapFrom<City>
     {
-        //public CityModel()
-        //{
-        //    PersonAddress = new HashSet<PersonAddress>();
-        //    University = new HashSet<University>();
-        //}
+        public CityModel()
+        {
+            //PersonAddress = new HashSet<PersonAddress>();
+        }
 
         public int Id { get; set; }
         public int? StateId { get; set; }
@@ -18,7 +18,6 @@ namespace NonProfitERP.Application.Shared
 
         public virtual State State { get; set; }
         //public virtual ICollection<PersonAddress> PersonAddress { get; set; }
-        //public virtual ICollection<University> University { get; set; }
 
         public void Mapping(Profile profile)
         {

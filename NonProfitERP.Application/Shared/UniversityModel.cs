@@ -8,9 +8,7 @@ namespace NonProfitERP.Application.Shared
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int CityId { get; set; }
-
-        //public virtual City City { get; set; }
+        public string City { get; set; }
 
         public void Mapping(Profile profile)
         {

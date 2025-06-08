@@ -1,9 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using NonProfitERP.Common.Interfaces;
-using System;
+﻿using System;
 using System.Linq;
 using System.Reflection;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using NonProfitERP.Common.Interfaces;
+using NonProfitERP.DAL.Interfaces;
+using NonProfitERP.DAL.Repository;
 
 namespace NonProfitERP.DAL.Configurations
 {
@@ -26,6 +28,7 @@ namespace NonProfitERP.DAL.Configurations
                     services.AddScoped(intfc, type);
             }
 
+            services.AddScoped<ICustomRepository, CustomRepository>();
         }
     }
 }

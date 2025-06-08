@@ -8,7 +8,6 @@ namespace NonProfitERP.DAL.Entities
         {
             #region Generated Constructor
             PersonAddresses = new HashSet<PersonAddress>();
-            Universities = new HashSet<University>();
             #endregion
         }
 
@@ -24,8 +23,6 @@ namespace NonProfitERP.DAL.Entities
         public virtual ICollection<PersonAddress> PersonAddresses { get; set; }
 
         public virtual State State { get; set; }
-
-        public virtual ICollection<University> Universities { get; set; }
 
         #endregion
 

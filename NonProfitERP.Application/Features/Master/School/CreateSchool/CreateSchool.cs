@@ -51,6 +51,7 @@ namespace NonProfitERP.Application.Features.Master.School.CreateSchool
         public string Email { get; set; }
         public string WebLink { get; set; }
         public int? SchoolTypeId { get; set; }
+        public int? SyllabusId { get; set; }
         public string LongText { get; set; }
         public bool IsActive { get; set; }
 
